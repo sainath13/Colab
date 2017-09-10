@@ -90,26 +90,7 @@ return(
     backgroundColor="white"
     barStyle="light-content"
   />
-  <View style={styles.container}>
-       <LoginButton
-         onLoginFinished={
-           (error, result) => {
-             if (error) {
-               alert("login has error: " + result.error);
-             } else if (result.isCancelled) {
-               alert("login is cancelled.");
-             } else {
-               AccessToken.getCurrentAccessToken().then(
-                 (data) => {
-                   console.log(this);
-                   this._calltheroute(data.accessToken.toString());
-                 }
-               )
-             }
-           }
-         }
-       />
-     </View>
+
   <View style={styles.header}>
     <Text style={styles.headerText}>
       Influxcer
@@ -156,6 +137,26 @@ return(
       </View>
 
     </View>
+    <View style={{alignItems : 'center' , flex : 1}}>
+         <LoginButton
+           onLoginFinished={
+             (error, result) => {
+               if (error) {
+                 alert("login has error: " + result.error);
+               } else if (result.isCancelled) {
+                 alert("login is cancelled.");
+               } else {
+                 AccessToken.getCurrentAccessToken().then(
+                   (data) => {
+                     console.log(this);
+                     this._calltheroute(data.accessToken.toString());
+                   }
+                 )
+               }
+             }
+           }
+         />
+       </View>
     <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressInfluencerSignIn() }}>
       <View style={styles.submitButton}>
         <Text style={styles.submitButtonText}>

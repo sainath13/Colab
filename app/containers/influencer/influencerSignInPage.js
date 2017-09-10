@@ -20,7 +20,8 @@ import { ActionCreators } from '../../actions'
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginManager,
-  AccessToken
+  AccessToken,
+  LoginButton
 } = FBSDK;
 
 
@@ -29,34 +30,47 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class influencerSignInPage extends Component{
    constructor(props) {
     super(props);
+    this.onPressInfluencerSignIn = this.onPressInfluencerSignIn.bind(this);
+    this._calltheroute = this._calltheroute.bind(this);
+    // LoginManager = this.LoginManager.bind(this);
     this.state = {
         username : "",
         password : "",
     };
   }
+  _calltheroute(access){
+    console.log("i am called");
+    console.log("token is ", access);
+
+  }
   onPressInfluencerSignIn(){
-    LoginManager.logInWithReadPermissions(['public_profile']).then(
-   function(result) {
-      if (result.isCancelled) {
-         alert('Login cancelled');
-      } else {
-        //  alert('Login success with permissions: '
-        //  +result.grantedPermissions.toString());
-         console.log(result);
-         AccessToken.getCurrentAccessToken().then(
-                 (data) => {
-                   alert(data.accessToken.toString());
-
-                 }
-               )//TODO : do the log-out thing from fbsdk github page
-      }
-   },
-   function(error) {
-      alert('Login fail with error: ' + error);
-   }
-);
-
-    //console.log("props",this.props)
+    // console.log("props are 1 " , this.props);
+  //   LoginManager.logInWithReadPermissions(['public_profile']).then(
+  //     function(result) {
+  //     if (result.isCancelled) {
+  //        alert('Login cancelled');
+  //     } else {
+  //       console.log("first props are", this.props);
+  //       //  alert('Login success with permissions: '
+  //       //  +result.grantedPermissions.toString());
+  //        console.log(result);
+  //        AccessToken.getCurrentAccessToken().then(
+  //                (data) => {
+  //                  if(data){
+  //                    this._calltheroute(data.accessToken.toString());
+  //                  }
+  //                 //  alert(data.accessToken.toString());
+  //                   // _calltheroute(data.accessToken.toString());
+  //                 //  console.log("props are", this.props);
+  //                 // this.props.signIn(data.accessToken.toString(), "this.state.password");
+  //                }
+  //              )//TODO : do the log-out thing from fbsdk github page
+  //     }
+  //  },
+  //  function(error) {
+  //     alert('Login fail with error: ' + error);
+  //  }
+// );    //console.log("props",this.props)
     //  this.props.signIn(this.state.username, this.state.password);
       //TODO: .then updateinfo route. else show error
     //  Actions.influencerUpdateInfoPage();
@@ -64,7 +78,9 @@ class influencerSignInPage extends Component{
 
   }
   onPressInfluencerGoToSignUp(){
-     Actions.influencerSignUpPage();
+    // this.props.signIn("this.state.username", "this.state.password");
+    this.props.signIn('EAAWxkcq5ZBRoBAP747Mad1wiPNmWpZAb71nHIku1jS4xJnqK5yAszSI14ZC1xLdWBGjYjFTXXoP5iFD51lj9UmHSwuRDW9pcIE6sm1pgB0slwvnYAEVORaLrZCaJmlvjhZCMIJ6ZAilCkauZCZBkMpz9ZA4WoZASZAwo73qnHXN48qFVgZDZD', "this.state.password");
+    // Actions.influencerSignUpPage();
   }
 
   render() {
@@ -74,6 +90,26 @@ return(
     backgroundColor="white"
     barStyle="light-content"
   />
+  <View style={styles.container}>
+       <LoginButton
+         onLoginFinished={
+           (error, result) => {
+             if (error) {
+               alert("login has error: " + result.error);
+             } else if (result.isCancelled) {
+               alert("login is cancelled.");
+             } else {
+               AccessToken.getCurrentAccessToken().then(
+                 (data) => {
+                   console.log(this);
+                   this._calltheroute(data.accessToken.toString());
+                 }
+               )
+             }
+           }
+         }
+       />
+     </View>
   <View style={styles.header}>
     <Text style={styles.headerText}>
       Influxcer

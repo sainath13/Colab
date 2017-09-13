@@ -31,46 +31,50 @@ class influencerSignInPage extends Component{
    constructor(props) {
     super(props);
     this.onPressInfluencerSignIn = this.onPressInfluencerSignIn.bind(this);
-    this._calltheroute = this._calltheroute.bind(this);
+    this.calltheroute = this.calltheroute.bind(this);
     // LoginManager = this.LoginManager.bind(this);
     this.state = {
         username : "",
         password : "",
     };
   }
-  _calltheroute(access){
+  calltheroute(access){
     console.log("i am called");
     console.log("token is ", access);
+    this.props.signIn(access, "this.state.password");
+    Actions.influencerUpdateInfoPage();
 
   }
   onPressInfluencerSignIn(){
-    // console.log("props are 1 " , this.props);
-  //   LoginManager.logInWithReadPermissions(['public_profile']).then(
-  //     function(result) {
-  //     if (result.isCancelled) {
-  //        alert('Login cancelled');
-  //     } else {
-  //       console.log("first props are", this.props);
-  //       //  alert('Login success with permissions: '
-  //       //  +result.grantedPermissions.toString());
-  //        console.log(result);
-  //        AccessToken.getCurrentAccessToken().then(
-  //                (data) => {
-  //                  if(data){
-  //                    this._calltheroute(data.accessToken.toString());
-  //                  }
-  //                 //  alert(data.accessToken.toString());
-  //                   // _calltheroute(data.accessToken.toString());
-  //                 //  console.log("props are", this.props);
-  //                 // this.props.signIn(data.accessToken.toString(), "this.state.password");
-  //                }
-  //              )//TODO : do the log-out thing from fbsdk github page
-  //     }
-  //  },
-  //  function(error) {
-  //     alert('Login fail with error: ' + error);
-  //  }
-// );    //console.log("props",this.props)
+        console.log("props are 1 " , this);
+        var myprops = this;
+    LoginManager.logInWithReadPermissions(['public_profile']).then(
+      function(result) {
+      if (result.isCancelled) {
+         alert('Login cancelled');
+      } else {
+        console.log("first props are", this.props);
+        //  alert('Login success with permissions: '
+        //  +result.grantedPermissions.toString());
+         console.log(result);
+         AccessToken.getCurrentAccessToken().then(
+                 (data) => {
+                   if(data){
+                    //  console.log("var myprops contains", myprops);
+                    myprops.calltheroute(data.accessToken.toString());
+                   }
+                  //  alert(data.accessToken.toString());
+                    // _calltheroute(data.accessToken.toString());
+                  //  console.log("props are", this.props);
+                  // this.props.signIn(data.accessToken.toString(), "this.state.password");
+                 }
+               )//TODO : do the log-out thing from fbsdk github page
+      }
+   },
+   function(error) {
+      alert('Login fail with error: ' + error);
+   }
+);    //console.log("props",this.props)
     //  this.props.signIn(this.state.username, this.state.password);
       //TODO: .then updateinfo route. else show error
     //  Actions.influencerUpdateInfoPage();
@@ -137,27 +141,7 @@ return(
       </View>
 
     </View>
-    <View style={{alignItems : 'center' , flex : 1}}>
-         <LoginButton
-           onLoginFinished={
-             (error, result) => {
-               if (error) {
-                 alert("login has error: " + result.error);
-               } else if (result.isCancelled) {
-                 alert("login is cancelled.");
-               } else {
-                 AccessToken.getCurrentAccessToken().then(
-                   (data) => {
-                     console.log(this);
-                     this._calltheroute(data.accessToken.toString());
-                   }
-                 )
-               }
-             }
-           }
-         />
-       </View>
-    <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressInfluencerSignIn() }}>
+    <TouchableHighlight style={{flex:1}} onPress={this.onPressInfluencerSignIn}>
       <View style={styles.submitButton}>
         <Text style={styles.submitButtonText}>
           Login with facebook

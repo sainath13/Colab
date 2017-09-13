@@ -24,18 +24,21 @@ const {
   LoginButton
 } = FBSDK;
 
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class influencerSignInPage extends Component{
    constructor(props) {
     super(props);
+    console.log("reload is happening");
     this.onPressInfluencerSignIn = this.onPressInfluencerSignIn.bind(this);
     this.calltheroute = this.calltheroute.bind(this);
     // LoginManager = this.LoginManager.bind(this);
     this.state = {
         username : "",
         password : "",
+        spinnerVisible : false,
     };
   }
   calltheroute(access){
@@ -46,8 +49,7 @@ class influencerSignInPage extends Component{
 
   }
   onPressInfluencerSignIn(){
-        console.log("props are 1 " , this);
-        var myprops = this;
+    var myprops = this;
     LoginManager.logInWithReadPermissions(['public_profile']).then(
       function(result) {
       if (result.isCancelled) {
@@ -60,13 +62,15 @@ class influencerSignInPage extends Component{
          AccessToken.getCurrentAccessToken().then(
                  (data) => {
                    if(data){
-                    //  console.log("var myprops contains", myprops);
                     myprops.calltheroute(data.accessToken.toString());
+                    myprops.setState({
+                      spinnerVisible: true
+                    }, function () {
+                      console.log("from access tk", myprops.state.spinnerVisible);
+                  });
                    }
                   //  alert(data.accessToken.toString());
-                    // _calltheroute(data.accessToken.toString());
-                  //  console.log("props are", this.props);
-                  // this.props.signIn(data.accessToken.toString(), "this.state.password");
+                    _calltheroute(data.accessToken.toString());
                  }
                )//TODO : do the log-out thing from fbsdk github page
       }
@@ -83,24 +87,25 @@ class influencerSignInPage extends Component{
   }
   onPressInfluencerGoToSignUp(){
     // this.props.signIn("this.state.username", "this.state.password");
-    this.props.signIn('EAAWxkcq5ZBRoBAP747Mad1wiPNmWpZAb71nHIku1jS4xJnqK5yAszSI14ZC1xLdWBGjYjFTXXoP5iFD51lj9UmHSwuRDW9pcIE6sm1pgB0slwvnYAEVORaLrZCaJmlvjhZCMIJ6ZAilCkauZCZBkMpz9ZA4WoZASZAwo73qnHXN48qFVgZDZD', "this.state.password");
-    // Actions.influencerSignUpPage();
+    // this.props.signIn('EAAWxkcq5ZBRoBAP747Mad1wiPNmWpZAb71nHIku1jS4xJnqK5yAszSI14ZC1xLdWBGjYjFTXXoP5iFD51lj9UmHSwuRDW9pcIE6sm1pgB0slwvnYAEVORaLrZCaJmlvjhZCMIJ6ZAilCkauZCZBkMpz9ZA4WoZASZAwo73qnHXN48qFVgZDZD', "this.state.password");
+    Actions.influencerSignUpPage();
   }
 
   render() {
-return(
+  return(
   <View style={{flex : 1}}>
   <StatusBar
     backgroundColor="white"
     barStyle="light-content"
   />
-
+  
   <View style={styles.header}>
     <Text style={styles.headerText}>
       Influxcer
     </Text>
   </View>
   <View style = {styles.content}>
+  {this.state.spinnerVisible? <View style={{backgroundColor : '#f0f0f0'}}><Spinner visible={this.state.spinnerVisible} textContent={"Loading..."} textStyle={{color: '#FFF'}} /></View> : null}
     <View style={styles.contentPic}>
     </View>
     <View style={styles.form}>
@@ -141,7 +146,7 @@ return(
       </View>
 
     </View>
-    <TouchableHighlight style={{flex:1}} onPress={this.onPressInfluencerSignIn}>
+    <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressInfluencerSignIn()}}>
       <View style={styles.submitButton}>
         <Text style={styles.submitButtonText}>
           Login with facebook

@@ -20,7 +20,8 @@ import { ActionCreators } from '../../actions'
 class influencerSearchPage extends Component{
 constructor(props) {
     super(props)
-    this.state = { searching: true, searchInput: '' }
+    this.state = { searching: true, searchInput: '', isNicheSelected : false }
+    this.toggleIsNicheSelectedState = this.toggleIsNicheSelectedState.bind(this);
 }
 
 searchPressed() {
@@ -32,6 +33,12 @@ searchPressed() {
 
 fetchSearch(){
   return Object.keys(this.props.searchData).map(key =>this.props.searchData[key]);
+}
+
+toggleIsNicheSelectedState(){
+  this.setState({
+    isNicheSelected : !this.state.isNicheSelected
+  })
 }
 
   render() {
@@ -49,20 +56,20 @@ return(
   <View style = {styles.content}>
     <View style={styles.contentPic}>
       <View style={{flexDirection: 'row', flex: 1}}>
-      <View style={styles.nicheContainer}>
+      <TouchableHighlight style={[styles.nicheContainer, this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.toggleIsNicheSelectedState()}>
           <View style={styles.headingContainer}>
             <Text style={styles.contentHeadingText}>
               Niche
             </Text>
           </View>
-      </View>
-      <View style={styles.nameContainer}>
+      </TouchableHighlight>
+      <TouchableHighlight style={[styles.nicheContainer, !this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.toggleIsNicheSelectedState()}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
             Name
           </Text>
         </View>
-      </View>
+      </TouchableHighlight>
     </View>
     <View style={{flex: 1}}>
       <View style={styles.searchBarContainer}>
@@ -229,8 +236,21 @@ var styles = StyleSheet.create({
     borderRadius : 5,
     marginTop : 10,
     marginBottom : 10,
-    // borderColor: 'red',
+    // borderColor: 'white',
     // borderWidth : 2,
+  },
+  nicheContainerHighlighted: {
+    flex : 1,
+    // backgroundColor : '#f3f3f1',
+    // backgroundColor : 'red',
+    margin : 5,
+    marginLeft : 20,
+    marginRight : 20,
+    borderRadius : 5,
+    marginTop : 10,
+    marginBottom : 10,
+    borderColor: 'white',
+    borderWidth : 2,
   },
   nameContainer:{
     flex : 1,

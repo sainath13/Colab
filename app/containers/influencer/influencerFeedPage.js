@@ -117,8 +117,6 @@ return(
     </View>
 
   </View>
-  <View style={{flex : 1}}>
-  </View>
 </View>
 )}
 };

@@ -421,8 +421,6 @@ return(
             </View>
         </ScrollView>
       </ScrollableTabView>
-  <View style={{flex : 0.33}}>
-  </View>
 </View>
 )}
 
@@ -521,7 +519,7 @@ page: {
     fontFamily : 'chalet',
   },
   content:{
-    flex : 1,
+    flex : 1.16,
     backgroundColor : '#FFFFFF',
     // paddingTop : 20,
   },

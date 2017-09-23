@@ -20,8 +20,9 @@ import { ActionCreators } from '../../actions'
 class influencerSearchPage extends Component{
 constructor(props) {
     super(props)
-    this.state = { searching: true, searchInput: '', isNicheSelected : false }
-    this.toggleIsNicheSelectedState = this.toggleIsNicheSelectedState.bind(this);
+    this.state = { searching: true, searchInput: '', isNicheSelected : false , isNameSelected : true }
+    this.selectName = this.selectName.bind(this);
+    this.selectNiche = this.selectNiche.bind(this);
 }
 
 searchPressed() {
@@ -35,9 +36,16 @@ fetchSearch(){
   return Object.keys(this.props.searchData).map(key =>this.props.searchData[key]);
 }
 
-toggleIsNicheSelectedState(){
+selectName(){
   this.setState({
-    isNicheSelected : !this.state.isNicheSelected
+    isNameSelected : true,
+    isNicheSelected : false
+  })
+}
+selectNiche(){
+  this.setState({
+    isNameSelected : false,
+    isNicheSelected : true
   })
 }
 
@@ -56,14 +64,14 @@ return(
   <View style = {styles.content}>
     <View style={styles.contentPic}>
       <View style={{flexDirection: 'row', flex: 1}}>
-      <TouchableHighlight style={[styles.nicheContainer, this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.toggleIsNicheSelectedState()}>
+      <TouchableHighlight style={[styles.nicheContainer, this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.selectNiche()}>
           <View style={styles.headingContainer}>
             <Text style={styles.contentHeadingText}>
               Niche
             </Text>
           </View>
       </TouchableHighlight>
-      <TouchableHighlight style={[styles.nicheContainer, !this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.toggleIsNicheSelectedState()}>
+      <TouchableHighlight style={[styles.nicheContainer, !this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.selectName()}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
             Name

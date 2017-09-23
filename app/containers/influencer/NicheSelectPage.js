@@ -39,7 +39,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -50,7 +50,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -63,7 +63,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -74,7 +74,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -87,7 +87,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -98,7 +98,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -111,7 +111,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -122,7 +122,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -135,7 +135,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -146,7 +146,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -159,7 +159,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -170,7 +170,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -183,7 +183,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -194,7 +194,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -207,7 +207,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -218,7 +218,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -231,7 +231,7 @@ return(
     <View style={styles.slot}>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>
@@ -242,7 +242,7 @@ return(
       </View>
       <View style={styles.slot_element}>
         <Checkbox
-          checked={true}
+          checked={false}
           style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
           />
           <View style={styles.slot_text}>

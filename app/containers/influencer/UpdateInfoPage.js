@@ -33,7 +33,7 @@ class  UpdateInfoPage extends Component {
     Actions.tabbar();
   }
   _onPressInfluencerNicheSelect(){
-    Actions.influencerNicheSelectPage();
+    Actions.NicheSelectPage();
   }
   render() {
 

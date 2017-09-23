@@ -68,7 +68,7 @@ return(
     </View>
   </View>
   <ScrollableTabView
-        style={{flex: 3}}
+        style={{flex: 3, backgroundColor : 'white'}}
         tabBarUnderlineStyle={{backgroundColor : 'white'}}
         tabBarActiveTextColor='white'
         tabBarInactiveTextColor='black'

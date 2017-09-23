@@ -226,7 +226,7 @@ return(
                           marginBottom:10,
                           fontFamily :'GothamRounded-Medium'
                 }}> 
-                Brands 
+                Favourite collabs
                 </Text>
             </View>
             <View style={{}}>

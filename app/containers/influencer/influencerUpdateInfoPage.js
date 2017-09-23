@@ -51,7 +51,7 @@ class  InfluencerUpdateInfoPage extends Component {
     </View>
     <View style={styles.container}>
       <View style={{flex: 9}}>
-      <ScrollView style={{flex : 1}}>
+      <ScrollView style={{flex : 1}} scrollEnabled={false}>
         <View style={styles.picInfoHolder}>
           <View style={styles.picHolder}>
                 <Image

@@ -19,7 +19,7 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class influencerFeedPage extends Component{
+class FeedPage extends Component{
 //this is a local state.
 //redux has nothing to do with this
 
@@ -265,4 +265,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(influencerFeedPage );
+export default connect(mapStateToProps, mapDispatchToProps)(FeedPage );

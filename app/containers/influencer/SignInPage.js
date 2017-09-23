@@ -28,7 +28,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class influencerSignInPage extends Component{
+class SignInPage extends Component{
    constructor(props) {
     super(props);
     console.log("reload is happening");
@@ -49,7 +49,7 @@ class influencerSignInPage extends Component{
 
   }
   onPressInfluencerSignIn(){
-    Actions.influencerUpdateInfoPage();
+    Actions.UpdateInfoPage();
 //     var myprops = this;
 //     LoginManager.logInWithReadPermissions(['public_profile']).then(
 //       function(result) {
@@ -89,7 +89,7 @@ class influencerSignInPage extends Component{
   onPressInfluencerGoToSignUp(){
     // this.props.signIn("this.state.username", "this.state.password");
     // this.props.signIn('EAAWxkcq5ZBRoBAP747Mad1wiPNmWpZAb71nHIku1jS4xJnqK5yAszSI14ZC1xLdWBGjYjFTXXoP5iFD51lj9UmHSwuRDW9pcIE6sm1pgB0slwvnYAEVORaLrZCaJmlvjhZCMIJ6ZAilCkauZCZBkMpz9ZA4WoZASZAwo73qnHXN48qFVgZDZD', "this.state.password");
-    Actions.influencerSignUpPage();
+    Actions.SignUpPage();
   }
 
   render() {
@@ -294,5 +294,5 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(influencerSignInPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
 // export default connect(mapStateToProps)(Test);

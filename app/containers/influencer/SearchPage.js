@@ -17,7 +17,7 @@ import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions'
 
 
-class influencerSearchPage extends Component{
+class SearchPage extends Component{
 constructor(props) {
     super(props)
     this.state = { searching: true, searchInput: '', isNicheSelected : false , isNameSelected : true }
@@ -339,4 +339,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(influencerSearchPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

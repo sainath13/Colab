@@ -18,7 +18,7 @@ console.ignoredYellowBox = [
   'Warning: You are manually calling a React.PropTypes validation',
 ];
 // influencerViewPage
-class  InfluencerNicheSelectPage extends Component {
+class  NicheSelectPage extends Component {
  _onPressInfluencerUpdateInfoSave(){
     Actions.pop();
 }
@@ -324,4 +324,4 @@ var styles = StyleSheet.create({
     fontFamily : 'GothamRounded-Book'
   },
 });
-export default (InfluencerNicheSelectPage);
+export default (NicheSelectPage);

@@ -28,7 +28,7 @@ console.ignoredYellowBox = [
   'Warning: You are manually calling a React.PropTypes validation',
 ];
 // influencerViewPage
-class  InfluencerUpdateInfoPage extends Component {
+class  UpdateInfoPage extends Component {
   _onPressInfluencerUpdateInfoSave(){
     Actions.tabbar();
   }
@@ -343,4 +343,4 @@ wrappedText:{
 });
 
 
-export default (InfluencerUpdateInfoPage);
+export default (UpdateInfoPage);

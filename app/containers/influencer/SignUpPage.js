@@ -13,13 +13,13 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 
-class influencerSignUpPage extends Component{
+class SignUpPage extends Component{
   onPressInfluencerGoToSignIn(){
-    Actions.influencerSignInPage();
+    Actions.SignInPage();
 
   }
   onPressInfluencerSignUp(){
-    Actions.influencerFeedPage();
+    Actions.FeedPage();
   }
 
   render() {
@@ -197,4 +197,4 @@ var styles = StyleSheet.create({
   }
 });
 
-export default (influencerSignUpPage);
+export default (SignUpPage);

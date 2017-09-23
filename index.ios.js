@@ -23,13 +23,13 @@ import TabIconFeed from './app/containers/components/TabIconFeed'
 import TabIconSearch from './app/containers/components/TabIconSearch'
 import TabIconProfile from './app/containers/components/TabIconProfile'
 
-import influencerSignInPage from './app/containers/influencer/influencerSignInPage';
-import influencerSignUpPage from './app/containers/influencer/influencerSignUpPage';
-import influencerUpdateInfoPage from './app/containers/influencer/influencerUpdateInfoPage';
-import influencerNicheSelectPage from './app/containers/influencer/influencerNicheSelectPage';
-import influencerFeedPage from './app/containers/influencer/influencerFeedPage';
-import influencerProfilePage from './app/containers/influencer/influencerProfilePage';
-import influencerSearchPage from './app/containers/influencer/influencerSearchPage';
+import SignInPage from './app/containers/influencer/SignInPage';
+import SignUpPage from './app/containers/influencer/SignUpPage';
+import UpdateInfoPage from './app/containers/influencer/UpdateInfoPage';
+import NicheSelectPage from './app/containers/influencer/NicheSelectPage';
+import FeedPage from './app/containers/influencer/FeedPage';
+import ProfilePage from './app/containers/influencer/ProfilePage';
+import SearchPage from './app/containers/influencer/SearchPage';
 import chatPage from './app/containers/influencer/chatPage';
 import chatListPage from './app/containers/influencer/chatListPage';
 /*Use the following scene to test redux functionality*/
@@ -59,20 +59,20 @@ let style = StyleSheet.create({
 const scenes = Actions.create(
     <Scene {...this.props} key="root">
 
-        <Scene key="influencerSignInPage" component={Test}
+        <Scene key="SignInPage" component={Test}
             hideNavBar = {true}
             initial = {true}
         />
-        <Scene key="influencerSignUpPage" component={influencerSignUpPage} hideNavBar />
-        <Scene key="influencerSignInPage" component={influencerSignInPage} hideNavBar />
-        <Scene key="influencerUpdateInfoPage" component={influencerUpdateInfoPage} hideNavBar/>
-        <Scene key="influencerNicheSelectPage" component={influencerNicheSelectPage} hideNavBar />
+        <Scene key="SignUpPage" component={SignUpPage} hideNavBar />
+        <Scene key="SignInPage" component={SignInPage} hideNavBar />
+        <Scene key="UpdateInfoPage" component={UpdateInfoPage} hideNavBar/>
+        <Scene key="NicheSelectPage" component={NicheSelectPage} hideNavBar />
         <Scene key="chatPage" component={chatPage} hideNavBar/>
         <Scene key="chatListPage" component={chatListPage} hideNavBar/>
         <Scene key="tabbar" tabs={true} showLabel={false} swipeEnabled tabBarStyle={style.tabBarStyle}  >
-            <Scene key="home" component={influencerFeedPage} title={"Feed"} icon={TabIconFeed} iconName={"home"} hideNavBar />
-            <Scene key="influencerSearchPage" component={influencerSearchPage} title={"Search"} icon={TabIconSearch} iconName={"search"} hideNavBar />
-            <Scene key="influencerProfilePage" component={influencerProfilePage} title={"Profile"} icon={TabIconProfile} iconName={"user"} hideNavBar />
+            <Scene key="home" component={FeedPage} title={"Feed"} icon={TabIconFeed} iconName={"home"} hideNavBar />
+            <Scene key="SearchPage" component={SearchPage} title={"Search"} icon={TabIconSearch} iconName={"search"} hideNavBar />
+            <Scene key="ProfilePage" component={ProfilePage} title={"Profile"} icon={TabIconProfile} iconName={"user"} hideNavBar />
         </Scene>
 
     </Scene>

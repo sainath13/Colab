@@ -46,7 +46,7 @@ class  InfluencerUpdateInfoPage extends Component {
   <View style = {styles.content}>
     <View style={styles.header}>
       <Text style={styles.headerText}>
-        Update info
+        Update information
       </Text>
     </View>
     <View style={styles.container}>
@@ -66,9 +66,7 @@ class  InfluencerUpdateInfoPage extends Component {
             </Text>
           </View>
           <View style={styles.infoTextHolder }>
-            <Text style={styles.infoTextSubinfo}>
-              Software programmer
-            </Text>
+            
           </View>
           </View>
         </View>
@@ -270,7 +268,7 @@ header: {
 headerText:{
 // color : '#6563A4',
   color: 'white',
-  fontSize : 25,
+  fontSize : 20,
   paddingTop : 25,
   fontFamily : 'GothamRounded-Bold'
 // fontFamily : 'arial'

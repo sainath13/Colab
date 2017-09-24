@@ -19,6 +19,7 @@ const Dimensions = require('Dimensions');
 // import Hoshi from '../animatedTextInput/Hoshi.js'
 
 import { Actions } from 'react-native-router-flux';
+import PopupDialog, { SlideAnimation, DialogTitle } from 'react-native-popup-dialog';
 
 // import Button from 'react-native-button';
 // import CircleCheckBox from 'react-native-circle-checkbox';
@@ -29,11 +30,20 @@ console.ignoredYellowBox = [
 ];
 // influencerViewPage
 class  UpdateInfoPage extends Component {
+  constructor(props) {
+    super(props);
+    this._onPressInfluencerNicheSelect = this._onPressInfluencerNicheSelect.bind(this);
+    this._onPressPriceSelect = this._onPressPriceSelect.bind(this);
+  }
   _onPressInfluencerUpdateInfoSave(){
     Actions.tabbar();
   }
   _onPressInfluencerNicheSelect(){
-    Actions.NicheSelectPage();
+     Actions.NicheSelectPage();
+  }
+
+  _onPressPriceSelect(){
+    this.popupDialog.show();
   }
   render() {
 
@@ -49,6 +59,15 @@ class  UpdateInfoPage extends Component {
         Update information
       </Text>
     </View>
+    <PopupDialog
+    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+    dialogAnimation = { new SlideAnimation({ slideFrom: 'bottom' }) }
+    dialogTitle={<DialogTitle title="Select Pricing structure" />}
+  >
+    <View>
+      <Text>Hello</Text>
+    </View>
+  </PopupDialog>
     <View style={styles.container}>
       <View style={{flex: 9}}>
       <ScrollView style={{flex : 1}} scrollEnabled={false}>
@@ -115,7 +134,7 @@ class  UpdateInfoPage extends Component {
     <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
                 borderBottomColor : '#6563A4' ,
                 borderBottomWidth  : 2,
-              }}>
+              }}>             
     <View style={{flex : 1,  justifyContent : 'center'}}>
       <Text style={{
         fontSize : 17,
@@ -125,6 +144,7 @@ class  UpdateInfoPage extends Component {
         Pricing
       </Text>
     </View>
+    <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPriceSelect}>              
     <View style={{flex : 1,
       marginTop : 10,
       marginBottom : 10,
@@ -147,6 +167,7 @@ class  UpdateInfoPage extends Component {
          25$
       </Text>
     </View>
+    </TouchableHighlight>
 </View>
 
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',

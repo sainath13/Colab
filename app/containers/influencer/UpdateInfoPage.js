@@ -64,8 +64,36 @@ class  UpdateInfoPage extends Component {
     dialogAnimation = { new SlideAnimation({ slideFrom: 'bottom' }) }
     dialogTitle={<DialogTitle title="Select Pricing structure" />}
   >
-    <View>
-      <Text>Hello</Text>
+    <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
+      <View style={{flex : 1}}>
+        <View style={{flex : 1}}>
+          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+            Price per story shoutout : 
+          </Text>
+          </View>
+          <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
+            <View style={{flex : 1 }}>
+            </View>
+            <TextInput style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+              
+            </TextInput>
+          </View>
+      </View>
+      <View style={{flex : 1}}>
+        <View style={{flex : 1}}>
+          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+            Price per post shoutout :
+          </Text>
+          </View>
+          <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
+            <View style={{flex : 1 }}>
+            </View>
+            <TextInput style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5,padding : 10, }} >
+            </TextInput>
+          </View>
+      </View>
+
+
     </View>
   </PopupDialog>
     <View style={styles.container}>

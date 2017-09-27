@@ -44,42 +44,47 @@ class SignInPage extends Component{
   calltheroute(access){
     console.log("i am called");
     console.log("token is ", access);
-    this.props.signIn(access, "this.state.password");
-    // Actions.influencerUpdateInfoPage();
-
+   this.props.signIn(access, "this.state.password").then( (res) => {
+    //  console.log("am i working? yes I am");
+    this.setState({spinnerVisible: false });
+    Actions.UpdateInfoPage();
+  })
   }
   onPressInfluencerSignIn(){
-    Actions.UpdateInfoPage();
-//     var myprops = this;
-//     LoginManager.logInWithReadPermissions(['public_profile']).then(
-//       function(result) {
-//       if (result.isCancelled) {
-//          alert('Login cancelled');
-//       } else {
-//         console.log("first props are", this.props);
-//         //  alert('Login success with permissions: '
-//         //  +result.grantedPermissions.toString());
-//          console.log(result);
-//          AccessToken.getCurrentAccessToken().then(
-//                  (data) => {
-//                    if(data){
-//                     myprops.calltheroute(data.accessToken.toString());
-//                     myprops.setState({
-//                       spinnerVisible: true
-//                     }, function () {
-//                       console.log("from access tk", myprops.state.spinnerVisible);
-//                   });
-//                    }
-//                   //  alert(data.accessToken.toString());
-//                     _calltheroute(data.accessToken.toString());
-//                  }
-//                )//TODO : do the log-out thing from fbsdk github page
-//       }
-//    },
-//    function(error) {
-//       alert('Login fail with error: ' + error);
-//    }
-// );    //console.log("props",this.props)
+    // Actions.UpdateInfoPage();
+    var myprops = this;
+    LoginManager.logInWithReadPermissions(['public_profile']).then(
+      function(result) {
+      if (result.isCancelled) {
+         alert('Login cancelled');
+      } else {
+        console.log("first props are", this.props);
+        //  alert('Login success with permissions: '
+        //  +result.grantedPermissions.toString());
+         console.log(result);
+         AccessToken.getCurrentAccessToken().then(
+                 (data) => {
+                   if(data){
+                    console.log("I am sainath", myprops.props.signedInUser.data.id);
+                    myprops.setState({
+                      spinnerVisible: true
+                    }, function () {
+                      console.log("from access tk", myprops.state.spinnerVisible);
+                  });
+                  myprops.calltheroute(data.accessToken.toString());
+                //this.state.   
+                
+                }
+                  //  alert(data.accessToken.toString());
+                    //_calltheroute(data.accessToken.toString());
+                 }
+               )//TODO : do the log-out thing from fbsdk github page
+      }
+   },
+   function(error) {
+      alert('Login fail with error: ' + error);
+   }
+);    //console.log("props",this.props)
     //  this.props.signIn(this.state.username, this.state.password);
       //TODO: .then updateinfo route. else show error
     //  Actions.influencerUpdateInfoPage();
@@ -290,6 +295,7 @@ function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
       messageObj : state.messageObj,
+      signedInUser : state.signedInUser,
 
     };
 }

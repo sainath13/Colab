@@ -28,16 +28,19 @@ export function signIn(userName , password){
       .then((response) => {
         console.log(response)
         userObj.headers = {}
-        alert(response.headers.get("access-token"));
+        //alert(response.headers.get("access-token"));
         userObj.headers.accToken = response.headers.get("access-token");
         userObj.headers.tokenType = response.headers.get("token-type");
         userObj.headers.client = response.headers.get("client");
         userObj.headers.expiry = response.headers.get("expiry");
-        return response.json();
+        // console.log(response.json());
+        // return response.json();
+        return dispatch(setSignedInUser({userData : userObj}));
       })//response
-      .then((responseJson) => {
-        userObj.data = responseJson.data;
-	      return dispatch(setSignedInUser({userData : userObj}));
-      })//responseJson
+      // .then((responseJson) => {
+      //   console.log("did I reach here or not")
+      //   userObj.data = responseJson.data;
+	    //   return dispatch(setSignedInUser({userData : userObj}));
+      // })//responseJson
     }//return (dispatch,getState)
 }//signIn

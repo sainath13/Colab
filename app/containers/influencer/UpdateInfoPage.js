@@ -74,7 +74,7 @@ class  UpdateInfoPage extends Component {
           <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
             <View style={{flex : 1 }}>
             </View>
-            <TextInput style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+            <TextInput keyboardType='numeric' style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
               
             </TextInput>
           </View>

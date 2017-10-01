@@ -10,6 +10,14 @@ export function setFeed({ feedData }){
       feedData,
   }
 }
+export function setLoginInfo({loginInfo}){
+  //  console.log("im in side setLoginInfo")
+    return {
+      type : types.SET_LOGIN_INFO,
+      loginInfo,
+    }
+  }//tried but couldn't avoid code duplication
+  
 
 export function fetchFeed(id){
   //NEED TO REMOVE THIS ID FROM HERE
@@ -20,6 +28,8 @@ export function fetchFeed(id){
     return fetch( FEED_INFLU, {
       method: 'GET',
       headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
         'access-token':  state.loginInfo.accessToken,
         'token-type': state.loginInfo.tokenType,
         'expiry': state.loginInfo.expiry,
@@ -28,6 +38,14 @@ export function fetchFeed(id){
       }
     })//fetch
     .then((response) => {
+      var loginObj = {};
+      console.log("test",response);
+      loginObj.accessToken = response.headers.get("access-token");
+      loginObj.tokenType = response.headers.get("token-type");
+      loginObj.client = response.headers.get("client");
+      loginObj.expiry = response.headers.get("expiry");
+      loginObj.uid    = response.headers.get("uid");
+      dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
       return response.json();
     })//response
     .then((responseJson) => {

@@ -8,7 +8,7 @@ import {
 export default class TabIconFeed extends React.Component {
     render(){
       var isSelected = this.props.focused;
-      console.log(isSelected);
+      //console.log(isSelected);
       if(isSelected){
         ICON =<Icon color='#2b2a48'name='home' type='font-awesome' size={30}/>
       }

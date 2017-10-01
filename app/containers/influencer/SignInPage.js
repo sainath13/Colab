@@ -31,52 +31,38 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class SignInPage extends Component{
    constructor(props) {
     super(props);
-    console.log("reload is happening");
     this.onPressInfluencerSignIn = this.onPressInfluencerSignIn.bind(this);
-    this.calltheroute = this.calltheroute.bind(this);
-    // LoginManager = this.LoginManager.bind(this);
+    this.callLoginRoute = this.callLoginRoute.bind(this);
     this.state = {
         username : "",
         password : "",
         spinnerVisible : false,
     };
   }
-  calltheroute(access){
-    console.log("i am called");
-    console.log("token is ", access);
-   this.props.signIn(access, "this.state.password").then( (res) => {
-    //  console.log("am i working? yes I am");
+  callLoginRoute(accessToken){
+   this.props.signIn(accessToken).then( (res) => {
     this.setState({spinnerVisible: false });
     Actions.UpdateInfoPage();
   })
   }
   onPressInfluencerSignIn(){
-    // Actions.UpdateInfoPage();
     var myprops = this;
     LoginManager.logInWithReadPermissions(['public_profile']).then(
       function(result) {
       if (result.isCancelled) {
          alert('Login cancelled');
       } else {
-        console.log("first props are", this.props);
         //  alert('Login success with permissions: '
         //  +result.grantedPermissions.toString());
-         console.log(result);
          AccessToken.getCurrentAccessToken().then(
                  (data) => {
                    if(data){
-                    console.log("I am sainath", myprops.props.signedInUser.data.id);
                     myprops.setState({
                       spinnerVisible: true
                     }, function () {
-                      console.log("from access tk", myprops.state.spinnerVisible);
                   });
-                  myprops.calltheroute(data.accessToken.toString());
-                //this.state.   
-                
+                  myprops.callLoginRoute(data.accessToken.toString());            
                 }
-                  //  alert(data.accessToken.toString());
-                    //_calltheroute(data.accessToken.toString());
                  }
                )//TODO : do the log-out thing from fbsdk github page
       }
@@ -84,16 +70,11 @@ class SignInPage extends Component{
    function(error) {
       alert('Login fail with error: ' + error);
    }
-);    //console.log("props",this.props)
-    //  this.props.signIn(this.state.username, this.state.password);
-      //TODO: .then updateinfo route. else show error
-    //  Actions.influencerUpdateInfoPage();
+);   
 
 
   }
   onPressInfluencerGoToSignUp(){
-    // this.props.signIn("this.state.username", "this.state.password");
-    // this.props.signIn('EAAWxkcq5ZBRoBAP747Mad1wiPNmWpZAb71nHIku1jS4xJnqK5yAszSI14ZC1xLdWBGjYjFTXXoP5iFD51lj9UmHSwuRDW9pcIE6sm1pgB0slwvnYAEVORaLrZCaJmlvjhZCMIJ6ZAilCkauZCZBkMpz9ZA4WoZASZAwo73qnHXN48qFVgZDZD', "this.state.password");
     Actions.SignUpPage();
   }
 

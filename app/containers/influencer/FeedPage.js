@@ -33,7 +33,7 @@ constructor(props) {
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchFeed(this.props.signedInUser.headers,this.props.signedInUser.data.id,this.props.signedInUser.data.email).then( (res) => {
+  this.props.fetchFeed(this.props.signedInUser.id).then( (res) => {
     this.setState({fetching: false })
   })
 }

@@ -45,5 +45,8 @@ export function signIn(accessToken){
         userObj = responseJson;
         return dispatch(setSignedInUser({userData : userObj}));
       })//responseJsons
+      .catch((error)=>{
+        console.error(error);
+      })
     }//return (dispatch,getState)
 }//signIn

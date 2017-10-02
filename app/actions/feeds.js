@@ -39,7 +39,6 @@ export function fetchFeed(id){
     })//fetch
     .then((response) => {
       var loginObj = {};
-      console.log("test",response);
       loginObj.accessToken = response.headers.get("access-token");
       loginObj.tokenType = response.headers.get("token-type");
       loginObj.client = response.headers.get("client");

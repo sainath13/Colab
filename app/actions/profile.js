@@ -20,6 +20,14 @@ let PROFILE = "/profile";
       profileData,
   }
 }
+export function setLoginInfo({loginInfo}){
+  //  console.log("im in side setLoginInfo")
+    return {
+      type : types.SET_LOGIN_INFO,
+      loginInfo,
+    }
+  }//tried but couldn't avoid code duplication
+  
 
 
 /*
@@ -30,30 +38,29 @@ let PROFILE = "/profile";
  *  DISPATCHing a actions results in telling the reducer that its happened.
  *  so reducers of the same "type" get triggered resulting updating the store
  * */
-export function fetchProfile(headersData,id,email){
-  console.log("********",headersData.accToken)
-  console.log("********",id)
-  console.log("********",email)
+export function fetchProfile(id){
   let PROFILE_INFLU = ROUTE_INFLU + id + PROFILE;
-  console.log(PROFILE_INFLU);
+
   return (dispatch,getState)=>{
+    const state = getState();
     return fetch( PROFILE_INFLU, {
       method: 'GET',
       headers: {
-        'access-token':  headersData.accToken,
-        'token-type': headersData.tokenType,
-        'expiry': headersData.expiry,
-        'client': headersData.client,
-        'uid': email,
+        'access-token':  state.loginInfo.accessToken,
+        'token-type': state.loginInfo.tokenType,
+        'expiry': state.loginInfo.expiry,
+        'client': state.loginInfo.client,
+        'uid': state.loginInfo.uid,
       }
     })//fetch
     .then((response) => {
-      //    console.log(response)
-      // userObj.headers = {}
-      // userObj.headers.accToken = response.headers.get("access-token");
-      // userObj.headers.tokenType = response.headers.get("token-type");
-      // userObj.headers.client = response.headers.get("client");
-      // userObj.headers.expiry = response.headers.get("expiry");
+      var loginObj = {};
+      loginObj.accessToken = response.headers.get("access-token");
+      loginObj.tokenType = response.headers.get("token-type");
+      loginObj.client = response.headers.get("client");
+      loginObj.expiry = response.headers.get("expiry");
+      loginObj.uid    = response.headers.get("uid");
+      dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
       return response.json();
     })//response
     .then((responseJson) => {

@@ -27,7 +27,7 @@ constructor(props) {
 
 searchPressed() {
     this.setState({ searching: true });
-      this.props.fetchSearch(this.props.signedInUser.headers,this.props.signedInUser.data.id,this.props.signedInUser.data.email, this.state.searchInput).then( (res) => {
+      this.props.fetchSearch(this.props.signedInUser.id,this.state.searchInput).then( (res) => {
       this.setState({searching: false });
     });
 }

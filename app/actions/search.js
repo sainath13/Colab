@@ -1,7 +1,7 @@
 import * as types from './types'
 
 let ROUTE_INFLU = "http://localhost:3000/influencers/";
-let SEARCH = "/search_by_instagram_handle";
+let SEARCH = "search_by_instagram_handle";
 
 export function setSearch({ searchData }){
   return {
@@ -10,31 +10,51 @@ export function setSearch({ searchData }){
   }
 }
 
-export function fetchSearch(headersData,id,email, searchInput){
-  let SEARCH_INFLU = ROUTE_INFLU + SEARCH;
+export function setLoginInfo({loginInfo}){
+//  console.log("im in side setLoginInfo")
+  return {
+    type : types.SET_LOGIN_INFO,
+    loginInfo,
+  }
+}//tried but couldn't avoid code duplication
+
+export function fetchSearch(id, searchInput){
+  let SEARCH_INFLU = ROUTE_INFLU + SEARCH ;
   console.log(SEARCH_INFLU);
   return (dispatch,getState)=>{
+    const state = getState();
+    console.log("this is state man",state);
+    console.log("things", state.loginInfo.accessToken , state.loginInfo.tokenType,state.loginInfo.expiry,state.loginInfo.client, state.loginInfo.uid);
     return fetch( SEARCH_INFLU, {
-      method: 'POST',
+      method: 'GET',
       headers: {
-        'access-token':  headersData.accToken,
-        'token-type': headersData.tokenType,
-        'expiry': headersData.expiry,
-        'client': headersData.client,
-        'uid': email,
-        },
-	      body: JSON.stringify({
-		    instagram_name  : searchInput,
-	      })
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'access-token':  state.loginInfo.accessToken,
+        'token-type': state.loginInfo.tokenType,
+        'expiry': state.loginInfo.expiry,
+        'client': state.loginInfo.client,
+        'uid': state.loginInfo.uid,
+        'instagram_name' : searchInput,
+      }
     })//fetch
     .then((response) => {
       console.log(response);
+      var loginObj = {};
+      loginObj.accessToken = response.headers.get("access-token");
+      loginObj.tokenType = response.headers.get("token-type");
+      loginObj.client = response.headers.get("client");
+      loginObj.expiry = response.headers.get("expiry");
+      loginObj.uid    = response.headers.get("uid");
+      dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
       return response.json();
     })//response
     .then((responseJson) => {
-      console.log(responseJson)
      return dispatch(setSearch({searchData : responseJson}));
     })//responseJson
+    .catch((error)=>{
+      console.log(error);
+    })
   }//return (dispatch,getState)
 
 }

@@ -26,7 +26,11 @@ export function signIn(accessToken){
     var url = AUTH_INFLU + "access_token_fb=" + accessToken 
     return (dispatch,getState)=>{
       return fetch( url, {
-        method: 'GET'
+        method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
       })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
       //add .then(error) here only
       .then((response) => {

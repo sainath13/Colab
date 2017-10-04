@@ -39,11 +39,13 @@ export function fetchFeed(id){
     })//fetch
     .then((response) => {
       var loginObj = {};
+      console.log("from feed", response);
       loginObj.accessToken = response.headers.get("access-token");
       loginObj.tokenType = response.headers.get("token-type");
       loginObj.client = response.headers.get("client");
       loginObj.expiry = response.headers.get("expiry");
       loginObj.uid    = response.headers.get("uid");
+      console.log("From feed",loginObj);
       dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
       return response.json();
     })//response

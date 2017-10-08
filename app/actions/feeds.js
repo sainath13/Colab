@@ -28,8 +28,6 @@ export function fetchFeed(id){
     return fetch( FEED_INFLU, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
         'access-token':  state.loginInfo.accessToken,
         'token-type': state.loginInfo.tokenType,
         'expiry': state.loginInfo.expiry,
@@ -39,14 +37,15 @@ export function fetchFeed(id){
     })//fetch
     .then((response) => {
       var loginObj = {};
-      console.log("from feed", response);
-      loginObj.accessToken = response.headers.get("access-token");
-      loginObj.tokenType = response.headers.get("token-type");
-      loginObj.client = response.headers.get("client");
-      loginObj.expiry = response.headers.get("expiry");
-      loginObj.uid    = response.headers.get("uid");
-      console.log("From feed",loginObj);
-      dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
+      if(response.headers.get("access-token") != state.loginInfo.accessToken){
+        console.log("Received different access tokens in feeds.js");
+        loginObj.accessToken = response.headers.get("access-token");
+        loginObj.tokenType = response.headers.get("token-type");
+        loginObj.client = response.headers.get("client");
+        loginObj.expiry = response.headers.get("expiry");
+        loginObj.uid    = response.headers.get("uid");
+        dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
+    }
       return response.json();
     })//response
     .then((responseJson) => {

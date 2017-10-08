@@ -7,6 +7,7 @@ import * as FeedActions from './feeds'
 import * as SearchAction from './search'
 import * as OpenChatAction from './openedChat'
 import * as chatObjAction from './chatObj'
+import * as collabActions from './collab'
 
 /**
  * to star unstars etc will be in recipes.js files
@@ -23,5 +24,6 @@ export const ActionCreators = Object.assign({},
     FeedActions,
     SearchAction,
     OpenChatAction,
-    chatObjAction
+    chatObjAction,
+    collabActions,
 )

@@ -95,7 +95,7 @@ return(
        <ScrollView>
            {! this.state.fetching && this.fetchFeedItems().map((feedItem) => { 
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{console.log(feedItem.id) } }>
+                             onPress={ ()=>{ this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id) ; console.log(feedItem.id) } }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image
@@ -129,7 +129,7 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                           Accept 
+                          {feedItem.status}
                         </Text>
                     </View>
                         </View>

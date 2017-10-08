@@ -18,7 +18,7 @@ export function setLoginInfo({loginInfo}){
 }//tried but couldn't avoid code duplication
 
 export function fetchSearch(id, searchInput){
-  let SEARCH_INFLU = ROUTE_INFLU + SEARCH ;
+  let SEARCH_INFLU = ROUTE_INFLU + SEARCH + "?instagram_name=" + searchInput ;
   return (dispatch,getState)=>{
     const state = getState();
     return fetch( SEARCH_INFLU, {
@@ -29,7 +29,6 @@ export function fetchSearch(id, searchInput){
         'expiry': state.loginInfo.expiry,
         'client': state.loginInfo.client,
         'uid': state.loginInfo.uid,
-        'instagram_name' : searchInput,
       }
     })//fetch
     .then((response) => {

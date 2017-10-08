@@ -93,9 +93,10 @@ return(
     </View>
     <View style={styles.listView}>
        <ScrollView>
-           {! this.state.fetching && this.fetchFeedItems().map((feedItem) => { 
+           {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
+             if(feedItem.status == "requested"){ 
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id) ; console.log(feedItem.id) } }>
+                             onPress={ ()=>{  console.log(feedItem.id) } }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image
@@ -108,7 +109,9 @@ return(
                               <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> wants to collaborate.
                             </Text>
                         </View>
-                        <View style={{
+                        <TouchableHighlight
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id)}}
+                         style={{
                         width : 100,
                         height : 30,
                         marginTop : 15,
@@ -129,12 +132,34 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                          {feedItem.status}
+                        Accept
                         </Text>
-                    </View>
+                    </TouchableHighlight>
                         </View>
                       </TouchableHighlight>
               )//return
+            }//if 
+            if(feedItem.status == "accepted"){ //because no else if here
+              return ( <TouchableHighlight key={feedItem.id}
+                             onPress={ ()=>{ console.log(feedItem.id) } }>
+                        <View style={styles.listElement}>
+                                       <View style={styles.notificationIcon}>
+                          <Image
+                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                          </View>
+                          <View style={styles.notificationItem}>
+                            <Text style={styles.notificationItemText}>
+                            You have a collabotion with 
+                              <Text style={styles.notificationItemTextBold}>{" " + feedItem.name}</Text>.
+                            </Text>
+                        </View>
+                        </View>
+                      </TouchableHighlight>
+              )//return
+            }//else
+
            })//map
          }
       </ScrollView>

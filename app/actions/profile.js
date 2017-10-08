@@ -21,7 +21,6 @@ let PROFILE = "/profile";
   }
 }
 export function setLoginInfo({loginInfo}){
-  //  console.log("im in side setLoginInfo")
     return {
       type : types.SET_LOGIN_INFO,
       loginInfo,
@@ -43,8 +42,6 @@ export function fetchProfile(id){
 
   return (dispatch,getState)=>{
     const state = getState();
-    console.log("this is state man",state);
-    console.log("things", state.loginInfo.accessToken , state.loginInfo.tokenType,state.loginInfo.expiry,state.loginInfo.client, state.loginInfo.uid);
 
     return fetch( PROFILE_INFLU, {
       method: 'GET',
@@ -71,9 +68,12 @@ export function fetchProfile(id){
     })//response
     .then((responseJson) => {
       // userObj.data = responseJson.data;
-      console.log(responseJson);
       return dispatch(setProfile({profileData : responseJson}));
     })//responseJson
+    .catch((error) => {
+      console.error(error);
+      //TODO NEED TO DISPATCH SOME ERROR ACTION FROM HERE, OR JUST KEEP TRYING 3 TIMES, THEN SHOW SOME ERROR. SLOW INTEREST IS ALSO POSSIBLE 
+    })
   }//return (dispatch,getState)
 
 }

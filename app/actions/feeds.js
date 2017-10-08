@@ -4,14 +4,12 @@ let ROUTE_INFLU = "http://localhost:3000/influencers/";
 let COLLAB = "/feed";
 
 export function setFeed({ feedData }){
-  //console.log("Inside set feed");
   return {
       type: types.SET_FEED,
       feedData,
   }
 }
 export function setLoginInfo({loginInfo}){
-  //  console.log("im in side setLoginInfo")
     return {
       type : types.SET_LOGIN_INFO,
       loginInfo,
@@ -22,7 +20,6 @@ export function setLoginInfo({loginInfo}){
 export function fetchFeed(id){
   //NEED TO REMOVE THIS ID FROM HERE
   let FEED_INFLU = ROUTE_INFLU + id + COLLAB;
-//  console.log(FEED_INFLU);
   return (dispatch,getState)=>{
     const state = getState();
     return fetch( FEED_INFLU, {

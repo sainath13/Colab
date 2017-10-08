@@ -11,7 +11,6 @@ export function setSearch({ searchData }){
 }
 
 export function setLoginInfo({loginInfo}){
-//  console.log("im in side setLoginInfo")
   return {
     type : types.SET_LOGIN_INFO,
     loginInfo,
@@ -20,11 +19,8 @@ export function setLoginInfo({loginInfo}){
 
 export function fetchSearch(id, searchInput){
   let SEARCH_INFLU = ROUTE_INFLU + SEARCH ;
-  console.log(SEARCH_INFLU);
   return (dispatch,getState)=>{
     const state = getState();
-    console.log("this is state man",state);
-    console.log("things", state.loginInfo.accessToken , state.loginInfo.tokenType,state.loginInfo.expiry,state.loginInfo.client, state.loginInfo.uid);
     return fetch( SEARCH_INFLU, {
       method: 'GET',
       headers: {
@@ -37,7 +33,6 @@ export function fetchSearch(id, searchInput){
       }
     })//fetch
     .then((response) => {
-      console.log(response);
       var loginObj = {};
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in search.js");

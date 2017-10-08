@@ -10,7 +10,6 @@ export function setSignedInUser({userData}){
 }
 
 export function setLoginInfo({loginInfo}){
-//  console.log("im in side setLoginInfo")
   return {
     type : types.SET_LOGIN_INFO,
     loginInfo,
@@ -34,7 +33,6 @@ export function signIn(accessToken){
       })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
       //add .then(error) here only
       .then((response) => {
-        // console.log(response)
         var loginObj = {};
         loginObj.accessToken = response.headers.get("access-token");
         loginObj.tokenType = response.headers.get("token-type");

@@ -91,7 +91,6 @@ return(
             </Text>
           </View>
           <View style={styles.informationCategoriesSlot}>
-            {console.log(this.props.profileData.niche)}
             {! this.state.fetching && this.props.profileData.niche.map((nicheItem,i)=>{
               return (<Text key ={i}
                   style={{

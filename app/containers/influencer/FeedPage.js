@@ -93,7 +93,7 @@ return(
     </View>
     <View style={styles.listView}>
        <ScrollView>
-           {! this.state.fetching && this.fetchFeedItems().map((feedItem) => { console.log("one item",feedItem)
+           {! this.state.fetching && this.fetchFeedItems().map((feedItem) => { 
               return ( <TouchableHighlight key={feedItem.id}
                              onPress={ ()=>{console.log(feedItem.id) } }>
                         <View style={styles.listElement}>

@@ -111,8 +111,8 @@ return(
     </View>
     <View style={styles.listView}>
       <ScrollView>
-        {! this.state.fetching && this.fetchSearch().map((searchItem) => { console.log("one item",searchItem);
-        return ( <TouchableHighlight key={searchItem.id}
+        {! this.state.fetching && this.fetchSearch().map((searchItem) => { 
+                 return ( <TouchableHighlight key={searchItem.id}
                        onPress={ ()=>{console.log(searchItem.id) } }>
                        <View style={styles.listElement}>
                          <View style={styles.notificationIcon}>

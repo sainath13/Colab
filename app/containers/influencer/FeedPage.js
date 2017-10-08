@@ -99,15 +99,39 @@ return(
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image
-                            style = {{width: 50, height: 50, borderRadius: 25}}
+                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
                             source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
                           />
                           </View>
                           <View style={styles.notificationItem}>
                             <Text style={styles.notificationItemText}>
-                              <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> has shown interest in you.
+                              <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> wants to collaborate.
                             </Text>
                         </View>
+                        <View style={{
+                        width : 100,
+                        height : 30,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                        borderRadius : 5
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                           Accept 
+                        </Text>
+                    </View>
                         </View>
                       </TouchableHighlight>
               )//return
@@ -144,14 +168,14 @@ var styles = StyleSheet.create({
     },
     notificationItemText:{
       // paddingLeft : 20,
-      fontSize : 16,
+      fontSize : 15,
       // color : '#424242',
       color : '#1c1b30',
       fontFamily : 'GothamRounded-Book',
     },
     notificationItemTextBold:{
       // paddingLeft : 20,
-      fontSize : 16,
+      fontSize : 15,
       // fontWeight : 'bold',
       // color : '#212121',
       color : '#3f3d6a',
@@ -164,11 +188,13 @@ var styles = StyleSheet.create({
       // borderBottomRightRadius : 5,
       // borderBottomColor : 'black',
       // alignItems : 'center',
-      paddingRight : 5,
+      paddingRight : 3,
+      paddingLeft : 10,
       justifyContent : 'center',
       borderBottomWidth: 0.25,
       // borderBottomColor : "#12111f",
       borderBottomColor : '#9190b6',
+      borderRadius : 25,
       // backgroundColor : 'red',
     },
   headerText:{
@@ -183,6 +209,9 @@ var styles = StyleSheet.create({
     margin : 1,
     height : 65,
     flexDirection : 'row',
+    borderBottomColor : '#9190b6',
+    borderBottomWidth : 0.25,
+    borderRadius : 25,
   },
   headingContainer:{
     flex : 2,

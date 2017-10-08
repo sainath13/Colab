@@ -27,7 +27,7 @@ constructor(props) {
 
 searchPressed() {
     this.setState({ searching: true });
-      this.props.fetchSearch(this.props.signedInUser.id,this.state.searchInput).then( (res) => {
+      this.props.fetchSearch(this.props.signedInUser.id,this.state.searchInput,this.state.isNameSelected).then( (res) => {
       this.setState({searching: false });
     });
 }
@@ -123,7 +123,7 @@ return(
                          </View>
                          <View style={styles.notificationItem}>
                            <Text style={styles.notificationItemText}>
-                             <Text style={styles.notificationItemTextBold}>{searchItem.instagram_name}</Text> has shown interest in you.
+                             <Text style={styles.notificationItemTextBold}>{searchItem.name}</Text> has shown interest in you.
                            </Text>
                          </View>
                        </View>

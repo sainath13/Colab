@@ -84,10 +84,7 @@ return(
                           marginBottom:10,
                           // padding:5,
                           fontFamily :'GothamRounded-Book'}}>
-  hello world, yeah im the first program in this entire universe, more more more more Text
-  so awesome more than anything in this entire universe
-  hello world, yeah im the first program in this entire universe, more more more more Text
-  so awesome more than anything in this entire universe
+                          {this.props.signedInUser.bio}
             </Text>
           </View>
           <View style={styles.informationCategoriesSlot}>
@@ -450,7 +447,7 @@ page: {
       borderBottomColor: '#E0E0E0',
       // alignItems : 'center',
       paddingLeft : 15,
-      justifyContent : 'center',
+      //justifyContent : 'left',
     },
     informationSlotCardHeadingText:{
       fontSize : 20,

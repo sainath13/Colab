@@ -19,7 +19,7 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class FeedPage extends Component{
+class BrandsListPage extends Component{
 //this is a local state.
 //redux has nothing to do with this
 
@@ -53,73 +53,51 @@ return(
   />
   <View style={styles.header}>
     <Text style={styles.headerText}>
-      Influx
+  Brands 
     </Text>
   </View>
 
   <View style = {styles.content}>
-    <View style={styles.contentPic}>
-    <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  console.log("Influencers"), Actions.InfluencersListPage(); } }>
-      <View style={styles.influencerContainer}>
-        <View style={styles.headingContainer}>
-          <Text style={styles.contentHeadingText}>
-           Influencers
-          </Text>
-        </View>
-      <View style={styles.bottomNumberTextContainer}>
-        <Text style={styles.bottomNumberText}>
-             123
-        </Text>
-      </View>
-      </View>
-      </TouchableHighlight>
-      <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  console.log("Brands"); Actions.BrandsListPage(); } } >
-      <View style={styles.brandContainer}>
-        <View style={styles.headingContainer}>
-          <Text style={styles.contentHeadingText}>
-            Brands
-          </Text>
-        </View>
-      <View style={styles.bottomNumberTextContainer}>
-        <Text style={styles.bottomNumberText}>
-          12
-        </Text>
-      </View>
-      </View>
-      </TouchableHighlight>
-    </View>
     <View style={styles.notificationBar}>
-      <TouchableHighlight onPress = {this.onPressChat}>
+      <TouchableHighlight>
       <Text style={styles.notificationBarText}>
-        Notifications
+        Collaborations
       </Text>
     </TouchableHighlight>
     </View>
     <View style={styles.listView}>
        <ScrollView>
            {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
-             if(feedItem.status == "requested"){ 
+            if(feedItem.status == "requested"){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id) } }>
-                        <View style={styles.listElement}>
-                                       <View style={styles.notificationIcon}>
+                             onPress={ ()=>{ console.log(feedItem.id) } }>
+                <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
+                    <View style={{flex : 1, alignItems : 'center',justifyContent:'center' }}>
                           <Image
-                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
+                            style = {{width: 40, height: 40, borderRadius: 20}}
                             source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
                           />
-                          </View>
-                          <View style={styles.notificationItem}>
-                            <Text style={styles.notificationItemText}>
-                              <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> wants to collaborate.
-                            </Text>
-                        </View>
-                        <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id)}}
-                         style={{
-                        width : 100,
-                        height : 30,
-                        marginTop : 15,
-                        marginBottom : 15,
+                    </View>
+                    <View style={{flex : 4, justifyContent : 'center', }}>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Medium',
+                            marginLeft : 10
+                        }}>
+                         {feedItem.name} 
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Book',
+                            marginLeft : 10,
+                        }}>
+                       7 posts, 3 stories 
+                        </Text>
+                    </View>
+                    <View style={{flex : 2, 
+                        marginTop : 10,
+                        marginBottom : 10,
+                        marginLeft : 5,
                         marginRight : 10,
                         borderRadius:2,
                         borderColor:'#fefefe',
@@ -136,30 +114,10 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                        Accept
+                            message 
                         </Text>
-                    </TouchableHighlight>
-                        </View>
-                      </TouchableHighlight>
-              )//return
-            }//if 
-            if(feedItem.status == "accepted"){ //because no else if here
-              return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ console.log(feedItem.id) } }>
-                        <View style={styles.listElement}>
-                                       <View style={styles.notificationIcon}>
-                          <Image
-                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
-                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
-                          />
-                          </View>
-                          <View style={styles.notificationItem}>
-                            <Text style={styles.notificationItemText}>
-                            You have a collabotion with 
-                              <Text style={styles.notificationItemTextBold}>{" " + feedItem.name}</Text>.
-                            </Text>
-                        </View>
-                        </View>
+                    </View>
+                </View>
                       </TouchableHighlight>
               )//return
             }//else
@@ -183,6 +141,8 @@ var styles = StyleSheet.create({
     //  marginTop : 20,
     //  backgroundColor: 'white',
      backgroundColor: '#6563A4',
+    borderColor : '#333156',
+    borderBottomWidth : 3,
     },
     notificationIcon:{
       flex : 2,
@@ -268,14 +228,6 @@ var styles = StyleSheet.create({
     flex : 9,
     backgroundColor : '#FFFFFF',
   },
-  contentPic:{
-    flex : 2,
-    backgroundColor : '#6563A4',
-    flexDirection : 'row',
-    borderColor : '#333156',
-
-    borderBottomWidth : 3,
-  },
   influencerContainer:{
     flex : 1,
     backgroundColor : '#43416d',
@@ -303,7 +255,8 @@ var styles = StyleSheet.create({
     fontFamily : 'GothamRounded-Book'
   },
   listView:{
-    flex : 7,
+    flex : 11,
+    flexDirection : 'row',
     // borderWidth : 1,
     // borderColor : 'red',
   },
@@ -323,4 +276,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedPage );
+export default connect(mapStateToProps, mapDispatchToProps)(BrandsListPage);

@@ -106,7 +106,7 @@ return(
 
     <View style={styles.notificationBar}>
       <Text style={styles.notificationBarText}>
-        Search Results
+       Treding right now 
       </Text>
     </View>
     <View style={styles.listView}>

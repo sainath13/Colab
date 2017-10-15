@@ -53,7 +53,7 @@ return(
   />
   <View style={styles.header}>
     <Text style={styles.headerText}>
-      Influxcer
+      Influx
     </Text>
   </View>
 
@@ -62,7 +62,7 @@ return(
       <View style={styles.influencerContainer}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
-            Influxcer
+           Influencers
           </Text>
         </View>
       <View style={styles.bottomNumberTextContainer}>
@@ -74,7 +74,7 @@ return(
       <View style={styles.brandContainer}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
-            Brand
+            Brands
           </Text>
         </View>
       <View style={styles.bottomNumberTextContainer}>

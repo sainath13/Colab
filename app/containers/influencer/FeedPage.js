@@ -59,6 +59,7 @@ return(
 
   <View style = {styles.content}>
     <View style={styles.contentPic}>
+    <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  console.log("Influencers") } }>
       <View style={styles.influencerContainer}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
@@ -71,6 +72,8 @@ return(
         </Text>
       </View>
       </View>
+      </TouchableHighlight>
+      <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  console.log("Brands") } } >
       <View style={styles.brandContainer}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
@@ -83,6 +86,7 @@ return(
         </Text>
       </View>
       </View>
+      </TouchableHighlight>
     </View>
     <View style={styles.notificationBar}>
       <TouchableHighlight onPress = {this.onPressChat}>

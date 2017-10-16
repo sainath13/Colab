@@ -65,6 +65,42 @@ return(
       </Text>
     </TouchableHighlight>
     </View>
+                <View style={{flex : 1 ,marginBottom : 5, flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0', }}>
+                    <View style={{flex : 4, justifyContent : 'center', }}>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Medium',
+                            marginLeft : 10
+                        }}>
+                        Collaborations requests
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Book',
+                            marginLeft : 10,
+                        }}>
+                       7 requests pending 
+                        </Text>
+                    </View>
+                    <View style={{flex : 1, 
+                        marginTop : 10,
+                        marginBottom : 10,
+                        marginLeft : 10,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : 'white',
+                        borderRadius : 5
+                    }}>
+                <Icon name="chevron-right" size={25} color='#6563A4' >
+                </Icon>
+                    </View>
+                </View>
     <View style={styles.listView}>
        <ScrollView>
            {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {

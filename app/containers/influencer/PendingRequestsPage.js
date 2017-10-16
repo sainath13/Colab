@@ -52,7 +52,7 @@ return(
     barStyle="dark-content"
   />
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back') } } >
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="caret-left" size={25} color='white' >
                 </Icon>

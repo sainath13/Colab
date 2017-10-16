@@ -39,7 +39,11 @@ componentDidMount(){
 }
 
 fetchFeedItems(){
-    return Object.keys(this.props.feedData).map(key =>this.props.feedData[key])
+ console.log("test")
+ //need to create some really nice object here 
+ //BADAWALA TODO
+ //CREATE NOTIFICATIONS HERE 
+    return Object.keys(this.props.feedData.requested_brands).map(key =>this.props.feedData.requested_brands[key])
 }
 onPressChat(){
   Actions.chatListPage();
@@ -98,7 +102,6 @@ return(
     <View style={styles.listView}>
        <ScrollView>
            {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
-             if(feedItem.status == "requested"){ 
               return ( <TouchableHighlight key={feedItem.id}
                              onPress={ ()=>{  console.log(feedItem.id) } }>
                         <View style={styles.listElement}>
@@ -142,28 +145,6 @@ return(
                         </View>
                       </TouchableHighlight>
               )//return
-            }//if 
-            if(feedItem.status == "accepted"){ //because no else if here
-              return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ console.log(feedItem.id) } }>
-                        <View style={styles.listElement}>
-                                       <View style={styles.notificationIcon}>
-                          <Image
-                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
-                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
-                          />
-                          </View>
-                          <View style={styles.notificationItem}>
-                            <Text style={styles.notificationItemText}>
-                            You have a collabotion with 
-                              <Text style={styles.notificationItemTextBold}>{" " + feedItem.name}</Text>.
-                            </Text>
-                        </View>
-                        </View>
-                      </TouchableHighlight>
-              )//return
-            }//else
-
            })//map
          }
       </ScrollView>

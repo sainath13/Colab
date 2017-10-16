@@ -34,6 +34,7 @@ import chatPage from './app/containers/influencer/chatPage';
 import chatListPage from './app/containers/influencer/chatListPage';
 import InfluencersListPage from './app/containers/influencer/InfluencersListPage';
 import BrandsListPage from './app/containers/influencer/BrandsListPage';
+import PendingRequestsPage from './app/containers/influencer/PendingRequestsPage';
 
 /*Use the following scene to test redux functionality*/
 import Test from './app/containers/Test'
@@ -72,6 +73,7 @@ const scenes = Actions.create(
         <Scene key="NicheSelectPage" component={NicheSelectPage} hideNavBar />
         <Scene key="chatPage" component={chatPage} hideNavBar/>
         <Scene key="InfluencersListPage" component={InfluencersListPage} hideNavBar/>
+        <Scene key="PendingRequestsPage" component={PendingRequestsPage} hideNavBar/>
         <Scene key="BrandsListPage" component={BrandsListPage} hideNavBar/>
         <Scene key="chatListPage" component={chatListPage} hideNavBar/>
         <Scene key="tabbar" tabs={true} showLabel={false} swipeEnabled tabBarStyle={style.tabBarStyle}  >

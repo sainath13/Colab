@@ -19,7 +19,7 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class InfluencersListPage extends Component{
+class PendingRequestsPage extends Component{
 //this is a local state.
 //redux has nothing to do with this
 
@@ -52,14 +52,22 @@ return(
     barStyle="dark-content"
   />
   <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back') } } >
+  <View style={{}}>
+                <Icon name="caret-left" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={styles.headerText}>
- Influencers 
+Pending requests 
     </Text>
+  </View>
   </View>
 
   <View style = {styles.content}>
               <TouchableHighlight 
-                             onPress={ ()=>{ console.log('test'), Actions.PendingRequestsPage(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
+                             onPress={ ()=>{ console.log('test') } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
                     <View style={{flex : 4, justifyContent : 'center', }}>
                         <Text style={{
@@ -67,7 +75,7 @@ return(
                             fontFamily :'GothamRounded-Medium',
                             marginLeft : 10
                         }}>
-                        Collaboration requests
+                        Brands requests
                         </Text>
                         <Text style={{
                             fontSize: 16,
@@ -89,7 +97,7 @@ return(
                       </TouchableHighlight>
     <View style={styles.notificationBar}>
       <Text style={styles.notificationBarText}>
-        Collaborations
+        Influencers collab requests
       </Text>
     </View>
     <View style={styles.listView}>
@@ -141,7 +149,7 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                            message 
+                           accept 
                         </Text>
                     </View>
                 </View>
@@ -162,14 +170,15 @@ return(
 var styles = StyleSheet.create({
   header: {
      flex: 1,
-     alignItems : "center",
-     justifyContent : "center",
+   //  alignItems : "center",
+  //   justifyContent : "center",
     //  paddingTop : 20,
     //  marginTop : 20,
     //  backgroundColor: 'white',
-     backgroundColor: '#6563A4',
+    backgroundColor: '#6563A4',
     borderColor : '#333156',
     borderBottomWidth : 3,
+    flexDirection : 'row'
     },
     notificationIcon:{
       flex : 2,
@@ -303,4 +312,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfluencersListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PendingRequestsPage);

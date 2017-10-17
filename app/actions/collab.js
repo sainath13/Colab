@@ -19,9 +19,8 @@ export function setAcceptedCollabRequest(acceptedUserId,status){
       type : types.ACCEPT_COLLAB_REQUEST,
      collabAccepted,
     }
-  }//tried but couldn't avoid code duplication
+  }//
   
-
 export function acceptCollabRequest(currentUserId,acceptUserId){
   //NEED TO REMOVE THIS ID FROM HERE
   //can remove the id from here. passing id is not required. 

@@ -8,21 +8,21 @@ export const feedData = createReducer({
     //might need to append some data or trim some part
     //Accepted data will be added to this only but through some later route 
     //structure is same only. No copies. only this singular state
-    //tempRequestedBrands = action.feedData.requested_businesses;
-   // processedRequestedBrands = {}
-   // Object.keys(tempRequestedBrands).forEach(function(key){
-   //   processedRequestedBrands[tempRequestedBrands[key].id] = tempRequestedBrands[key]
-   // })
+    tempRequestedBrands = action.feedData.requested_businesses;
+    processedRequestedBrands = {}
+    Object.keys(tempRequestedBrands).forEach(function(key){
+      processedRequestedBrands[tempRequestedBrands[key].id] = tempRequestedBrands[key]
+    })
 
-   // tempRequestedInfluencers = action.feedData.requested_influencer;
-   // processedRequestedInfluencers = {}
-   // Object.keys(tempRequestedInfluencers ).forEach(function(key){
-   //   processedRequestedInfluencers[tempRequestedInfluencers[key].id] = tempRequestedInfluencers[key]
-   // })
-   //processedFeedList = {}
-   //processedFeedList.requested_brands =  processedRequestedBrands; 
-   //processedFeedList.requested_influencer = processedRequestedInfluencers ; 
-    return action.feedData;
+    tempRequestedInfluencers = action.feedData.requested_influencer;
+    processedRequestedInfluencers = {}
+    Object.keys(tempRequestedInfluencers ).forEach(function(key){
+      processedRequestedInfluencers[tempRequestedInfluencers[key].id] = tempRequestedInfluencers[key]
+    })
+   processedFeedList = {}
+   processedFeedList.requested_businesses =  processedRequestedBrands; 
+   processedFeedList.requested_influencers = processedRequestedInfluencers ; 
+    return processedFeedList;
   },
   [types.ACCEPT_COLLAB_REQUEST](state,action){
     console.log(action);
@@ -43,8 +43,23 @@ export const feedData = createReducer({
    //FUCK the logic 
    //DO things however possible they are
    //seriously fuck logic
-   return state;
+  // testState = state.requested_businesses[action.collabAccepted.id];
+  // testState.status = action.collabAccepted.status;
+  //  return { ...state , 
+  //     requested_businesses , 
+  //      [action.collabAccepted.id] : testState
+  //  }
 //return    state.requested_businesses.filter(({ id }) => id !== action.acceptedUserId)
    // }
+   return {
+     ...state,
+    requested_businesses : {
+      ...state.requested_businesses,
+      [action.collabAccepted.id] : {
+        ...state.requested_businesses[action.collabAccepted.id],
+        status : action.collabAccepted.status
+      }
+    }
+   }
   },
 })

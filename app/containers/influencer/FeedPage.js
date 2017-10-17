@@ -43,7 +43,7 @@ fetchFeedItems(){
  //need to create some really nice object here 
  //BADAWALA TODO
  //CREATE NOTIFICATIONS HERE 
-    return Object.keys(this.props.feedData.requested_brands).map(key =>this.props.feedData.requested_brands[key])
+    return Object.keys(this.props.feedData.requested_businesses).map(key =>this.props.feedData.requested_businesses[key])
 }
 onPressChat(){
   Actions.chatListPage();
@@ -102,6 +102,7 @@ return(
     <View style={styles.listView}>
        <ScrollView>
            {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
+             if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}
                              onPress={ ()=>{  console.log(feedItem.id) } }>
                         <View style={styles.listElement}>
@@ -139,12 +140,58 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                        Accept
+                        accept
                         </Text>
                     </TouchableHighlight>
                         </View>
                       </TouchableHighlight>
               )//return
+            }//if
+             if(feedItem.status == "accepted"){
+              return ( <TouchableHighlight key={feedItem.id}
+                             onPress={ ()=>{  console.log(feedItem.id) } }>
+                        <View style={styles.listElement}>
+                                       <View style={styles.notificationIcon}>
+                          <Image
+                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                          </View>
+                          <View style={styles.notificationItem}>
+                            <Text style={styles.notificationItemText}>
+                              <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> wants to collaborate.
+                            </Text>
+                        </View>
+                        <TouchableHighlight
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id)}}
+                         style={{
+                        width : 100,
+                        height : 30,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                        borderRadius : 5
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                       message 
+                        </Text>
+                    </TouchableHighlight>
+                        </View>
+                      </TouchableHighlight>
+              )//return
+            }//if
            })//map
          }
       </ScrollView>

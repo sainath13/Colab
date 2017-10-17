@@ -10,6 +10,8 @@ export const SET_PROFILE = 'SET_PROFILE'
 
 export const SET_FEED = 'SET_FEED'
 
+export const SET_BUSINESS = 'SET_BUSINESS'
+
 export const SET_SEARCH = 'SET_SEARCH'
 
 export const OPENED_CHAT = 'OPENED_CHAT'

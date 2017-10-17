@@ -33,13 +33,13 @@ constructor(props) {
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchFeed(this.props.signedInUser.id).then( (res) => {
+  this.props.fetchBusiness(this.props.signedInUser.id).then( (res) => {
     this.setState({fetching: false })
   })
 }
 
-fetchFeedItems(){
-    return Object.keys(this.props.feedData).map(key =>this.props.feedData[key])
+fetchBusinessItems(){
+    return Object.keys(this.props.businessData).map(key =>this.props.businessData[key])
 }
 onPressChat(){
   Actions.chatListPage();
@@ -94,8 +94,8 @@ return(
     </View>
     <View style={styles.listView}>
        <ScrollView>
-           {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
-            if(feedItem.status == "requested"){ //because no else if here
+           {! this.state.fetching && this.fetchBusinessItems().map((feedItem) => {
+            if(feedItem.status =="accepted" ){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
                              onPress={ ()=>{ console.log(feedItem.id) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
@@ -298,6 +298,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
+      businessData : state.businessData,
       feedData : state.feedData,
       signedInUser : state.signedInUser,
     };

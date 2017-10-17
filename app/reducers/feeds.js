@@ -8,21 +8,21 @@ export const feedData = createReducer({
     //might need to append some data or trim some part
     //Accepted data will be added to this only but through some later route 
     //structure is same only. No copies. only this singular state
-    tempRequestedBrands = action.feedData.requested_businesses;
-    processedRequestedBrands = {}
-    Object.keys(tempRequestedBrands).forEach(function(key){
-      processedRequestedBrands[tempRequestedBrands[key].id] = tempRequestedBrands[key]
-    })
+    //tempRequestedBrands = action.feedData.requested_businesses;
+   // processedRequestedBrands = {}
+   // Object.keys(tempRequestedBrands).forEach(function(key){
+   //   processedRequestedBrands[tempRequestedBrands[key].id] = tempRequestedBrands[key]
+   // })
 
-    tempRequestedInfluencers = action.feedData.requested_influencer;
-    processedRequestedInfluencers = {}
-    Object.keys(tempRequestedInfluencers ).forEach(function(key){
-      processedRequestedInfluencers[tempRequestedInfluencers[key].id] = tempRequestedInfluencers[key]
-    })
-   processedFeedList = {}
-   processedFeedList.requested_brands =  processedRequestedBrands; 
-   processedFeedList.requested_influencer = processedRequestedInfluencers ; 
-    return processedFeedList;
+   // tempRequestedInfluencers = action.feedData.requested_influencer;
+   // processedRequestedInfluencers = {}
+   // Object.keys(tempRequestedInfluencers ).forEach(function(key){
+   //   processedRequestedInfluencers[tempRequestedInfluencers[key].id] = tempRequestedInfluencers[key]
+   // })
+   //processedFeedList = {}
+   //processedFeedList.requested_brands =  processedRequestedBrands; 
+   //processedFeedList.requested_influencer = processedRequestedInfluencers ; 
+    return action.feedData;
   },
   [types.ACCEPT_COLLAB_REQUEST](state,action){
     console.log(action);
@@ -35,10 +35,16 @@ export const feedData = createReducer({
     //if data is already present then just add 
     //if data is not already present then don't add as user is going to call the fetch any way
     //TODO
-   testState = state[action.acceptedUserId];
-   return state
-    //return { ...state , 
-    //   [action.collabAccepted.id] : testState
+ //  testState = state[action.acceptedUserId];
+   //return the sate just by deleting the element
+   //return state
+   //return { ...state , 
+   //NOT working
+   //FUCK the logic 
+   //DO things however possible they are
+   //seriously fuck logic
+   return state;
+//return    state.requested_businesses.filter(({ id }) => id !== action.acceptedUserId)
    // }
   },
 })

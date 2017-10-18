@@ -48,7 +48,7 @@ return(
     <View style={styles.contentPic}>
       <View style={styles.profilePicHolder}>
         <Image
-          style = {{width: 80, height: 80, borderRadius: 40}}
+          style = {{width: 70, height: 70, borderRadius: 35}}
           source = {require('../images/new.jpg')}
         />
       </View>
@@ -59,9 +59,34 @@ return(
         </View>
 
         <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
-          <Text style={{  height:30, borderRadius:2, borderColor:'white', borderWidth : 3/2,
-               padding: 6, color: 'white', fontFamily: 'GothamRounded-Book'}}>Edit Profile</Text>
-
+                        <TouchableHighlight
+                        onPress={()=> {(console.log("clicked on edit profile"))}}
+                         style={{
+                        width : 150,
+                        height : 35,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius: 2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 10,
+                        paddingBottom: 10,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#43416d',
+                        borderRadius : 5
+                    }}>
+                    <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                      Edit Profile 
+                        </Text>
+                    </View>
+                    </TouchableHighlight>
         </View>
 
       </View>

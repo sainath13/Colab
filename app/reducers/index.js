@@ -10,6 +10,7 @@ import * as searchReducer from './search'
 import * as openChatReducer from './openedChat'
 import * as chatObjReducer from './chatObj'
 import * as businessReducer from './businesses'
+import * as influencerReducer from './influencers'
 /*
  * Combining all reducers and making them available to applicaion
  *  most of the code is boilerplate
@@ -26,4 +27,5 @@ export default combineReducers( Object.assign(
     openChatReducer,
     chatObjReducer,
     businessReducer,
+    influencerReducer,
 ))

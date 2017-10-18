@@ -9,6 +9,7 @@ import * as OpenChatAction from './openedChat'
 import * as chatObjAction from './chatObj'
 import * as collabActions from './collab'
 import * as businessActions from './businesses'
+import * as influencerActions from './influencers'
 
 /**
  * to star unstars etc will be in recipes.js files
@@ -28,4 +29,5 @@ export const ActionCreators = Object.assign({},
     chatObjAction,
     collabActions,
     businessActions,
+    influencerActions,
 )

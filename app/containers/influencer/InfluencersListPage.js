@@ -19,7 +19,7 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class InfluencersListPage extends Component{
+class  InfluencersListPage extends Component{
 //this is a local state.
 //redux has nothing to do with this
 
@@ -28,18 +28,23 @@ constructor(props) {
   super(props)
   //setting it to false if okay. but might need to think about it later
   //in some cases was not working so its true now. :\
-  this.state = { fetching: true }
+  this.state = { fetching: true , isAcceptedShowing: true}
 }
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchFeed(this.props.signedInUser.id).then( (res) => {
+  this.props.fetchInfluencer(this.props.signedInUser.id).then( (res) => {
     this.setState({fetching: false })
   })
 }
 
-fetchFeedItems(){
-    return Object.keys(this.props.feedData).map(key =>this.props.feedData[key])
+fetchInfluencerItems(){
+    return Object.keys(this.props.InfluencerData).map(key =>this.props.InfluencerData[key])
+}
+
+toggleisAcceptedShowing(){
+  this.setState({ isAcceptedShowing : !this.state.isAcceptedShowing})
+
 }
 onPressChat(){
   Actions.chatListPage();
@@ -53,13 +58,14 @@ return(
   />
   <View style={styles.header}>
     <Text style={styles.headerText}>
- Influencers 
+  Influencers 
     </Text>
   </View>
 
   <View style = {styles.content}>
+  {this.state.isAcceptedShowing ?
               <TouchableHighlight 
-                             onPress={ ()=>{ console.log('test'), Actions.PendingRequestsPage(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
+                             onPress={ ()=>{ console.log('test'); this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
                     <View style={{flex : 4, justifyContent : 'center', }}>
                         <Text style={{
@@ -67,7 +73,7 @@ return(
                             fontFamily :'GothamRounded-Medium',
                             marginLeft : 10
                         }}>
-                        Collaboration requests
+                        View pending requests
                         </Text>
                         <Text style={{
                             fontSize: 16,
@@ -86,16 +92,101 @@ return(
                 </Icon>
                     </View>
                 </View>
-                      </TouchableHighlight>
+            </TouchableHighlight>
+                      : 
+              <TouchableHighlight 
+                             onPress={ ()=>{ console.log('test'); this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
+                <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
+                    <View style={{flex : 4, justifyContent : 'center', }}>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Medium',
+                            marginLeft : 10
+                        }}>
+                       View accepted collaborations
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Book',
+                            marginLeft : 10,
+                        }}>
+                        27 collaborations
+                        </Text>
+                    </View>
+                    <View style={{flex : 2, 
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                    }}>
+                <Icon name="chevron-left" size={25} color='#6563A4' >
+                </Icon>
+                    </View>
+                </View>
+            </TouchableHighlight>
+                        
+  }
     <View style={styles.notificationBar}>
       <Text style={styles.notificationBarText}>
-        Collaborations
+      {this.state.isAcceptedShowing ? "Collaborations" : "Pending requests"}
       </Text>
     </View>
     <View style={styles.listView}>
        <ScrollView>
-           {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
-            if(feedItem.status == "accepted"){ //because no else if here
+           {! this.state.fetching && this.fetchInfluencerItems().map((feedItem) => {
+            if(feedItem.status =="accepted" && this.state.isAcceptedShowing){ //because no else if here
+              return ( <TouchableHighlight key={feedItem.id}
+                             onPress={ ()=>{ console.log(feedItem.id) } }>
+                <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
+                    <View style={{flex : 1, alignItems : 'center',justifyContent:'center' }}>
+                          <Image
+                            style = {{width: 40, height: 40, borderRadius: 20}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                    </View>
+                    <View style={{flex : 4, justifyContent : 'center', }}>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Medium',
+                            marginLeft : 10
+                        }}>
+                         {feedItem.name} 
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Book',
+                            marginLeft : 10,
+                        }}>
+                       7 posts, 3 stories 
+                        </Text>
+                    </View>
+                    <View style={{flex : 2, 
+                        marginTop : 10,
+                        marginBottom : 10,
+                        marginLeft : 5,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                        borderRadius : 5
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                            message 
+                        </Text>
+                    </View>
+                </View>
+                      </TouchableHighlight>
+              )//return
+            }//else
+            if(feedItem.status =="requested" && !this.state.isAcceptedShowing){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
                              onPress={ ()=>{ console.log(feedItem.id) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
@@ -298,6 +389,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
+      InfluencerData : state.InfluencerData,
       feedData : state.feedData,
       signedInUser : state.signedInUser,
     };

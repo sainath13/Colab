@@ -12,6 +12,8 @@ export const SET_FEED = 'SET_FEED'
 
 export const SET_BUSINESS = 'SET_BUSINESS'
 
+export const SET_INFLUENCER = 'SET_INFLUENCER'
+
 export const SET_SEARCH = 'SET_SEARCH'
 
 export const OPENED_CHAT = 'OPENED_CHAT'

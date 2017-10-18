@@ -94,8 +94,8 @@ return(
                     <View key={i} style={{
                         marginTop : 1,
                         marginBottom : 1,
-                        marginLeft : 1,
-                        marginRight : 1,
+                        marginLeft : 5,
+                        marginRight : 5,
                         borderRadius:3,
                         borderColor : 'white',
                         padding : 5,
@@ -120,7 +120,7 @@ return(
           <View style={styles.informationSlotPricing}>
             <View style={styles.informationSlotCard}>
               <Text style={styles.informationSlotCardHeadingText}>
-                  Video
+                 Post 
               </Text>
               <View style={{alignItems: "flex-end",
                     justifyContent : 'flex-end',
@@ -132,7 +132,7 @@ return(
             </View>
              <View style={styles.informationSlotCard}>
               <Text style={styles.informationSlotCardHeadingText}>
-                  Snap
+                 Story 
               </Text>
               <View style={{alignItems: "flex-end",
                     justifyContent : 'flex-end',
@@ -494,7 +494,7 @@ page: {
       flexWrap : 'wrap',
       padding : 10,
       borderBottomColor: '#E0E0E0',
-      justifyContent : 'flex-start',
+      justifyContent : 'center',
       alignItems : 'flex-start',
       // flexFlow : 'row'
     },

@@ -55,12 +55,24 @@ return(
     backgroundColor="red"
     barStyle="dark-content"
   />
+
   <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); } } >
+  <View style={{}}>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={styles.headerText}>
-      Influx
+Influx
     </Text>
   </View>
-
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); } } >
+  <View style={{}}>
+                <Icon name="commenting" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+</View>
   <View style = {styles.content}>
     <View style={styles.contentPic}>
     <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  console.log("Influencers"), Actions.InfluencersListPage(); } }>
@@ -211,6 +223,7 @@ var styles = StyleSheet.create({
     //  marginTop : 20,
     //  backgroundColor: 'white',
      backgroundColor: '#6563A4',
+     flexDirection : 'row',
     },
     notificationIcon:{
       flex : 2,

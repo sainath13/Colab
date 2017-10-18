@@ -60,7 +60,7 @@ return(
 
         <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
           <Text style={{  height:30, borderRadius:2, borderColor:'white', borderWidth : 3/2,
-               padding: 6, color: 'white', fontFamily: 'GothamRounded-Book'}}>Collaborate</Text>
+               padding: 6, color: 'white', fontFamily: 'GothamRounded-Book'}}>Edit Profile</Text>
 
         </View>
 

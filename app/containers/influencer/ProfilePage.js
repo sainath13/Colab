@@ -523,7 +523,7 @@ page: {
     fontFamily : 'chalet',
   },
   content:{
-    flex : 1.19,
+    flex : 0.78,
     backgroundColor : '#FFFFFF',
     // paddingTop : 20,
   },

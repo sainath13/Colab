@@ -89,20 +89,28 @@ return(
           </View>
           <View style={styles.informationCategoriesSlot}>
             {! this.state.fetching && this.props.profileData.niche.map((nicheItem,i)=>{
-              return (<Text key ={i}
-                  style={{
-                                   marginTop: 1,
-                                   margin:8,
-                                   height:30,
-                                   borderRadius:2,
-                                   borderColor:'#6563A4',
-                                   borderWidth : 3/2,
-                                   padding: 6,
-                                   color: '#6563A4',
-                                   fontFamily: 'GothamRounded-Bold'}}
-                     >
-                      {nicheItem}
-                     </Text>
+              return (
+              
+                    <View key={i} style={{
+                        marginTop : 1,
+                        marginBottom : 1,
+                        marginLeft : 1,
+                        marginRight : 1,
+                        borderRadius:3,
+                        borderColor : 'white',
+                        padding : 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                           {nicheItem} 
+                        </Text>
+                    </View>
                    )//return
 
             })//Map

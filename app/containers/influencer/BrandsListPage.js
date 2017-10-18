@@ -57,11 +57,18 @@ return(
     barStyle="dark-content"
   />
   <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); Actions.pop(); } } >
+  <View style={{}}>
+                <Icon name="chevron-left" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={styles.headerText}>
-  Brands 
+Brands
     </Text>
   </View>
-
+</View>
   <View style = {styles.content}>
   {this.state.isAcceptedShowing ?
               <TouchableHighlight 
@@ -261,6 +268,7 @@ var styles = StyleSheet.create({
      backgroundColor: '#6563A4',
     borderColor : '#333156',
     borderBottomWidth : 3,
+    flexDirection : 'row'
     },
     notificationIcon:{
       flex : 2,

@@ -402,7 +402,7 @@ return(
             <View style={{flex : 2,  backgroundColor: '#fefefe', flexDirection : 'row' }}>
                 <View style={{ flex:  3 , flexDirection : 'column', justifyContent : 'center'}}> 
               <Text style={{ fontSize : 20, fontFamily : 'GothamRounded-Medium', marginLeft : 20 }}>
-                More stats comming soon
+               Your collaborations will appear here 
              </Text>
              </View>
               <View style={{alignItems: "flex-end",

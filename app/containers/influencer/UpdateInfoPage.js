@@ -7,19 +7,20 @@ import {
   View,
   TextInput,
   StatusBar,
+  Keyboard,
   Image
 } from 'react-native';
 const Dimensions = require('Dimensions');
-
-// import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-  // import { Kaede,  } from 'react-native-textinput-effects';
-
-// import ModalPicker from 'react-native-modal-picker'
-
-// import Hoshi from '../animatedTextInput/Hoshi.js'
-
+//also need to provide information here
+//but profile route gives us this information anyway right?
+//so it can be done this way
+//always read the profileData state here 
+//if available well and good else show nothing
 import { Actions } from 'react-native-router-flux';
-import PopupDialog, { SlideAnimation, DialogTitle } from 'react-native-popup-dialog';
+import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ActionCreators } from '../../actions'
 
 // import Button from 'react-native-button';
 // import CircleCheckBox from 'react-native-circle-checkbox';
@@ -34,6 +35,7 @@ class  UpdateInfoPage extends Component {
     super(props);
     this._onPressInfluencerNicheSelect = this._onPressInfluencerNicheSelect.bind(this);
     this._onPressPriceSelect = this._onPressPriceSelect.bind(this);
+    this.state = { bio : this.props.signedInUser.bio }
   }
   _onPressInfluencerUpdateInfoSave(){
     Actions.tabbar();
@@ -63,6 +65,16 @@ class  UpdateInfoPage extends Component {
     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
     dialogAnimation = { new SlideAnimation({ slideFrom: 'bottom' }) }
     dialogTitle={<DialogTitle title="Select Pricing structure" />}
+    actions={[
+            <DialogButton
+              text="Dismiss"
+              textStyle="fontFamily : 'GothamRounded-Book', fontSize : 20"
+              onPress={() => {
+                Keyboard.dismiss();
+                this.popupDialog.dismiss();
+              }}
+            />,
+          ]}
   >
     <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
       <View style={{flex : 1}}>
@@ -74,7 +86,7 @@ class  UpdateInfoPage extends Component {
           <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
             <View style={{flex : 1 }}>
             </View>
-            <TextInput keyboardType='numeric' style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+            <TextInput keyboardType='numeric' onSubmitEditing={Keyboard.dismiss}  style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
               
             </TextInput>
           </View>
@@ -88,7 +100,7 @@ class  UpdateInfoPage extends Component {
           <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
             <View style={{flex : 1 }}>
             </View>
-            <TextInput style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5,padding : 10, }} >
+            <TextInput keyboardType='numeric' onSubmitEditing={Keyboard.dismiss}  style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5,padding : 10, }} >
             </TextInput>
           </View>
       </View>
@@ -147,9 +159,13 @@ class  UpdateInfoPage extends Component {
            backgroundColor : 'white',
            flex : 1,
          }}>
-       <TextInput placeholder = "Sainath"
+       <TextInput placeholder = "Enter bio here"
+       maxLength ={200} 
          multiline = {true}
          numberOfLines = {4}
+         value = {this.state.bio}
+         onSubmitEditing={Keyboard.dismiss}
+         onChangeText={(bio) => this.setState({bio})}
           style={{
             height : 75,
            width : Dimensions.get('window').width,
@@ -189,14 +205,15 @@ class  UpdateInfoPage extends Component {
       borderRadius : 5}}>
       <Text style={{
         color : 'white',
-        fontSize : 17,
-        fontFamily :'GothamRounded-Bold',
+        fontSize : 18,
+        fontFamily :'GothamRounded-Medium',
         }}>
-         25$
+       select 
       </Text>
     </View>
     </TouchableHighlight>
 </View>
+
 
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
@@ -208,7 +225,43 @@ class  UpdateInfoPage extends Component {
     fontFamily : 'GothamRounded-Book',
     padding : 5,
     }}>
-    Email
+ Phone 
+  </Text>
+</View>
+<View style={{flex : 1,
+  marginTop : 10,
+  marginBottom : 10,
+  marginLeft : 5,
+  marginRight : 10,
+  borderRadius:2,
+  borderColor:'#fefefe',
+  borderWidth : 3/2,
+  paddingTop: 5,
+  paddingBottom: 5,
+  alignItems : 'center',
+  justifyContent: 'center',
+  backgroundColor : '#6563A4',
+  borderRadius : 5}}>
+  <Text style={{
+    color : 'white',
+        fontSize : 17,
+        fontFamily :'GothamRounded-Medium',
+    }}>
+    8073457348 
+  </Text>
+</View>
+</View>
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+            borderBottomColor : '#6563A4' ,
+            borderBottomWidth  : 2,
+            }}>
+<View style={{flex : 1,  justifyContent : 'center'}}>
+  <Text style={{
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Book',
+    padding : 5,
+    }}>
+    Email 
   </Text>
 </View>
 <View style={{flex : 2,
@@ -392,4 +445,15 @@ wrappedText:{
 });
 
 
-export default (UpdateInfoPage);
+function mapDispatchToProps(dispatch){
+    return bindActionCreators( ActionCreators, dispatch);
+}
+function mapStateToProps(state){
+    return {
+      //not calling any api actions here yet, but will be required later
+      signedInUser : state.signedInUser,
+      profileData : state.profileData,
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateInfoPage);

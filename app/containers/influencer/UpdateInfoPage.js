@@ -68,11 +68,11 @@ class  UpdateInfoPage extends Component {
     actions={[
             <DialogButton
               text="Dismiss"
-              textStyle="fontFamily : 'GothamRounded-Book', fontSize : 20"
               onPress={() => {
                 Keyboard.dismiss();
                 this.popupDialog.dismiss();
               }}
+               key="button-1"
             />,
           ]}
   >

@@ -35,7 +35,7 @@ class  UpdateInfoPage extends Component {
     super(props);
     this._onPressInfluencerNicheSelect = this._onPressInfluencerNicheSelect.bind(this);
     this._onPressPriceSelect = this._onPressPriceSelect.bind(this);
-    this.state = { bio : this.props.signedInUser.bio }
+    this.state = { bio : this.props.signedInUser.bio, pricePerPost : "" , pricePerStory : "" }
   }
   _onPressInfluencerUpdateInfoSave(){
     Actions.tabbar();
@@ -46,6 +46,46 @@ class  UpdateInfoPage extends Component {
 
   _onPressPriceSelect(){
     this.popupDialog.show();
+  }
+  onChangedPost(text){
+    let newText = '';
+    let numbers = '0123456789';
+  
+    for (var i=0; i < text.length; i++) {
+         if(numbers.indexOf(text[i]) > -1 ) {
+              newText = newText + text[i];
+         }
+         else {
+               // your call back function
+               Keyboard.dismiss();
+               alert("please enter numbers only");
+               Keyboard.dismiss();
+          }
+         this.setState({ pricePerPost : newText });
+     }
+    if(text == ""){
+         this.setState({ pricePerPost : "" });
+    } 
+  }
+  onChangedStory(text){
+    let newText = '';
+    let numbers = '0123456789';
+  
+    for (var i=0; i < text.length; i++) {
+         if(numbers.indexOf(text[i]) > -1 ) {
+              newText = newText + text[i];
+         }
+         else {
+               // your call back function
+               Keyboard.dismiss();
+               alert("please enter numbers only");
+               Keyboard.dismiss();
+          }
+         this.setState({ pricePerStory : newText });
+     }
+    if(text == ""){
+         this.setState({ pricePerStory : "" });
+    } 
   }
   render() {
 
@@ -63,7 +103,6 @@ class  UpdateInfoPage extends Component {
     </View>
     <PopupDialog
     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-    dialogAnimation = { new SlideAnimation({ slideFrom: 'bottom' }) }
     dialogTitle={<DialogTitle title="Select Pricing structure" />}
     actions={[
             <DialogButton
@@ -86,8 +125,12 @@ class  UpdateInfoPage extends Component {
           <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
             <View style={{flex : 1 }}>
             </View>
-            <TextInput keyboardType='numeric' onSubmitEditing={Keyboard.dismiss}  style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
-              
+            <TextInput keyboardType='numeric' 
+            placeholder = "in $"
+            maxLength ={5} 
+            onChangeText = {(text)=> this.onChangedStory(text)}
+            value= {this.state.pricePerStory}
+            style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
             </TextInput>
           </View>
       </View>
@@ -100,7 +143,12 @@ class  UpdateInfoPage extends Component {
           <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
             <View style={{flex : 1 }}>
             </View>
-            <TextInput keyboardType='numeric' onSubmitEditing={Keyboard.dismiss}  style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5,padding : 10, }} >
+            <TextInput keyboardType='numeric'
+            maxLength ={5} 
+            placeholder = "in $"
+            value ={this.state.pricePerPost}
+            onChangeText = {(text)=> this.onChangedPost(text)}
+             onSubmitEditing={Keyboard.dismiss}  style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5,padding : 10, }} >
             </TextInput>
           </View>
       </View>

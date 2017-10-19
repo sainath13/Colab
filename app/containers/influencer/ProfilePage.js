@@ -56,7 +56,7 @@ return(
       <View style={styles.profileInfoHolder}>
         <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
-               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>Siddhesh Latkar</Text>
+               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>Reallylargenameaaaa</Text>
                <Octicons name="broadcast" size={20} color='white' >
                 </Octicons>
                 {

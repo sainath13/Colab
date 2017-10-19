@@ -659,8 +659,8 @@ page: {
       fontFamily : 'GothamRounded-Medium'
     },
     informationSlotCardPricingText:{
-      fontSize :  40,
-      fontFamily : 'GothamRounded-Book',
+      fontSize :  20,
+      fontFamily : 'GothamRounded-Bold',
     },
     followersHolderLeftText:{
       color : 'white',

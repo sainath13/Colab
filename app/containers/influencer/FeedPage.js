@@ -175,7 +175,7 @@ Influx
                             </Text>
                         </View>
                         <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id)}}
+                        onPress={()=> {(console.log("clicked on message"))}}
                          style={{
                         width : 100,
                         height : 30,

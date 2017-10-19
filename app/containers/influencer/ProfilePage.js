@@ -16,7 +16,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions'
 var ScrollableTabView = require('react-native-scrollable-tab-view');
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Octicons from 'react-native-vector-icons/Octicons';
 class influencerProfilePage extends Component{
   //this is a local state.
   //redux has nothing to do with this
@@ -48,14 +49,19 @@ return(
     <View style={styles.contentPic}>
       <View style={styles.profilePicHolder}>
         <Image
-          style = {{width: 70, height: 70, borderRadius: 35}}
+          style = {{width: 70, height: 70, borderRadius: 35, borderColor: 'red', borderWidth: 2}}
           source = {require('../images/new.jpg')}
         />
       </View>
       <View style={styles.profileInfoHolder}>
-        <View style={{flex: 1, flexDirection: 'column',justifyContent: 'center',alignItems : 'center',}}>
+        <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>Siddhesh Latkar</Text>
+               <Octicons name="broadcast" size={20} color='white' >
+                </Octicons>
+                {
+                  //briefcase icon for brands
+                }
         </View>
 
         <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
@@ -102,16 +108,38 @@ return(
         >
         <ScrollView tabLabel="Bio" >
           <View style={styles.informationSlot}>
+          <View style={{flexDirection : 'column'}}>
             <Text style={{marginTop : 10 ,
                           fontSize: 16,
-                          marginLeft : 10,
+                          marginLeft : 5,
+                          // padding:5,
+                         fontFamily :'GothamRounded-Medium'
+                        }}>
+                        About me
+            </Text>
+            <Text style={{marginTop : 5,
+                          fontSize: 15,
+                          marginLeft : 5,
                           marginRight : 10,
                           marginBottom:10,
                           // padding:5,
-                          fontFamily :'GothamRounded-Book'}}>
+                         fontFamily :'GothamRounded-Book'
+                        }}>
                           {this.props.signedInUser.bio}
             </Text>
+            </View>
           </View>
+          <View>
+            <Text style={{marginTop :10 ,
+                          fontSize: 16,
+                          paddingLeft: 15,
+                          marginLeft : 5,
+                          marginBottom:0,
+                         fontFamily :'GothamRounded-Medium'
+                        }}>
+                       Niche 
+            </Text>
+            </View>
           <View style={styles.informationCategoriesSlot}>
             {! this.state.fetching && this.props.profileData.niche.map((nicheItem,i)=>{
               return (
@@ -142,6 +170,18 @@ return(
           }
           {this.state.fetching ? <Text>Searching...</Text> : null }
           </View>
+          <View>
+            <Text style={{
+                          marginTop :10 ,
+                          fontSize: 16,
+                          paddingLeft: 15,
+                          marginLeft : 5,
+                         marginBottom : 5,
+                         fontFamily :'GothamRounded-Medium'
+                        }}>
+                      Pricing structure
+            </Text>
+            </View>
           <View style={styles.informationSlotPricing}>
             <View style={styles.informationSlotCard}>
               <Text style={styles.informationSlotCardHeadingText}>
@@ -169,28 +209,160 @@ return(
              </View>
           </View>
           <View style={styles.informationSlot}>
-            <Text style={{padding : 5 , fontSize: 18, fontFamily :'GothamRounded-Book', flex : 2 }}>
+          <View>
+            <View style={{flexDirection : 'row',alignItems : 'center'}}>
+            <Text style={{marginTop : 10 ,
+                          fontSize: 16,
+                          marginLeft : 5,
+                          // padding:5,
+                          marginRight : 5,
+                         fontFamily :'GothamRounded-Medium'
+             }}>
+                { //  Contact : {!this.state.fetching ? this.props.profileData.contact.phone : null }
+                }
+               Payment methods
+            </Text>
+                <Icon name="lock" size={20} color='#6463A4' >
+                </Icon>
+                </View>
+                <View style={{
+                flexDirection:'row',
+                flexWrap : 'wrap',
+                justifyContent : 'flex-start',
+                alignItems : 'flex-start',
+                }}>
+                    <View  style={{
+                        marginTop : 1,
+                        marginBottom : 1,
+                        marginLeft : 5,
+                        marginRight : 5,
+                        borderRadius:3,
+                        borderColor : 'white',
+                        padding : 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                      PhonePay 
+                        </Text>
+                    </View>
+                    <View  style={{
+                        marginTop : 1,
+                        marginBottom : 1,
+                        marginLeft : 5,
+                        marginRight : 5,
+                        borderRadius:3,
+                        borderColor : 'white',
+                        padding : 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                       paypal 
+                        </Text>
+                    </View>
+                    <View  style={{
+                        marginTop : 1,
+                        marginBottom : 1,
+                        marginLeft : 5,
+                        marginRight : 5,
+                        borderRadius:3,
+                        borderColor : 'white',
+                        padding : 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                       paytm 
+                        </Text>
+                    </View>
+                    <View  style={{
+                        marginTop : 1,
+                        marginBottom : 1,
+                        marginLeft : 5,
+                        marginRight : 5,
+                        borderRadius:3,
+                        borderColor : 'white',
+                        padding : 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                        Google-wallet 
+                        </Text>
+                    </View>
+                    </View>
+            </View>
+          </View>
+          <View style={styles.informationSlot}>
+          <View>
+            <View style={{flexDirection : 'row',alignItems : 'center'}}>
+            <Text style={{marginTop : 10 ,
+                          fontSize: 16,
+                          marginLeft : 5,
+                          // padding:5,
+                          marginRight : 5,
+                         fontFamily :'GothamRounded-Medium'
+             }}>
                 { //  Contact : {!this.state.fetching ? this.props.profileData.contact.phone : null }
                 }
                 Contact
             </Text>
-            <Text style={{padding : 5 , fontSize: 18, fontFamily :'GothamRounded-Book', flex : 5}}>
+                <Icon name="lock" size={20} color='#6463A4' >
+                </Icon>
+                </View>
+            <Text style={{padding : 5 , fontSize: 15, fontFamily :'GothamRounded-Book', flex : 5}}>
                 { //  Contact : {!this.state.fetching ? this.props.profileData.contact.phone : null }
                 }
-                : {!this.state.fetching ? this.props.profileData.contact.phone : null }
+                {!this.state.fetching ? this.props.profileData.contact.phone : null }
             </Text>
+            </View>
           </View>
           <View style={styles.informationSlot}>
-            <Text style={{padding : 5 , fontSize: 18, fontFamily :'GothamRounded-Book', flex : 2 }}>
-                {//Email : {!this.state.fetching ? this.props.profileData.contact.email : null }
-                }
-                Email 
-            </Text>
-            <Text style={{padding : 5 , fontSize: 18, fontFamily :'GothamRounded-Book', flex : 5}}>
+          <View>
+            <View style={{flexDirection : 'row',alignItems : 'center'}}>
+            <Text style={{marginTop : 10 ,
+                          fontSize: 16,
+                          marginLeft : 5,
+                          // padding:5,
+                          marginRight : 5,
+                         fontFamily :'GothamRounded-Medium'
+             }}>
                 { //  Contact : {!this.state.fetching ? this.props.profileData.contact.phone : null }
                 }
-                : {!this.state.fetching ? this.props.profileData.contact.email : null }
+               Email   
             </Text>
+                <Icon name="lock" size={20} color='#6463A4' >
+                </Icon>
+                </View>
+            <Text style={{padding : 5 , fontSize: 15, fontFamily :'GothamRounded-Book', flex : 5}}>
+                { //  Contact : {!this.state.fetching ? this.props.profileData.contact.phone : null }
+                }
+                {//: {!this.state.fetching ? this.props.profileData.contact.email : null }
+                }
+                latkarsainath@gmail.com
+            </Text>
+          </View>
           </View>
         </ScrollView>
         <View tabLabel="Stats" style={{flex : 10}}>
@@ -476,8 +648,8 @@ page: {
     informationSlot:{
         // flex : 1,
       flexDirection: 'row',
-      borderBottomWidth: 0.5,
-      borderBottomColor: '#E0E0E0',
+     // borderBottomWidth: 0.5,
+    //  borderBottomColor: '#E0E0E0',
       // alignItems : 'center',
       paddingLeft : 15,
       //justifyContent : 'left',
@@ -497,8 +669,8 @@ page: {
     },
     informationSlotPricing:{
       flex : 1,
-      borderBottomWidth: 0.5,
-      borderBottomColor: '#E0E0E0',
+      //borderBottomWidth: 0.5,
+      //borderBottomColor: '#E0E0E0',
       // alignItems : 'center',
       flexDirection : 'row',
       paddingLeft : 15,
@@ -514,12 +686,12 @@ page: {
       // flex : 1,
       // width : 60,
       paddingLeft: 15,
-      borderBottomWidth: 0.5,
+      //borderBottomWidth: 0.5,
       flexDirection:'row',
       flexWrap : 'wrap',
       padding : 10,
-      borderBottomColor: '#E0E0E0',
-      justifyContent : 'center',
+    //  borderBottomColor: '#E0E0E0',
+      justifyContent : 'flex-start',
       alignItems : 'flex-start',
       // flexFlow : 'row'
     },

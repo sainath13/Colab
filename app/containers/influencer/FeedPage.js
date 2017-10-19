@@ -17,7 +17,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Entypo';
 
 class FeedPage extends Component{
 //this is a local state.
@@ -68,7 +68,7 @@ Influx
   </View>
   <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); } } >
   <View style={{}}>
-                <Icon name="commenting" size={25} color='white' >
+                <Icon name="chat" size={25} color='white' >
                 </Icon>
   </View>
   </TouchableHighlight>

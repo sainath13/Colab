@@ -33,7 +33,7 @@ constructor(props) {
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchFeed(this.props.signedInUser.id).then( (res) => {
+  this.props.fetchFeed(this.props.signedInUser.basic_data.id).then( (res) => {
     this.setState({fetching: false })
   })
 }
@@ -116,7 +116,7 @@ Influx
            {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id) } }>
+                             onPress={ ()=>{  console.log(feedItem.id);} }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image

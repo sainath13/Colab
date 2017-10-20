@@ -57,11 +57,22 @@ return(
     barStyle="dark-content"
   />
   <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); Actions.pop(); } } >
+  <View style={{}}>
+                <Icon name="chevron-left" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={styles.headerText}>
-  Influencers 
+Influencers
     </Text>
   </View>
-
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); Actions.pop(); } } >
+  <View style={{}}>
+  </View>
+  </TouchableHighlight>
+</View>
   <View style = {styles.content}>
   {this.state.isAcceptedShowing ?
               <TouchableHighlight 
@@ -74,13 +85,6 @@ return(
                             marginLeft : 10
                         }}>
                         View pending requests
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            fontFamily :'GothamRounded-Book',
-                            marginLeft : 10,
-                        }}>
-                        7 requests pending
                         </Text>
                     </View>
                     <View style={{flex : 2, 
@@ -104,13 +108,6 @@ return(
                             marginLeft : 10
                         }}>
                        View accepted collaborations
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            fontFamily :'GothamRounded-Book',
-                            marginLeft : 10,
-                        }}>
-                        27 collaborations
                         </Text>
                     </View>
                     <View style={{flex : 2, 
@@ -149,7 +146,7 @@ return(
                             fontFamily :'GothamRounded-Medium',
                             marginLeft : 10
                         }}>
-                         {feedItem.name} 
+                         {feedItem.first_name + " " + feedItem.last_name} 
                         </Text>
                         <Text style={{
                             fontSize: 16,
@@ -188,7 +185,7 @@ return(
             }//else
             if(feedItem.status =="requested" && !this.state.isAcceptedShowing){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ console.log(feedItem.id) } }>
+                             onPress={ ()=>{ console.log(feedItem) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                     <View style={{flex : 1, alignItems : 'center',justifyContent:'center' }}>
                           <Image
@@ -202,7 +199,7 @@ return(
                             fontFamily :'GothamRounded-Medium',
                             marginLeft : 10
                         }}>
-                         {feedItem.name} 
+                         {feedItem.first_name + " "+ feedItem.last_name} 
                         </Text>
                         <Text style={{
                             fontSize: 16,
@@ -212,7 +209,9 @@ return(
                        7 posts, 3 stories 
                         </Text>
                     </View>
-                    <View style={{flex : 2, 
+                    <TouchableHighlight 
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id,"InfluencerListPage","Influencer")}}
+                    style={{flex : 2, 
                         marginTop : 10,
                         marginBottom : 10,
                         marginLeft : 5,
@@ -232,9 +231,9 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                            message 
+                           accept 
                         </Text>
-                    </View>
+                    </TouchableHighlight>
                 </View>
                       </TouchableHighlight>
               )//return
@@ -261,6 +260,7 @@ var styles = StyleSheet.create({
      backgroundColor: '#6563A4',
     borderColor : '#333156',
     borderBottomWidth : 3,
+    flexDirection : 'row'
     },
     notificationIcon:{
       flex : 2,

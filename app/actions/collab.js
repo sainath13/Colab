@@ -2,6 +2,7 @@ import * as types from './types'
 
 let URL_START = "http://localhost:3000/influencers/";
 let ACCEPT_COLLAB = "/accept_collaboration_with_business";
+let ACCEPT_COLLAB_INFLUENCER = "/accept_collaboration_with_influencer";
 
 export function setLoginInfo({loginInfo}){
   return {
@@ -23,19 +24,32 @@ export function setAcceptedCollabRequest(acceptedUserId,status,pageName){
         collabAccepted
       }
    }
+   if(pageName == "InfluencerListPage"){
+      return {
+        type : types.ACCEPT_COLLAB_REQUEST_PENDING_INFLUENCER,
+        collabAccepted
+      }
+   }
     return {
       type : types.ACCEPT_COLLAB_REQUEST,
      collabAccepted,
     }
   }//
   
-export function acceptCollabRequest(currentUserId,acceptUserId,pageName){
+export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType){
   //NEED TO REMOVE THIS ID FROM HERE
   //can remove the id from here. passing id is not required. 
   // it can be done inside this return . get the id from the state after getting state
   console.log("user", currentUserId);
-  console.log("new", acceptUserId)
-  let ACCEPT_COLLAB_ROUTE = URL_START + currentUserId + ACCEPT_COLLAB + "?business_id=" +acceptUserId;
+  console.log("new", acceptUserId);
+  var ACCEPT_COLLAB_ROUTE = "";
+  if(userType == "Brand"){
+      ACCEPT_COLLAB_ROUTE = URL_START + currentUserId + ACCEPT_COLLAB + "?business_id=" +acceptUserId;
+  }
+
+  if(userType == "Influencer"){
+      ACCEPT_COLLAB_ROUTE = URL_START + currentUserId + ACCEPT_COLLAB_INFLUENCER  + "?influencer_friend_id=" +acceptUserId;
+  }
   return (dispatch,getState)=>{
     const state = getState();
     return fetch(ACCEPT_COLLAB_ROUTE , {
@@ -64,7 +78,7 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName){
     })//response
     .then((responseJson) => {
       console.log(responseJson);
-      return dispatch(setAcceptedCollabRequest(responseJson.business_id,responseJson.status,pageName));
+      return dispatch(setAcceptedCollabRequest(responseJson.influencer_friend_id,responseJson.status,pageName));
     })//responseJson
     .catch((error) => {
       console.error(error);

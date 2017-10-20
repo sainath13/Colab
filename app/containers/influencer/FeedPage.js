@@ -46,7 +46,8 @@ fetchFeedItems(){
     return Object.keys(this.props.feedData.requested_businesses).map(key =>this.props.feedData.requested_businesses[key])
 }
 onPressChat(){
-  Actions.chatListPage();
+Actions.VisitProfilePage({clickedUserId : 7, isBusiness : true})
+  //Actions.chatListPage();
 }
   render() {
 return(

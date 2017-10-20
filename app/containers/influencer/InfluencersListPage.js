@@ -33,7 +33,7 @@ constructor(props) {
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchInfluencer(this.props.signedInUser.id).then( (res) => {
+  this.props.fetchInfluencer(this.props.signedInUser.basic_data.id).then( (res) => {
     this.setState({fetching: false })
   })
 }
@@ -389,7 +389,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
-      InfluencerData : state.InfluencerData,
+      InfluencerData : state.influencerData,
       feedData : state.feedData,
       signedInUser : state.signedInUser,
     };

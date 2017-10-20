@@ -223,7 +223,9 @@ Brands
                        7 posts, 3 stories 
                         </Text>
                     </View>
-                    <View style={{flex : 2, 
+                    <TouchableHighlight 
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id,"BrandListPage")}}
+                    style={{flex : 2, 
                         marginTop : 10,
                         marginBottom : 10,
                         marginLeft : 5,
@@ -243,9 +245,9 @@ Brands
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                            message 
+                           accept 
                         </Text>
-                    </View>
+                    </TouchableHighlight>
                 </View>
                       </TouchableHighlight>
               )//return

@@ -10,6 +10,8 @@ import * as chatObjAction from './chatObj'
 import * as collabActions from './collab'
 import * as businessActions from './businesses'
 import * as influencerActions from './influencers'
+import * as visitProfileActoins from './visitProfile'
+import * as updateActions from './update'
 
 /**
  * to star unstars etc will be in recipes.js files
@@ -30,4 +32,6 @@ export const ActionCreators = Object.assign({},
     collabActions,
     businessActions,
     influencerActions,
+    visitProfileActoins,
+    updateActions,
 )

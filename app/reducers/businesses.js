@@ -8,6 +8,20 @@ export const businessData = createReducer({
     //might need to append some data or trim some part
     //Accepted data will be added to this only but through some later route 
     //structure is same only. No copies. only this singular state
-   return action.businessData;
+    tempRequestedBrands = action.businessData;
+    processedBrands = {}
+    Object.keys(tempRequestedBrands).forEach(function(key){
+      processedBrands[tempRequestedBrands[key].id] = tempRequestedBrands[key]
+    })
+   return processedBrands;
   },
+  [types.ACCEPT_COLLAB_REQUEST_PENDING_BUSINESS](state,action){
+   return {
+     ...state,
+      [action.collabAccepted.id] : {
+        ...state[action.collabAccepted.id],
+        status : action.collabAccepted.status
+    }
+   }
+  }
 })

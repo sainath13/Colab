@@ -15,23 +15,24 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions'
+import { Actions } from 'react-native-router-flux';
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Octicons from 'react-native-vector-icons/Octicons';
-class influencerProfilePage extends Component{
+class VisitProfilePage extends Component{
   //this is a local state.
   //redux has nothing to do with this
 constructor(props) {
   super(props)
   this.state = { fetching: true ,
-
   }
 }
 
 componentDidMount(){
+    console.log(this)
     this.setState({ fetching: true })
     //Data fetching should happen here only.
-    this.props.fetchProfile(this.props.signedInUser.basic_data.id).then( (res) => {
+    this.props.fetchVisitProfile(this.props.clickedUserId,this.props.isBusiness).then( (res) => {
       this.setState({fetching: false })
     })
 }
@@ -46,25 +47,38 @@ return(
   />
 
   <View style = {styles.content}>
-    <View style={styles.contentPic}>
-      <View style={styles.profilePicHolder}>
-        <Image
-          style = {{width: 70, height: 70, borderRadius: 35, borderColor: 'red', borderWidth: 2}}
-          source = {require('../images/new.jpg')}
-        />
-      </View>
-      <View style={styles.profileInfoHolder}>
-        <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
+  <View style={{paddingTop : 20, backgroundColor : '#6364A4'}}>
+  </View>
+  <View style={{flexDirection: 'row',backgroundColor : '#6463A4',
+    //borderColor : '#333156',
+    //borderBottomWidth : 0.5
+}}>
+       <TouchableHighlight
+                        onPress={()=> {(Actions.pop()); console.log("along with pop, write a destroy reducer action here")}}
+        style={{flex : 1,alignItems : 'center',justifyContent: 'center',
+        backgroundColor: '#6364A4'}}>
+                <Icon name="chevron-left" size={20} color='white' >
+                </Icon>
+      </TouchableHighlight>
+      <View style={{flex : 8, flexDirection : 'row', alignItems : 'center',justifyContent: 'center'}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
-               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>Reallylargenameaaaa</Text>
+               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>Chane this name</Text>
                <Octicons name="broadcast" size={20} color='white' >
                 </Octicons>
                 {
                   //briefcase icon for brands
                 }
-        </View>
-
-        <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
+      </View>
+  </View>
+    <View style={styles.contentPic}>
+      <View style={[styles.profilePicHolder,{paddingLeft : 20}]}>
+        <Image
+          style = {{width: 60, height: 60, borderRadius: 30, borderColor: 'white', borderWidth: 2,marginBottom : 15}}
+          source = {require('../images/new.jpg')}
+        />
+      </View>
+      <View style={styles.profileInfoHolder}>
+        <View style={{flex: 1 ,alignItems : 'center',justifyContent: 'center'}}>
                         <TouchableHighlight
                         onPress={()=> {(console.log("clicked on edit profile"))}}
                          style={{
@@ -89,7 +103,7 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                      Edit Profile 
+                    Collaborate 
                         </Text>
                     </View>
                     </TouchableHighlight>
@@ -125,7 +139,7 @@ return(
                           // padding:5,
                          fontFamily :'GothamRounded-Book'
                         }}>
-                {!this.state.fetching ? this.props.profileData.basic_data.bio : null }
+                          {this.props.profileData.basic_data.bio}
             </Text>
             </View>
           </View>
@@ -191,7 +205,7 @@ return(
                     justifyContent : 'flex-end',
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                {!this.state.fetching ? this.props.profileData.basic_data.pricePerPost : null }
+                    20$
                 </Text>
               </View>
             </View>
@@ -203,7 +217,7 @@ return(
                     justifyContent : 'flex-end',
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                {!this.state.fetching ? this.props.profileData.basic_data.pricePerStory: null }
+                    25$
                 </Text>
               </View>
              </View>
@@ -360,7 +374,7 @@ return(
                 }
                 {//: {!this.state.fetching ? this.props.profileData.contact.email : null }
                 }
-                {!this.state.fetching ? this.props.profileData.basic_data.email : null }
+                latkarsainath@gmail.com
             </Text>
           </View>
           </View>
@@ -722,22 +736,17 @@ page: {
   content:{
     flex : 0.78,
     backgroundColor : '#FFFFFF',
-    // paddingTop : 20,
+    //paddingTop : 20, if we do this we get white status bar
   },
   contentPic:{
     flex : 2,
     borderColor : '#333156',
-    paddingTop : 20,
     borderBottomWidth : 3,
-    paddingBottom: 10,
-    elevation : 10,
     backgroundColor : '#6563A4',
     flexDirection : 'row',
   },
   profilePicHolder:{
     flex : 2,
-    // borderColor : 'blue',
-    // borderWidth : 1,
     alignItems : 'center',
     justifyContent : 'center'
   },
@@ -817,4 +826,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(influencerProfilePage);
+export default connect(mapStateToProps, mapDispatchToProps)(VisitProfilePage);

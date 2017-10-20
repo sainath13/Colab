@@ -11,6 +11,7 @@ import {
   Image
 } from 'react-native';
 const Dimensions = require('Dimensions');
+import Spinner from 'react-native-loading-spinner-overlay';
 //also need to provide information here
 //but profile route gives us this information anyway right?
 //so it can be done this way
@@ -35,10 +36,19 @@ class  UpdateInfoPage extends Component {
     super(props);
     this._onPressInfluencerNicheSelect = this._onPressInfluencerNicheSelect.bind(this);
     this._onPressPriceSelect = this._onPressPriceSelect.bind(this);
-    this.state = { bio : this.props.signedInUser.bio, pricePerPost : "" , pricePerStory : "" }
+    this._onPressInfluencerUpdateInfoSave = this._onPressInfluencerUpdateInfoSave.bind(this)
+    this.state = { 
+        spinnerVisible : false,
+      bio : this.props.signedInUser.basic_data.bio, pricePerPost : ""+this.props.signedInUser.basic_data.price_per_post ,
+      pricePerStory : ""+this.props.signedInUser.basic_data.price_per_story,  phone : ""+this.props.signedInUser.basic_data.phone}
   }
   _onPressInfluencerUpdateInfoSave(){
+   this.props.updateInfo(this.props.signedInUser.basic_data.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory).then( (res) => {
+    this.setState({spinnerVisible: false });
     Actions.tabbar();
+  })
+    ;
+    //Actions.tabbar();
   }
   _onPressInfluencerNicheSelect(){
      Actions.NicheSelectPage();
@@ -46,6 +56,26 @@ class  UpdateInfoPage extends Component {
 
   _onPressPriceSelect(){
     this.popupDialog.show();
+  }
+  onChangedPhone(text){
+    let newText = '';
+    let numbers = '0123456789';
+  
+    for (var i=0; i < text.length; i++) {
+         if(numbers.indexOf(text[i]) > -1 ) {
+              newText = newText + text[i];
+         }
+         else {
+               // your call back function
+               Keyboard.dismiss();
+               alert("please enter numbers only");
+               Keyboard.dismiss();
+          }
+         this.setState({ phone : newText });
+     }
+    if(text == ""){
+         this.setState({phone : "" });
+    } 
   }
   onChangedPost(text){
     let newText = '';
@@ -169,7 +199,8 @@ class  UpdateInfoPage extends Component {
           <View style={styles.infoHolder}>
           <View style={ styles.infoTextHolder}>
             <Text style={styles.infoText}>
-              Sainath Latkar
+          {this.props.signedInUser.basic_data.first_name}  
+          {" " + this.props.signedInUser.basic_data.last_name} 
             </Text>
           </View>
           <View style={styles.infoTextHolder }>
@@ -185,7 +216,7 @@ class  UpdateInfoPage extends Component {
         </View>
         <View style={styles.coloredWrapper}>
           <Text style={styles.wrappedText}>
-             @sainathl
+          {this.props.signedInUser.basic_data.instagram_name} 
           </Text>
         </View>
     </View>
@@ -285,18 +316,23 @@ class  UpdateInfoPage extends Component {
   borderColor:'#fefefe',
   borderWidth : 3/2,
   paddingTop: 5,
+  paddingLeft : 5,
   paddingBottom: 5,
-  alignItems : 'center',
   justifyContent: 'center',
   backgroundColor : '#6563A4',
   borderRadius : 5}}>
-  <Text style={{
-    color : 'white',
-        fontSize : 17,
-        fontFamily :'GothamRounded-Medium',
+  <TextInput
+  maxLength={10}
+   onChangeText = {(text)=> this.onChangedPhone(text)}
+   placeholder = "Enter"
+   value ={this.state.phone} 
+   style={{
+          flex : 1,
+          color : 'white',
+          fontSize : 17,
+          fontFamily :'GothamRounded-Medium',
     }}>
-    8073457348 
-  </Text>
+  </TextInput>
 </View>
 </View>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
@@ -331,7 +367,7 @@ class  UpdateInfoPage extends Component {
         fontSize : 17,
         fontFamily :'GothamRounded-Medium',
     }}>
-     Latkarsainath@gmail.com
+    {this.props.signedInUser.basic_data.email}
   </Text>
 </View>
 </View>

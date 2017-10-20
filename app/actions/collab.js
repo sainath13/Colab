@@ -10,18 +10,26 @@ export function setLoginInfo({loginInfo}){
   }
 }//tried but couldn't avoid code duplication
 
-export function setAcceptedCollabRequest(acceptedUserId,status){
+export function setAcceptedCollabRequest(acceptedUserId,status,pageName){
+  console.log(pageName)
   console.log("from set accept collab request",acceptedUserId,status);
   var collabAccepted = {};
    collabAccepted.id = acceptedUserId;
    collabAccepted.status = status;
+   //put if condition here //TODO
+   if(pageName == "BrandListPage"){
+      return {
+        type : types.ACCEPT_COLLAB_REQUEST_PENDING_BUSINESS,
+        collabAccepted
+      }
+   }
     return {
       type : types.ACCEPT_COLLAB_REQUEST,
      collabAccepted,
     }
   }//
   
-export function acceptCollabRequest(currentUserId,acceptUserId){
+export function acceptCollabRequest(currentUserId,acceptUserId,pageName){
   //NEED TO REMOVE THIS ID FROM HERE
   //can remove the id from here. passing id is not required. 
   // it can be done inside this return . get the id from the state after getting state
@@ -56,7 +64,7 @@ export function acceptCollabRequest(currentUserId,acceptUserId){
     })//response
     .then((responseJson) => {
       console.log(responseJson);
-      return dispatch(setAcceptedCollabRequest(responseJson.business_id,responseJson.status));
+      return dispatch(setAcceptedCollabRequest(responseJson.business_id,responseJson.status,pageName));
     })//responseJson
     .catch((error) => {
       console.error(error);

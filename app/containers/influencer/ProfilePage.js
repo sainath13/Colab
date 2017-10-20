@@ -191,7 +191,7 @@ return(
                     justifyContent : 'flex-end',
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                {!this.state.fetching ? this.props.profileData.basic_data.pricePerPost : null }
+                {!this.state.fetching ? this.props.profileData.basic_data.price_per_post : null }
                 </Text>
               </View>
             </View>
@@ -203,7 +203,7 @@ return(
                     justifyContent : 'flex-end',
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                {!this.state.fetching ? this.props.profileData.basic_data.pricePerStory: null }
+                {!this.state.fetching ? this.props.profileData.basic_data.price_per_story: null }
                 </Text>
               </View>
              </View>

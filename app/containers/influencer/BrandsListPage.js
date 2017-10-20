@@ -78,20 +78,13 @@ Brands
               <TouchableHighlight 
                              onPress={ ()=>{ console.log('test'); this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
-                    <View style={{flex : 4, justifyContent : 'center', }}>
+                    <View style={{flex : 4, justifyContent : 'center',}}>
                         <Text style={{
                             fontSize: 16,
                             fontFamily :'GothamRounded-Medium',
                             marginLeft : 10
                         }}>
                         View pending requests
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            fontFamily :'GothamRounded-Book',
-                            marginLeft : 10,
-                        }}>
-                        7 requests pending
                         </Text>
                     </View>
                     <View style={{flex : 2, 
@@ -115,13 +108,6 @@ Brands
                             marginLeft : 10
                         }}>
                        View accepted collaborations
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            fontFamily :'GothamRounded-Book',
-                            marginLeft : 10,
-                        }}>
-                        27 collaborations
                         </Text>
                     </View>
                     <View style={{flex : 2, 

@@ -38,12 +38,17 @@ componentDidMount(){
   })
 }
 
-fetchFeedItems(){
+fetchFeedItems(accountType){
  console.log("test")
  //need to create some really nice object here 
  //BADAWALA TODO
  //CREATE NOTIFICATIONS HERE 
+ if(accountType == "brand"){
     return Object.keys(this.props.feedData.requested_businesses).map(key =>this.props.feedData.requested_businesses[key])
+ }
+ else if (accountType = "influencer"){
+    return Object.keys(this.props.feedData.requested_influencers).map(key =>this.props.feedData.requested_influencers[key])
+ }
 }
 onPressChat(){
 Actions.VisitProfilePage({clickedUserId : 7, isBusiness : true})
@@ -114,7 +119,100 @@ Influx
     </View>
     <View style={styles.listView}>
        <ScrollView>
-           {! this.state.fetching && this.fetchFeedItems().map((feedItem) => {
+           {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
+             if(feedItem.status == "requested"){
+              return ( <TouchableHighlight key={feedItem.id}
+                             onPress={ ()=>{  console.log(feedItem.id);} }>
+                        <View style={styles.listElement}>
+                                       <View style={styles.notificationIcon}>
+                          <Image
+                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                          </View>
+                          <View style={styles.notificationItem}>
+                            <Text style={styles.notificationItemText}>
+                              <Text style={styles.notificationItemTextBold}>{feedItem.first_name +" " + feedItem.last_name}</Text> wants to collaborate.
+                            </Text>
+                        </View>
+                        <TouchableHighlight
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id)}}
+                         style={{
+                        width : 100,
+                        height : 30,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                        borderRadius : 5
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                        accept
+                        </Text>
+                    </TouchableHighlight>
+                        </View>
+                      </TouchableHighlight>
+              )//return
+            }//if
+             if(feedItem.status == "accepted"){
+              return ( <TouchableHighlight key={feedItem.id}
+                             onPress={ ()=>{  console.log(feedItem.id) } }>
+                        <View style={styles.listElement}>
+                                       <View style={styles.notificationIcon}>
+                          <Image
+                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                          </View>
+                          <View style={styles.notificationItem}>
+                            <Text style={styles.notificationItemText}>
+                              <Text style={styles.notificationItemTextBold}>{feedItem.first_name + " "+feedItem.last_name }</Text> wants to collaborate.
+                            </Text>
+                        </View>
+                        <TouchableHighlight
+                        onPress={()=> {(console.log("clicked on message"))}}
+                         style={{
+                        width : 100,
+                        height : 30,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                        borderRadius : 5
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                       message 
+                        </Text>
+                    </TouchableHighlight>
+                        </View>
+                      </TouchableHighlight>
+              )//return
+            }//if
+           })//map
+         }
+           {! this.state.fetching && this.fetchFeedItems("brand").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}
                              onPress={ ()=>{  console.log(feedItem.id);} }>
@@ -131,7 +229,7 @@ Influx
                             </Text>
                         </View>
                         <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.id,feedItem.id)}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id)}}
                          style={{
                         width : 100,
                         height : 30,

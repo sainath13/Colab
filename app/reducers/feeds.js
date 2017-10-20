@@ -19,9 +19,9 @@ export const feedData = createReducer({
     Object.keys(tempRequestedInfluencers ).forEach(function(key){
       processedRequestedInfluencers[tempRequestedInfluencers[key].id] = tempRequestedInfluencers[key]
     })
-   processedFeedList = {}
-   processedFeedList.requested_businesses =  processedRequestedBrands; 
-   processedFeedList.requested_influencers = processedRequestedInfluencers ; 
+    processedFeedList = {}
+    processedFeedList.requested_businesses =  processedRequestedBrands; 
+    processedFeedList.requested_influencers = processedRequestedInfluencers ; 
     return processedFeedList;
   },
   [types.ACCEPT_COLLAB_REQUEST](state,action){

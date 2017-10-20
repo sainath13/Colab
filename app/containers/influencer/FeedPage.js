@@ -136,7 +136,7 @@ Influx
                             </Text>
                         </View>
                         <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id)}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id,"FeedPage","Influencer")}}
                          style={{
                         width : 100,
                         height : 30,
@@ -229,7 +229,7 @@ Influx
                             </Text>
                         </View>
                         <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id)}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id,"FeedPage","Brand")}}
                          style={{
                         width : 100,
                         height : 30,

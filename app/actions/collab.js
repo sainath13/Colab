@@ -11,7 +11,7 @@ export function setLoginInfo({loginInfo}){
   }
 }//tried but couldn't avoid code duplication
 
-export function setAcceptedCollabRequest(acceptedUserId,status,pageName){
+export function setAcceptedCollabRequest(acceptedUserId,status,pageName,userType){
   console.log(pageName)
   console.log("from set accept collab request",acceptedUserId,status);
   var collabAccepted = {};
@@ -30,10 +30,20 @@ export function setAcceptedCollabRequest(acceptedUserId,status,pageName){
         collabAccepted
       }
    }
-    return {
-      type : types.ACCEPT_COLLAB_REQUEST,
-     collabAccepted,
-    }
+   if(pageName == "FeedPage"){
+     if(userType == "Brand"){
+      return {
+        type : types.ACCEPT_COLLAB_REQUEST_BUSINESS,
+        collabAccepted
+      }
+     }
+     else if (userType == "Influencer"){
+      return {
+        type : types.ACCEPT_COLLAB_REQUEST_INFLUENCER,
+        collabAccepted
+      }
+     }
+  }
   }//
   
 export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType){
@@ -78,7 +88,12 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
     })//response
     .then((responseJson) => {
       console.log(responseJson);
-      return dispatch(setAcceptedCollabRequest(responseJson.influencer_friend_id,responseJson.status,pageName));
+      if(userType == "Influencer"){
+        return dispatch(setAcceptedCollabRequest(responseJson.influencer_friend_id,responseJson.status,pageName,userType));
+      }
+      if(userType == "Brand"){
+        return dispatch(setAcceptedCollabRequest(responseJson.business_id,responseJson.status,pageName,userType));
+      }
     })//responseJson
     .catch((error) => {
       console.error(error);

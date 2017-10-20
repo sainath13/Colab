@@ -24,33 +24,21 @@ export const feedData = createReducer({
     processedFeedList.requested_influencers = processedRequestedInfluencers ; 
     return processedFeedList;
   },
-  [types.ACCEPT_COLLAB_REQUEST](state,action){
+  [types.ACCEPT_COLLAB_REQUEST_INFLUENCER](state,action){
     console.log(action);
-    //DELETE FROM HERE
-    //ADD TO accepted list
-    //but what will happen if I click on the list of accepted/
-    //dont add to accepted list here 
-    //just delete from here
-    //oh right 
-    //if data is already present then just add 
-    //if data is not already present then don't add as user is going to call the fetch any way
-    //TODO
- //  testState = state[action.acceptedUserId];
-   //return the sate just by deleting the element
-   //return state
-   //return { ...state , 
-   //NOT working
-   //FUCK the logic 
-   //DO things however possible they are
-   //seriously fuck logic
-  // testState = state.requested_businesses[action.collabAccepted.id];
-  // testState.status = action.collabAccepted.status;
-  //  return { ...state , 
-  //     requested_businesses , 
-  //      [action.collabAccepted.id] : testState
-  //  }
-//return    state.requested_businesses.filter(({ id }) => id !== action.acceptedUserId)
-   // }
+   return {
+     ...state,
+    requested_influencers: {
+      ...state.requested_influencers,
+      [action.collabAccepted.id] : {
+        ...state.requested_influencers[action.collabAccepted.id],
+        status : action.collabAccepted.status
+      }
+    }
+   }
+  },
+  [types.ACCEPT_COLLAB_REQUEST_BUSINESS](state,action){
+    console.log(action);
    return {
      ...state,
     requested_businesses : {

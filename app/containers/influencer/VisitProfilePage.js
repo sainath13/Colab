@@ -66,7 +66,7 @@ return(
       <View style={{flex : 8, flexDirection : 'row', alignItems : 'center',justifyContent: 'center'}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
-               { this.props.visitProfileData.first_name + " " + this.props.visitProfileData.last_name
+               { this.props.visitProfileData.first_name ? this.props.visitProfileData.first_name  + " " + this.props.visitProfileData.last_name : this.props.visitProfileData.name
                } 
                </Text>
                <Octicons name="broadcast" size={20} color='white' >
@@ -109,7 +109,7 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                    Collaborate 
+                    {this.props.visitProfileData.status}
                         </Text>
                     </View>
                     </TouchableHighlight>

@@ -51,8 +51,7 @@ fetchFeedItems(accountType){
  }
 }
 onPressChat(){
-Actions.VisitProfilePage({clickedUserId : 7, isBusiness : false})
-  //Actions.chatListPage();
+  Actions.chatListPage();
 }
   render() {
 return(
@@ -218,7 +217,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
            {! this.state.fetching && this.fetchFeedItems("brand").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id);} }>
+                             onPress={ ()=>{  console.log(feedItem.id); Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true}) } }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image
@@ -263,7 +262,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
             }//if
              if(feedItem.status == "accepted"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id) } }>
+                             onPress={ ()=>{  console.log(feedItem.id);  Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true})} }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image

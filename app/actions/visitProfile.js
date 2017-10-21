@@ -6,6 +6,7 @@
 import * as types from './types'
 let ROUTE_INFLU = "http://localhost:3000/influencers/";
 let INFLUENCER_PROFILE = "/view_visited_profile";
+let BUSINESS_PROFILE = "/view_visited_business";
 // import profiles from './profiles'
 /*
  * Format :
@@ -78,6 +79,9 @@ export function fetchVisitProfile(id,clickedUserId, isBusiness){
   var URL = "";
   if(!isBusiness){
     URL = ROUTE_INFLU + id + INFLUENCER_PROFILE + "?influencer_id=" +clickedUserId ;
+  }
+  else if(isBusiness){
+    URL = ROUTE_INFLU + id + BUSINESS_PROFILE + "?visited_business_id=" + clickedUserId ;
   }
 
   return (dispatch,getState)=>{

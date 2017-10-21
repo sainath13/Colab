@@ -69,8 +69,14 @@ return(
                { this.props.visitProfileData.first_name ? this.props.visitProfileData.first_name  + " " + this.props.visitProfileData.last_name : this.props.visitProfileData.name
                } 
                </Text>
+               {this.props.visitProfileData.first_name ?
                <Octicons name="broadcast" size={20} color='white' >
                 </Octicons>
+             :
+               <Octicons name="briefcase" size={20} color='white' >
+                </Octicons>
+
+              }
                 {
                   //briefcase icon for brands
                 }

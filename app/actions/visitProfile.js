@@ -5,7 +5,7 @@
 
 import * as types from './types'
 let ROUTE_INFLU = "http://localhost:3000/influencers/";
-let PROFILE = "/view_visited_profile";
+let INFLUENCER_PROFILE = "/view_visited_profile";
 // import profiles from './profiles'
 /*
  * Format :
@@ -14,10 +14,10 @@ let PROFILE = "/view_visited_profile";
  *  can have multiple payloads as well
  * */
 
- export function setProfile({ profileData }){
+ export function setVisitProfile({ visitProfileData}){
   return {
-      type: types.SET_PROFILE,
-      profileData,
+      type: types.SET_VISIT_PROFILE,
+      visitProfileData,
   }
 }
 export function setLoginInfo({loginInfo}){
@@ -27,6 +27,43 @@ export function setLoginInfo({loginInfo}){
     }
   }//tried but couldn't avoid code duplication
   
+export function unsetVisitProfile(){
+  var emtpyObject =   { 
+  "id": "",
+  "first_name": "",
+  "last_name": "",
+  "city": "",
+  "gender": "",
+  "bio": "",
+  "age": null,
+  "influencer_collaborations_count": 0,
+  "business_collaborations_count": 0,
+  "niche": [
+  ],
+  "email": "",
+  "payments": [
+      {
+          "id": null,
+          "payment_type": "",
+          "payment_id": ""
+      },
+      {
+          "id": null,
+          "payment_type": "",
+          "payment_id": ""
+      }
+  ],
+  "price_per_post": null,
+  "price_per_story": null
+} 
+    return {
+      type : types.UNSET_VISIT_PROFILE,
+      emtpyObject
+      //passing undefined action rn for testin
+    }
+  }//tried but couldn't avoid code duplication
+  
+
 
 
 /*
@@ -37,13 +74,15 @@ export function setLoginInfo({loginInfo}){
  *  DISPATCHing a actions results in telling the reducer that its happened.
  *  so reducers of the same "type" get triggered resulting updating the store
  * */
-export function fetchVisitProfile(clickedUserId, isBusiness){
-  let PROFILE_INFLU = ROUTE_INFLU + id + PROFILE;
+export function fetchVisitProfile(id,clickedUserId, isBusiness){
+  var URL = "";
+  if(!isBusiness){
+    URL = ROUTE_INFLU + id + INFLUENCER_PROFILE + "?influencer_id=" +clickedUserId ;
+  }
 
   return (dispatch,getState)=>{
     const state = getState();
-
-    return fetch( PROFILE_INFLU, {
+    return fetch( URL , {
       method: 'GET',
       headers: {
         'access-token':  state.loginInfo.accessToken,
@@ -68,7 +107,7 @@ export function fetchVisitProfile(clickedUserId, isBusiness){
     })//response
     .then((responseJson) => {
       // userObj.data = responseJson.data;
-      return dispatch(setProfile({profileData : responseJson}));
+      return dispatch(setVisitProfile({visitProfileData : responseJson}));
     })//responseJson
     .catch((error) => {
       console.error(error);

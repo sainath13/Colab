@@ -51,7 +51,7 @@ fetchFeedItems(accountType){
  }
 }
 onPressChat(){
-Actions.VisitProfilePage({clickedUserId : 7, isBusiness : true})
+Actions.VisitProfilePage({clickedUserId : 7, isBusiness : false})
   //Actions.chatListPage();
 }
   render() {
@@ -122,7 +122,8 @@ Influx
            {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id);} }>
+                             onPress={ ()=>{   console.log(feedItem.id);
+Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image

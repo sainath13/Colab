@@ -32,7 +32,7 @@ componentDidMount(){
     console.log(this)
     this.setState({ fetching: true })
     //Data fetching should happen here only.
-    this.props.fetchVisitProfile(this.props.clickedUserId,this.props.isBusiness).then( (res) => {
+    this.props.fetchVisitProfile(this.props.signedInUser.basic_data.id,this.props.clickedUserId,this.props.isBusiness).then( (res) => {
       this.setState({fetching: false })
     })
 }
@@ -54,7 +54,10 @@ return(
     //borderBottomWidth : 0.5
 }}>
        <TouchableHighlight
-                        onPress={()=> {(Actions.pop()); console.log("along with pop, write a destroy reducer action here")}}
+                        onPress={()=> {
+                          (Actions.pop()); 
+                          this.props.unsetVisitProfile();
+                          console.log("along with pop, write a destroy reducer action here")}}
         style={{flex : 1,alignItems : 'center',justifyContent: 'center',
         backgroundColor: '#6364A4'}}>
                 <Icon name="chevron-left" size={20} color='white' >
@@ -62,7 +65,10 @@ return(
       </TouchableHighlight>
       <View style={{flex : 8, flexDirection : 'row', alignItems : 'center',justifyContent: 'center'}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
-               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>Chane this name</Text>
+               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
+               { this.props.visitProfileData.first_name + " " + this.props.visitProfileData.last_name
+               } 
+               </Text>
                <Octicons name="broadcast" size={20} color='white' >
                 </Octicons>
                 {
@@ -139,7 +145,7 @@ return(
                           // padding:5,
                          fontFamily :'GothamRounded-Book'
                         }}>
-                          {this.props.profileData.basic_data.bio}
+                          {this.props.visitProfileData.bio}
             </Text>
             </View>
           </View>
@@ -155,7 +161,7 @@ return(
             </Text>
             </View>
           <View style={styles.informationCategoriesSlot}>
-            {! this.state.fetching && this.props.profileData.advanced_data.niche.map((nicheItem,i)=>{
+            {! this.state.fetching && this.props.visitProfileData.niche.map((nicheItem,i)=>{
               return (
               
                     <View key={i} style={{
@@ -204,8 +210,8 @@ return(
               <View style={{alignItems: "flex-end",
                     justifyContent : 'flex-end',
                 }}>
-                <Text style={styles.informationSlotCardPricingText}>
-                    20$
+                <Text style={styles.informationSlotCardPricingText}> 
+                {!this.state.fetching ? this.props.visitProfileData.price_per_story: null }
                 </Text>
               </View>
             </View>
@@ -217,7 +223,7 @@ return(
                     justifyContent : 'flex-end',
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                    25$
+                {!this.state.fetching ? this.props.visitProfileData.price_per_post: null }
                 </Text>
               </View>
              </View>
@@ -348,7 +354,7 @@ return(
             <Text style={{padding : 5 , fontSize: 15, fontFamily :'GothamRounded-Book', flex : 5}}>
                 { //  Contact : {!this.state.fetching ? this.props.profileData.contact.phone : null }
                 }
-                {!this.state.fetching ? this.props.profileData.basic_data.phone : null }
+                {!this.state.fetching ? this.props.visitProfileData.phone : null }
             </Text>
             </View>
           </View>
@@ -372,9 +378,7 @@ return(
             <Text style={{padding : 5 , fontSize: 15, fontFamily :'GothamRounded-Book', flex : 5}}>
                 { //  Contact : {!this.state.fetching ? this.props.profileData.contact.phone : null }
                 }
-                {//: {!this.state.fetching ? this.props.profileData.contact.email : null }
-                }
-                latkarsainath@gmail.com
+                 {!this.state.fetching ? this.props.visitProfileData.email : null }
             </Text>
           </View>
           </View>
@@ -392,7 +396,7 @@ return(
                   marginRight : 20 
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                    1225
+                {!this.state.fetching ? this.props.visitProfileData.price_per_story: null }
                 </Text>
             </View>
           </View>
@@ -409,7 +413,7 @@ return(
                 marginRight : 20 
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                   134 
+                {!this.state.fetching ? this.props.visitProfileData.price_per_post : null }
                 </Text>
             </View>
         </View>
@@ -822,7 +826,7 @@ function mapStateToProps(state){
     return {
       //not calling any api actions here yet, but will be required later
       signedInUser : state.signedInUser,
-      profileData : state.profileData,
+      visitProfileData : state.visitProfileData,
     };
 }
 

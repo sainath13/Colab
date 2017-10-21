@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  KeyboardAvoidingView,
   View,
   TextInput,
   StatusBar,
@@ -12,6 +13,7 @@ import {
 } from 'react-native';
 const Dimensions = require('Dimensions');
 import Spinner from 'react-native-loading-spinner-overlay';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 //also need to provide information here
 //but profile route gives us this information anyway right?
 //so it can be done this way
@@ -79,7 +81,7 @@ class  UpdateInfoPage extends Component {
   }
   onChangedPost(text){
     let newText = '';
-    let numbers = '0123456789';
+    let numbers = '.0123456789';
   
     for (var i=0; i < text.length; i++) {
          if(numbers.indexOf(text[i]) > -1 ) {
@@ -99,7 +101,7 @@ class  UpdateInfoPage extends Component {
   }
   onChangedStory(text){
     let newText = '';
-    let numbers = '0123456789';
+    let numbers = '.0123456789';
   
     for (var i=0; i < text.length; i++) {
          if(numbers.indexOf(text[i]) > -1 ) {
@@ -120,7 +122,11 @@ class  UpdateInfoPage extends Component {
   render() {
 
     return (
-<View style={{flex : 1}}>
+<KeyboardAwareScrollView
+resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={false}
+ style={{flex : 1}}>
   <StatusBar
     backgroundColor="#6563A4"
     barStyle="dark-content"
@@ -134,16 +140,6 @@ class  UpdateInfoPage extends Component {
     <PopupDialog
     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
     dialogTitle={<DialogTitle title="Select Pricing structure" />}
-    actions={[
-            <DialogButton
-              text="Dismiss"
-              onPress={() => {
-                Keyboard.dismiss();
-                this.popupDialog.dismiss();
-              }}
-               key="button-1"
-            />,
-          ]}
   >
     <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
       <View style={{flex : 1}}>
@@ -434,7 +430,7 @@ class  UpdateInfoPage extends Component {
     </View>
 
 	</View>
-</View>
+</KeyboardAwareScrollView>
     );
   }
 }

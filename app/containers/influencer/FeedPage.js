@@ -168,7 +168,9 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
             }//if
              if(feedItem.status == "accepted"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id) } }>
+                             onPress={ ()=>{  console.log(feedItem.id) 
+                            Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false})
+                            } }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image

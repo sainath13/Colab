@@ -11,6 +11,10 @@ import {
 } from 'react-native';
 const Dimensions = require('Dimensions');
 import Checkbox from 'react-native-custom-checkbox';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ActionCreators } from '../../actions'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { Actions } from 'react-native-router-flux';
 console.ignoredYellowBox = [
@@ -19,8 +23,34 @@ console.ignoredYellowBox = [
 ];
 // influencerViewPage
 class  NicheSelectPage extends Component {
+constructor(props) {
+  super(props)
+  this.state = { fetching: true ,
+  }
+  this._onPressInfluencerUpdateInfoSave = this._onPressInfluencerUpdateInfoSave.bind(this);
+}
+componentDidMount(){
+    this.setState({ fetching: true })
+    //Data fetching should happen here only.
+    this.props.fetchNiche(this.props.signedInUser.basic_data.id).then( (res) => {
+      console.log("response is *****",res)
+      this.setState({fetching: false })
+    })
+}
  _onPressInfluencerUpdateInfoSave(){
+   var nicheString = "";
+   for (var k in this.props.nicheData){
+    if(this.props.nicheData[k].value)
+    {
+      nicheString = nicheString + this.props.nicheData[k].name+ ","
+    }
+   }
+   this.props.updateNiche(this.props.signedInUser.basic_data.id,nicheString);
+   //after the response only go back
     Actions.pop();
+}
+fetchNicheItems(){
+ return Object.keys(this.props.nicheData).map(key =>this.props.nicheData[key])
 }
 render() {
 return(
@@ -36,222 +66,25 @@ return(
   </View>
   <View style={styles.content}>
   <ScrollView style={{flex : 9}}>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
+  {! this.state.fetching && this.fetchNicheItems().map((nicheItem) => {
+    return ( <TouchableHighlight key={nicheItem.name}
+                             onPress={ ()=>{   console.log(nicheItem.name); this.props.toggleNiche(nicheItem.name);}}
+    >
+      <View style={styles.slot_element}>{
+        nicheItem.value ?
+        <Icon name="check-square-o" size={20} color='#58568f' >
+        </Icon> : 
+        <Icon name="square-o" size={20} color='#58568f' >
+        </Icon>
+      }
           <View style={styles.slot_text}>
             <Text style={styles.slot_text1}>
-              Music
+             {nicheItem.name}
             </Text>
           </View>
       </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Humor
-            </Text>
-          </View>
-      </View>
-    </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Fasion
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Motivation
-            </Text>
-          </View>
-      </View>
-    </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Footware
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Clothing
-            </Text>
-          </View>
-      </View>
-      </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Beauty
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Cosmetics
-            </Text>
-          </View>
-      </View>
-    </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Photoggraphy
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Stud
-            </Text>
-          </View>
-      </View>
-    </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Glamor
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Quotes
-            </Text>
-          </View>
-      </View>
-    </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              ShoutOut
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Adventure
-            </Text>
-          </View>
-      </View>
-    </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Luxery
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Rich
-            </Text>
-          </View>
-      </View>
-    </View>
-    <View style={styles.slot}>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Startups
-            </Text>
-          </View>
-      </View>
-      <View style={styles.slot_element}>
-        <Checkbox
-          checked={false}
-          style={{backgroundColor: '#f2f2f2', color:'#6563A4', borderRadius: 5}}
-          />
-          <View style={styles.slot_text}>
-            <Text style={styles.slot_text1}>
-              Business
-            </Text>
-          </View>
-      </View>
-    </View>
+    </TouchableHighlight>
+    )})}
     </ScrollView>
 
     </View>
@@ -324,4 +157,14 @@ var styles = StyleSheet.create({
     fontFamily : 'GothamRounded-Book'
   },
 });
-export default (NicheSelectPage);
+function mapDispatchToProps(dispatch){
+    return bindActionCreators( ActionCreators, dispatch);
+}
+function mapStateToProps(state){
+    return {
+      signedInUser : state.signedInUser,
+      nicheData : state.nicheData,
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NicheSelectPage);

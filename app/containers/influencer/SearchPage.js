@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions'
+import { Actions } from 'react-native-router-flux';
 
 
 class SearchPage extends Component{
@@ -113,7 +114,7 @@ return(
       <ScrollView>
         {! this.state.fetching && this.fetchSearch().map((searchItem) => { 
                  return ( <TouchableHighlight key={searchItem.id}
-                       onPress={ ()=>{console.log(searchItem.id) } }>
+                       onPress={ ()=>{console.log(searchItem.id);Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                     <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
                           <Image

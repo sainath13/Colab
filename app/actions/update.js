@@ -2,6 +2,20 @@ import * as types from './types'
 
 const AUTH_INFLU = 'http://localhost:3000/influencers/';
 
+export function setNiche({nicheData}){
+  return {
+    type : types.SET_NICHE_DATA,
+    nicheData,
+  }
+}
+
+export function toggleNiche(nicheName){
+  return {
+    type : types.TOGGLE_NICHE,
+    nicheName,
+  }
+}
+
 export function setSignedInUser({userData}){
   return {
     type : types.SET_SIGNED_IN_USER,
@@ -52,6 +66,87 @@ export function updateInfo(id,instagram_name,bio,phone,price_per_post,price_per_
         var userObj = {}
         userObj = responseJson;
         return dispatch(setSignedInUser({userData : userObj}));
+      })//responseJsons
+      .catch((error)=>{
+        console.error(error);
+      })
+    }//return (dispatch,getState)
+}//signIn
+
+export function fetchNiche(id){
+  //if we have 2 sign in flows we need two cases to handle TODO
+    // if Username password checking => valied email TODO: those actions or those in the view itself
+    var url = AUTH_INFLU + id + "/get_niches" ;
+    return (dispatch,getState)=>{
+    const state = getState();
+      return fetch( url, {
+        method: 'GET',
+      headers: {
+        'access-token':  state.loginInfo.accessToken,
+        'token-type': state.loginInfo.tokenType,
+        'expiry': state.loginInfo.expiry,
+        'client': state.loginInfo.client,
+        'uid': state.loginInfo.uid,
+      }
+      })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
+      //add .then(error) here only
+      .then((response) => {
+        var loginObj = {};
+      if(response.headers.get("access-token") != state.loginInfo.accessToken){
+        loginObj.accessToken = response.headers.get("access-token");
+        loginObj.tokenType = response.headers.get("token-type");
+        loginObj.client = response.headers.get("client");
+        loginObj.expiry = response.headers.get("expiry");
+        loginObj.uid    = response.headers.get("uid");
+        dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
+      }
+        return response.json();
+      })//response
+      .then((responseJson) => {
+        var userObj = {}
+        userObj = responseJson;
+        return dispatch(setNiche({nicheData : userObj}));
+      })//responseJsons
+      .catch((error)=>{
+        console.error(error);
+      })
+    }//return (dispatch,getState)
+}//signIn
+
+export function updateNiche(id,nicheString){
+  //if we have 2 sign in flows we need two cases to handle TODO
+    // if Username password checking => valied email TODO: those actions or those in the view itself
+    console.log(nicheString)
+    var url = AUTH_INFLU + id + "/update_niche?niche_titles="+nicheString ;
+    return (dispatch,getState)=>{
+    const state = getState();
+      return fetch( url, {
+        method: 'POST',
+      headers: {
+        'access-token':  state.loginInfo.accessToken,
+        'token-type': state.loginInfo.tokenType,
+        'expiry': state.loginInfo.expiry,
+        'client': state.loginInfo.client,
+        'uid': state.loginInfo.uid,
+      },
+      })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
+      //add .then(error) here only
+      .then((response) => {
+        var loginObj = {};
+      if(response.headers.get("access-token") != state.loginInfo.accessToken){
+        loginObj.accessToken = response.headers.get("access-token");
+        loginObj.tokenType = response.headers.get("token-type");
+        loginObj.client = response.headers.get("client");
+        loginObj.expiry = response.headers.get("expiry");
+        loginObj.uid    = response.headers.get("uid");
+        dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
+      }
+        return response.json();
+      })//response
+      .then((responseJson) => {
+        var userObj = {}
+        userObj = responseJson;
+        return dispatch(setNiche({nicheData : userObj}));
       })//responseJsons
       .catch((error)=>{
         console.error(error);

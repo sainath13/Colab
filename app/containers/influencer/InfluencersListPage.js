@@ -46,10 +46,8 @@ toggleisAcceptedShowing(){
   this.setState({ isAcceptedShowing : !this.state.isAcceptedShowing})
 
 }
-onPressChat(){
-  Actions.chatListPage();
-}
-  render() {
+
+render() {
 return(
   <View style={{flex : 1}}>
   <StatusBar
@@ -132,7 +130,7 @@ Influencers
            {! this.state.fetching && this.fetchInfluencerItems().map((feedItem) => {
             if(feedItem.status =="accepted" && this.state.isAcceptedShowing){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ console.log(feedItem.id) } }>
+                             onPress={ ()=>{ console.log(feedItem.id); Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                     <View style={{flex : 1, alignItems : 'center',justifyContent:'center' }}>
                           <Image
@@ -185,7 +183,7 @@ Influencers
             }//else
             if(feedItem.status =="requested" && !this.state.isAcceptedShowing){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ console.log(feedItem) } }>
+                             onPress={ ()=>{ console.log(feedItem); Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                     <View style={{flex : 1, alignItems : 'center',justifyContent:'center' }}>
                           <Image

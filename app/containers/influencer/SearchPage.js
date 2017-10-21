@@ -114,19 +114,30 @@ return(
         {! this.state.fetching && this.fetchSearch().map((searchItem) => { 
                  return ( <TouchableHighlight key={searchItem.id}
                        onPress={ ()=>{console.log(searchItem.id) } }>
-                       <View style={styles.listElement}>
-                         <View style={styles.notificationIcon}>
-                         <Image
-                           style = {{width: 50, height: 50, borderRadius: 40}}
-                           source = {require('../images/new.jpg')}
-                         />
-                         </View>
-                         <View style={styles.notificationItem}>
-                           <Text style={styles.notificationItemText}>
-                             <Text style={styles.notificationItemTextBold}>{searchItem.name}</Text> has shown interest in you.
-                           </Text>
-                         </View>
-                       </View>
+                <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
+                    <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
+                          <Image
+                            style = {{width: 40, height: 40, borderRadius: 20}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                    </View>
+                    <View style={{flex : 4, justifyContent : 'center', }}>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Medium',
+                            marginLeft : 10
+                        }}>
+                         {searchItem.instagram_name} 
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Book',
+                            marginLeft : 10,
+                        }}>
+                      {searchItem.first_name + " " + searchItem.last_name } 
+                        </Text>
+                    </View>
+                </View>
                 </TouchableHighlight>
               )//return
             })//Map

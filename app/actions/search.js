@@ -1,7 +1,7 @@
 import * as types from './types'
 
 let ROUTE_INFLU = "http://localhost:3000/influencers/";
-let SEARCH_NAME = "search_by_instagram_handle";
+let SEARCH_NAME = "search";
 let SEARCH_NICHE = "search_by_niche"
 
 export function setSearch({ searchData }){
@@ -21,7 +21,7 @@ export function setLoginInfo({loginInfo}){
 export function fetchSearch(id, searchInput,isNameSelected){
   var SEARCH_INFLU;
   if(isNameSelected){
-    SEARCH_INFLU = ROUTE_INFLU + SEARCH_NAME + "?instagram_name=" + searchInput ;
+    SEARCH_INFLU = ROUTE_INFLU + SEARCH_NAME + "?name=" + searchInput ;
   }else{
     SEARCH_INFLU = ROUTE_INFLU + SEARCH_NICHE + "?niche=" + searchInput ;
   }

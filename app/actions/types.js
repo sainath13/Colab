@@ -43,5 +43,3 @@ export const SET_LAST_FIVE_MESSAGES = 'SET_LAST_FIVE_MESSAGES'
 export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE'
 
 export const SET_LOGIN_INFO = 'SET_LOGIN_INFO'
-
-export const DEFAULT_URL = 'localhost:3000'

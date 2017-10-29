@@ -1,6 +1,6 @@
 import * as types from './types'
-
-const AUTH_INFLU = 'http://localhost:3000/facebook_login/omniauth_success?';
+const GLOBAL = require('./Globals');
+const AUTH_INFLU = 'http://'+GLOBAL.BASE_URL+'/facebook_login/omniauth_success?';
 
 export function setSignedInUser({userData}){
   return {

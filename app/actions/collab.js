@@ -1,6 +1,7 @@
 import * as types from './types'
 
-let URL_START = "http://localhost:3000/influencers/";
+const GLOBAL = require('./Globals');
+let URL_START = "http://"+GLOBAL.BASE_URL+"/influencers/";
 let ACCEPT_COLLAB = "/accept_collaboration_with_business";
 let ACCEPT_COLLAB_INFLUENCER = "/accept_collaboration_with_influencer";
 

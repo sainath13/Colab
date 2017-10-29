@@ -4,7 +4,8 @@
 */
 
 import * as types from './types'
-let ROUTE_INFLU = "http://localhost:3000/influencers/";
+const GLOBAL = require('./Globals');
+let ROUTE_INFLU = "http://"+GLOBAL.BASE_URL+"/influencers/";
 let PROFILE = "/profile";
 // import profiles from './profiles'
 /*

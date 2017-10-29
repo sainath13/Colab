@@ -51,7 +51,7 @@ fetchFeedItems(accountType){
  }
 }
 onPressChat(){
-  Actions.chatListPage();
+  Actions.ActionCableChatPage();
 }
   render() {
 return(

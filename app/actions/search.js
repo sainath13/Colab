@@ -1,7 +1,7 @@
 import * as types from './types'
 
 const GLOBAL = require('./Globals');
-let ROUTE_INFLU = "http://"+GLOBAL.BASE_URL+"/influencers/";
+let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let SEARCH_NAME = "search";
 let SEARCH_NICHE = "search_by_niche"
 

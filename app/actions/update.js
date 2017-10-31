@@ -1,7 +1,7 @@
 import * as types from './types'
 
 const GLOBAL = require('./Globals');
-const AUTH_INFLU = 'http://'+GLOBAL.BASE_URL+'/influencers/';
+const AUTH_INFLU = 'https://'+GLOBAL.BASE_URL+'/influencers/';
 
 export function setNiche({nicheData}){
   return {

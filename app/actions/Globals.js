@@ -1,3 +1,3 @@
 module.exports = {
-    BASE_URL: 'localhost:3000',
+    BASE_URL: 'influencer-market.herokuapp.com',
 };

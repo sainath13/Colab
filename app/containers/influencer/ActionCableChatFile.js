@@ -9,7 +9,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native';
 import RNActionCable from 'react-native-actioncable';
 import ActionCableProvider, { ActionCable } from 'react-actioncable-provider';
@@ -37,10 +38,10 @@ class ChatClassActionCable extends Component {
 		})
 	}
   sendMessage = () => {
-    console.log(this);
+    console.log("test");
     var message = {}
-    message.message_to = "x"
-    message.message_from = "5"
+    message.message_to = "1"//siddhesh
+    message.message_from = "2"//sainath
     message.message = "IM message from sainath"
   // Call perform or send
     this.refs.roomChannel.perform('send_message', {message})
@@ -49,9 +50,11 @@ class ChatClassActionCable extends Component {
 		return (
 			<View style={styles.container}>
 				<ActionCable ref='roomChannel' channel={{channel: 'MessageChannel'}} onReceived={this.onReceived} />
+        <TouchableHighlight onPress={this.sendMessage}>
         <Text style={styles.welcome}>
           Welcome to React Native!
-        </Text>
+          </Text>
+        </TouchableHighlight>
         <View>
         	<Text>There are {this.state.messages.length} messages.</Text>
         </View>

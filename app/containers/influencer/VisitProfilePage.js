@@ -26,6 +26,7 @@ constructor(props) {
   super(props)
   this.state = { fetching: true ,
   }
+  this.onclickButton = this.onclickButton.bind(this);
 }
 
 componentDidMount(){
@@ -36,7 +37,21 @@ componentDidMount(){
       this.setState({fetching: false })
     })
 }
+onclickButton(statusString){
+  if(statusString == "no connection"){
+    var isInfluencer =  this.props.visitProfileData.first_name ? "Influencer": "Brand";
+    console.log(this)
+    this.props.requestCollaboration(this.props.signedInUser.basic_data.id,this.props.visitProfileData.id,isInfluencer);
+    //call collaborate
+  }
+  else if (statusString == "requested"){
+    //do nothing
+  }
+  else if (statusString == "accepted"){
+    //show message button
+  }
 
+}
   //put some loading screen animation in if clause
   render() {
 return(
@@ -92,7 +107,7 @@ return(
       <View style={styles.profileInfoHolder}>
         <View style={{flex: 1 ,alignItems : 'center',justifyContent: 'center'}}>
                         <TouchableHighlight
-                        onPress={()=> {(console.log("clicked on edit profile"))}}
+                        onPress={()=> {(console.log("clicked on edit profile")); this.onclickButton(this.props.visitProfileData.status)}}
                          style={{
                         width : 150,
                         height : 35,
@@ -115,7 +130,14 @@ return(
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                    {this.props.visitProfileData.status}
+      {(() => {
+        switch (this.props.visitProfileData.status) {
+          case "no connection":   return "Collaborate";
+          case "requested": return "Requested";
+          case "accepted":  return "Message";
+          default:      return "not available";
+        }
+      })()}
                         </Text>
                     </View>
                     </TouchableHighlight>

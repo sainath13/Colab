@@ -7,6 +7,12 @@ import * as types from './types'
   }
 }
 
+ export function setChat({ chatObj }){
+  return {
+      type: types.SET_CHAT_OBJECT,
+      chatObj,
+  }
+}
 export function createChatObj(chat){
   return (dispatch,getState) => {
     // thisdata = lobbyId;
@@ -15,6 +21,13 @@ export function createChatObj(chat){
   }
 }
 
+export function setChatObject(chat){
+  return (dispatch,getState) => {
+    // thisdata = lobbyId;
+    // console.log("----------",thisdata)
+    return dispatch(setChat({chatObj: chat}));
+  }
+}
 
 
 let ROUTE_CHAT = "http://localhost:4000/chats?user1=";
@@ -26,6 +39,38 @@ export function setChatList({ chatListData }){
   }
 }
 
+export function setChatList2(chatListData){
+  console.log("im here with chatListData",chatListData);
+  return {
+      type: types.SET_CHAT_LIST_1,
+      chatListData,
+  }
+}
+
+export function receiveMessage(message){
+  console.log("message from action",message);
+  return {
+    type : types.RECEIVE_MESSAGE,
+    message,
+  }
+}
+
+export function setLast5Messages(last5Messages,chat_pair_id){
+  console.log("Im here with last 5 messages",last5Messages);
+    last5MessagesData = {}
+  if(last5Messages[0]){
+    last5MessagesData.chat_pair_id = chat_pair_id;
+    last5MessagesData.messages = last5Messages;
+    return {
+      type: types.SET_LAST_5_MESSAGES,
+      last5MessagesData,
+    }
+  }
+  return {
+      type: types.SET_LAST_5_MESSAGES,
+      last5MessagesData,
+  }
+}
 export function fetchChatList(userId){
   let GET_CHAT_LIST = 'http://localhost:4000/api/chats?user1=1';
   // console.log(FEED_INFLU);

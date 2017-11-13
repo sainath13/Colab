@@ -74,7 +74,7 @@ Influencers
   <View style = {styles.content}>
   {this.state.isAcceptedShowing ?
               <TouchableHighlight 
-                             onPress={ ()=>{ console.log('test'); this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
+                onPress={ ()=>{ console.log('test'); this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
                     <View style={{flex : 4, justifyContent : 'center', }}>
                         <Text style={{

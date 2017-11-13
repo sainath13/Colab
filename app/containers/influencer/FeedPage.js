@@ -19,6 +19,9 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Entypo';
 
+const GLOBAL = require('../../actions/Globals');
+import RNActionCable from 'react-native-actioncable';
+import ActionCableProvider, { ActionCable } from 'react-actioncable-provider';
 class FeedPage extends Component{
 //this is a local state.
 //redux has nothing to do with this
@@ -36,7 +39,32 @@ componentDidMount(){
   this.props.fetchFeed(this.props.signedInUser.basic_data.id).then( (res) => {
     this.setState({fetching: false })
   })
+  console.log("This is this from feed",this);
 }
+onReceived = (data) => {
+    console.log("received a message");
+    console.log(data);
+    if(data.method == "get_chat_pairs"){
+      this.props.setChatList2(data.data);
+      console.log(this);
+    }
+    if(data.method == "get_chat_pair_messages"){
+      reversedMessages = data.messages.reverse();
+      this.props.setLast5Messages(reversedMessages,data.chat_pair_id);
+      console.log(this);
+    }
+    if(data.method == "send_message"){
+      this.props.receiveMessage(data.message);
+      //create a nice message here from whatever you got 
+    }
+
+	//	this.setState({
+	//		messages: [
+	//			data.message,
+	//			...this.state.messages
+	//		]
+	//	})
+	}
 
 fetchFeedItems(accountType){
  console.log("test")
@@ -50,8 +78,13 @@ fetchFeedItems(accountType){
     return Object.keys(this.props.feedData.requested_influencers).map(key =>this.props.feedData.requested_influencers[key])
  }
 }
-onPressChat(){
-  Actions.ActionCableChatPage();
+onPressChat = () => {
+  //call the get chat list route of server here 
+  this.props.setChatObject(this.refs.roomChannel);
+ console.log("this is this ", this);
+this.refs.roomChannel.perform('get_chat_pairs');
+ Actions.ActionCableChatPage();
+  //Actions.chatListPage();
 }
   render() {
 return(
@@ -60,7 +93,10 @@ return(
     backgroundColor="red"
     barStyle="dark-content"
   />
-
+   	<ActionCableProvider cable={RNActionCable.createConsumer('ws://'+GLOBAL.BASE_URL+'/cable?id='+this.props.signedInUser.basic_data.id+"&token="+this.props.loginInfo.accessToken+"&client="+this.props.loginInfo.client+"&user_type=I")}>
+			<ActionCable ref='roomChannel' channel={{channel: 'MessageChannel'}} onReceived={this.onReceived} />
+	   </ActionCableProvider>
+ 
   <View style={styles.header}>
   <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); } } >
   <View style={{}}>
@@ -461,6 +497,7 @@ function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
       feedData : state.feedData,
+      loginInfo : state.loginInfo,
       signedInUser : state.signedInUser,
     };
 }

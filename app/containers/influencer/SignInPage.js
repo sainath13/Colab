@@ -39,13 +39,21 @@ class SignInPage extends Component{
         spinnerVisible : false,
     };
   }
-  callLoginRoute(accessToken){
-   this.props.signIn(accessToken).then( (res) => {
+  callLoginRoute(accessToken,accountType){
+   this.props.signIn(accessToken,accountType).then( (res) => {
     this.setState({spinnerVisible: false });
     Actions.UpdateInfoPage();
   })
   }
+
+  onPressiBusinessSignIn(){
+    this.onPressSignIn("Business");
+  }
+  
   onPressInfluencerSignIn(){
+    this.onPressSignIn("Influencer");
+  }
+  onPressSignIn(accountType){
     var myprops = this;
     LoginManager.logInWithReadPermissions(['public_profile','email','user_birthday','user_location']).then(
       function(result) {
@@ -61,7 +69,7 @@ class SignInPage extends Component{
                       spinnerVisible: true
                     }, function () {
                   });
-                  myprops.callLoginRoute(data.accessToken.toString());            
+                  myprops.callLoginRoute(data.accessToken.toString(),accountType); 
                 }
                  }
                )//TODO : do the log-out thing from fbsdk github page
@@ -136,14 +144,14 @@ class SignInPage extends Component{
     <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressInfluencerSignIn()}}>
       <View style={styles.submitButton}>
         <Text style={styles.submitButtonText}>
-          Login with facebook
+          Login as Influencer 
         </Text>
       </View>
     </TouchableHighlight>
-    <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressInfluencerGoToSignUp() }}>
+    <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressiBusinessSignIn() }}>
       <View style={styles.createAccountButton}>
         <Text style={styles.createAccountButtonText}>
-          Create an account
+         Login as Business 
         </Text>
       </View>
     </TouchableHighlight>

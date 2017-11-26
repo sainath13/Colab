@@ -19,10 +19,11 @@ export function setLoginInfo({loginInfo}){
 /* The following function does api call and sign in part.
    TODO: handle errors and exceptions. Report to UI user.
 */
-export function signIn(accessToken){
+export function signIn(accessToken,accountType){
   //if we have 2 sign in flows we need two cases to handle TODO
     // if Username password checking => valied email TODO: those actions or those in the view itself
-    var url = AUTH_INFLU + "access_token_fb=" + accessToken 
+    console.log(accountType);
+    var url = AUTH_INFLU + "access_token_fb=" + accessToken + "&type=" + accountType;
     return (dispatch,getState)=>{
       return fetch( url, {
         method: 'GET',

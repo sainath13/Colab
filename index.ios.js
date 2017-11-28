@@ -30,9 +30,7 @@ import NicheSelectPage from './app/containers/influencer/NicheSelectPage';
 import FeedPage from './app/containers/influencer/FeedPage';
 import ProfilePage from './app/containers/influencer/ProfilePage';
 import SearchPage from './app/containers/influencer/SearchPage';
-import chatPage from './app/containers/influencer/chatPage';
 import chatPage2 from './app/containers/influencer/chatPage2';
-import chatListPage from './app/containers/influencer/chatListPage';
 import InfluencersListPage from './app/containers/influencer/InfluencersListPage';
 import BrandsListPage from './app/containers/influencer/BrandsListPage';
 import PendingRequestsPage from './app/containers/influencer/PendingRequestsPage';
@@ -73,12 +71,10 @@ const scenes = Actions.create(
         <Scene key="SignInPage" component={SignInPage} hideNavBar />
         <Scene key="UpdateInfoPage" component={UpdateInfoPage} hideNavBar/>
         <Scene key="NicheSelectPage" component={NicheSelectPage} hideNavBar />
-        <Scene key="chatPage" component={chatPage} hideNavBar/>
         <Scene key="chatPage2" component={chatPage2} hideNavBar/>
         <Scene key="InfluencersListPage" component={InfluencersListPage} hideNavBar/>
         <Scene key="PendingRequestsPage" component={PendingRequestsPage} hideNavBar/>
         <Scene key="BrandsListPage" component={BrandsListPage} hideNavBar/>
-        <Scene key="chatListPage" component={chatListPage} hideNavBar/>
         <Scene key="VisitProfilePage" component={VisitProfilePage} hideNavBar/>
         <Scene key="ActionCableChatPage" component={ActionCableChatPage} hideNavBar/>
         <Scene key="tabbar" tabs={true} showLabel={false} swipeEnabled tabBarStyle={style.tabBarStyle}  >

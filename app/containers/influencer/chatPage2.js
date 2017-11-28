@@ -46,7 +46,7 @@ sendMessage(messageSend = []){
     message.message =  messageSend[0].text;
     message.chat_pair_id = ""+this.props.chat_pair.id; 
     // console.log("this is the message",message)
-    this.props.chat.perform('send_message', {message})
+    this.props.chat('send_message', {message})
     //console.log(messageSend)
 
   //this.props.sendIndividualMessage(messageProcessed);

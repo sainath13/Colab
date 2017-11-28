@@ -38,7 +38,7 @@ componentDidMount(){
   this.setState({fetching: true});
   this.props.fetchFeed(this.props.signedInUser.basic_data.id).then( (res) => {
     this.setState({fetching: false })
-  this.props.setChatObject(this.refs.roomChannel);
+  this.props.setChatObject(this.refs.roomChannel.perform);
   })
   // console.log("This is this from feed",this);
 }

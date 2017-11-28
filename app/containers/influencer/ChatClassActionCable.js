@@ -74,13 +74,13 @@ componentDidMount(){
   // Call perform or send
     //this.props.chat.perform('send_message', {message})
     //this.props.chat.perform('get_chat_pairs');
-    this.props.chat.perform('get_chat_pair_messages',{message})
+    this.props.chat('get_chat_pair_messages',{message})
 }
 
 getLast5Messages(chat_pair){
     var message = {}
     message.chat_pair_id = chat_pair.id;
-    this.props.chat.perform('get_chat_pair_messages',{message})
+    this.props.chat('get_chat_pair_messages',{message})
     Actions.chatPage2({chat_pair: chat_pair});
 }
 	render() {

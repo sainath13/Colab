@@ -22,18 +22,18 @@ export const chatObj = createReducer({
 export const chatList = createReducer({
 },{
   [types.SET_CHAT_LIST_1](state,action){
-    console.log("im in reducer",action.chatListData)
+    // console.log("im in reducer",action.chatListData)
       tempChatlistData = action.chatListData
       processedChatList = {} //processesing is changing keys to appropriate keys based on id
       Object.keys(tempChatlistData).forEach(function(key) {
-        console.log(key);
-        console.log(tempChatlistData[key].chat_pair);
+        // console.log(key);
+        // console.log(tempChatlistData[key].chat_pair);
           processedChatList[tempChatlistData[key]['chat_pair'].id] = tempChatlistData[key] //magic happening here only
       })
     return processedChatList
   },
   [types.SET_LAST_5_MESSAGES](state,action){
-    console.log("im in reducer from set_last_5_messages",action.last5MessagesData);
+    // console.log("im in reducer from set_last_5_messages",action.last5MessagesData);
     if(action.last5MessagesData.chat_pair_id){
     return {
           ...state,

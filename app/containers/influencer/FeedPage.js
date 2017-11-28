@@ -38,20 +38,21 @@ componentDidMount(){
   this.setState({fetching: true});
   this.props.fetchFeed(this.props.signedInUser.basic_data.id).then( (res) => {
     this.setState({fetching: false })
+  this.props.setChatObject(this.refs.roomChannel);
   })
-  console.log("This is this from feed",this);
+  // console.log("This is this from feed",this);
 }
 onReceived = (data) => {
-    console.log("received a message");
-    console.log(data);
+    // console.log("received a message");
+    // console.log(data);
     if(data.method == "get_chat_pairs"){
       this.props.setChatList2(data.data);
-      console.log(this);
+      // console.log(this);
     }
     if(data.method == "get_chat_pair_messages"){
       reversedMessages = data.messages.reverse();
       this.props.setLast5Messages(reversedMessages,data.chat_pair_id);
-      console.log(this);
+      // console.log(this);
     }
     if(data.method == "send_message"){
       this.props.receiveMessage(data.message);
@@ -67,7 +68,7 @@ onReceived = (data) => {
 	}
 
 fetchFeedItems(accountType){
- console.log("test")
+//  console.log("test")
  //need to create some really nice object here 
  //BADAWALA TODO
  //CREATE NOTIFICATIONS HERE 
@@ -80,10 +81,10 @@ fetchFeedItems(accountType){
 }
 onPressChat = () => {
   //call the get chat list route of server here 
-  this.props.setChatObject(this.refs.roomChannel);
- console.log("this is this ", this);
-this.refs.roomChannel.perform('get_chat_pairs');
  Actions.ActionCableChatPage();
+  //this.props.setChatObject(this.refs.roomChannel);
+//  console.log("this is this ", this);
+ this.refs.roomChannel.perform('get_chat_pairs');
   //Actions.chatListPage();
 }
   render() {
@@ -98,7 +99,7 @@ return(
 	   </ActionCableProvider>
  
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); } } >
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ } } >
   <View style={{}}>
   </View>
   </TouchableHighlight>
@@ -107,7 +108,7 @@ return(
 Influx
     </Text>
   </View>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); } } >
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  } } >
   <View style={{}}>
                 <Icon name="chat" size={25} color='white' >
                 </Icon>
@@ -116,7 +117,8 @@ Influx
 </View>
   <View style = {styles.content}>
     <View style={styles.contentPic}>
-    <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  console.log("Influencers"), Actions.InfluencersListPage(); } }>
+    <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  //console.log("Influencers"),
+     Actions.InfluencersListPage(); } }>
       <View style={styles.influencerContainer}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
@@ -130,7 +132,8 @@ Influx
       </View>
       </View>
       </TouchableHighlight>
-      <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  console.log("Brands"); Actions.BrandsListPage(); } } >
+      <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  //console.log("Brands"); 
+      Actions.BrandsListPage(); } } >
       <View style={styles.brandContainer}>
         <View style={styles.headingContainer}>
           <Text style={styles.contentHeadingText}>
@@ -157,7 +160,7 @@ Influx
            {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{   console.log(feedItem.id);
+                             onPress={ ()=>{  // console.log(feedItem.id);
 Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
@@ -203,7 +206,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
             }//if
              if(feedItem.status == "accepted"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id) 
+                             onPress={ ()=>{  //console.log(feedItem.id) 
                             Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false})
                             } }>
                         <View style={styles.listElement}>
@@ -253,7 +256,8 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
            {! this.state.fetching && this.fetchFeedItems("brand").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id); Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true}) } }>
+                             onPress={ ()=>{ // console.log(feedItem.id);
+                               Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true}) } }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image
@@ -298,7 +302,8 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
             }//if
              if(feedItem.status == "accepted"){
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{  console.log(feedItem.id);  Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true})} }>
+                             onPress={ ()=>{  //console.log(feedItem.id);  
+                              Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true})} }>
                         <View style={styles.listElement}>
                                        <View style={styles.notificationIcon}>
                           <Image

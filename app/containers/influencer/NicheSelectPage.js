@@ -33,7 +33,7 @@ componentDidMount(){
     this.setState({ fetching: true })
     //Data fetching should happen here only.
     this.props.fetchNiche(this.props.signedInUser.basic_data.id).then( (res) => {
-      console.log("response is *****",res)
+      // console.log("response is *****",res)
       this.setState({fetching: false })
     })
 }

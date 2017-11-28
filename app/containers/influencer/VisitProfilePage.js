@@ -30,7 +30,7 @@ constructor(props) {
 }
 
 componentDidMount(){
-    console.log(this)
+    // console.log(this)
     this.setState({ fetching: true })
     //Data fetching should happen here only.
     this.props.fetchVisitProfile(this.props.signedInUser.basic_data.id,this.props.clickedUserId,this.props.isBusiness).then( (res) => {
@@ -40,7 +40,7 @@ componentDidMount(){
 onclickButton(statusString){
   if(statusString == "no connection"){
     var isInfluencer =  this.props.visitProfileData.first_name ? "Influencer": "Brand";
-    console.log(this)
+    // console.log(this)
     this.props.requestCollaboration(this.props.signedInUser.basic_data.id,this.props.visitProfileData.id,isInfluencer);
     //call collaborate
   }
@@ -72,7 +72,8 @@ return(
                         onPress={()=> {
                           (Actions.pop()); 
                           this.props.unsetVisitProfile();
-                          console.log("along with pop, write a destroy reducer action here")}}
+                          // console.log("along with pop, write a destroy reducer action here")
+                        }}
         style={{flex : 1,alignItems : 'center',justifyContent: 'center',
         backgroundColor: '#6364A4'}}>
                 <Icon name="chevron-left" size={20} color='white' >

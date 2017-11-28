@@ -48,7 +48,7 @@ export function fetchBusiness(id){
       return response.json();
     })//response
     .then((responseJson) => {
-      console.log("**************see this response",responseJson);
+      //console.log("**************see this response",responseJson);
       return dispatch(setBusiness({businessData: responseJson}));
     })//responseJson
     .catch((error) => {

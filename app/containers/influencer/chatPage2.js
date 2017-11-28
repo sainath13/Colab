@@ -29,7 +29,7 @@ class chatPage extends Component{
 //redux has nothing to do with this
 constructor(props) {
   super(props)
-  console.log("Props are" , this.props);
+  // console.log("Props are" , this.props);
     this.state = { messages: [] ,fetching : true };
 }
 onPressBack(){
@@ -38,14 +38,14 @@ onPressBack(){
 componentDidMount(){
 }
 sendMessage(messageSend = []){
-  console.log("clicked on send message",messageSend);
+  // console.log("clicked on send message",messageSend);
   message = {};
     message.message_to = this.props.chat_pair.user2.substring(1);
     //message.message_from = "2"//sainath
     message.message_to_type = this.props.chat_pair.user2.substring(0,1) 
     message.message =  messageSend[0].text;
     message.chat_pair_id = ""+this.props.chat_pair.id; 
-    console.log("this is the message",message)
+    // console.log("this is the message",message)
     this.props.chat.perform('send_message', {message})
     //console.log(messageSend)
 

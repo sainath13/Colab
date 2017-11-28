@@ -40,7 +40,7 @@ export function setChatList({ chatListData }){
 }
 
 export function setChatList2(chatListData){
-  console.log("im here with chatListData",chatListData);
+  // console.log("im here with chatListData",chatListData);
   return {
       type: types.SET_CHAT_LIST_1,
       chatListData,
@@ -48,7 +48,7 @@ export function setChatList2(chatListData){
 }
 
 export function receiveMessage(message){
-  console.log("message from action",message);
+  // console.log("message from action",message);
   return {
     type : types.RECEIVE_MESSAGE,
     message,
@@ -56,7 +56,7 @@ export function receiveMessage(message){
 }
 
 export function setLast5Messages(last5Messages,chat_pair_id){
-  console.log("Im here with last 5 messages",last5Messages);
+  // console.log("Im here with last 5 messages",last5Messages);
     last5MessagesData = {}
   if(last5Messages[0]){
     last5MessagesData.chat_pair_id = chat_pair_id;
@@ -82,7 +82,7 @@ export function fetchChatList(userId){
       return response.json();
     })//response
     .then((responseJson) => {
-      console.log(responseJson)
+      // console.log(responseJson)
       return dispatch(setChatList({chatListData : responseJson}));
     })//responseJson
   }//return (dispatch,getState)
@@ -111,7 +111,7 @@ export function fetchLastFiveMessages(userId){
       return response.json();
     })//response
     .then((responseJson) => {
-      console.log("from lastFiveMessagesData",responseJson)
+      // console.log("from lastFiveMessagesData",responseJson)
       return dispatch(setLastFiveMessages({lastFiveMessagesData : responseJson}));
     })//responseJson
   }//return (dispatch,getState)
@@ -128,7 +128,7 @@ export function addNewMessage({ message }){
 export function recieveNewMessage(newMessage){
  return (dispatch,getState) => {
   //  thisdata = newMessage;
-   console.log("----------",newMessage)
+  //  console.log("----------",newMessage)
    newMessage.user = {}
    newMessage.user._id = newMessage.sender_id
    newMessage.user.name = newMessage.sent_by,

@@ -31,7 +31,7 @@ import profiles from './profiles'
 export function recieveMessage(recievedMessage){
   return (dispatch,getState) => {
     thisdata = recievedMessage;
-    console.log("----------",thisdata)
+    // console.log("----------",thisdata)
     thisdata._id =  Math.floor((Math.random() * 34242) + 0);
     thisdata.user = {}
     thisdata.user._id = 1;

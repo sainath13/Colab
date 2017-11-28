@@ -13,15 +13,15 @@ export function setLoginInfo({loginInfo}){
 }//tried but couldn't avoid code duplication
 
 export function setRequestedCollabRequest(influencer_friend_id,influencer_id,status){
-  console.log("here");
+  // console.log("here");
   return {
    type : types.SET_REQUESTED_COLLABORATION_ON_VISIT_PROFILE,
     status
   }
 }
 export function setAcceptedCollabRequest(acceptedUserId,status,pageName,userType){
-  console.log(pageName)
-  console.log("from set accept collab request",acceptedUserId,status);
+  // console.log(pageName)
+    // console.log("from set accept collab request",acceptedUserId,status);
   var collabAccepted = {};
    collabAccepted.id = acceptedUserId;
    collabAccepted.status = status;
@@ -58,8 +58,8 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
   //NEED TO REMOVE THIS ID FROM HERE
   //can remove the id from here. passing id is not required. 
   // it can be done inside this return . get the id from the state after getting state
-  console.log("user", currentUserId);
-  console.log("new", acceptUserId);
+  // console.log("user", currentUserId);
+  // console.log("new", acceptUserId);
   var ACCEPT_COLLAB_ROUTE = "";
   if(userType == "Brand"){
       ACCEPT_COLLAB_ROUTE = URL_START + currentUserId + ACCEPT_COLLAB + "?business_id=" +acceptUserId;
@@ -91,11 +91,11 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
         loginObj.uid    = response.headers.get("uid");
         dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
     }
-    console.log("response",response)
+    // console.log("response",response)
       return response.json();
     })//response
     .then((responseJson) => {
-      console.log(responseJson);
+      // console.log(responseJson);
       if(userType == "Influencer"){
         return dispatch(setAcceptedCollabRequest(responseJson.influencer_friend_id,responseJson.status,pageName,userType));
       }
@@ -115,8 +115,8 @@ export function requestCollaboration(currentUserId,requestUserId,userType){
   //NEED TO REMOVE THIS ID FROM HERE
   //can remove the id from here. passing id is not required. 
   // it can be done inside this return . get the id from the state after getting state
-  console.log("user", currentUserId);
-  console.log("new", requestUserId);
+  // console.log("user", currentUserId);
+  // console.log("new", requestUserId);
   var REQUEST_COLLAB_ROUTE = "";
 var REQUEST_COLLAB_INFLUENCER = "/request_influencer_for_collaboration"; 
   if(userType == "Brand"){
@@ -150,11 +150,11 @@ var REQUEST_COLLAB_INFLUENCER = "/request_influencer_for_collaboration";
         loginObj.uid    = response.headers.get("uid");
         dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
     }
-    console.log("response",response)
+    // console.log("response",response)
       return response.json();
     })//response
     .then((responseJson) => {
-      console.log(responseJson);
+      // console.log(responseJson);
       if(userType == "Influencer"){
         return dispatch(setRequestedCollabRequest(responseJson.influencer_friend_id,responseJson.influencer_id,responseJson.status));
       }

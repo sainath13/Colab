@@ -22,7 +22,7 @@ export function setLoginInfo({loginInfo}){
 export function signIn(accessToken,accountType){
   //if we have 2 sign in flows we need two cases to handle TODO
     // if Username password checking => valied email TODO: those actions or those in the view itself
-    console.log(accountType);
+    //console.log(accountType);
     var url = AUTH_INFLU + "access_token_fb=" + accessToken + "&type=" + accountType;
     return (dispatch,getState)=>{
       return fetch( url, {

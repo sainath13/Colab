@@ -117,7 +117,7 @@ export function fetchNiche(id){
 export function updateNiche(id,nicheString){
   //if we have 2 sign in flows we need two cases to handle TODO
     // if Username password checking => valied email TODO: those actions or those in the view itself
-    console.log(nicheString)
+    // console.log(nicheString)
     var url = AUTH_INFLU + id + "/update_niche?niche_titles="+nicheString ;
     return (dispatch,getState)=>{
     const state = getState();

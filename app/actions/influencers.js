@@ -48,7 +48,7 @@ export function fetchInfluencer(id){
       return response.json();
     })//response
     .then((responseJson) => {
-      console.log("**************see this response",responseJson);
+      // console.log("**************see this response",responseJson);
       return dispatch(setInfluencer({influencerData: responseJson}));
     })//responseJson
     .catch((error) => {

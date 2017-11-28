@@ -55,7 +55,7 @@ return(
     barStyle="dark-content"
   />
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); Actions.pop(); } } >
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
@@ -66,7 +66,7 @@ return(
 Influencers
     </Text>
   </View>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ console.log('Back'); Actions.pop(); } } >
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
   <View style={{}}>
   </View>
   </TouchableHighlight>
@@ -74,7 +74,8 @@ Influencers
   <View style = {styles.content}>
   {this.state.isAcceptedShowing ?
               <TouchableHighlight 
-                onPress={ ()=>{ console.log('test'); this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
+                onPress={ ()=>{ //console.log('test'); 
+                this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
                     <View style={{flex : 4, justifyContent : 'center', }}>
                         <Text style={{
@@ -97,7 +98,8 @@ Influencers
             </TouchableHighlight>
                       : 
               <TouchableHighlight 
-                             onPress={ ()=>{ console.log('test'); this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
+                             onPress={ ()=>{ //console.log('test'); 
+                             this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
                     <View style={{flex : 4, justifyContent : 'center', }}>
                         <Text style={{
@@ -130,7 +132,8 @@ Influencers
            {! this.state.fetching && this.fetchInfluencerItems().map((feedItem) => {
             if(feedItem.status =="accepted" && this.state.isAcceptedShowing){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ console.log(feedItem.id); Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
+                             onPress={ ()=>{ //console.log(feedItem.id); 
+                              Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                     <View style={{flex : 1, alignItems : 'center',justifyContent:'center' }}>
                           <Image
@@ -183,7 +186,8 @@ Influencers
             }//else
             if(feedItem.status =="requested" && !this.state.isAcceptedShowing){ //because no else if here
               return ( <TouchableHighlight key={feedItem.id}
-                             onPress={ ()=>{ console.log(feedItem); Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
+                             onPress={ ()=>{ //console.log(feedItem); 
+                              Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                     <View style={{flex : 1, alignItems : 'center',justifyContent:'center' }}>
                           <Image

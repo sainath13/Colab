@@ -83,7 +83,7 @@ receiveChatMessage (message) {
   message._id = Math.floor((Math.random() * 34242) + 0);
   message.chatListId = 1;
 
-  console.log("hi i recieve messages",message);
+  // console.log("hi i recieve messages",message);
   this.props.recieveNewMessage(message);
 
   //  console.log("im hhere with im recieve message");

@@ -31,13 +31,13 @@ constructor(props) {
 }
 
 fetchChatList(){
-  console.log("called fetch Chat list");
+  // console.log("called fetch Chat list");
   return Object.keys(this.props.chatList).map(key =>this.props.chatList[key]);
 }
 componentDidMount(){
-  console.log("Component mounted");
-  console.log("this is this",this);
-  console.log("performed");
+  // console.log("Component mounted");
+  // console.log("this is this",this);
+  // console.log("performed");
 }
 	state = {
 		messages: []
@@ -63,7 +63,7 @@ componentDidMount(){
   sendMessage = () => {
     console.log("test");
     var message = {}
-    console.log(this.props.chat)
+    // console.log(this.props.chat)
     //message.message_to = "1"//siddhesh
     //message.message_from = "2"//sainath
     //message.message_to_type = "I"//sainath
@@ -109,10 +109,10 @@ return(
     <View style={styles.listView}>
       <ScrollView>
         {this.fetchChatList().map((chatListItem) => {
-          console.log("logging -------------",chatListItem);
+          // console.log("logging -------------",chatListItem);
              return ( <TouchableHighlight key={chatListItem.chat_pair.id}
                             onPress={ ()=>{
-                              console.log(chatListItem.chat_pair.id);
+                              // console.log(chatListItem.chat_pair.id);
                               this.getLast5Messages(chatListItem.chat_pair);
                             } }>
 

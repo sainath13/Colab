@@ -31,7 +31,7 @@ import * as types from './types'
 export function openChat(lobbyId){
   return (dispatch,getState) => {
     thisdata = lobbyId;
-    console.log("----------",thisdata)
+    // console.log("----------",thisdata)
     return dispatch(openedChat({lobbyId: thisdata}));
   }
 }

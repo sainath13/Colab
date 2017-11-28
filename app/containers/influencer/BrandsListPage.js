@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 
+var Spinner = require('react-native-spinkit');
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions'
@@ -126,6 +127,10 @@ Brands
       {this.state.isAcceptedShowing ? "Collaborations" : "Pending requests"}
       </Text>
     </View>
+    { this.state.fetching ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View>
+   : null}
     <View style={styles.listView}>
        <ScrollView>
            {! this.state.fetching && this.fetchBusinessItems().map((feedItem) => {

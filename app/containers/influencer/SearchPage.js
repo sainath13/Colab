@@ -18,10 +18,11 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 
 
+var Spinner = require('react-native-spinkit');
 class SearchPage extends Component{
 constructor(props) {
     super(props)
-    this.state = { searching: true, searchInput: '', isNicheSelected : false , isNameSelected : true }
+    this.state = { searching: false, searchInput: '', isNicheSelected : false , isNameSelected : true }
     this.selectName = this.selectName.bind(this);
     this.selectNiche = this.selectNiche.bind(this);
 }
@@ -110,6 +111,10 @@ return(
        Treding right now 
       </Text>
     </View>
+    { this.state.searching ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1, }} isVisible={this.state.searching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View>
+   : null}
     <View style={styles.listView}>
       <ScrollView>
         {! this.state.fetching && this.fetchSearch().map((searchItem) => { 

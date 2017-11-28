@@ -19,6 +19,7 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+var Spinner = require('react-native-spinkit');
 class  InfluencersListPage extends Component{
 //this is a local state.
 //redux has nothing to do with this
@@ -127,6 +128,10 @@ Influencers
       {this.state.isAcceptedShowing ? "Collaborations" : "Pending requests"}
       </Text>
     </View>
+   { this.state.fetching ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View>
+   : null}
     <View style={styles.listView}>
        <ScrollView>
            {! this.state.fetching && this.fetchInfluencerItems().map((feedItem) => {

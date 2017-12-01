@@ -57,7 +57,9 @@ return(
       <View style={styles.profileInfoHolder}>
         <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
-               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>Reallylargenameaaaa</Text>
+               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
+               {!this.state.fetching ? (this.props.profileData.basic_data.first_name + " " + this.props.profileData.basic_data.last_name).slice(0,19) : ""}
+               </Text>
                <Octicons name="broadcast" size={20} color='white' >
                 </Octicons>
                 {

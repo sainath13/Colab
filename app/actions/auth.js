@@ -1,7 +1,15 @@
 import * as types from './types'
 const GLOBAL = require('./Globals');
 const AUTH_INFLU = 'https://'+GLOBAL.BASE_URL+'/facebook_login/omniauth_success?';
+//var React = require('react-native');
 
+// var {
+  // AsyncStorage
+// } = React;
+
+import {
+  AsyncStorage,
+} from 'react-native';
 export function setSignedInUser({userData}){
   return {
     type : types.SET_SIGNED_IN_USER,
@@ -36,18 +44,31 @@ export function signIn(accessToken,accountType){
       .then((response) => {
         var loginObj = {};
         loginObj.accessToken = response.headers.get("access-token");
-        loginObj.tokenType = response.headers.get("token-type");
-        loginObj.client = response.headers.get("client");
-        loginObj.expiry = response.headers.get("expiry");
-        loginObj.uid    = response.headers.get("uid");
+        loginObj.tokenType   = response.headers.get("token-type");
+        loginObj.client      = response.headers.get("client");
+        loginObj.expiry      = response.headers.get("expiry");
+        loginObj.uid         = response.headers.get("uid");
+        loginObj.id         = response.headers.get("id");
+        loginObj.class       = response.headers.get("class");
+
+        console.log("setting accessToken", loginObj.accessToken);
+        AsyncStorage.multiSet([
+          ['accessToken', loginObj.accessToken],
+          ['tokenType',loginObj.tokenType],
+          ['client', loginObj.client],
+          ['expiry',  loginObj.expiry],
+          ['uid', loginObj.uid],
+          ['id', loginObj.id],
+          ['class', loginObj.class]
+        ]);
         dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
-        return response.json();
+        //return response.json();
       })//response
-      .then((responseJson) => {
-        var userObj = {}
-        userObj = responseJson;
-        return dispatch(setSignedInUser({userData : userObj}));
-      })//responseJsons
+     // .then((responseJson) => {
+     //   var userObj = {}
+     //   userObj = responseJson;
+     //   return dispatch(setSignedInUser({userData : userObj}));
+     // })//responseJsons
       .catch((error)=>{
         console.error(error);
       })

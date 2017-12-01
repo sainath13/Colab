@@ -29,7 +29,7 @@ constructor(props) {
 
 searchPressed() {
     this.setState({ searching: true });
-      this.props.fetchSearch(this.props.signedInUser.id,this.state.searchInput,this.state.isNameSelected).then( (res) => {
+      this.props.fetchSearch(this.props.loginInfo.id,this.state.searchInput,this.state.isNameSelected).then( (res) => {
       this.setState({searching: false });
     });
 }
@@ -351,7 +351,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       //not calling any api actions here yet, but will be required later
-      signedInUser : state.signedInUser,
+      loginInfo : state.loginInfo,
       searchData : state.searchData,
     };
 }

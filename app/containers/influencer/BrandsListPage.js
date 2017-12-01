@@ -34,7 +34,7 @@ constructor(props) {
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchBusiness(this.props.signedInUser.basic_data.id).then( (res) => {
+  this.props.fetchBusiness(this.props.loginInfo.id).then( (res) => {
     this.setState({fetching: false })
   })
 }
@@ -216,7 +216,7 @@ Brands
                         </Text>
                     </View>
                     <TouchableHighlight 
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id,"BrandListPage","Brand")}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"BrandListPage","Brand")}}
                     style={{flex : 2, 
                         marginTop : 10,
                         marginBottom : 10,
@@ -397,7 +397,7 @@ function mapStateToProps(state){
       // recipeCount : state.recipeCount,
       businessData : state.businessData,
       feedData : state.feedData,
-      signedInUser : state.signedInUser,
+      loginInfo : state.loginInfo,
     };
 }
 

@@ -31,7 +31,7 @@ constructor(props) {
 componentDidMount(){
     this.setState({ fetching: true })
     //Data fetching should happen here only.
-    this.props.fetchProfile(this.props.signedInUser.basic_data.id).then( (res) => {
+    this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
       this.setState({fetching: false })
     })
 }
@@ -812,8 +812,8 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       //not calling any api actions here yet, but will be required later
-      signedInUser : state.signedInUser,
       profileData : state.profileData,
+      loginInfo : state.loginInfo,
     };
 }
 

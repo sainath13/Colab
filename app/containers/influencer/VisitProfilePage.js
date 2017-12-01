@@ -33,7 +33,7 @@ componentDidMount(){
     // console.log(this)
     this.setState({ fetching: true })
     //Data fetching should happen here only.
-    this.props.fetchVisitProfile(this.props.signedInUser.basic_data.id,this.props.clickedUserId,this.props.isBusiness).then( (res) => {
+    this.props.fetchVisitProfile(this.props.loginInfo.id,this.props.clickedUserId,this.props.isBusiness).then( (res) => {
       this.setState({fetching: false })
     })
 }
@@ -41,7 +41,7 @@ onclickButton(statusString){
   if(statusString == "no connection"){
     var isInfluencer =  this.props.visitProfileData.first_name ? "Influencer": "Brand";
     // console.log(this)
-    this.props.requestCollaboration(this.props.signedInUser.basic_data.id,this.props.visitProfileData.id,isInfluencer);
+    this.props.requestCollaboration(this.props.loginInfo.id,this.props.visitProfileData.id,isInfluencer);
     //call collaborate
   }
   else if (statusString == "requested"){
@@ -854,8 +854,8 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       //not calling any api actions here yet, but will be required later
-      signedInUser : state.signedInUser,
       visitProfileData : state.visitProfileData,
+      loginInfo : state.loginInfo
     };
 }
 

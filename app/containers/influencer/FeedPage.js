@@ -9,6 +9,7 @@ import {
   ScrollView,
   View,
   Image,
+  AsyncStorage,
   StatusBar,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
@@ -36,7 +37,7 @@ constructor(props) {
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchFeed(this.props.signedInUser.basic_data.id).then( (res) => {
+  this.props.fetchFeed(this.props.loginInfo.id).then( (res) => {
     this.setState({fetching: false })
   this.props.setChatObject(this.refs.roomChannel.perform);
   })
@@ -94,7 +95,7 @@ return(
     backgroundColor="red"
     barStyle="dark-content"
   />
-   	<ActionCableProvider cable={RNActionCable.createConsumer('ws://'+GLOBAL.BASE_URL+'/cable?id='+this.props.signedInUser.basic_data.id+"&token="+this.props.loginInfo.accessToken+"&client="+this.props.loginInfo.client+"&user_type=I")}>
+   	<ActionCableProvider cable={RNActionCable.createConsumer('ws://'+GLOBAL.BASE_URL+'/cable?id='+this.props.loginInfo.id+"&token="+this.props.loginInfo.accessToken+"&client="+this.props.loginInfo.client+"&user_type=I")}>
 			<ActionCable ref='roomChannel' channel={{channel: 'MessageChannel'}} onReceived={this.onReceived} />
 	   </ActionCableProvider>
  
@@ -108,7 +109,11 @@ return(
 Influx
     </Text>
   </View>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  } } >
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ 
+     AsyncStorage.multiRemove(['accessToken','tokenType','client', 'expiry', 'uid','id','class']);
+     Actions.reset('SignUpPage');
+
+   } } >
   <View style={{}}>
                 <Icon name="chat" size={25} color='white' >
                 </Icon>
@@ -175,7 +180,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                             </Text>
                         </View>
                         <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id,"FeedPage","Influencer")}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Influencer")}}
                          style={{
                         width : 100,
                         height : 30,
@@ -271,7 +276,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                             </Text>
                         </View>
                         <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id,"FeedPage","Brand")}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Brand")}}
                          style={{
                         width : 100,
                         height : 30,

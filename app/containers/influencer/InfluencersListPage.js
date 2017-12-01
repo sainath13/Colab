@@ -34,7 +34,7 @@ constructor(props) {
 
 componentDidMount(){
   this.setState({fetching: true});
-  this.props.fetchInfluencer(this.props.signedInUser.basic_data.id).then( (res) => {
+  this.props.fetchInfluencer(this.props.loginInfo.id).then( (res) => {
     this.setState({fetching: false })
   })
 }
@@ -217,7 +217,7 @@ Influencers
                         </Text>
                     </View>
                     <TouchableHighlight 
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.signedInUser.basic_data.id,feedItem.id,"InfluencerListPage","Influencer")}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"InfluencerListPage","Influencer")}}
                     style={{flex : 2, 
                         marginTop : 10,
                         marginBottom : 10,
@@ -398,7 +398,7 @@ function mapStateToProps(state){
       // recipeCount : state.recipeCount,
       InfluencerData : state.influencerData,
       feedData : state.feedData,
-      signedInUser : state.signedInUser,
+      loginInfo : state.loginInfo
     };
 }
 

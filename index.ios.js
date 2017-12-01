@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  AsyncStorage,
 } from 'react-native';
 
 
@@ -16,6 +17,8 @@ import { createLogger } from 'redux-logger'
 import reducer from './app/reducers'
 import AppContainer from './app/containers/AppContainer'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { setLoginInfo } from './app/actions/auth'
+
 /*
  * Applying logger middleware only in dev. __DEV__ is some global variable in nodejs*/
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__  });
@@ -25,6 +28,7 @@ import TabIconProfile from './app/containers/components/TabIconProfile'
 
 import SignInPage from './app/containers/influencer/SignInPage';
 import SignUpPage from './app/containers/influencer/SignUpPage';
+import OpeningPage from './app/containers/influencer/OpeningPage';
 import UpdateInfoPage from './app/containers/influencer/UpdateInfoPage';
 import NicheSelectPage from './app/containers/influencer/NicheSelectPage';
 import FeedPage from './app/containers/influencer/FeedPage';
@@ -37,7 +41,6 @@ import PendingRequestsPage from './app/containers/influencer/PendingRequestsPage
 import VisitProfilePage from './app/containers/influencer/VisitProfilePage';
 import ActionCableChatPage from './app/containers/influencer/ChatClassActionCable';
 /*Use the following scene to test redux functionality*/
-import Test from './app/containers/Test'
 
 /*
  * For seting up react native flux router
@@ -63,12 +66,14 @@ let style = StyleSheet.create({
 const scenes = Actions.create(
     <Scene {...this.props} key="root">
 
-        <Scene key="SignInPage" component={Test}
-            hideNavBar = {true}
-            initial = {true}
-        />
-        <Scene key="SignUpPage" component={SignUpPage} hideNavBar />
+        <Scene key="OpeningPage" initial={true} component={OpeningPage} hideNavBar />
         <Scene key="SignInPage" component={SignInPage} hideNavBar />
+        <Scene key="TabBarComponent" tabs={true} showLabel={false} tabBarStyle={style.tabBarStyle}  >
+            <Scene key="home" component={FeedPage} title={"Feed"} icon={TabIconFeed} iconName={"home"} hideNavBar />
+            <Scene key="SearchPage" component={SearchPage} title={"Search"} icon={TabIconSearch} iconName={"search"} hideNavBar />
+            <Scene key="ProfilePage" component={ProfilePage} title={"Profile"} icon={TabIconProfile} iconName={"user"} hideNavBar />
+        </Scene>
+        <Scene key="SignUpPage" component={SignUpPage} hideNavBar />
         <Scene key="UpdateInfoPage" component={UpdateInfoPage} hideNavBar/>
         <Scene key="NicheSelectPage" component={NicheSelectPage} hideNavBar />
         <Scene key="chatPage2" component={chatPage2} hideNavBar/>
@@ -77,11 +82,6 @@ const scenes = Actions.create(
         <Scene key="BrandsListPage" component={BrandsListPage} hideNavBar/>
         <Scene key="VisitProfilePage" component={VisitProfilePage} hideNavBar/>
         <Scene key="ActionCableChatPage" component={ActionCableChatPage} hideNavBar/>
-        <Scene key="tabbar" tabs={true} showLabel={false} swipeEnabled tabBarStyle={style.tabBarStyle}  >
-            <Scene key="home" component={FeedPage} title={"Feed"} icon={TabIconFeed} iconName={"home"} hideNavBar />
-            <Scene key="SearchPage" component={SearchPage} title={"Search"} icon={TabIconSearch} iconName={"search"} hideNavBar />
-            <Scene key="ProfilePage" component={ProfilePage} title={"Profile"} icon={TabIconProfile} iconName={"user"} hideNavBar />
-        </Scene>
 
     </Scene>
 
@@ -138,6 +138,26 @@ const store = configureStore({
  * react native flux router | redux
  * */
  export default class Yohoho extends Component {
+    componentWillMount(){
+        var loginObj = {}
+
+        AsyncStorage.multiGet(['accessToken','tokenType','client', 'expiry', 'uid','id','class']).then((data) => { 
+        loginObj.accessToken = data[0][1]
+        loginObj.tokenType   = data[1][1]
+        loginObj.client      = data[2][1]
+        loginObj.expiry      = data[3][1]
+        loginObj.uid         = data[4][1]
+        loginObj.id          = data[5][1]
+        loginObj.class       = data[6][1]
+        if(loginObj.accessToken != null){
+            store.dispatch(setLoginInfo({ loginInfo : loginObj}))
+            Actions.reset('TabBarComponent');
+        }
+        else {
+            Actions.replace('SignInPage');
+        }
+        });
+      }
    render(){
      return(
      <Provider store = {store}>

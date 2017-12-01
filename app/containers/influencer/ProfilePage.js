@@ -14,6 +14,7 @@ import {
 //TODO: FINISHING CHANGEs required. remove the whole signedInuser thing. should just have headers
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Actions } from 'react-native-router-flux';
 import { ActionCreators } from '../../actions'
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -66,7 +67,9 @@ return(
 
         <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
                         <TouchableHighlight
-                        onPress={()=> {(console.log("clicked on edit profile"))}}
+                        onPress={()=> {console.log("clicked on edit profile");
+                        Actions.UpdateInfoPage();
+                      }}
                          style={{
                         width : 150,
                         height : 35,

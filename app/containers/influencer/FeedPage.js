@@ -111,8 +111,7 @@ Influx
   </View>
   <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ 
      AsyncStorage.multiRemove(['accessToken','tokenType','client', 'expiry', 'uid','id','class']);
-     Actions.reset('SignUpPage');
-
+     Actions.reset('SignInPage');
    } } >
   <View style={{}}>
                 <Icon name="chat" size={25} color='white' >

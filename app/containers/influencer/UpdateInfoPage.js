@@ -40,14 +40,32 @@ class  UpdateInfoPage extends Component {
     this._onPressPriceSelect = this._onPressPriceSelect.bind(this);
     this._onPressInfluencerUpdateInfoSave = this._onPressInfluencerUpdateInfoSave.bind(this)
     this.state = { 
-        spinnerVisible : false,
-      bio : this.props.signedInUser.basic_data.bio, pricePerPost : ""+this.props.signedInUser.basic_data.price_per_post ,
-      pricePerStory : ""+this.props.signedInUser.basic_data.price_per_story,  phone : ""+this.props.signedInUser.basic_data.phone}
+      spinnerVisible : false,
+      fetching: true,
+      bio : "" , //this.props.signedInUser.basic_data.bio, 
+      pricePerPost : "", // +this.props.signedInUser.basic_data.price_per_post ,
+      pricePerStory : "" , // +this.props.signedInUser.basic_data.price_per_story,  
+      phone : "" , //+this.props.signedInUser.basic_data.phone
+    }
   }
+
+componentDidMount(){
+    this.setState({ fetching: true })
+    //Data fetching should happen here only.
+    this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
+      this.setState({fetching: false,
+      bio : this.props.profileData.basic_data.bio,
+      pricePerPost :  "" + this.props.profileData.basic_data.pricePerPost,
+      pricePerStory : "" + this.props.profileData.basic_data.pricePerStory,
+      phone : "" + this.props.profileData.basic_data.phone,
+      })
+    })
+}
+
   _onPressInfluencerUpdateInfoSave(){
-   this.props.updateInfo(this.props.signedInUser.basic_data.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory).then( (res) => {
+   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory).then( (res) => {
     this.setState({spinnerVisible: false });
-    Actions.tabbar();
+    Actions.TabBarComponent();
   })
     ;
     //Actions.tabbar();
@@ -123,7 +141,7 @@ class  UpdateInfoPage extends Component {
 
     return (
 <KeyboardAwareScrollView
-resetScrollToCoords={{ x: 0, y: 0 }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
       contentContainerStyle={styles.container}
       scrollEnabled={false}
  style={{flex : 1}}>
@@ -195,8 +213,8 @@ resetScrollToCoords={{ x: 0, y: 0 }}
           <View style={styles.infoHolder}>
           <View style={ styles.infoTextHolder}>
             <Text style={styles.infoText}>
-          {this.props.signedInUser.basic_data.first_name}  
-          {" " + this.props.signedInUser.basic_data.last_name} 
+          {!this.state.fetching ? this.props.profileData.basic_data.first_name + " ": ""}  
+          {!this.state.fetching ? this.props.profileData.basic_data.last_name: ""} 
             </Text>
           </View>
           <View style={styles.infoTextHolder }>
@@ -212,7 +230,7 @@ resetScrollToCoords={{ x: 0, y: 0 }}
         </View>
         <View style={styles.coloredWrapper}>
           <Text style={styles.wrappedText}>
-          {this.props.signedInUser.basic_data.instagram_name} 
+          {!this.state.fetching? this.props.profileData.basic_data.instagram_name: ""} 
           </Text>
         </View>
     </View>
@@ -363,7 +381,7 @@ resetScrollToCoords={{ x: 0, y: 0 }}
         fontSize : 17,
         fontFamily :'GothamRounded-Medium',
     }}>
-    {this.props.signedInUser.basic_data.email}
+    {!this.state.fetching ? this.props.profileData.basic_data.email: ""}
   </Text>
 </View>
 </View>
@@ -531,8 +549,8 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       //not calling any api actions here yet, but will be required later
-      signedInUser : state.signedInUser,
       profileData : state.profileData,
+      loginInfo : state.loginInfo,
     };
 }
 

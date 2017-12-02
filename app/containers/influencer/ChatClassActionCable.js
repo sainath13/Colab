@@ -283,8 +283,6 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
-      feedData : state.feedData,
-      signedInUser : state.signedInUser,
       chatList : state.chatList,
       chat : state.chatObj
       // messageObj : state.messageObj,

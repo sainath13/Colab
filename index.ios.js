@@ -37,7 +37,6 @@ import SearchPage from './app/containers/influencer/SearchPage';
 import chatPage2 from './app/containers/influencer/chatPage2';
 import InfluencersListPage from './app/containers/influencer/InfluencersListPage';
 import BrandsListPage from './app/containers/influencer/BrandsListPage';
-import PendingRequestsPage from './app/containers/influencer/PendingRequestsPage';
 import VisitProfilePage from './app/containers/influencer/VisitProfilePage';
 import ActionCableChatPage from './app/containers/influencer/ChatClassActionCable';
 /*Use the following scene to test redux functionality*/
@@ -78,7 +77,6 @@ const scenes = Actions.create(
         <Scene key="NicheSelectPage" component={NicheSelectPage} hideNavBar />
         <Scene key="chatPage2" component={chatPage2} hideNavBar/>
         <Scene key="InfluencersListPage" component={InfluencersListPage} hideNavBar/>
-        <Scene key="PendingRequestsPage" component={PendingRequestsPage} hideNavBar/>
         <Scene key="BrandsListPage" component={BrandsListPage} hideNavBar/>
         <Scene key="VisitProfilePage" component={VisitProfilePage} hideNavBar/>
         <Scene key="ActionCableChatPage" component={ActionCableChatPage} hideNavBar/>

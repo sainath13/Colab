@@ -397,7 +397,6 @@ function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
       InfluencerData : state.influencerData,
-      feedData : state.feedData,
       loginInfo : state.loginInfo
     };
 }

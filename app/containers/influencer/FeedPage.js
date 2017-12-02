@@ -507,7 +507,6 @@ function mapStateToProps(state){
       // recipeCount : state.recipeCount,
       feedData : state.feedData,
       loginInfo : state.loginInfo,
-      signedInUser : state.signedInUser,
     };
 }
 

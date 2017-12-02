@@ -283,9 +283,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
       // recipeCount : state.recipeCount,
-      messageObj : state.messageObj,
       signedInUser : state.signedInUser,
-
     };
 }
 

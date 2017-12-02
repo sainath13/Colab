@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 
-// import * as recipesReducer from './recipes';
 import * as chatsReducer from './chats';
 import routes from './routes';
 import * as authsReducer from './auths';
@@ -21,7 +20,6 @@ import * as nichesReducer from './niches'
 export default combineReducers( Object.assign(
     routes,
     searchReducer,
-    // recipesReducer,
     chatsReducer,
     authsReducer,
     profilesReducer,

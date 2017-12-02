@@ -6,6 +6,7 @@
 import * as types from './types'
 const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
+let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
 let PROFILE = "/profile";
 // import profiles from './profiles'
 /*
@@ -43,8 +44,18 @@ export function fetchProfile(id){
 
   return (dispatch,getState)=>{
     const state = getState();
-
-    return fetch( PROFILE_INFLU, {
+    console.log(state);
+    ROUTE = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE = ROUTE_BRAND;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE = ROUTE_INFLU;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
+    return fetch( ROUTE + id + PROFILE, {
       method: 'GET',
       headers: {
         'access-token':  state.loginInfo.accessToken,

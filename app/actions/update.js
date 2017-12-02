@@ -2,6 +2,8 @@ import * as types from './types'
 
 const GLOBAL = require('./Globals');
 const AUTH_INFLU = 'https://'+GLOBAL.BASE_URL+'/influencers/';
+const AUTH_BRAND =  'https://'+GLOBAL.BASE_URL+'/business/';
+
 
 export function setNiche({nicheData}){
   return {
@@ -37,9 +39,18 @@ export function setLoginInfo({loginInfo}){
 export function updateInfo(id,instagram_name,bio,phone,price_per_post,price_per_story){
   //if we have 2 sign in flows we need two cases to handle TODO
     // if Username password checking => valied email TODO: those actions or those in the view itself
-    var url = AUTH_INFLU + id + "?" + "instagram_name=" + instagram_name + "&" + "bio=" + bio + "&" + "phone=" + phone + "&" + "price_per_post=" +price_per_post + "&price_per_story=" + price_per_story; 
     return (dispatch,getState)=>{
     const state = getState();
+    var url = "";
+    if(state.loginInfo.class == "Business"){
+       url = AUTH_BRAND + id + "?" + "instagram_name=" + instagram_name + "&" + "bio=" + bio + "&" + "phone=" + phone + "&" + "price_per_post=" +price_per_post + "&price_per_story=" + price_per_story; 
+    }
+    else if(state.loginInfo.class=="Influencer"){
+       url = AUTH_INFLU + id + "?" + "instagram_name=" + instagram_name + "&" + "bio=" + bio + "&" + "phone=" + phone + "&" + "price_per_post=" +price_per_post + "&price_per_story=" + price_per_story; 
+    }
+    else{
+      //it is undefined. put error condition here
+    } 
       return fetch( url, {
         method: 'PUT',
       headers: {
@@ -77,9 +88,18 @@ export function updateInfo(id,instagram_name,bio,phone,price_per_post,price_per_
 export function fetchNiche(id){
   //if we have 2 sign in flows we need two cases to handle TODO
     // if Username password checking => valied email TODO: those actions or those in the view itself
-    var url = AUTH_INFLU + id + "/get_niches" ;
     return (dispatch,getState)=>{
     const state = getState();
+    var url = "";
+    if(state.loginInfo.class == "Business"){
+      url = AUTH_BRAND + id + "/get_niches" ;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      url = AUTH_INFLU + id + "/get_niches" ;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
       return fetch( url, {
         method: 'GET',
       headers: {
@@ -118,9 +138,19 @@ export function updateNiche(id,nicheString){
   //if we have 2 sign in flows we need two cases to handle TODO
     // if Username password checking => valied email TODO: those actions or those in the view itself
     // console.log(nicheString)
-    var url = AUTH_INFLU + id + "/update_niche?niche_titles="+nicheString ;
     return (dispatch,getState)=>{
     const state = getState();
+      var url = "";
+    if(state.loginInfo.class == "Business"){
+      url = AUTH_BRAND + id + "/update_niche?niche_titles="+nicheString ;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      url = AUTH_INFLU + id + "/update_niche?niche_titles="+nicheString ;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
+
       return fetch( url, {
         method: 'POST',
       headers: {

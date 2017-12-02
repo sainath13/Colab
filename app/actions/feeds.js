@@ -2,6 +2,7 @@ import * as types from './types'
 
 const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
+let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
 let COLLAB = "/feed";
 
 export function setFeed({ feedData }){
@@ -20,10 +21,18 @@ export function setLoginInfo({loginInfo}){
 
 export function fetchFeed(id){
   //NEED TO REMOVE THIS ID FROM HERE
-  let FEED_INFLU = ROUTE_INFLU + id + COLLAB;
   return (dispatch,getState)=>{
     const state = getState();
-    return fetch( FEED_INFLU, {
+
+    ROUTE = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE = ROUTE_BRAND;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE = ROUTE_INFLU;
+    }
+
+    return fetch( ROUTE +id + COLLAB , {
       method: 'GET',
       headers: {
         'access-token':  state.loginInfo.accessToken,

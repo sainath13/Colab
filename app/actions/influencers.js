@@ -2,6 +2,7 @@ import * as types from './types'
 
 const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
+let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
 let INFLUENCERS = "/influencer_collaborations";
 
 export function setInfluencer({ influencerData}){
@@ -21,9 +22,19 @@ export function setLoginInfo({loginInfo}){
 
 export function fetchInfluencer(id){
   //NEED TO REMOVE THIS ID FROM HERE
-  let BUSINESS_INFLU = ROUTE_INFLU + id + INFLUENCERS;
   return (dispatch,getState)=>{
     const state = getState();
+    ROUTE = "";
+    if(state.loginInfo.class == "Business"){
+      BUSINESS_INFLU = ROUTE_BRAND + id + INFLUENCERS;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      BUSINESS_INFLU = ROUTE_INFLU + id + INFLUENCERS;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
+
     return fetch( BUSINESS_INFLU, {
       method: 'GET',
       headers: {
@@ -37,7 +48,7 @@ export function fetchInfluencer(id){
     .then((response) => {
       var loginObj = {};
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
-        console.log("Received different access tokens in feeds.js");
+        console.log("Received different access tokens in influencers.js");
         loginObj.accessToken = response.headers.get("access-token");
         loginObj.tokenType = response.headers.get("token-type");
         loginObj.client = response.headers.get("client");

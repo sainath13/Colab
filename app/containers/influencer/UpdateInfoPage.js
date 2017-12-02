@@ -55,8 +55,8 @@ componentDidMount(){
     this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
       this.setState({fetching: false,
       bio : this.props.profileData.basic_data.bio,
-      pricePerPost :  "" + this.props.profileData.basic_data.pricePerPost,
-      pricePerStory : "" + this.props.profileData.basic_data.pricePerStory,
+      pricePerPost :  "" + this.props.profileData.basic_data.price_per_post,
+      pricePerStory : "" + this.props.profileData.basic_data.price_per_story,
       phone : "" + this.props.profileData.basic_data.phone,
       })
     })

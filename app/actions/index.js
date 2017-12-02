@@ -1,5 +1,4 @@
 
-import * as RecipeActions from './recipes';
 import * as ChatActions  from './chats';
 import * as AuthActions from './auth';
 import * as ProfileActions from './profile';
@@ -21,7 +20,6 @@ import * as updateActions from './update'
  * */
  //TODO : rename profile to profiles
 export const ActionCreators = Object.assign({},
-    RecipeActions,
     ChatActions,
     AuthActions,
     ProfileActions,

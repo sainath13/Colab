@@ -258,8 +258,8 @@ Brands
 var styles = StyleSheet.create({
   header: {
      flex: 1,
-     alignItems : "center",
-     justifyContent : "center",
+    //  alignItems : "center",
+    //  justifyContent : "center",
     //  paddingTop : 20,
     //  marginTop : 20,
     //  backgroundColor: 'white',

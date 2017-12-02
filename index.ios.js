@@ -15,7 +15,6 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
 import reducer from './app/reducers'
-import AppContainer from './app/containers/AppContainer'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { setLoginInfo } from './app/actions/auth'
 

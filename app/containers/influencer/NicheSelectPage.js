@@ -32,7 +32,7 @@ constructor(props) {
 componentDidMount(){
     this.setState({ fetching: true })
     //Data fetching should happen here only.
-    this.props.fetchNiche(this.props.signedInUser.basic_data.id).then( (res) => {
+    this.props.fetchNiche(this.props.loginInfo.id).then( (res) => {
       // console.log("response is *****",res)
       this.setState({fetching: false })
     })
@@ -45,7 +45,7 @@ componentDidMount(){
       nicheString = nicheString + this.props.nicheData[k].name+ ","
     }
    }
-   this.props.updateNiche(this.props.signedInUser.basic_data.id,nicheString);
+   this.props.updateNiche(this.props.loginInfo.id,nicheString);
    //after the response only go back
     Actions.pop();
 }
@@ -162,8 +162,8 @@ function mapDispatchToProps(dispatch){
 }
 function mapStateToProps(state){
     return {
-      signedInUser : state.signedInUser,
       nicheData : state.nicheData,
+      loginInfo : state.loginInfo
     };
 }
 

@@ -7,7 +7,7 @@ import * as types from './types'
 
 const GLOBAL = require('./Globals');
 let ROUTE = "https://"+GLOBAL.BASE_URL+"/";
-let influencer = "influencer/"
+let influencer = "influencers/"
 let business = "business/"
 let INFLUENCER_PROFILE = "/view_visited_profile";
 let BUSINESS_PROFILE = "/view_visited_business";

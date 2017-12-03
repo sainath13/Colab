@@ -117,7 +117,7 @@ return(
    : null}
     <View style={styles.listView}>
       <ScrollView>
-        {! this.state.fetching && this.fetchSearch().map((searchItem) => { 
+        {! this.state.searching && this.fetchSearch().map((searchItem) => { 
                  return ( <TouchableHighlight key={searchItem.id}
                        onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>

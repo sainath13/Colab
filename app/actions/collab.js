@@ -1,7 +1,9 @@
 import * as types from './types'
 
 const GLOBAL = require('./Globals');
-let URL_START = "https://"+GLOBAL.BASE_URL+"/influencers/";
+let URL_START = "https://"+GLOBAL.BASE_URL+"/";
+let influencer = "influencer/";
+let business = "business/";
 let ACCEPT_COLLAB = "/accept_collaboration_with_business";
 let ACCEPT_COLLAB_INFLUENCER = "/accept_collaboration_with_influencer";
 
@@ -60,18 +62,28 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
   // it can be done inside this return . get the id from the state after getting state
   // console.log("user", currentUserId);
   // console.log("new", acceptUserId);
-  var ACCEPT_COLLAB_ROUTE = "";
-  if(userType == "Brand"){
-      ACCEPT_COLLAB_ROUTE = URL_START + currentUserId + ACCEPT_COLLAB + "?business_id=" +acceptUserId;
-  }
-
-  if(userType == "Influencer"){
-      ACCEPT_COLLAB_ROUTE = URL_START + currentUserId + ACCEPT_COLLAB_INFLUENCER  + "?influencer_friend_id=" +acceptUserId;
-  }
   return (dispatch,getState)=>{
     const state = getState();
+
+    ROUTE_ = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE_ = URL_START + business;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE_ = URL_START+ influencer;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
+  var ACCEPT_COLLAB_ROUTE = "";
+  if(userType == "Brand"){
+      ACCEPT_COLLAB_ROUTE = ROUTE_ + currentUserId + ACCEPT_COLLAB + "?business_id=" +acceptUserId;
+  }
+  if(userType == "Influencer"){
+      ACCEPT_COLLAB_ROUTE = ROUTE_ + currentUserId + ACCEPT_COLLAB_INFLUENCER  + "?influencer_friend_id=" +acceptUserId;
+  }
     return fetch(ACCEPT_COLLAB_ROUTE , {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'access-token':  state.loginInfo.accessToken,
         'token-type': state.loginInfo.tokenType,
@@ -117,18 +129,28 @@ export function requestCollaboration(currentUserId,requestUserId,userType){
   // it can be done inside this return . get the id from the state after getting state
   // console.log("user", currentUserId);
   // console.log("new", requestUserId);
+  return (dispatch,getState)=>{
+    const state = getState();
+    ROUTE_ = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE_ = URL_START + business;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE_ = URL_START+ influencer;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
   var REQUEST_COLLAB_ROUTE = "";
 var REQUEST_COLLAB_INFLUENCER = "/request_influencer_for_collaboration"; 
   if(userType == "Brand"){
     //never gonna hit
-      REQUEST_COLLAB_ROUTE = URL_START + currentUserId + REQUEST_COLLAB + "?business_id=" +acceptUserId;
+      REQUEST_COLLAB_ROUTE = ROUTE_ + currentUserId + REQUEST_COLLAB + "?business_id=" +acceptUserId;
   }
 
   if(userType == "Influencer"){
-      REQUEST_COLLAB_ROUTE = URL_START + currentUserId + REQUEST_COLLAB_INFLUENCER  + "?influencer_id=" +requestUserId;
+      REQUEST_COLLAB_ROUTE = ROUTE_ + currentUserId + REQUEST_COLLAB_INFLUENCER  + "?influencer_id=" +requestUserId;
   }
-  return (dispatch,getState)=>{
-    const state = getState();
     return fetch(REQUEST_COLLAB_ROUTE , {
       method: 'POST',
       headers: {

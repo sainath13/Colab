@@ -6,7 +6,9 @@
 import * as types from './types'
 
 const GLOBAL = require('./Globals');
-let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
+let ROUTE = "https://"+GLOBAL.BASE_URL+"/";
+let influencer = "influencer/"
+let business = "business/"
 let INFLUENCER_PROFILE = "/view_visited_profile";
 let BUSINESS_PROFILE = "/view_visited_business";
 // import profiles from './profiles'
@@ -78,16 +80,26 @@ export function unsetVisitProfile(){
  *  so reducers of the same "type" get triggered resulting updating the store
  * */
 export function fetchVisitProfile(id,clickedUserId, isBusiness){
-  var URL = "";
-  if(!isBusiness){
-    URL = ROUTE_INFLU + id + INFLUENCER_PROFILE + "?influencer_id=" +clickedUserId ;
-  }
-  else if(isBusiness){
-    URL = ROUTE_INFLU + id + BUSINESS_PROFILE + "?visited_business_id=" + clickedUserId ;
-  }
-
   return (dispatch,getState)=>{
     const state = getState();
+    ROUTE_ = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE_ = ROUTE + business;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE_ = ROUTE + influencer;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
+  var URL = "";
+  if(!isBusiness){
+    URL = ROUTE_ + id + INFLUENCER_PROFILE + "?influencer_id=" +clickedUserId ;
+  }
+  else if(isBusiness){
+    URL = ROUTE_ + id + BUSINESS_PROFILE + "?visited_business_id=" + clickedUserId ;
+  }
+  console.log(URL)
     return fetch( URL , {
       method: 'GET',
       headers: {

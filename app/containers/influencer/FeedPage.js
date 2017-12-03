@@ -222,7 +222,8 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                           </View>
                           <View style={styles.notificationItem}>
                             <Text style={styles.notificationItemText}>
-                              <Text style={styles.notificationItemTextBold}>{feedItem.first_name + " "+feedItem.last_name }</Text> wants to collaborate.
+                            You have collaboration a with <Text style={styles.notificationItemTextBold}>{feedItem.first_name + " "+feedItem.last_name }</Text> 
+                            
                             </Text>
                         </View>
                         <TouchableHighlight

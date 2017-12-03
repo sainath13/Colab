@@ -2,7 +2,7 @@ import * as types from './types'
 
 const GLOBAL = require('./Globals');
 let URL_START = "https://"+GLOBAL.BASE_URL+"/";
-let influencer = "influencer/";
+let influencer = "influencers/";
 let business = "business/";
 let ACCEPT_COLLAB = "/accept_collaboration_with_business";
 let ACCEPT_COLLAB_INFLUENCER = "/accept_collaboration_with_influencer";

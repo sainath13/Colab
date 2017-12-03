@@ -69,7 +69,6 @@ onReceived = (data) => {
 	}
 
 fetchFeedItems(accountType){
-//  console.log("test")
  //need to create some really nice object here 
  //BADAWALA TODO
  //CREATE NOTIFICATIONS HERE 

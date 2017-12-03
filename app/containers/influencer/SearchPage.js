@@ -22,16 +22,28 @@ var Spinner = require('react-native-spinkit');
 class SearchPage extends Component{
 constructor(props) {
     super(props)
-    this.state = { searching: false, searchInput: '', isNicheSelected : false , isNameSelected : true }
+    this.state = {showingSearchResults : false, loading : true, searching: false, searchInput: '', isNicheSelected : false , isNameSelected : true }
     this.selectName = this.selectName.bind(this);
     this.selectNiche = this.selectNiche.bind(this);
 }
+componentDidMount(){
+  this.setState({loading : true});
+  this.props.fetchTrending(this.props.loginInfo.id).then( (res) => {
+    this.setState({loading: false })
+  })
+}
 
+cancelPressed() {
+    this.setState({ showingSearchResults : false});
+}
 searchPressed() {
-    this.setState({ searching: true });
+    this.setState({ searching: true, showingSearchResults : true});
       this.props.fetchSearch(this.props.loginInfo.id,this.state.searchInput,this.state.isNameSelected).then( (res) => {
       this.setState({searching: false });
     });
+}
+fetchTrendingItems(){
+  return Object.keys(this.props.trendingData).map(key =>this.props.trendingData[key]);
 }
 
 fetchSearch(){
@@ -97,18 +109,24 @@ return(
     </View>
     <View style={styles.searchIcon}>
       <TouchableHighlight onPress={ ()=> this.searchPressed() }>
-        <Icon name="search" size={30} color='#58568f' >
-        </Icon>
+          <Icon name="search" size={30} color='#58568f' >
+    </Icon> 
       </TouchableHighlight>
     </View>
   </View>
+  <TouchableHighlight style={{flex : 1}} onPress={ ()=> this.cancelPressed()} >
+<View style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop : 5 , marginBottom : 10,}}>
+          <Icon name="times-circle-o" size={30} color='#58568f'>
+    </Icon> 
+</View>
+</TouchableHighlight>
 </View>
     </View>
     </View>
 
     <View style={styles.notificationBar}>
       <Text style={styles.notificationBarText}>
-       Treding right now 
+       {this.state.showingSearchResults ? "Search results" : "Treding right now"} 
       </Text>
     </View>
     { this.state.searching ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
@@ -117,7 +135,38 @@ return(
    : null}
     <View style={styles.listView}>
       <ScrollView>
-        {! this.state.searching && this.fetchSearch().map((searchItem) => { 
+        {!this.state.showingSearchResults && !this.state.loading && this.fetchTrendingItems().map((searchItem) => { 
+                 return ( <TouchableHighlight key={searchItem.id}
+                       onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
+                <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
+                    <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
+                          <Image
+                            style = {{width: 40, height: 40, borderRadius: 20}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                    </View>
+                    <View style={{flex : 4, justifyContent : 'center', }}>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Medium',
+                            marginLeft : 10
+                        }}>
+                         {searchItem.instagram_name} 
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            fontFamily :'GothamRounded-Book',
+                            marginLeft : 10,
+                        }}>
+                      {searchItem.first_name + " " + searchItem.last_name } 
+                        </Text>
+                    </View>
+                </View>
+                </TouchableHighlight>
+              )//return
+            })//Map
+          }
+        {! this.state.searching && this.state.showingSearchResults && this.fetchSearch().map((searchItem) => { 
                  return ( <TouchableHighlight key={searchItem.id}
                        onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
@@ -295,14 +344,14 @@ var styles = StyleSheet.create({
   searchBarContainer:{
     flex : 1,
     backgroundColor : '#6563A4',
-    flexDirection : 'row'
+    flexDirection : 'row',
   },
   searchBarOutside:{
-    flex : 1,
+    flex : 6,
     backgroundColor : 'white',
     marginTop : 0,
-    marginLeft : 10,
-    marginRight : 10,
+    marginLeft : 5,
+    marginRight : 0,
     marginBottom : 10,
     marginTop : 5,
     borderRadius : 3,
@@ -353,6 +402,7 @@ function mapStateToProps(state){
       //not calling any api actions here yet, but will be required later
       loginInfo : state.loginInfo,
       searchData : state.searchData,
+      trendingData : state.trendingData,
     };
 }
 

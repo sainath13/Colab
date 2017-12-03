@@ -6,6 +6,7 @@ import * as authsReducer from './auths';
 import * as profilesReducer from './profiles'
 import * as feedsReducer from './feeds'
 import * as searchReducer from './search'
+import * as trendingReducer from './trending'
 import * as openChatReducer from './openedChat'
 import * as chatObjReducer from './chatObj'
 import * as businessReducer from './businesses'
@@ -20,6 +21,7 @@ import * as nichesReducer from './niches'
 export default combineReducers( Object.assign(
     routes,
     searchReducer,
+    trendingReducer,
     chatsReducer,
     authsReducer,
     profilesReducer,

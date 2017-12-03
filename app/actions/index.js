@@ -3,6 +3,7 @@ import * as ChatActions  from './chats';
 import * as AuthActions from './auth';
 import * as ProfileActions from './profile';
 import * as FeedActions from './feeds'
+import * as TrendingActions from './trending'
 import * as SearchAction from './search'
 import * as OpenChatAction from './openedChat'
 import * as chatObjAction from './chatObj'
@@ -24,6 +25,7 @@ export const ActionCreators = Object.assign({},
     AuthActions,
     ProfileActions,
     FeedActions,
+    TrendingActions,
     SearchAction,
     OpenChatAction,
     chatObjAction,

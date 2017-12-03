@@ -24,7 +24,7 @@ export function fetchInfluencer(id){
   //NEED TO REMOVE THIS ID FROM HERE
   return (dispatch,getState)=>{
     const state = getState();
-    ROUTE = "";
+    BUSINESS_INFLU = "";
     if(state.loginInfo.class == "Business"){
       BUSINESS_INFLU = ROUTE_BRAND + id + INFLUENCERS;
     }

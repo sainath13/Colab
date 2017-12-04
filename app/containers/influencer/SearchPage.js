@@ -22,19 +22,30 @@ var Spinner = require('react-native-spinkit');
 class SearchPage extends Component{
 constructor(props) {
     super(props)
-    this.state = {showingSearchResults : false, loading : true, searching: false, searchInput: '', isNicheSelected : false , isNameSelected : true }
+    this.state = {loadingNiche: true , showingSearchResults : false, loading : true, searching: false, searchInput: '', isNicheSelected : false , isNameSelected : true }
     this.selectName = this.selectName.bind(this);
     this.selectNiche = this.selectNiche.bind(this);
 }
 componentDidMount(){
-  this.setState({loading : true});
+  this.setState({loading : true,loadingNiche : true});
   this.props.fetchTrending(this.props.loginInfo.id).then( (res) => {
+    this.props.fetchNiche(this.props.loginInfo.id).then((res) =>{
+    this.setState({loadingNiche: false })
+    })
     this.setState({loading: false })
   })
 }
 
 cancelPressed() {
-    this.setState({ showingSearchResults : false});
+    this.setState({ showingSearchResults : false, });
+    this.refs.textInput1.clear();
+}
+searchNichePressed(nichename){
+  this.refs.textInput1.setNativeProps({text : nichename})
+    this.setState({ searching: true, showingSearchResults : true});
+      this.props.fetchSearch(this.props.loginInfo.id,nichename,this.state.isNameSelected).then( (res) => {
+      this.setState({searching: false });
+    });
 }
 searchPressed() {
     this.setState({ searching: true, showingSearchResults : true});
@@ -45,7 +56,9 @@ searchPressed() {
 fetchTrendingItems(){
   return Object.keys(this.props.trendingData).map(key =>this.props.trendingData[key]);
 }
-
+fetchNicheItems(){
+  return Object.keys(this.props.nicheData).map(key => this.props.nicheData[key]);
+}
 fetchSearch(){
   return Object.keys(this.props.searchData).map(key =>this.props.searchData[key]);
 }
@@ -98,6 +111,7 @@ return(
   <View style={styles.searchBarOutside}>
     <View style={styles.searchBarInside}>
       <TextInput
+          ref={'textInput1'}
           style={{flex: 1,
           fontSize : 18,
           paddingBottom : 3,
@@ -135,7 +149,43 @@ return(
    : null}
     <View style={styles.listView}>
       <ScrollView>
-        {!this.state.showingSearchResults && !this.state.loading && this.fetchTrendingItems().map((searchItem) => { 
+      {!this.state.showingSearchResults && this.state.isNicheSelected && !this.state.loadingNiche ?
+        <View style={{flex: 1,
+      flexDirection:'row',
+      flexWrap : 'wrap',
+      padding : 5,
+      justifyContent : 'center',
+      alignItems : 'flex-start',
+      }}>
+    {!this.state.showingSearchResults && this.state.isNicheSelected && !this.state.loadingNiche && this.fetchNicheItems().map((nicheItem)=>{
+              return (
+                    <TouchableHighlight onPress={ ()=>{ console.log(nicheItem.name);
+                       this.searchNichePressed(nicheItem.name)} }key={nicheItem.name} style={{
+                        marginTop : 5,
+                        marginBottom : 5,
+                        marginLeft : 15,
+                        marginRight : 15,
+                        borderRadius:3,
+                        borderColor : 'white',
+                        padding : 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 17,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                           {nicheItem.name} 
+                        </Text>
+                    </TouchableHighlight>
+                   )//return
+
+    })}
+    </View>
+    : null}
+        {!this.state.showingSearchResults && this.state.isNameSelected && !this.state.loading && this.fetchTrendingItems().map((searchItem) => { 
                  return ( <TouchableHighlight key={searchItem.id}
                        onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
@@ -403,6 +453,7 @@ function mapStateToProps(state){
       loginInfo : state.loginInfo,
       searchData : state.searchData,
       trendingData : state.trendingData,
+      nicheData : state.nicheData,
     };
 }
 

@@ -268,6 +268,7 @@ componentDidMount(){
        </TextInput>
      </View>
     </View>
+    { this.props.loginInfo.class == "Influencer" ?
     <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
                 borderBottomColor : '#6563A4' ,
                 borderBottomWidth  : 2,
@@ -306,6 +307,8 @@ componentDidMount(){
     </View>
     </TouchableHighlight>
 </View>
+: null
+    }
 
 
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',

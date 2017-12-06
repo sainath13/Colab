@@ -358,7 +358,7 @@ return(
             </View>
           </View>
           <View style={styles.informationSlot}>
-          <View>
+          <View style={{paddingBottom : 20}}>
             <View style={{flexDirection : 'row',alignItems : 'center'}}>
             <Text style={{marginTop : 10 ,
                           fontSize: 16,

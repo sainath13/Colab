@@ -236,17 +236,18 @@ componentDidMount(){
     </View>
     <View style={{
         backgroundColor : '#F6F5FA',
-        borderBottomWidth : 2 , borderBottomColor : '#6563A4'
+        borderBottomWidth : 2 , borderBottomColor : '#6563A4',
     }}>
         <Text style={{
             fontSize : 17,
             fontFamily : 'GothamRounded-Book',
             padding : 5,
+            paddingTop : 7,
         }}>
            Bio
        </Text>
        <View style={{
-           marginTop : 10,
+           marginTop : 2,
            marginLeft : 5,
            marginRight : 5,
            backgroundColor : 'white',
@@ -336,18 +337,18 @@ componentDidMount(){
   paddingLeft : 5,
   paddingBottom: 5,
   justifyContent: 'center',
-  backgroundColor : '#6563A4',
+  backgroundColor : 'white',
   borderRadius : 5}}>
   <TextInput
   maxLength={10}
    onChangeText = {(text)=> this.onChangedPhone(text)}
-   placeholder = "Enter"
+   placeholder = "Enter here"
    value ={this.state.phone} 
    style={{
           flex : 1,
-          color : 'white',
+          color : 'black',
           fontSize : 17,
-          fontFamily :'GothamRounded-Medium',
+          fontFamily :'GothamRounded-Book',
     }}>
   </TextInput>
 </View>
@@ -377,14 +378,14 @@ componentDidMount(){
   paddingBottom: 5,
   alignItems : 'center',
   justifyContent: 'center',
-  backgroundColor : '#6563A4',
+  backgroundColor : 'white',
   borderRadius : 5}}>
   <Text style={{
-    color : 'white',
+    color : 'black',
         fontSize : 17,
-        fontFamily :'GothamRounded-Medium',
+        fontFamily :'GothamRounded-Book',
     }}>
-    {!this.state.fetching ? this.props.profileData.basic_data.email: ""}
+    {!this.state.fetching ? this.props.profileData.basic_data.email.slice(0,24): ""}
   </Text>
 </View>
 </View>
@@ -510,8 +511,7 @@ row:{
     flexDirection : 'row' ,
     backgroundColor : '#F6F5FA',
     borderBottomColor : '#6563A4' ,
-    borderBottomWidth  : 1,
-    borderRadius : 5,
+    borderBottomWidth  : 2,
 },
 rowLeft:{
     flex : 1,  

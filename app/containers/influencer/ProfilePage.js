@@ -55,6 +55,7 @@ return(
         />
       </View>
       <View style={styles.profileInfoHolder}>
+       { this.props.loginInfo.class=="Influencer" ?
         <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
@@ -62,10 +63,17 @@ return(
                </Text>
                <Octicons name="broadcast" size={20} color='white' >
                 </Octicons>
-                {
-                  //briefcase icon for brands
-                }
+        </View> 
+        :
+        <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
+          <Text style={{  height:30, borderRadius:2, fontSize : 20,
+               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
+               {!this.state.fetching ? (this.props.profileData.basic_data.name).slice(0,19) : ""}
+               </Text>
+               <Octicons name="briefcase" size={20} color='white' >
+                </Octicons>
         </View>
+              }
 
         <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
                         <TouchableHighlight

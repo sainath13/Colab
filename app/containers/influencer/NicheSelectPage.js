@@ -60,9 +60,21 @@ return(
     barStyle="light-content"
   />
   <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <View style={{}}>
+                <Icon name="chevron-left" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={styles.headerText}>
-      Niche
+Niches
     </Text>
+  </View>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
+  <View style={{}}>
+  </View>
+  </TouchableHighlight>
   </View>
   <View style={styles.content}>
   <ScrollView style={{flex : 9}}>
@@ -113,9 +125,15 @@ return(
 var styles = StyleSheet.create({
   header: {
      flex: 1,
-     alignItems : "center",
-     justifyContent : "center",
+    //  alignItems : "center",
+    //  justifyContent : "center",
+    //  paddingTop : 20,
+    //  marginTop : 20,
+    //  backgroundColor: 'white',
      backgroundColor: '#6563A4',
+    borderColor : '#333156',
+    borderBottomWidth : 3,
+    flexDirection : 'row'
     },
   headerText:{
 // color : '#6563A4',

@@ -42,6 +42,7 @@ class  UpdateInfoPage extends Component {
     this.state = { 
       spinnerVisible : false,
       fetching: true,
+      nickName : "",
       bio : "" , //this.props.signedInUser.basic_data.bio, 
       pricePerPost : "", // +this.props.signedInUser.basic_data.price_per_post ,
       pricePerStory : "" , // +this.props.signedInUser.basic_data.price_per_story,  
@@ -55,6 +56,7 @@ componentDidMount(){
     this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
       this.setState({fetching: false,
       bio : this.props.profileData.basic_data.bio,
+      nickName : this.props.profileData.basic_data.name,
       pricePerPost :  "" + this.props.profileData.basic_data.price_per_post,
       pricePerStory : "" + this.props.profileData.basic_data.price_per_story,
       phone : "" + this.props.profileData.basic_data.phone,
@@ -63,7 +65,7 @@ componentDidMount(){
 }
 
   _onPressInfluencerUpdateInfoSave(){
-   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory).then( (res) => {
+   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory,this.state.nickName).then( (res) => {
     this.setState({spinnerVisible: false });
     Actions.TabBarComponent();
   })
@@ -196,8 +198,6 @@ componentDidMount(){
             </TextInput>
           </View>
       </View>
-
-
     </View>
   </PopupDialog>
     <View style={styles.container}>
@@ -212,10 +212,18 @@ componentDidMount(){
           </View>
           <View style={styles.infoHolder}>
           <View style={ styles.infoTextHolder}>
+          {this.props.loginInfo.class == "Business" ? 
+            <TextInput style={styles.infoText} placeholder="Enter Brand Name" 
+            value = {this.state.nickName}
+            onChangeText={(nickName) => this.setState({nickName})}
+            >
+            </TextInput>
+            : 
             <Text style={styles.infoText}>
-          {!this.state.fetching ? this.props.profileData.basic_data.first_name + " ": ""}  
-          {!this.state.fetching ? this.props.profileData.basic_data.last_name: ""} 
-            </Text>
+            {!this.state.fetching ? this.props.profileData.basic_data.first_name + " ": ""}  
+            {!this.state.fetching ? this.props.profileData.basic_data.last_name: ""} 
+              </Text>
+          }
           </View>
           <View style={styles.infoTextHolder }>
             
@@ -500,6 +508,7 @@ infoTextHolder : {
   justifyContent  : 'center',
 },
 infoText: {
+  color : 'black',
   fontSize : 20,
   fontFamily : 'GothamRounded-Bold',
 },

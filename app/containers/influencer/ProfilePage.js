@@ -183,6 +183,8 @@ return(
           }
           {this.state.fetching ? <Text>Searching...</Text> : null }
           </View>
+            {this.props.loginInfo.class == "Influencer" ? 
+            <View>
           <View>
             <Text style={{
                           marginTop :10 ,
@@ -221,6 +223,10 @@ return(
               </View>
              </View>
           </View>
+          </View>
+          :
+          null
+          }
           <View style={styles.informationSlot}>
           <View>
             <View style={{flexDirection : 'row',alignItems : 'center'}}>

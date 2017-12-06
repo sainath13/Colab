@@ -152,7 +152,7 @@ componentDidMount(){
   <View style = {styles.content}>
     <View style={styles.header}>
       <Text style={styles.headerText}>
-        Update information
+        Update info
       </Text>
     </View>
     <PopupDialog
@@ -472,13 +472,13 @@ header: {
 headerText:{
 // color : '#6563A4',
   color: 'white',
-  fontSize : 20,
+  fontSize : 22,
   paddingTop : 25,
   fontFamily : 'GothamRounded-Bold'
 // fontFamily : 'arial'
 },
 container: {
-  flex: 10,
+  flex: 9,
 },
 picInfoHolder: {
   flexDirection:'row' ,

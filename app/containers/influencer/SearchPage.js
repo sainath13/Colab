@@ -22,7 +22,7 @@ var Spinner = require('react-native-spinkit');
 class SearchPage extends Component{
 constructor(props) {
     super(props)
-    this.state = {loadingNiche: true , showingSearchResults : false, loading : true, searching: false, searchInput: '', isNicheSelected : false , isNameSelected : true }
+    this.state = {loadingNiche: false , showingSearchResults : false, loading : false , searching: false, searchInput: '', isNicheSelected : false , isNameSelected : true }
     this.selectName = this.selectName.bind(this);
     this.selectNiche = this.selectNiche.bind(this);
 }
@@ -143,7 +143,8 @@ return(
        {this.state.showingSearchResults ? "Search results" : "Treding right now"} 
       </Text>
     </View>
-    { this.state.searching ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    { this.state.searching  || this.state.loading || this.state.loadingNiche ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    {console.log("showing this loading")}
     <Spinner style={{flex : 1, }} isVisible={this.state.searching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
   </View>
    : null}

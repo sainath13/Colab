@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Actions } from 'react-native-router-flux';
 import { ActionCreators } from '../../actions'
+var CustomTabBar = require('../components/CustomTabBar');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -74,8 +75,8 @@ return(
                 </Octicons>
         </View>
               }
-
-        <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
+<View style={{flexDirection : 'row'}}>
+        <View style={{flex: 2 ,alignItems : 'center',justifyContent : 'center'}}>
                         <TouchableHighlight
                         onPress={()=> {console.log("clicked on edit profile");
                         Actions.UpdateInfoPage();
@@ -85,7 +86,7 @@ return(
                         height : 35,
                         marginTop : 15,
                         marginBottom : 15,
-                        marginRight : 10,
+                        marginRight : 1,
                         borderRadius: 2,
                         borderColor:'#fefefe',
                         borderWidth : 3/2,
@@ -108,16 +109,43 @@ return(
                     </TouchableHighlight>
         </View>
 
+        <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
+                        <TouchableHighlight
+                        onPress={()=> {console.log("setting");
+                        //Actions.UpdateInfoPage();
+                      }}
+                         style={{
+                        width : 45,
+                        height : 35,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius: 2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#43416d',
+                        borderRadius : 5
+                    }}>
+                <Icon name="cog" size={20} color='white' >
+                </Icon>
+                    </TouchableHighlight>
+        </View>
+        </View>
+
       </View>
     </View>
   </View>
   <ScrollableTabView
-        style={{flex: 3, backgroundColor : 'white'}}
-        tabBarUnderlineStyle={{backgroundColor : 'white'}}
-        tabBarActiveTextColor='white'
-        tabBarInactiveTextColor='black'
-        tabBarBackgroundColor='#6563a4'
-        tabBarTextStyle= {{fontFamily: 'GothamRounded-Book', fontSize : 17, marginTop:10}}
+        style={{flex: 2.8, backgroundColor : 'white'}}
+        renderTabBar={() => <CustomTabBar 
+        underlineStyle={{backgroundColor : 'white'}}
+        activeTextColor='white'
+        inactiveTextColor='black'
+        backgroundColor='#6563a4'
+        textStyle= {{fontFamily: 'GothamRounded-Book', fontSize : 17, marginTop:10}}
+        />}
         >
         <ScrollView tabLabel="Bio" >
           <View style={styles.informationSlot}>

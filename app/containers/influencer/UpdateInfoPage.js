@@ -408,7 +408,7 @@ componentDidMount(){
     fontFamily : 'GothamRounded-Book',
     padding : 5,
     }}>
-    niche
+    Niche
   </Text>
 </View>
 

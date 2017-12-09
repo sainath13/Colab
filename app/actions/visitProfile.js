@@ -111,6 +111,7 @@ export function fetchVisitProfile(id,clickedUserId, isBusiness){
       }
     })//fetch
     .then((response) => {
+      console.log("visitPorfile",response.status);
       var loginObj = {};
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in profile.js");

@@ -64,6 +64,7 @@ export function updateInfo(id,instagram_name,bio,phone,price_per_post,price_per_
       //add .then(error) here only
       .then((response) => {
         var loginObj = {};
+        console.log("Update",response.status);
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         loginObj.accessToken = response.headers.get("access-token");
         loginObj.tokenType = response.headers.get("token-type");

@@ -43,6 +43,7 @@ export function signIn(accessToken,accountType){
       //add .then(error) here only
       .then((response) => {
         var loginObj = {};
+        console.log("auth",response.status)
         loginObj.accessToken = response.headers.get("access-token");
         loginObj.tokenType   = response.headers.get("token-type");
         loginObj.client      = response.headers.get("client");

@@ -44,6 +44,7 @@ export function fetchTrending(id){
       }
     })//fetch
     .then((response) => {
+      console.log("fetchTrending",response.status);
       var loginObj = {};
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in trending.js");

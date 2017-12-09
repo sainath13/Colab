@@ -67,6 +67,7 @@ export function fetchProfile(id){
     })//fetch
     .then((response) => {
       var loginObj = {};
+      console.log("fetchProfile",response.status);
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in profile.js");
         loginObj.accessToken = response.headers.get("access-token");

@@ -47,6 +47,7 @@ export function fetchInfluencer(id){
     })//fetch
     .then((response) => {
       var loginObj = {};
+      console.log("fetchInfluencers",response.status);
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in influencers.js");
         loginObj.accessToken = response.headers.get("access-token");

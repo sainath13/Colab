@@ -53,6 +53,7 @@ export function fetchSearch(id, searchInput,isNameSelected){
     })//fetch
     .then((response) => {
       var loginObj = {};
+      console.log("serach",response.status);
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in search.js");
         loginObj.accessToken = response.headers.get("access-token");

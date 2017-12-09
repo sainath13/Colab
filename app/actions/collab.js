@@ -93,6 +93,7 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
       }
     })//fetch
     .then((response) => {
+      console.log("acceptCollabRequest",response.status);
       var loginObj = {};
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in collab.js");
@@ -162,6 +163,7 @@ var REQUEST_COLLAB_INFLUENCER = "/request_influencer_for_collaboration";
       }
     })//fetch
     .then((response) => {
+      console.log("requestCOllaboration",response.status);
       var loginObj = {};
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in collab.js");

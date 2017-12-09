@@ -44,6 +44,7 @@ export function fetchFeed(id){
     })//fetch
     .then((response) => {
       var loginObj = {};
+      console.log("fetchFeed",response.status);
       if(response.headers.get("access-token") != state.loginInfo.accessToken){
         console.log("Received different access tokens in feeds.js");
         loginObj.accessToken = response.headers.get("access-token");

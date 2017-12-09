@@ -108,8 +108,7 @@ return(
 Influx
     </Text>
   </View>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ 
-   } } >
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={this.onPressChat} >
   <View style={{}}>
                 <Icon name="chat" size={25} color='white' >
                 </Icon>
@@ -150,11 +149,11 @@ Influx
       </TouchableHighlight>
     </View>
     <View style={styles.notificationBar}>
-      <TouchableHighlight onPress = {this.onPressChat}>
+      <View> 
       <Text style={styles.notificationBarText}>
         Notifications
       </Text>
-    </TouchableHighlight>
+    </View>
     </View>
     <View style={styles.listView}>
        <ScrollView>

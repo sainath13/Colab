@@ -112,7 +112,7 @@ return(
         <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
                         <TouchableHighlight
                         onPress={()=> {console.log("setting");
-                        //Actions.UpdateInfoPage();
+                        Actions.SettingPage();
                       }}
                          style={{
                         width : 45,

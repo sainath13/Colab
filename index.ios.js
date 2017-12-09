@@ -29,6 +29,7 @@ import SignInPage from './app/containers/influencer/SignInPage';
 import SignUpPage from './app/containers/influencer/SignUpPage';
 import OpeningPage from './app/containers/influencer/OpeningPage';
 import UpdateInfoPage from './app/containers/influencer/UpdateInfoPage';
+import SettingPage from './app/containers/influencer/SettingPage';
 import NicheSelectPage from './app/containers/influencer/NicheSelectPage';
 import FeedPage from './app/containers/influencer/FeedPage';
 import ProfilePage from './app/containers/influencer/ProfilePage';
@@ -73,6 +74,7 @@ const scenes = Actions.create(
         </Scene>
         <Scene key="SignUpPage" component={SignUpPage} hideNavBar />
         <Scene key="UpdateInfoPage" component={UpdateInfoPage} hideNavBar/>
+        <Scene key="SettingPage" component={SettingPage} hideNavBar/>
         <Scene key="NicheSelectPage" component={NicheSelectPage} hideNavBar />
         <Scene key="chatPage2" component={chatPage2} hideNavBar/>
         <Scene key="InfluencersListPage" component={InfluencersListPage} hideNavBar/>

@@ -14,6 +14,7 @@ import {
 //TODO: FINISHING CHANGEs required. remove the whole signedInuser thing. should just have headers
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { ActionCreators } from '../../actions'
 var CustomTabBar = require('../components/CustomTabBar');
 import { Actions } from 'react-native-router-flux';
@@ -62,6 +63,80 @@ return(
     barStyle="dark-content"
   />
 
+    <PopupDialog
+    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+  dialogTitle={<DialogTitle title="Options" titleTextStyle={{
+    color : 'gray',
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Medium',
+  }}/>}
+    height={0.3}
+  >
+    <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
+<TouchableHighlight onPress={()=> {console.log("Delete collaboration");}}>
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+            borderBottomColor : '#6563A4' ,
+            borderBottomWidth  : 2,
+            }}>
+<View style={{flex : 6,  justifyContent : 'center'}}>
+  <Text style={{
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Book',
+    padding : 15,
+    }}>
+   Delete collaboration 
+  </Text>
+</View>
+<View style={{flex : 1,
+  marginTop : 10,
+  marginBottom : 10,
+  marginLeft : 5,
+  marginRight : 10,
+  borderRadius:2,
+  paddingTop: 5,
+  paddingBottom: 5,
+  alignItems : 'center',
+  justifyContent: 'center',
+  //backgroundColor : '#6563A4',
+  borderRadius : 5}}>
+    <Icon name="trash" size={25} color='#6564A4' >
+    </Icon>
+</View>
+</View>
+</TouchableHighlight>
+<TouchableHighlight style={{marginTop : 10}}onPress={()=> {console.log("Message Devs");}}>
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+            borderBottomColor : '#6563A4' ,
+            borderBottomWidth  : 2,
+            }}>
+<View style={{flex : 6,  justifyContent : 'center'}}>
+  <Text style={{
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Book',
+    padding : 15,
+    }}>
+  Report Account 
+  </Text>
+</View>
+<View style={{flex : 1,
+  marginTop : 10,
+  marginBottom : 10,
+  marginLeft : 5,
+  marginRight : 10,
+  borderRadius:2,
+  paddingTop: 5,
+  paddingBottom: 5,
+  alignItems : 'center',
+  justifyContent: 'center',
+  //backgroundColor : '#6563A4',
+  borderRadius : 5}}>
+    <Icon name="ban" size={25} color='#6564A4' >
+    </Icon>
+</View>
+</View>
+</TouchableHighlight>
+    </View>
+  </PopupDialog>
   <View style = {styles.content}>
   <View style={{paddingTop : 20, backgroundColor : '#6364A4'}}>
   </View>
@@ -150,7 +225,7 @@ return(
         <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
                         <TouchableHighlight
                         onPress={()=> {console.log("setting");
-                        Actions.SettingPage();
+                        this.popupDialog.show();
                       }}
                          style={{
                         width : 45,

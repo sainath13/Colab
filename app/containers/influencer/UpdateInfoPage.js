@@ -43,6 +43,7 @@ class  UpdateInfoPage extends Component {
       spinnerVisible : false,
       fetching: true,
       nickName : "",
+      businessEmail : "",
       bio : "" , //this.props.signedInUser.basic_data.bio, 
       pricePerPost : "", // +this.props.signedInUser.basic_data.price_per_post ,
       pricePerStory : "" , // +this.props.signedInUser.basic_data.price_per_story,  
@@ -56,6 +57,7 @@ componentDidMount(){
     this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
       this.setState({fetching: false,
       bio : this.props.profileData.basic_data.bio,
+      businessEmail : this.props.profileData.basic_data.business_email,
       nickName : this.props.profileData.basic_data.name,
       pricePerPost :  "" + this.props.profileData.basic_data.price_per_post,
       pricePerStory : "" + this.props.profileData.basic_data.price_per_story,
@@ -65,7 +67,7 @@ componentDidMount(){
 }
 
   _onPressInfluencerUpdateInfoSave(){
-   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory,this.state.nickName).then( (res) => {
+   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory,this.state.nickName,this.state.businessEmail).then( (res) => {
     this.setState({spinnerVisible: false });
     Actions.TabBarComponent();
   })
@@ -352,6 +354,48 @@ componentDidMount(){
    onChangeText = {(text)=> this.onChangedPhone(text)}
    placeholder = "Enter here"
    value ={this.state.phone} 
+   style={{
+          flex : 1,
+          color : 'black',
+          fontSize : 17,
+          fontFamily :'GothamRounded-Book',
+    }}>
+  </TextInput>
+</View>
+</View>
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+            borderBottomColor : '#6563A4' ,
+            borderBottomWidth  : 2,
+            }}>
+<View style={{flex : 1,  justifyContent : 'center'}}>
+  <Text style={{
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Book',
+    padding : 5,
+    }}>
+Business Email 
+  </Text>
+</View>
+<View style={{flex : 1,
+  marginTop : 10,
+  marginBottom : 10,
+  marginLeft : 5,
+  marginRight : 10,
+  borderRadius:2,
+  borderColor:'#fefefe',
+  borderWidth : 3/2,
+  paddingTop: 5,
+  paddingLeft : 5,
+  paddingBottom: 5,
+  justifyContent: 'center',
+  backgroundColor : 'white',
+  borderRadius : 5}}>
+  <TextInput
+  maxLength={50}
+         onSubmitEditing={Keyboard.dismiss}
+   onChangeText = {(businessEmail)=> this.setState({businessEmail})}
+   placeholder = "Enter here"
+   value ={this.state.businessEmail} 
    style={{
           flex : 1,
           color : 'black',

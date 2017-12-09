@@ -217,6 +217,22 @@ return(
               )//return
             })//Map
           }
+        {! this.state.searching && this.state.showingSearchResults && (this.fetchSearch().length == 0) ?
+                <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', }}>
+                    <View style={{flex : 4, justifyContent : 'center', }}>
+                        <Text style={{
+                            fontSize: 17,
+                            fontFamily :'GothamRounded-Medium',
+                            marginLeft : 10,
+                            color : 'gray'
+                        }}>
+                        No results found 
+                        </Text>
+                    </View>
+                </View>
+:        null  
+      
+      }
         {! this.state.searching && this.state.showingSearchResults && this.fetchSearch().map((searchItem) => { 
                  return ( <TouchableHighlight key={searchItem.id}
                        onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>

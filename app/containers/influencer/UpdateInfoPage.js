@@ -363,6 +363,7 @@ componentDidMount(){
   </TextInput>
 </View>
 </View>
+{this.props.loginInfo.class == "Business" ?
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -405,6 +406,8 @@ Business Email
   </TextInput>
 </View>
 </View>
+: null
+}
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,

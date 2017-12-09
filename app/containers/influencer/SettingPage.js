@@ -9,6 +9,7 @@ import {
   TextInput,
   StatusBar,
   Keyboard,
+  AsyncStorage,
   Image
 } from 'react-native';
 const Dimensions = require('Dimensions');
@@ -279,7 +280,11 @@ Influencer Market Road map
   </Text>
 </View>
 <TouchableHighlight style={{flex: 1,}} 
-                        onPress={()=> {console.log("logout");}} > 
+                        onPress={()=> {console.log("logout");
+     AsyncStorage.multiRemove(['accessToken','tokenType','client', 'expiry', 'uid','id','class']);
+     Actions.reset('SignInPage');
+                        
+                        }} > 
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -384,7 +389,8 @@ row:{
 },
 rowLeft:{
     flex : 1,  
-    justifyContent : 'center'
+    justifyContent : 'center',
+    marginLeft : 10
 },
 rowLeftText:{
 fontSize : 17,

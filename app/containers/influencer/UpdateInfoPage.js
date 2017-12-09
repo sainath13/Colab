@@ -161,7 +161,12 @@ componentDidMount(){
     </View>
     <PopupDialog
     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-    dialogTitle={<DialogTitle title="Select Pricing structure" />}
+    dialogTitle={<DialogTitle title="Select Pricing structure" titleTextStyle={{
+      color : 'gray',
+      fontSize : 17,
+      fontFamily : 'GothamRounded-Medium',
+    }}
+    />}
   >
     <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
       <View style={{flex : 1}}>

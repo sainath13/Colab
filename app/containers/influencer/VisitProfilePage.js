@@ -107,6 +107,9 @@ return(
         />
       </View>
       <View style={styles.profileInfoHolder}>
+      <View style={{flexDirection : 'row',
+      marginLeft : 23 
+    }}>
         <View style={{flex: 1 ,alignItems : 'center',justifyContent: 'center'}}>
                         <TouchableHighlight
                         onPress={()=> {(console.log("clicked on edit profile")); this.onclickButton(this.props.visitProfileData.status)}}
@@ -143,6 +146,30 @@ return(
                         </Text>
                     </View>
                     </TouchableHighlight>
+        </View>
+        <View style={{flex: 1 ,alignItems : 'center',justifyContent : 'center'}}>
+                        <TouchableHighlight
+                        onPress={()=> {console.log("setting");
+                        Actions.SettingPage();
+                      }}
+                         style={{
+                        width : 45,
+                        height : 35,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius: 2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#43416d',
+                        borderRadius : 5
+                    }}>
+                <Icon name="cog" size={20} color='white' >
+                </Icon>
+                    </TouchableHighlight>
+        </View>
         </View>
 
       </View>
@@ -791,16 +818,11 @@ page: {
   },
   profileInfoHolder:{
     flex : 4,
-    paddingRight : 20
-    // borderColor : 'white',
-    // borderWidth : 1,
     // flexDirection : ''
+justifyContent : 'center',
   },
   profileInfoTextContainer:{
     flex : 1,
-    borderColor : 'white',
-    borderWidth : 1,
-    marginRight : 10
   },
   nameHolder:{
     flex: 2,

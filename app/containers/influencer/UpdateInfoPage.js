@@ -445,7 +445,7 @@ Business Email
         fontSize : 17,
         fontFamily :'GothamRounded-Book',
     }}>
-    {!this.state.fetching ? this.props.profileData.basic_data.email.slice(0,24): ""}
+    {!this.state.fetching ? this.props.profileData.basic_data.email.slice(0,24): " "}
   </Text>
 </View>
 </View>

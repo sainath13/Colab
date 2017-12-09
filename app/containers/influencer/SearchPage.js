@@ -188,7 +188,7 @@ return(
     : null}
         {!this.state.showingSearchResults && this.state.isNameSelected && !this.state.loading && this.fetchTrendingItems().map((searchItem) => { 
                  return ( <TouchableHighlight key={searchItem.id}
-                       onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
+                       onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : searchItem.isBusiness}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                     <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
                           <Image

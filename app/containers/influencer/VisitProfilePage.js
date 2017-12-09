@@ -15,6 +15,7 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions'
+var CustomTabBar = require('../components/CustomTabBar');
 import { Actions } from 'react-native-router-flux';
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -101,7 +102,7 @@ return(
     <View style={styles.contentPic}>
       <View style={[styles.profilePicHolder,{paddingLeft : 20}]}>
         <Image
-          style = {{width: 60, height: 60, borderRadius: 30, borderColor: 'white', borderWidth: 2,marginBottom : 15}}
+          style = {{width: 70, height: 70, borderRadius: 35, borderColor: 'white', borderWidth: 2,marginBottom : 15}}
           source = {require('../images/new.jpg')}
         />
       </View>
@@ -148,12 +149,14 @@ return(
     </View>
   </View>
   <ScrollableTabView
-        style={{flex: 3, backgroundColor : 'white'}}
-        tabBarUnderlineStyle={{backgroundColor : 'white'}}
-        tabBarActiveTextColor='white'
-        tabBarInactiveTextColor='black'
-        tabBarBackgroundColor='#6563a4'
-        tabBarTextStyle= {{fontFamily: 'GothamRounded-Book', fontSize : 17, marginTop:10}}
+        style={{flex: 2.8, backgroundColor : 'white'}}
+        renderTabBar={() => <CustomTabBar 
+        underlineStyle={{backgroundColor : 'white'}}
+        activeTextColor='white'
+        inactiveTextColor='black'
+        backgroundColor='#6563a4'
+        textStyle= {{fontFamily: 'GothamRounded-Book', fontSize : 17, marginTop:10}}
+        />}
         >
         <ScrollView tabLabel="Bio" >
           <View style={styles.informationSlot}>
@@ -231,6 +234,7 @@ return(
                       Pricing structure
             </Text>
             </View>
+            {this.props.visitProfileData.class == "Influencer" ? 
           <View style={styles.informationSlotPricing}>
             <View style={styles.informationSlotCard}>
               <Text style={styles.informationSlotCardHeadingText}>
@@ -240,7 +244,7 @@ return(
                     justifyContent : 'flex-end',
                 }}>
                 <Text style={styles.informationSlotCardPricingText}> 
-                {!this.state.fetching ? this.props.visitProfileData.price_per_story: null }
+                {!this.state.fetching ? this.props.visitProfileData.price_per_story + "$": null }
                 </Text>
               </View>
             </View>
@@ -252,11 +256,13 @@ return(
                     justifyContent : 'flex-end',
                 }}>
                 <Text style={styles.informationSlotCardPricingText}>
-                {!this.state.fetching ? this.props.visitProfileData.price_per_post: null }
+                {!this.state.fetching ? this.props.visitProfileData.price_per_post + "$" : null }
                 </Text>
               </View>
              </View>
           </View>
+          : null
+              }
           <View style={styles.informationSlot}>
           <View>
             <View style={{flexDirection : 'row',alignItems : 'center'}}>
@@ -767,7 +773,7 @@ page: {
     fontFamily : 'chalet',
   },
   content:{
-    flex : 0.78,
+    flex : 0.72,
     backgroundColor : '#FFFFFF',
     //paddingTop : 20, if we do this we get white status bar
   },

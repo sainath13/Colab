@@ -83,7 +83,7 @@ Options
         </View>
         <View style={styles.coloredWrapper}>
           <Text style={styles.wrappedText}>
-          {!this.state.fetching? this.props.profileData.basic_data.instagram_name: ""
+          {!this.state.fetching? this.props.profileData.basic_data.instagram_name: " "
           } 
           </Text>
         </View>

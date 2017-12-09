@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 //import RNActionCable from 'react-native-actioncable';
+import Icon from 'react-native-vector-icons/FontAwesome';
 //import ActionCableProvider, { ActionCable } from 'react-actioncable-provider';
 
 const GLOBAL = require('../../actions/Globals');
@@ -93,9 +94,21 @@ return(
     barStyle="light-content"
   />
   <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <View style={{}}>
+                <Icon name="chevron-left" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={styles.headerText}>
-      Influxer
+Chat
     </Text>
+  </View>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
+  <View style={{}}>
+  </View>
+  </TouchableHighlight>
   </View>
 
   <View style = {styles.content}>
@@ -165,6 +178,9 @@ var styles = StyleSheet.create({
      flex: 1,
      alignItems : "center",
      justifyContent : "center",
+    borderColor : '#333156',
+    borderBottomWidth : 3,
+    flexDirection : 'row',
      backgroundColor: '#6563A4',
     },
     notificationIcon:{
@@ -200,6 +216,7 @@ var styles = StyleSheet.create({
   headerText:{
     color : 'white',
     fontSize : 25,
+  paddingTop : 25,
     fontFamily : 'GothamRounded-Bold'
     // fontFamily : 'arial'
   },
@@ -231,7 +248,7 @@ var styles = StyleSheet.create({
     fontFamily : 'GothamRounded-Medium'
   },
   content:{
-    flex : 10,
+    flex : 8,
     backgroundColor : '#FFFFFF',
   },
   contentPic:{

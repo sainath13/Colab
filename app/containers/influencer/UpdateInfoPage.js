@@ -527,6 +527,8 @@ header: {
   flex: 1,
   alignItems : "center",
   justifyContent : "center",
+    borderColor : '#333156',
+    borderBottomWidth : 3,
   backgroundColor: '#6563a4',
 },
 headerText:{

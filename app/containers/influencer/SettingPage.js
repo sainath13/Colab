@@ -52,12 +52,24 @@ componentDidMount(){
     backgroundColor="#6563A4"
     barStyle="dark-content"
   />
+  <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <View style={{}}>
+                <Icon name="chevron-left" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
+    <Text style={styles.headerText}>
+Options
+    </Text>
+  </View>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
+  <View style={{}}>
+  </View>
+  </TouchableHighlight>
+  </View>
   <View style = {styles.content}>
-    <View style={styles.header}>
-      <Text style={styles.headerText}>
-      Options 
-      </Text>
-    </View>
     <View style={styles.container}>
       <View style={{flex: 9}}>
       <ScrollView style={{flex : 1}} scrollEnabled={false}>
@@ -332,14 +344,13 @@ Influencer Market Road map
 
 const styles = StyleSheet.create({
 content:{
-  flex : 1,
+  flex : 9,
   backgroundColor : '#FFFFFF',
     // paddingTop : 20,
 },
 header: {
+  flexDirection : 'row',
   flex: 1,
-  alignItems : "center",
-  justifyContent : "center",
   backgroundColor: '#6563a4',
 },
 headerText:{

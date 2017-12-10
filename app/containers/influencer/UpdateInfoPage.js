@@ -426,7 +426,14 @@ Business Email
     Email 
   </Text>
 </View>
-<View style={{flex : 2,
+<ScrollView 
+contentContainerStyle={{
+  justifyContent: 'center',
+  alignItems : 'center',
+}}
+directionalLockEnabled ={true}
+style={{flex : 2,
+  flexDirection : 'row',
   marginTop : 10,
   marginBottom : 10,
   marginLeft : 5,
@@ -436,8 +443,6 @@ Business Email
   borderWidth : 3/2,
   paddingTop: 5,
   paddingBottom: 5,
-  alignItems : 'center',
-  justifyContent: 'center',
   backgroundColor : 'white',
   borderRadius : 5}}>
   <Text style={{
@@ -445,9 +450,9 @@ Business Email
         fontSize : 17,
         fontFamily :'GothamRounded-Book',
     }}>
-    {!this.state.fetching ? this.props.profileData.basic_data.email.slice(0,24): " "}
+    {!this.state.fetching ? this.props.profileData.basic_data.email.slice(0,50): " "}
   </Text>
-</View>
+</ScrollView>
 </View>
 
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',

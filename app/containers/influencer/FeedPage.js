@@ -128,7 +128,7 @@ Influx
         </View>
       <View style={styles.bottomNumberTextContainer}>
         <Text style={styles.bottomNumberText}>
-         {!this.state.fetching ? this.props.feedData.influencer_collaborations_count  : " "} 
+         {!this.state.fetching ? this.props.feedData.influencer_collaborations_count  : "0"} 
         </Text>
       </View>
       </View>
@@ -143,7 +143,7 @@ Influx
         </View>
       <View style={styles.bottomNumberTextContainer}>
         <Text style={styles.bottomNumberText}>
-         {!this.state.fetching ? this.props.feedData.business_collaborations_count  : " "} 
+         {!this.state.fetching ? this.props.feedData.business_collaborations_count  : "0"} 
         </Text>
       </View>
       </View>

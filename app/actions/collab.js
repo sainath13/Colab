@@ -118,7 +118,7 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
       if(userType == "Influencer"){
         return dispatch(setAcceptedCollabRequest(responseJson.influencer_friend_id,responseJson.status,pageName,userType));
       }
-      if(userType == "Brand"){
+      if(userType == "Business"){
         return dispatch(setAcceptedCollabRequest(responseJson.business_id,responseJson.status,pageName,userType));
       }
     })//responseJson

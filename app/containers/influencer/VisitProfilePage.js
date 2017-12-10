@@ -76,7 +76,40 @@ return(
     height={0.3}
   >
     <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
-<TouchableHighlight onPress={()=> {console.log("Delete collaboration");}}>
+{this.props.visitProfileData.status == "accept collaberation" ? <TouchableHighlight onPress={()=> {console.log("Reject collaboration");}}>
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+            borderBottomColor : '#6563A4' ,
+            borderBottomWidth  : 2,
+            }}>
+<View style={{flex : 6,  justifyContent : 'center'}}>
+  <Text style={{
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Book',
+    padding : 15,
+    }}>
+  Reject Collab 
+  </Text>
+</View>
+<View style={{flex : 1,
+  marginTop : 10,
+  marginBottom : 10,
+  marginLeft : 5,
+  marginRight : 10,
+  borderRadius:2,
+  paddingTop: 5,
+  paddingBottom: 5,
+  alignItems : 'center',
+  justifyContent: 'center',
+  //backgroundColor : '#6563A4',
+  borderRadius : 5}}>
+    <Icon name="trash" size={25} color='#6564A4' >
+    </Icon>
+</View>
+</View>
+</TouchableHighlight>
+:
+null}
+{this.props.visitProfileData.status == "accepted" ? <TouchableHighlight onPress={()=> {console.log("Delete collaboration");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -107,6 +140,9 @@ return(
 </View>
 </View>
 </TouchableHighlight>
+:
+null}
+
 <TouchableHighlight style={{marginTop : 10}}onPress={()=> {console.log("Message Devs");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,

@@ -82,7 +82,7 @@ getLast5Messages(chat_pair){
     var message = {}
     message.chat_pair_id = chat_pair.id;
     this.props.chat('get_chat_pair_messages',{message})
-    Actions.chatPage2({chat_pair: chat_pair});
+    Actions.chatPage2({chat_pair: chat_pair, username : chat_pair.user2_name});
 }
 	render() {
 return(
@@ -105,10 +105,8 @@ return(
 Chat
     </Text>
   </View>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
-  <View style={{}}>
+  <View style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
   </View>
-  </TouchableHighlight>
   </View>
 
   <View style = {styles.content}>

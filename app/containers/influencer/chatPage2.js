@@ -13,6 +13,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux';
 
@@ -55,14 +56,27 @@ componentWillMount() {
 }
   render() {
 return(
-    <View style={{ flex: 1, paddingTop: STATUS_BAR_HEIGHT }}>
-      <View>
-        <TouchableHighlight onPress = {this.onPressBack}>
-          <Text>
-            go back
-          </Text>
-        </TouchableHighlight>
-      </View>
+    <View style={{ flex: 1,}}>
+  <StatusBar
+    backgroundColor="#6563A4"
+    barStyle="light-content"
+  />
+  <View style={styles.header}>
+  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <View style={{}}>
+                <Icon name="chevron-left" size={25} color='white' >
+                </Icon>
+  </View>
+  </TouchableHighlight>
+  <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
+    <Text style={styles.headerText}>
+{(this.props.username).slice(0,20)}
+    </Text>
+  </View>
+  <View style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
+  </View>
+  </View>
+  <View style={styles.content}>
           <GiftedChat
             messages={this.props.chatList[this.props.chat_pair.id].messages}
             onSend={(messageSend) => this.sendMessage(messageSend)}
@@ -71,15 +85,17 @@ return(
             }}
           />
     </View>
+    </View>
 )}
 };
 
 var styles = StyleSheet.create({
   header: {
      flex: 1,
-     alignItems : "center",
-     justifyContent : "center",
      backgroundColor: '#6563A4',
+    borderColor : '#333156',
+    borderBottomWidth : 3,
+    flexDirection : 'row'
     },
     notificationIcon:{
       flex : 2,
@@ -114,6 +130,7 @@ var styles = StyleSheet.create({
   headerText:{
     color : 'white',
     fontSize : 25,
+  paddingTop : 25,
     fontFamily : 'GothamRounded-Bold'
     // fontFamily : 'arial'
   },
@@ -145,7 +162,7 @@ var styles = StyleSheet.create({
     fontFamily : 'GothamRounded-Medium'
   },
   content:{
-    flex : 10,
+    flex : 8,
     backgroundColor : '#FFFFFF',
   },
   contentPic:{

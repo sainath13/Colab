@@ -19,10 +19,9 @@ export const visitProfileData = createReducer({
     }
   },
   [types.ACCEPT_COLLAB_REQUEST_VISITPROFILE](state,action){
-    return {
-      state : action.collabAccepted.status
+    return   action.collabAccepted.status
 
-    }
+    
   },
   
 })

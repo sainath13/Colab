@@ -13,10 +13,16 @@ export const visitProfileData = createReducer({
     return action.emtpyObject
   },
   [types.SET_REQUESTED_COLLABORATION_ON_VISIT_PROFILE](state,action){
-    console.log("I am here ")
     return {
       ...state,
       status : action.status
     }
-  }
+  },
+  [types.ACCEPT_COLLAB_REQUEST_VISITPROFILE](state,action){
+    return {
+      ...state,
+      status : action.status
+    }
+  },
+  
 })

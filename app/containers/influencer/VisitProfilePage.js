@@ -41,9 +41,6 @@ componentDidMount(){
 }
 onclickButton(statusString){
   if(statusString == "no connection"){
-    var isInfluencer =  this.props.visitProfileData.first_name ? "Influencer": "Brand";
-    // console.log(this)
-    this.props.requestCollaboration(this.props.loginInfo.id,this.props.visitProfileData.id,isInfluencer);
     //call collaborate
   }
   else if (statusString == "requested"){
@@ -51,6 +48,12 @@ onclickButton(statusString){
   }
   else if (statusString == "accepted"){
     //show message button
+  }
+  else if (statusString == "collaberate"){
+    this.props.requestCollaboration(this.props.loginInfo.id,this.props.visitProfileData.id,this.props.visitProfileData.class);
+  }
+  else if (statusString = "accept collaberation"){
+    this.props.acceptCollabRequest(this.props.loginInfo.id,this.props.visitProfileData.id,"VisitProfilePage",this.props.visitProfileData.class);
   }
 
 }
@@ -212,9 +215,11 @@ return(
                     }}>
       {(() => {
         switch (this.props.visitProfileData.status) {
-          case "no connection":   return "Collaborate";
+          case "no connection":   return "No Connection";
           case "requested": return "Requested";
           case "accepted":  return "Message";
+          case "collaberate":  return "Collaberate";
+          case "accept collaberation":  return "Accept Collab";
           default:      return "not available";
         }
       })()}

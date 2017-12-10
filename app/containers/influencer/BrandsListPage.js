@@ -216,7 +216,7 @@ Brands
                         </Text>
                     </View>
                     <TouchableHighlight 
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"BrandListPage","Brand")}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"BrandListPage","Business")}}
                     style={{flex : 2, 
                         marginTop : 10,
                         marginBottom : 10,

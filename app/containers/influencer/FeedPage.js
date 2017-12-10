@@ -272,7 +272,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                             </Text>
                         </View>
                         <TouchableHighlight
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Brand")}}
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Business")}}
                          style={{
                         width : 100,
                         height : 30,

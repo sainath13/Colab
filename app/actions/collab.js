@@ -40,6 +40,12 @@ export function setAcceptedCollabRequest(acceptedUserId,status,pageName,userType
         collabAccepted
       }
    }
+   if (pageName == "VisitProfilePage"){
+     return {
+       type : types.ACCEPT_COLLAB_REQUEST_VISITPROFILE,
+       collabAccepted
+     }
+   }
    if(pageName == "FeedPage"){
      if(userType == "Brand"){
       return {
@@ -76,7 +82,7 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
       //it is undefined. put error condition here
     }
   var ACCEPT_COLLAB_ROUTE = "";
-  if(userType == "Brand"){
+  if(userType == "Business"){
       ACCEPT_COLLAB_ROUTE = ROUTE_ + currentUserId + ACCEPT_COLLAB + "?business_id=" +acceptUserId;
   }
   if(userType == "Influencer"){
@@ -144,7 +150,7 @@ export function requestCollaboration(currentUserId,requestUserId,userType){
     }
   var REQUEST_COLLAB_ROUTE = "";
 var REQUEST_COLLAB_INFLUENCER = "/request_influencer_for_collaboration"; 
-  if(userType == "Brand"){
+  if(userType == "Business"){
     //never gonna hit
       REQUEST_COLLAB_ROUTE = ROUTE_ + currentUserId + REQUEST_COLLAB + "?business_id=" +acceptUserId;
   }

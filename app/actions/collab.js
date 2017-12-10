@@ -117,10 +117,10 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
     .then((responseJson) => {
       // console.log(responseJson);
       if(userType == "Influencer"){
-        return dispatch(setAcceptedCollabRequest(responseJson.influencer_friend_id,responseJson.status,pageName,userType));
+        return dispatch(setAcceptedCollabRequest(responseJson.id,responseJson,pageName,userType));
       }
       if(userType == "Business"){
-        return dispatch(setAcceptedCollabRequest(responseJson.business_id,responseJson.status,pageName,userType));
+        return dispatch(setAcceptedCollabRequest(responseJson.id,responseJson,pageName,userType));
       }
     })//responseJson
     .catch((error) => {

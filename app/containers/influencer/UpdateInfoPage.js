@@ -38,10 +38,14 @@ class  UpdateInfoPage extends Component {
     super(props);
     this._onPressInfluencerNicheSelect = this._onPressInfluencerNicheSelect.bind(this);
     this._onPressPriceSelect = this._onPressPriceSelect.bind(this);
+    this._onPressPaymentSelect = this._onPressPaymentSelect.bind(this);
     this._onPressInfluencerUpdateInfoSave = this._onPressInfluencerUpdateInfoSave.bind(this)
     this.state = { 
       spinnerVisible : false,
       fetching: true,
+      paypal : "",
+      paytm : "",
+      upi : "",
       nickName : "",
       businessEmail : "",
       bio : "" , //this.props.signedInUser.basic_data.bio, 
@@ -57,6 +61,9 @@ componentDidMount(){
     this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
       this.setState({fetching: false,
       bio : this.props.profileData.basic_data.bio,
+      paypal : this.props.profileData.advanced_data.payments.paypal,
+      paytm : this.props.profileData.advanced_data.payments.paytm,
+      upi : this.props.profileData.advanced_data.payments.upi,
       businessEmail : this.props.profileData.basic_data.business_email,
       nickName : this.props.profileData.basic_data.name,
       pricePerPost :  "" + this.props.profileData.basic_data.price_per_post,
@@ -67,9 +74,9 @@ componentDidMount(){
 }
 
   _onPressInfluencerUpdateInfoSave(){
-   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory,this.state.nickName,this.state.businessEmail).then( (res) => {
+   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory,this.state.nickName,this.state.paypal, this.state.paytm,this.state.upi,this.state.businessEmail).then( (res) => {
     this.setState({spinnerVisible: false });
-    Actions.TabBarComponent();
+    Actions.reset('TabBarComponent');
   })
     ;
     //Actions.tabbar();
@@ -77,7 +84,9 @@ componentDidMount(){
   _onPressInfluencerNicheSelect(){
      Actions.NicheSelectPage();
   }
-
+  _onPressPaymentSelect(){
+    this.popupDialogPayment.show();
+  }
   _onPressPriceSelect(){
     this.popupDialog.show();
   }
@@ -159,6 +168,64 @@ componentDidMount(){
         Update info
       </Text>
     </View>
+    <PopupDialog
+    ref={(popupDialogPayment) => { this.popupDialogPayment = popupDialogPayment; }}
+    dialogTitle={<DialogTitle title="Select preferred Payment methods" titleTextStyle={{
+      color : 'gray',
+      fontSize : 17,
+      fontFamily : 'GothamRounded-Medium',
+    }}
+    />}
+  >
+    <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
+      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+          PayPal
+          </Text>
+          </View>
+            <TextInput 
+            placeholder = "Enter PayPal Id"
+            onChangeText = {(paypal)=> this.setState({paypal})}
+            value= {this.state.paypal}
+            style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+            </TextInput>
+      </View>
+      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+        Paytm 
+          </Text>
+          </View>
+            <TextInput 
+            placeholder = "Enter Paytm id"
+            onChangeText = {(paytm)=> this.setState({paytm})}
+            value= {this.state.paytm}
+            style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+            </TextInput>
+      </View>
+      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+       UPI 
+          </Text>
+          </View>
+            <TextInput 
+            placeholder = "Enter UPI"
+            onChangeText = {(upi)=> this.setState({upi})}
+            value= {this.state.upi}
+            style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+            </TextInput>
+      </View>
+      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 15}}>
+        More payment methods will be added soon on demand
+          </Text>
+          </View>
+      </View>
+    </View>
+  </PopupDialog>
     <PopupDialog
     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
     dialogTitle={<DialogTitle title="Select Pricing structure" titleTextStyle={{
@@ -299,6 +366,47 @@ componentDidMount(){
       </Text>
     </View>
     <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPriceSelect}>              
+    <View style={{flex : 1,
+      marginTop : 10,
+      marginBottom : 10,
+      marginLeft : 5,
+      marginRight : 10,
+      borderRadius:2,
+      borderColor:'#fefefe',
+      borderWidth : 3/2,
+      paddingTop: 5,
+      paddingBottom: 5,
+      alignItems : 'center',
+      justifyContent: 'center',
+      backgroundColor : '#6563A4',
+      borderRadius : 5}}>
+      <Text style={{
+        color : 'white',
+        fontSize : 18,
+        fontFamily :'GothamRounded-Medium',
+        }}>
+       select 
+      </Text>
+    </View>
+    </TouchableHighlight>
+</View>
+: null
+    }
+    { this.props.loginInfo.class == "Influencer" ?
+    <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+                borderBottomColor : '#6563A4' ,
+                borderBottomWidth  : 2,
+              }}>             
+    <View style={{flex : 1,  justifyContent : 'center'}}>
+      <Text style={{
+        fontSize : 17,
+        fontFamily : 'GothamRounded-Book',
+        padding : 5,
+        }}>
+Payment Methods
+      </Text>
+    </View>
+    <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPaymentSelect}>              
     <View style={{flex : 1,
       marginTop : 10,
       marginBottom : 10,

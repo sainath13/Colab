@@ -53,7 +53,7 @@ export const chatList = createReducer({
       ...state,
       [action.message.chat_pair_id] : {
         ...state[action.message.chat_pair_id],
-        messages: [ action.message, ...state[action.message.chat_pair_id].messages ]
+        messages: [ action.message, ...state[action.message.chat_pair_id].messages || [] ]
       }
     }
   },

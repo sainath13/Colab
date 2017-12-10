@@ -239,7 +239,7 @@ var styles = StyleSheet.create({
     fontFamily : 'GothamRounded-Medium'
   },
   content:{
-    flex : 8,
+    flex : 9,
     backgroundColor : '#FFFFFF',
   },
   contentPic:{

@@ -209,7 +209,7 @@ return(
                             fontFamily :'GothamRounded-Book',
                             marginLeft : 10,
                         }}>
-                      {searchItem.first_name + " " + searchItem.last_name } 
+                      {searchItem.class =="Influencer" ?searchItem.first_name + " " + searchItem.last_name : searchItem.name } 
                         </Text>
                     </View>
                 </View>
@@ -256,7 +256,7 @@ return(
                             fontFamily :'GothamRounded-Book',
                             marginLeft : 10,
                         }}>
-                      {searchItem.first_name + " " + searchItem.last_name } 
+                      {searchItem.class =="Influencer" ?searchItem.first_name + " " + searchItem.last_name : searchItem.name } 
                         </Text>
                     </View>
                 </View>

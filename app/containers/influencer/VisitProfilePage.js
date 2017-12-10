@@ -300,7 +300,7 @@ return(
             </Text>
             </View>
           <View style={styles.informationCategoriesSlot}>
-            {! this.state.fetching && this.props.visitProfileData.niche.map((nicheItem,i)=>{
+            {! this.state.fetching && this.props.visitProfileData.class=="Influencer" && this.props.visitProfileData.niche.map((nicheItem,i)=>{
               return (
               
                     <View key={i} style={{

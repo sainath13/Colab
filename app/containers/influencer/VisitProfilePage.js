@@ -233,7 +233,7 @@ return(
                         this.popupDialog.show();
                       }}
                          style={{
-                        width : 45,
+                        width : 40,
                         height : 35,
                         marginTop : 15,
                         marginBottom : 15,
@@ -246,7 +246,7 @@ return(
                         backgroundColor : '#43416d',
                         borderRadius : 5
                     }}>
-                <Icon name="cog" size={20} color='white' >
+                <Icon name="caret-down" size={20} color='white' >
                 </Icon>
                     </TouchableHighlight>
         </View>

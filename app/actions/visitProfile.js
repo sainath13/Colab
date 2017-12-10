@@ -93,10 +93,10 @@ export function fetchVisitProfile(id,clickedUserId, isBusiness){
       //it is undefined. put error condition here
     }
   var URL = "";
-  if(isBusiness == "false"){
+  if(isBusiness == "false" || !isBusiness ){
     URL = ROUTE_ + id + INFLUENCER_PROFILE + "?influencer_id=" +clickedUserId ;
   }
-  else if(isBusiness == "true"){
+  else if(isBusiness == "true" || isBusiness){
     URL = ROUTE_ + id + BUSINESS_PROFILE + "?visited_business_id=" + clickedUserId ;
   }
   console.log(URL)

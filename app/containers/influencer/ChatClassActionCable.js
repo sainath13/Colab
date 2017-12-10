@@ -113,11 +113,6 @@ Chat
 
   <View style = {styles.content}>
     <View style={styles.notificationBar}>
-      <TouchableHighlight onPress = {this.sendMessage}>
-      <Text style={styles.notificationBarText}>
-        List of people with whom you chat
-      </Text>
-    </TouchableHighlight>
     </View>
     <View style={styles.listView}>
       <ScrollView>
@@ -275,8 +270,7 @@ var styles = StyleSheet.create({
     // borderWidth : 2,
   },
   notificationBar:{
-    flex : 1,
-    marginLeft : 10,
+    marginTop : 10,
     justifyContent: 'center',
   },
   notificationBarText:{

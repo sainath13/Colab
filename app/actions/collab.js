@@ -41,6 +41,7 @@ export function setAcceptedCollabRequest(acceptedUserId,status,pageName,userType
       }
    }
    if (pageName == "VisitProfilePage"){
+     console.log("collabAccepted is ",collabAccepted );
      return {
        type : types.ACCEPT_COLLAB_REQUEST_VISITPROFILE,
        collabAccepted

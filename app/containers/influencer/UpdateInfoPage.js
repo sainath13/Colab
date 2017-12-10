@@ -280,7 +280,7 @@ componentDidMount(){
         <View style={styles.picInfoHolder}>
           <View style={styles.picHolder}>
                 <Image
-                  style = {{width: 70, height: 70, borderRadius: 35, margin: 10}}
+                  style = {{width: 50, height: 50, borderRadius: 25, margin: 10,borderWidth: 2, borderColor: 'white'}}
                   source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
                 />
           </View>
@@ -298,9 +298,6 @@ componentDidMount(){
             {!this.state.fetching ? this.props.profileData.basic_data.last_name: ""} 
               </Text>
           }
-          </View>
-          <View style={styles.infoTextHolder }>
-            
           </View>
           </View>
         </View>
@@ -656,9 +653,11 @@ container: {
   flex: 9,
 },
 picInfoHolder: {
+  backgroundColor: '#6563a4',
   flexDirection:'row' ,
-  borderBottomWidth : 2 ,
-  borderBottomColor : '#F6F5FA'
+  flex : 1,
+  borderBottomWidth : 2,
+    borderColor : 'black'
 },
 picHolder : {
   flex : 1,
@@ -675,7 +674,7 @@ infoTextHolder : {
   justifyContent  : 'center',
 },
 infoText: {
-  color : 'black',
+  color : 'white',
   fontSize : 20,
   fontFamily : 'GothamRounded-Bold',
 },

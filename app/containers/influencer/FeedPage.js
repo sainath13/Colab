@@ -39,6 +39,7 @@ componentDidMount(){
   this.setState({fetching: true});
   this.props.fetchFeed(this.props.loginInfo.id).then( (res) => {
     this.setState({fetching: false })
+    console.log("business_collaborations_count",this.props.feedData.business_collaborations_count);
   this.props.setChatObject(this.refs.roomChannel.perform);
   })
   // console.log("This is this from feed",this);
@@ -127,7 +128,7 @@ Influx
         </View>
       <View style={styles.bottomNumberTextContainer}>
         <Text style={styles.bottomNumberText}>
-             123
+         {!this.state.fetching ? this.props.feedData.influencer_collaborations_count  : " "} 
         </Text>
       </View>
       </View>
@@ -142,7 +143,7 @@ Influx
         </View>
       <View style={styles.bottomNumberTextContainer}>
         <Text style={styles.bottomNumberText}>
-          12
+         {!this.state.fetching ? this.props.feedData.business_collaborations_count  : " "} 
         </Text>
       </View>
       </View>

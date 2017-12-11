@@ -56,7 +56,7 @@ return(
         />
       </View>
       <View style={styles.profileInfoHolder}>
-       { this.props.loginInfo.class=="Influencer" ?
+       { this.props.profileData.class=="Influencer" ?
         <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
           <Text style={{  height:30, borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
@@ -211,7 +211,7 @@ return(
           }
           {this.state.fetching ? <Text>Searching...</Text> : null }
           </View>
-            {this.props.loginInfo.class == "Influencer" ? 
+            {this.props.profileData.class == "Influencer" ? 
             <View>
           <View>
             <Text style={{
@@ -385,7 +385,7 @@ return(
             </Text>
             </View>
           </View>
-          {this.props.loginInfo.class == "Business" ? 
+          {this.props.profileData.class == "Business" ? 
           <View style={styles.informationSlot}>
           <View>
             <View style={{flexDirection : 'row',alignItems : 'center'}}>

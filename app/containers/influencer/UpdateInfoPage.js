@@ -63,7 +63,7 @@ componentDidMount(){
     this.setState({ fetching: true })
     //Data fetching should happen here only.
     this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
-      if(this.props.loginInfo.class=="Influencer"){
+      if(this.props.profileData.class=="Influencer"){
       this.setState({
       paypal : this.props.profileData.advanced_data.payments.paypal,
       currency : this.props.profileData.basic_data.currency,
@@ -321,7 +321,7 @@ componentDidMount(){
           </View>
           <View style={styles.infoHolder}>
           <View style={ styles.infoTextHolder}>
-          {this.props.loginInfo.class == "Business" ? 
+          {this.props.profileData.class == "Business" ? 
             <TextInput style={styles.infoText} placeholder="Enter Brand Name" 
             value = {this.state.nickName}
             onChangeText={(nickName) => this.setState({nickName})}
@@ -388,7 +388,7 @@ componentDidMount(){
        </TextInput>
      </View>
     </View>
-    { this.props.loginInfo.class == "Influencer" ?
+    { this.props.profileData.class == "Influencer" ?
     <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
                 borderBottomColor : '#6563A4' ,
                 borderBottomWidth  : 2,
@@ -429,7 +429,7 @@ componentDidMount(){
 </View>
 : null
     }
-    { this.props.loginInfo.class == "Influencer" ?
+    { this.props.profileData.class == "Influencer" ?
     <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
                 borderBottomColor : '#6563A4' ,
                 borderBottomWidth  : 2,
@@ -521,7 +521,7 @@ Payment Methods
   </TextInput>
 </View>
 </View>
-{this.props.loginInfo.class == "Business" ?
+{this.props.profileData.class == "Business" ?
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,

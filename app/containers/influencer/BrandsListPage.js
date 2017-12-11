@@ -66,10 +66,8 @@ return(
 Brands
     </Text>
   </View>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ Actions.pop(); } } >
-  <View style={{}}>
+  <View style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  >
   </View>
-  </TouchableHighlight>
 </View>
   <View style = {styles.content}>
   {this.state.isAcceptedShowing ?

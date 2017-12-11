@@ -9,9 +9,11 @@ import {
   TextInput,
   StatusBar,
   Keyboard,
-  Image
+  Image,
+  Picker
 } from 'react-native';
 const Dimensions = require('Dimensions');
+import SmartPicker from '../components/react-native-smart-picker';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 //also need to provide information here
@@ -45,6 +47,7 @@ class  UpdateInfoPage extends Component {
       fetching: true,
       paypal : "",
       paytm : "",
+      currency : "$",
       upi : "",
       nickName : "",
       businessEmail : "",
@@ -59,22 +62,33 @@ componentDidMount(){
     this.setState({ fetching: true })
     //Data fetching should happen here only.
     this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {
-      this.setState({fetching: false,
-      bio : this.props.profileData.basic_data.bio,
+      if(this.props.loginInfo.class=="Influencer"){
+      this.setState({
       paypal : this.props.profileData.advanced_data.payments.paypal,
+      currency : this.props.profileData.basic_data.currency,
       paytm : this.props.profileData.advanced_data.payments.paytm,
       upi : this.props.profileData.advanced_data.payments.upi,
-      businessEmail : this.props.profileData.basic_data.business_email,
-      nickName : this.props.profileData.basic_data.name,
       pricePerPost :  "" + this.props.profileData.basic_data.price_per_post,
       pricePerStory : "" + this.props.profileData.basic_data.price_per_story,
+      bio : this.props.profileData.basic_data.bio,
       phone : "" + this.props.profileData.basic_data.phone,
-      })
+      fetching: false,
+      });
+      }
+      else{
+        this.setState({
+      businessEmail : this.props.profileData.basic_data.business_email,
+      nickName : this.props.profileData.basic_data.name,
+      bio : this.props.profileData.basic_data.bio,
+      phone : "" + this.props.profileData.basic_data.phone,
+      fetching: false,
+        })
+      }
     })
 }
 
   _onPressInfluencerUpdateInfoSave(){
-   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory,this.state.nickName,this.state.paypal, this.state.paytm,this.state.upi,this.state.businessEmail).then( (res) => {
+   this.props.updateInfo(this.props.loginInfo.id,"instagram_name",this.state.bio,this.state.phone,this.state.pricePerPost,this.state.pricePerStory,this.state.nickName,this.state.paypal, this.state.paytm,this.state.upi,this.state.currency,this.state.businessEmail).then( (res) => {
     this.setState({spinnerVisible: false });
     Actions.reset('TabBarComponent');
   })
@@ -235,7 +249,27 @@ componentDidMount(){
     }}
     />}
   >
-    <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
+    <ScrollView style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
+      <View style={{flex : 1}}>
+        <View style={{flex : 1}}>
+          </View>
+          <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
+            <ScrollView style={{flex : 2}}>
+      <SmartPicker
+      iosPickerStyle={{}}
+        selectedValue={this.state.currency}
+        label='Select currency'
+        onValueChange={(value) => {this.setState({currency : value})}}
+      >
+        <Picker.Item label='Indian rupee' value='₹' />
+        <Picker.Item label='Euro' value='€' />
+        <Picker.Item label='US Dollar' value='$' />
+        <Picker.Item label='Pound sterling' value='£' />
+        <Picker.Item label='Yuan' value='¥' />
+      </SmartPicker>
+    </ScrollView>
+          </View>
+      </View>
       <View style={{flex : 1}}>
         <View style={{flex : 1}}>
           <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
@@ -272,7 +306,7 @@ componentDidMount(){
             </TextInput>
           </View>
       </View>
-    </View>
+    </ScrollView>
   </PopupDialog>
     <View style={styles.container}>
       <View style={{flex: 9}}>

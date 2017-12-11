@@ -87,7 +87,9 @@ Options
         </View>
     </View>
 
-<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Message Devs");}}>
+<TouchableHighlight style={{flex: 1,}} onPress={()=> {
+  Actions.WebViewPage();
+  console.log("Message Devs");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -351,6 +353,8 @@ content:{
 },
 header: {
   flexDirection : 'row',
+    borderColor : '#333156',
+    borderBottomWidth : 3,
   flex: 1,
   backgroundColor: '#6563a4',
 },

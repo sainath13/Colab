@@ -15,6 +15,7 @@ import {
 const Dimensions = require('Dimensions');
 import SmartPicker from '../components/react-native-smart-picker';
 import Spinner from 'react-native-loading-spinner-overlay';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 //also need to provide information here
 //but profile route gives us this information anyway right?
@@ -336,6 +337,10 @@ componentDidMount(){
           </View>
         </View>
         <View style={styles.row}>
+<View style={{paddingBottom : 5,alignItems : 'center',justifyContent:'center',paddingLeft:10}}>
+                <Icon name="instagram" size={20} color='#6463A4' >
+                </Icon>
+                </View>
         <View style={styles.rowLeft}>
           <Text style={styles.rowLeftText}>
             Instagram handle
@@ -350,6 +355,7 @@ componentDidMount(){
     <View style={{
         backgroundColor : '#F6F5FA',
         borderBottomWidth : 2 , borderBottomColor : '#6563A4',
+        paddingLeft: 10,
     }}>
         <Text style={{
             fontSize : 17,
@@ -387,7 +393,7 @@ componentDidMount(){
                 borderBottomColor : '#6563A4' ,
                 borderBottomWidth  : 2,
               }}>             
-    <View style={{flex : 1,  justifyContent : 'center'}}>
+    <View style={{flex : 1,  justifyContent : 'center',paddingLeft : 10}}>
       <Text style={{
         fontSize : 17,
         fontFamily : 'GothamRounded-Book',
@@ -428,7 +434,11 @@ componentDidMount(){
                 borderBottomColor : '#6563A4' ,
                 borderBottomWidth  : 2,
               }}>             
-    <View style={{flex : 1,  justifyContent : 'center'}}>
+              <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+                <Icon name="lock" size={20} color='#6463A4' >
+                </Icon>
+                </View>
       <Text style={{
         fontSize : 17,
         fontFamily : 'GothamRounded-Book',
@@ -470,7 +480,11 @@ Payment Methods
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
             }}>
-<View style={{flex : 1,  justifyContent : 'center'}}>
+<View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+                <Icon name="lock" size={20} color='#6463A4' >
+                </Icon>
+                </View>
   <Text style={{
     fontSize : 17,
     fontFamily : 'GothamRounded-Book',
@@ -512,7 +526,11 @@ Payment Methods
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
             }}>
-<View style={{flex : 1,  justifyContent : 'center'}}>
+            <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+                <Icon name="lock" size={20} color='#6463A4' >
+                </Icon>
+                </View>
   <Text style={{
     fontSize : 17,
     fontFamily : 'GothamRounded-Book',
@@ -556,7 +574,11 @@ Business Email
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
             }}>
-<View style={{flex : 1,  justifyContent : 'center'}}>
+            <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+                <Icon name="lock" size={20} color='#6463A4' >
+                </Icon>
+                </View>
   <Text style={{
     fontSize : 17,
     fontFamily : 'GothamRounded-Book',
@@ -724,7 +746,7 @@ row:{
 },
 rowLeft:{
     flex : 1,  
-    justifyContent : 'center'
+    justifyContent : 'center',
 },
 rowLeftText:{
 fontSize : 17,
@@ -743,6 +765,7 @@ coloredWrapper:{
           paddingTop: 5,
           paddingBottom: 5,
           justifyContent: 'center',
+          alignItems : 'center',
           backgroundColor : '#6563A4',
             borderRadius : 5
 },
@@ -750,7 +773,6 @@ wrappedText:{
     color : 'white',
     fontSize : 17,
     fontFamily :'GothamRounded-Bold',
-    paddingLeft : 20,
 },
 });
 

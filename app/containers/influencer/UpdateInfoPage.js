@@ -258,7 +258,7 @@ componentDidMount(){
             <ScrollView style={{flex : 2}}>
       <SmartPicker
       iosPickerStyle={{}}
-        selectedValue={this.state.currency}
+        selectedValue={this.state.currency ? this.state.currency : "$"}
         label='Select currency'
         onValueChange={(value) => {this.setState({currency : value})}}
       >

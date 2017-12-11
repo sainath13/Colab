@@ -89,6 +89,7 @@ Options
         </View>
     </View>
 
+<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Message Devs");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -102,7 +103,6 @@ Options
     Message Devs
   </Text>
 </View>
-<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Message Devs");}}>
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -118,10 +118,11 @@ Options
     <Icon name="caret-right" size={25} color='#6564A4' >
     </Icon>
 </View>
-</TouchableHighlight>
 </View>
+</TouchableHighlight>
 
 
+<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Influencer Market Road map");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -135,7 +136,6 @@ Options
 Influencer Market Road map 
   </Text>
 </View>
-<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Influencer Market Road map");}}>
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -151,8 +151,10 @@ Influencer Market Road map
     <Icon name="caret-right" size={25} color='#6564A4' >
     </Icon>
 </View>
-</TouchableHighlight>
 </View>
+</TouchableHighlight>
+
+<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Community Guidelines");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -166,7 +168,6 @@ Influencer Market Road map
  Community Guidelines 
   </Text>
 </View>
-<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Community Guidelines");}}>
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -182,8 +183,10 @@ Influencer Market Road map
     <Icon name="caret-right" size={25} color='#6564A4' >
     </Icon>
 </View>
-</TouchableHighlight>
 </View>
+</TouchableHighlight>
+
+<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Terms and Conditions");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -197,7 +200,6 @@ Influencer Market Road map
     Terms and Conditions
   </Text>
 </View>
-<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Terms and Conditions");}}>
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -213,9 +215,10 @@ Influencer Market Road map
     <Icon name="caret-right" size={25} color='#6564A4' >
     </Icon>
 </View>
-</TouchableHighlight>
 </View>
+</TouchableHighlight>
 
+<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Privacy Policy");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -229,7 +232,6 @@ Influencer Market Road map
   Privacy Policy 
   </Text>
 </View>
-<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Privacy Policy");}}>
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -245,8 +247,10 @@ Influencer Market Road map
     <Icon name="caret-right" size={25} color='#6564A4' >
     </Icon>
 </View>
-</TouchableHighlight>
 </View>
+</TouchableHighlight>
+
+<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Open-source Libraries");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -260,7 +264,6 @@ Influencer Market Road map
    Open-source Libraries
   </Text>
 </View>
-<TouchableHighlight style={{flex: 1,}} onPress={()=> {console.log("Open-source Libraries");}}>
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -276,8 +279,14 @@ Influencer Market Road map
     <Icon name="caret-right" size={25} color='#6564A4' >
     </Icon>
 </View>
-</TouchableHighlight>
 </View>
+</TouchableHighlight>
+
+<TouchableHighlight style={{flex: 1,}} 
+                        onPress={()=> {console.log("logout");
+     AsyncStorage.multiRemove(['accessToken','tokenType','client', 'expiry', 'uid','id','class']);
+     Actions.reset('SignInPage');
+                        }} > 
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -291,12 +300,6 @@ Influencer Market Road map
     Log out
   </Text>
 </View>
-<TouchableHighlight style={{flex: 1,}} 
-                        onPress={()=> {console.log("logout");
-     AsyncStorage.multiRemove(['accessToken','tokenType','client', 'expiry', 'uid','id','class']);
-     Actions.reset('SignInPage');
-                        
-                        }} > 
 <View style={{flex : 1,
   marginTop : 10,
   marginBottom : 10,
@@ -312,8 +315,8 @@ Influencer Market Road map
     <Icon name="caret-right" size={25} color='#6564A4' >
     </Icon>
 </View>
-</TouchableHighlight>
 </View>
+</TouchableHighlight>
       </ScrollView>
       </View>
 

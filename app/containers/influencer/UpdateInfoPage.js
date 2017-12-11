@@ -620,7 +620,7 @@ style={{flex : 2,
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
             }}>
-<View style={{flex : 1,  justifyContent : 'center'}}>
+<View style={{flex : 1,  justifyContent : 'center',paddingLeft : 10}}>
   <Text style={{
     fontSize : 17,
     fontFamily : 'GothamRounded-Book',

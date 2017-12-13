@@ -145,7 +145,7 @@ return(
     </View>
     { this.state.searching  || this.state.loading || this.state.loadingNiche ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
     {console.log("showing this loading")}
-    <Spinner style={{flex : 1, }} isVisible={this.state.searching || this.state.loading || this.state.loadingNiche } size={50} type={'ThreeBounce'} color={'#65634A'}/>
+    <Spinner style={{flex : 1, }} isVisible={this.state.searching || ( this.state.loading && this.state.loadingNiche) } size={50} type={'ThreeBounce'} color={'#65634A'}/>
   </View>
    : null}
     <View style={styles.listView}>

@@ -12,6 +12,7 @@ import {
   AsyncStorage,
   StatusBar,
 } from 'react-native';
+var Spinner = require('react-native-spinkit');
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 
 import { connect } from 'react-redux'
@@ -157,6 +158,10 @@ Influx
     </View>
     </View>
     <View style={styles.listView}>
+        {this.state.fetching ? 
+   <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View> : 
        <ScrollView>
            {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
              if(feedItem.status == "requested"){
@@ -351,6 +356,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
            })//map
          }
       </ScrollView>
+        }
     </View>
 
   </View>

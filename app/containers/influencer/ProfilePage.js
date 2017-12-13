@@ -151,7 +151,7 @@ return(
         <ScrollView tabLabel="Bio" >
         {this.state.fetching ? 
    <View style={{alignItems: 'center' , justifyContent: 'center', }}>
-    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+    <Spinner style={{flex : 1,marginTop : 30 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
   </View> : 
   <View>
           <View style={styles.informationSlot}>
@@ -452,7 +452,7 @@ return(
         <View tabLabel="Stats" style={{flex : 10}}>
         {this.state.fetching ? 
    <View style={{alignItems: 'center' , justifyContent: 'center', }}>
-    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+    <Spinner style={{flex : 1, marginTop : 30 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
   </View> : 
   <View style={{flex:10}}>
             <View style={{flex : 2,  backgroundColor: '#fefefe', flexDirection : 'row' }}>
@@ -512,7 +512,7 @@ return(
         <ScrollView tabLabel="Collab" >
         {this.state.fetching ? 
    <View style={{alignItems: 'center' , justifyContent: 'center', }}>
-    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+    <Spinner style={{flex : 1, marginTop : 30 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
   </View> : 
   <View>
             <View style={{ backgroundColor: '#F6F5FA'}}>

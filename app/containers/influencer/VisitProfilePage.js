@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 //TODO: FINISHING CHANGEs required. remove the whole signedInuser thing. should just have headers
+var Spinner = require('react-native-spinkit');
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
@@ -329,6 +330,12 @@ null}
         />}
         >
         <ScrollView tabLabel="Bio" >
+
+        {this.state.fetching ? 
+   <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View> : 
+  <View>
           <View style={styles.informationSlot}>
           <View style={{flexDirection : 'column'}}>
             <Text style={{marginTop : 10 ,
@@ -615,8 +622,16 @@ null}
             </Text>
           </View>
           </View>
+          </View>
+        }
         </ScrollView>
         <View tabLabel="Stats" style={{flex : 10}}>
+
+        {this.state.fetching ? 
+   <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View> : 
+  <View style={{flex:10}}>
             <View style={{flex : 2,  backgroundColor: '#fefefe', flexDirection : 'row' }}>
                 <View style={{ flex:  3 , flexDirection : 'column', justifyContent : 'center'}}> 
               <Text style={{ fontSize : 20, fontFamily : 'GothamRounded-Medium', marginLeft : 20 }}>
@@ -667,8 +682,15 @@ null}
             <View style={{flex : 7 }}>
             </View>
         </View>
+      }
+      </View>
 
         <ScrollView tabLabel="Collab" >
+        {this.state.fetching ? 
+   <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View> : 
+  <View>
             <View style={{ backgroundColor: '#F6F5FA'}}>
                 <Text style={{
                           marginTop : 10 ,
@@ -871,6 +893,7 @@ null}
                     </View>
                 </View>
             </View>
+            </View>}
         </ScrollView>
       </ScrollableTabView>
 </View>

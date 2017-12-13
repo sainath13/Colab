@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Actions } from 'react-native-router-flux';
 import { ActionCreators } from '../../actions'
+var Spinner = require('react-native-spinkit');
 var CustomTabBar = require('../components/CustomTabBar');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -148,6 +149,11 @@ return(
         />}
         >
         <ScrollView tabLabel="Bio" >
+        {this.state.fetching ? 
+   <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View> : 
+  <View>
           <View style={styles.informationSlot}>
           <View style={{flexDirection : 'column'}}>
             <Text style={{marginTop : 10 ,
@@ -439,8 +445,16 @@ return(
             </Text>
           </View>
           </View>
+          </View>
+        }
         </ScrollView>
+
         <View tabLabel="Stats" style={{flex : 10}}>
+        {this.state.fetching ? 
+   <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View> : 
+  <View style={{flex:10}}>
             <View style={{flex : 2,  backgroundColor: '#fefefe', flexDirection : 'row' }}>
                 <View style={{ flex:  3 , flexDirection : 'column', justifyContent : 'center'}}> 
               <Text style={{ fontSize : 20, fontFamily : 'GothamRounded-Medium', marginLeft : 20 }}>
@@ -490,9 +504,17 @@ return(
           </View>
             <View style={{flex : 7 }}>
             </View>
+            </View>
+              }
         </View>
 
+
         <ScrollView tabLabel="Collab" >
+        {this.state.fetching ? 
+   <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+    <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
+  </View> : 
+  <View>
             <View style={{ backgroundColor: '#F6F5FA'}}>
                 <Text style={{
                           marginTop : 10 ,
@@ -695,6 +717,8 @@ return(
                     </View>
                 </View>
             </View>
+            </View>
+        }
         </ScrollView>
       </ScrollableTabView>
 </View>

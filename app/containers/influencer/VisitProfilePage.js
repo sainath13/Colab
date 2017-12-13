@@ -30,6 +30,11 @@ constructor(props) {
   }
   this.onclickButton = this.onclickButton.bind(this);
 }
+componentDidUpdate(){
+if(this.props.visitProfileData.status=="no connection" || this.props.visitProfileData.status=="collaberate"){
+ this.popupDialog.dismiss()
+}
+}
 
 componentDidMount(){
     // console.log(this)
@@ -76,7 +81,18 @@ return(
     height={0.3}
   >
     <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
-{this.props.visitProfileData.status == "accept collaberation" ? <TouchableHighlight onPress={()=> {console.log("Reject collaboration");}}>
+{this.props.visitProfileData.status == "accept collaberation" ? 
+<TouchableHighlight onPress={()=> {
+  console.log("this.props.visiprofiledata.class",this.props.visitProfileData.class )
+  var isBusiness;
+  if(this.props.visitProfileData.class == "Business"){
+    isBusiness = true;
+  }
+  else {
+    isBusiness = false;
+  }
+ this.props.rejectCollab(this.props.loginInfo.id, this.props.visitProfileData.id,isBusiness);
+  console.log("Reject collaboration");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,
@@ -109,7 +125,18 @@ return(
 </TouchableHighlight>
 :
 null}
-{this.props.visitProfileData.status == "accepted" ? <TouchableHighlight onPress={()=> {console.log("Delete collaboration");}}>
+{this.props.visitProfileData.status == "accepted" ? <TouchableHighlight onPress={()=> {
+  console.log("this.props.visiprofiledata.class",this.props.visitProfileData.class )
+  var isBusiness;
+  if(this.props.visitProfileData.class == "Business"){
+    isBusiness = true;
+  }
+  else {
+    isBusiness = false;
+  }
+ this.props.deleteCollab(this.props.loginInfo.id, this.props.visitProfileData.id,isBusiness);
+  
+  console.log("Delete collaboration");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
             borderBottomWidth  : 2,

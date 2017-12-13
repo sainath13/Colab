@@ -135,3 +135,122 @@ export function fetchVisitProfile(id,clickedUserId, isBusiness){
   }//return (dispatch,getState)
 
 }
+
+
+
+
+export function rejectCollab(id,clickedUserId, isBusiness){
+  console.log("params", id,clickedUserId, isBusiness )
+  return (dispatch,getState)=>{
+    const state = getState();
+    ROUTE_ = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE_ = ROUTE + business;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE_ = ROUTE + influencer;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
+  var URL = "";
+  if(isBusiness == "true" || isBusiness ){
+    URL = ROUTE_ + id + "/reject_collaboration_with_business?business_id=" +clickedUserId ;
+  }
+  else if(isBusiness == "false" || !isBusiness){
+    URL = ROUTE_ + id + "/reject_collaboration_with_influencer?influencer_friend_id=" + clickedUserId ;
+  }
+  console.log(URL)
+    return fetch( URL , {
+      method: 'POST',
+      headers: {
+        'access-token':  state.loginInfo.accessToken,
+        'token-type': state.loginInfo.tokenType,
+        'expiry': state.loginInfo.expiry,
+        'client': state.loginInfo.client,
+        'uid': state.loginInfo.uid,
+      }
+    })//fetch
+    .then((response) => {
+      console.log("visitPorfile",response.status);
+      var loginObj = {};
+      if(response.headers.get("access-token") != state.loginInfo.accessToken){
+        console.log("Received different access tokens in profile.js");
+        loginObj.accessToken = response.headers.get("access-token");
+        loginObj.tokenType = response.headers.get("token-type");
+        loginObj.client = response.headers.get("client");
+        loginObj.expiry = response.headers.get("expiry");
+        loginObj.uid    = response.headers.get("uid");
+        dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
+    }
+      return response.json();
+    })//response
+    .then((responseJson) => {
+       console.log("response from reject",responseJson)
+      return dispatch(setVisitProfile({visitProfileData : responseJson}));
+    })//responseJson
+    .catch((error) => {
+      console.error(error);
+      //TODO NEED TO DISPATCH SOME ERROR ACTION FROM HERE, OR JUST KEEP TRYING 3 TIMES, THEN SHOW SOME ERROR. SLOW INTEREST IS ALSO POSSIBLE 
+    })
+  }//return (dispatch,getState)
+
+}
+
+export function deleteCollab(id,clickedUserId, isBusiness){
+  console.log("params", id,clickedUserId, isBusiness )
+  return (dispatch,getState)=>{
+    const state = getState();
+    ROUTE_ = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE_ = ROUTE + business;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE_ = ROUTE + influencer;
+    }
+    else{
+      //it is undefined. put error condition here
+    }
+  var URL = "";
+  if(isBusiness == "true" || isBusiness ){
+    URL = ROUTE_ + id + "/delete_collaberation_with_business?business_id=" +clickedUserId ;
+  }
+  else if(isBusiness == "false" || !isBusiness){
+    URL = ROUTE_ + id + "/delete_collaberation_with_influencer?influencer_id=" + clickedUserId ;
+  }
+  console.log(URL)
+    return fetch( URL , {
+      method: 'POST',
+      headers: {
+        'access-token':  state.loginInfo.accessToken,
+        'token-type': state.loginInfo.tokenType,
+        'expiry': state.loginInfo.expiry,
+        'client': state.loginInfo.client,
+        'uid': state.loginInfo.uid,
+      }
+    })//fetch
+    .then((response) => {
+      console.log("visitPorfile",response.status);
+      var loginObj = {};
+      if(response.headers.get("access-token") != state.loginInfo.accessToken){
+        console.log("Received different access tokens in profile.js");
+        loginObj.accessToken = response.headers.get("access-token");
+        loginObj.tokenType = response.headers.get("token-type");
+        loginObj.client = response.headers.get("client");
+        loginObj.expiry = response.headers.get("expiry");
+        loginObj.uid    = response.headers.get("uid");
+        dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
+    }
+      return response.json();
+    })//response
+    .then((responseJson) => {
+       console.log("response from reject",responseJson)
+      return dispatch(setVisitProfile({visitProfileData : responseJson}));
+    })//responseJson
+    .catch((error) => {
+      console.error(error);
+      //TODO NEED TO DISPATCH SOME ERROR ACTION FROM HERE, OR JUST KEEP TRYING 3 TIMES, THEN SHOW SOME ERROR. SLOW INTEREST IS ALSO POSSIBLE 
+    })
+  }//return (dispatch,getState)
+
+}

@@ -48,7 +48,7 @@ export function setAcceptedCollabRequest(acceptedUserId,status,pageName,userType
      }
    }
    if(pageName == "FeedPage"){
-     if(userType == "Brand"){
+     if(userType == "Business"){
       return {
         type : types.ACCEPT_COLLAB_REQUEST_BUSINESS,
         collabAccepted

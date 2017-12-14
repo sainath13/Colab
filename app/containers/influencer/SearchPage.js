@@ -288,6 +288,8 @@ var styles = StyleSheet.create({
      justifyContent : "center",
     //  marginTop : 20,
     //  backgroundColor: 'white',
+
+
     },
     notificationIcon:{
       flex : 2,
@@ -320,8 +322,8 @@ var styles = StyleSheet.create({
       // backgroundColor : 'red',
     },
     headerTextAndroid:{
-
     color : 'white',
+    marginTop : 10,
     fontSize : 25,
     fontFamily : 'GothamRounded-Bold',
     },

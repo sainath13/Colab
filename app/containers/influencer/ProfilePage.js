@@ -65,19 +65,21 @@ return(
       </View>
       <View style={styles.profileInfoHolder}>
        { this.props.profileData.class=="Influencer" ?
-        <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
-          <Text style={{ borderRadius:2, fontSize : 20,
+        <View style={{flex: 1,paddingLeft: 10, flexDirection: 'row',justifyContent : 'flex-start',alignItems : 'center',}}>
+          <Text style={{ borderRadius:2, fontSize : Platform.OS=="ios" ? 20 : 25,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
-               {!this.state.fetching ? (this.props.profileData.basic_data.first_name + " " + this.props.profileData.basic_data.last_name).slice(0,19) : ""}
+               {!this.state.fetching ? (this.props.profileData.basic_data.first_name + " " + this.props.profileData.basic_data.last_name).slice(0,19) : "Loading"}
                </Text>
                <Octicons name="broadcast" size={20} color='white' >
                 </Octicons>
         </View> 
         :
-        <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
-          <Text style={{ borderRadius:2, fontSize : 20,
-               padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
-               {!this.state.fetching ? (this.props.profileData.basic_data.name).slice(0,19) : ""}
+        <View style={{flex: 1,paddingLeft: 10, flexDirection: 'row',justifyContent : 'flex-start',alignItems : 'center',}}>
+          <Text style={{ borderRadius:2, fontSize : Platform.OS=="ios" ? 20 : 25,
+               padding: 6, 
+              paddingTop : 10, 
+               color: 'white', fontFamily: 'GothamRounded-Bold'}}>
+               {!this.state.fetching ? (this.props.profileData.basic_data.name).slice(0,19) : "Loading"}
                </Text>
                <Octicons name="briefcase" size={20} color='white' >
                 </Octicons>

@@ -10,7 +10,8 @@ import {
   StatusBar,
   Keyboard,
   AsyncStorage,
-  Image
+  Image,
+  Platform
 } from 'react-native';
 const Dimensions = require('Dimensions');
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -48,19 +49,27 @@ componentDidMount(){
     return (
 <View
  style={{flex : 1}}>
-  <StatusBar
-    backgroundColor="#6563A4"
-    barStyle="dark-content"
-  />
+
+  {Platform.OS == "ios"? 
+<StatusBar
+  backgroundColor="#6563A4"
+  barStyle="dark-content"
+/>
+:
+<StatusBar
+  backgroundColor="#43416d"
+  barStyle="light-content"
+/>
+}
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <TouchableHighlight style={Platform.OS=="ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } :{flex : 1, alignItems : 'center', justifyContent : 'center'} }  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
   </TouchableHighlight>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
-    <Text style={styles.headerText}>
+    <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 Options
     </Text>
   </View>
@@ -357,6 +366,12 @@ header: {
     borderBottomWidth : 3,
   flex: 1,
   backgroundColor: '#6563a4',
+},
+headerTextAndroid:{
+// color : '#6563A4',
+  color: 'white',
+  fontSize : 22,
+  fontFamily : 'GothamRounded-Bold'
 },
 headerText:{
 // color : '#6563A4',

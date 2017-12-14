@@ -10,6 +10,7 @@ import {
   View,
   Image,
   StatusBar,
+  Platform,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 
@@ -51,19 +52,26 @@ toggleisAcceptedShowing(){
 render() {
 return(
   <View style={{flex : 1}}>
-  <StatusBar
-    backgroundColor="red"
-    barStyle="dark-content"
-  />
+  {Platform.OS == "ios"? 
+<StatusBar
+  backgroundColor="#6563A4"
+  barStyle="dark-content"
+/>
+:
+<StatusBar
+  backgroundColor="#43416d"
+  barStyle="light-content"
+/>
+}
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <TouchableHighlight style={Platform.OS == "ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center',marginTop: 16 }: {flex : 1, alignItems : 'center', justifyContent : 'center'} }  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
   </TouchableHighlight>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
-    <Text style={styles.headerText}>
+    <Text style={Platform.OS=="ios"?styles.headerText:styles.headerTextAndroid}>
 Influencers
     </Text>
   </View>
@@ -309,6 +317,13 @@ var styles = StyleSheet.create({
       borderRadius : 25,
       // backgroundColor : 'red',
     },
+    headerTextAndroid:{
+
+    color: 'white',
+    fontSize : 25,
+    //paddingTop : 25,
+    fontFamily : 'GothamRounded-Bold'
+    },
   headerText:{
     // color : '#6563A4',
     color: 'white',
@@ -384,7 +399,6 @@ var styles = StyleSheet.create({
     // borderColor : 'red',
   },
 });
-
 
 
 function mapDispatchToProps(dispatch){

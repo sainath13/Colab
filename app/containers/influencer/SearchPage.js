@@ -9,6 +9,7 @@ import {
   View,
   Image,
   StatusBar,
+  Platform,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -79,12 +80,19 @@ selectNiche(){
   render() {
 return(
   <View style={{flex : 1}}>
+    {Platform.OS == "ios"? 
   <StatusBar
     backgroundColor="#6563A4"
     barStyle="dark-content"
   />
+  :
+  <StatusBar
+    backgroundColor="#43416d"
+    barStyle="light-content"
+  />
+  }
   <View style={styles.header}>
-    <Text style={styles.headerText}>
+    <Text style={Platform.OS == "ios" ? styles.headerText: styles.headerTextAndroid}>
       Search
     </Text>
   </View>
@@ -309,6 +317,12 @@ var styles = StyleSheet.create({
       paddingRight : 10,
       justifyContent : 'center',
       // backgroundColor : 'red',
+    },
+    headerTextAndroid:{
+
+    color : 'white',
+    fontSize : 25,
+    fontFamily : 'GothamRounded-Bold',
     },
   headerText:{
     color : 'white',

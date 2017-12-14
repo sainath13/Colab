@@ -10,7 +10,8 @@ import {
   StatusBar,
   Keyboard,
   Image,
-  Picker
+  Picker,
+  Platform
 } from 'react-native';
 const Dimensions = require('Dimensions');
 import SmartPicker from '../components/react-native-smart-picker';
@@ -36,7 +37,7 @@ console.ignoredYellowBox = [
   'Warning: You are manually calling a React.PropTypes validation',
 ];
 // influencerViewPage
-class  UpdateInfoPage extends Component {
+class UpdateInfoPageComponent extends Component{
   constructor(props) {
     super(props);
     this._onPressInfluencerNicheSelect = this._onPressInfluencerNicheSelect.bind(this);
@@ -165,8 +166,529 @@ componentDidMount(){
          this.setState({ pricePerStory : "" });
     } 
   }
-  render() {
 
+ render(){
+return(
+
+  <View style = {styles.content}>
+  <View style={Platform.OS=="ios" ? styles.header : styles.headerAndroid}>
+    <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
+      Update info
+    </Text>
+  </View>
+  <PopupDialog
+  ref={(popupDialogPayment) => { this.popupDialogPayment = popupDialogPayment; }}
+  dialogTitle={<DialogTitle title="Select preferred Payment methods" titleTextStyle={{
+    color : 'gray',
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Medium',
+  }}
+  />}
+>
+  <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
+    <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+      <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+        <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+        PayPal
+        </Text>
+        </View>
+          <TextInput 
+          underlineColorAndroid='rgba(0,0,0,0)'
+          placeholder = "Enter PayPal Id"
+          onChangeText = {(paypal)=> this.setState({paypal})}
+          value= {this.state.paypal}
+          style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+          </TextInput>
+    </View>
+    <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+      <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+        <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+      Paytm 
+        </Text>
+        </View>
+          <TextInput 
+          underlineColorAndroid='rgba(0,0,0,0)'
+          placeholder = "Enter Paytm id"
+          onChangeText = {(paytm)=> this.setState({paytm})}
+          value= {this.state.paytm}
+          style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+          </TextInput>
+    </View>
+    <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+      <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+        <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+     UPI 
+        </Text>
+        </View>
+          <TextInput 
+          underlineColorAndroid='rgba(0,0,0,0)'
+          placeholder = "Enter UPI"
+          onChangeText = {(upi)=> this.setState({upi})}
+          value= {this.state.upi}
+          style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+          </TextInput>
+    </View>
+    <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
+      <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
+        <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 15}}>
+      More payment methods will be added soon on demand
+        </Text>
+        </View>
+    </View>
+  </View>
+</PopupDialog>
+  <PopupDialog
+    height={0.5}
+  ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+  dialogTitle={<DialogTitle title="Select Pricing structure" titleTextStyle={{
+    color : 'gray',
+    fontSize : 17,
+    fontFamily : 'GothamRounded-Medium',
+  }}
+  />}
+>
+  <ScrollView style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
+    <View style={{flex : 1}}>
+      <View style={{flex : 1}}>
+        </View>
+        <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
+          <ScrollView style={{flex : 2}}>
+    <SmartPicker
+    iosPickerStyle={{}}
+      selectedValue={this.state.currency ? this.state.currency : "$"}
+      label='Select currency'
+      onValueChange={(value) => {this.setState({currency : value})}}
+    >
+      <Picker.Item label='Indian rupee' value='₹' />
+      <Picker.Item label='Euro' value='€' />
+      <Picker.Item label='US Dollar' value='$' />
+      <Picker.Item label='Pound sterling' value='£' />
+      <Picker.Item label='Yuan' value='¥' />
+    </SmartPicker>
+  </ScrollView>
+        </View>
+    </View>
+    <View style={{flex : 1}}>
+      <View style={{flex : 1}}>
+        <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+          Price per story shoutout : 
+        </Text>
+        </View>
+        <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
+          <View style={{flex : 1 }}>
+          </View>
+          <TextInput keyboardType='numeric'
+          underlineColorAndroid='rgba(0,0,0,0)'
+          placeholder = "in $"
+          maxLength ={5} 
+          onChangeText = {(text)=> this.onChangedStory(text)}
+          value= {this.state.pricePerStory}
+          style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
+          </TextInput>
+        </View>
+    </View>
+    <View style={{flex : 1}}>
+      <View style={{flex : 1}}>
+        <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
+          Price per post shoutout :
+        </Text>
+        </View>
+        <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
+          <View style={{flex : 1 }}>
+          </View>
+          <TextInput keyboardType='numeric'
+          underlineColorAndroid='rgba(0,0,0,0)'
+          maxLength ={5} 
+          placeholder = "in $"
+          value ={this.state.pricePerPost}
+          onChangeText = {(text)=> this.onChangedPost(text)}
+           onSubmitEditing={Keyboard.dismiss}  style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5,padding : 10, }} >
+          </TextInput>
+        </View>
+    </View>
+  </ScrollView>
+</PopupDialog>
+  <View style={styles.container}>
+    <View style={{flex: 9}}>
+    <ScrollView style={{flex : 1}} scrollEnabled={true}>
+      <View style={styles.picInfoHolder}>
+        <View style={styles.picHolder}>
+              <Image
+                style = {{width: 50, height: 50, borderRadius: 25, margin: 10,borderWidth: 2, borderColor: 'white'}}
+                source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+              />
+        </View>
+        <View style={styles.infoHolder}>
+        <View style={ styles.infoTextHolder}>
+        {this.props.profileData.class == "Business" ? 
+          <TextInput style={styles.infoText} placeholder="Enter Brand Name" 
+          underlineColorAndroid='rgba(0,0,0,0)'
+          value = {this.state.nickName}
+          onChangeText={(nickName) => this.setState({nickName})}
+          >
+          </TextInput>
+          : 
+          <Text style={styles.infoText}>
+          {!this.state.fetching ? this.props.profileData.basic_data.first_name + " ": ""}  
+          {!this.state.fetching ? this.props.profileData.basic_data.last_name: ""} 
+            </Text>
+        }
+        </View>
+        </View>
+      </View>
+      <View style={styles.row}>
+<View style={{paddingBottom : 5,alignItems : 'center',justifyContent:'center',paddingLeft:10}}>
+              <Icon name="instagram" size={20} color='#6463A4' >
+              </Icon>
+              </View>
+      <View style={styles.rowLeft}>
+        <Text style={styles.rowLeftText}>
+          Instagram handle
+        </Text>
+      </View>
+      <View style={styles.coloredWrapper}>
+        <Text style={styles.wrappedText}>
+        {!this.state.fetching? this.props.profileData.basic_data.instagram_name: " "} 
+        </Text>
+      </View>
+  </View>
+  <View style={{
+      backgroundColor : '#F6F5FA',
+      borderBottomWidth : 2 , borderBottomColor : '#6563A4',
+      paddingLeft: 10,
+  }}>
+      <Text style={{
+          fontSize : 17,
+          fontFamily : 'GothamRounded-Book',
+          padding : 5,
+          paddingTop : 7,
+      }}>
+         Bio
+     </Text>
+     <View style={{
+         marginTop : 2,
+         marginLeft : 5,
+         marginRight : 5,
+         backgroundColor : 'white',
+         flex : 1,
+       }}>
+     <TextInput placeholder = "Enter bio here"
+     underlineColorAndroid='rgba(0,0,0,0)'
+     maxLength ={200} 
+       multiline = {true}
+       numberOfLines = {4}
+       value = {this.state.bio}
+       onSubmitEditing={Keyboard.dismiss}
+       onChangeText={(bio) => this.setState({bio})}
+        style={{
+          height : 75,
+         width : Dimensions.get('window').width,
+         fontSize : 17,
+         fontFamily : 'GothamRounded-Book',
+       }}>
+     </TextInput>
+   </View>
+  </View>
+  { this.props.profileData.class == "Influencer" ?
+  <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+              borderBottomColor : '#6563A4' ,
+              borderBottomWidth  : 2,
+            }}>             
+  <View style={{flex : 1,  justifyContent : 'center',paddingLeft : 10}}>
+    <Text style={{
+      fontSize : 17,
+      fontFamily : 'GothamRounded-Book',
+      padding : 5,
+      }}>
+      Pricing
+    </Text>
+  </View>
+  <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPriceSelect}>              
+  <View style={{flex : 1,
+    marginTop : 10,
+    marginBottom : 10,
+    marginLeft : 5,
+    marginRight : 10,
+    borderRadius:2,
+    borderColor:'#fefefe',
+    borderWidth : 3/2,
+    paddingTop: 5,
+    paddingBottom: 5,
+    alignItems : 'center',
+    justifyContent: 'center',
+    backgroundColor : '#6563A4',
+    borderRadius : 5}}>
+    <Text style={{
+      color : 'white',
+      fontSize : 18,
+      fontFamily :'GothamRounded-Medium',
+      }}>
+     select 
+    </Text>
+  </View>
+  </TouchableHighlight>
+</View>
+: null
+  }
+  { this.props.profileData.class == "Influencer" ?
+  <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+              borderBottomColor : '#6563A4' ,
+              borderBottomWidth  : 2,
+            }}>             
+            <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+              <Icon name="lock" size={20} color='#6463A4' >
+              </Icon>
+              </View>
+    <Text style={{
+      fontSize : 17,
+      fontFamily : 'GothamRounded-Book',
+      padding : 5,
+      }}>
+Payment Methods
+    </Text>
+  </View>
+  <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPaymentSelect}>              
+  <View style={{flex : 1,
+    marginTop : 10,
+    marginBottom : 10,
+    marginLeft : 5,
+    marginRight : 10,
+    borderRadius:2,
+    borderColor:'#fefefe',
+    borderWidth : 3/2,
+    paddingTop: 5,
+    paddingBottom: 5,
+    alignItems : 'center',
+    justifyContent: 'center',
+    backgroundColor : '#6563A4',
+    borderRadius : 5}}>
+    <Text style={{
+      color : 'white',
+      fontSize : 18,
+      fontFamily :'GothamRounded-Medium',
+      }}>
+     select 
+    </Text>
+  </View>
+  </TouchableHighlight>
+</View>
+: null
+  }
+
+
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+          borderBottomColor : '#6563A4' ,
+          borderBottomWidth  : 2,
+          }}>
+<View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+              <Icon name="lock" size={20} color='#6463A4' >
+              </Icon>
+              </View>
+<Text style={{
+  fontSize : 17,
+  fontFamily : 'GothamRounded-Book',
+  padding : 5,
+  }}>
+Phone 
+</Text>
+</View>
+<View style={{flex : 1,
+marginTop : 10,
+marginBottom : 10,
+marginLeft : 5,
+marginRight : 10,
+borderRadius:2,
+borderColor:'#fefefe',
+borderWidth : 3/2,
+paddingTop: 5,
+paddingLeft : 5,
+paddingBottom: 5,
+justifyContent: 'center',
+backgroundColor : 'white',
+borderRadius : 5}}>
+<TextInput
+maxLength={10}
+ onChangeText = {(text)=> this.onChangedPhone(text)}
+ placeholder = "Enter here"
+ value ={this.state.phone}
+ underlineColorAndroid='rgba(0,0,0,0)'
+ style={{
+        flex : 1,
+        color : 'black',
+        fontSize : 17,
+        fontFamily :'GothamRounded-Book',
+  }}>
+</TextInput>
+</View>
+</View>
+{this.props.profileData.class == "Business" ?
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+          borderBottomColor : '#6563A4' ,
+          borderBottomWidth  : 2,
+          }}>
+          <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+              <Icon name="lock" size={20} color='#6463A4' >
+              </Icon>
+              </View>
+<Text style={{
+  fontSize : 17,
+  fontFamily : 'GothamRounded-Book',
+  padding : 5,
+  }}>
+Business Email 
+</Text>
+</View>
+<View style={{flex : 1,
+marginTop : 10,
+marginBottom : 10,
+marginLeft : 5,
+marginRight : 10,
+borderRadius:2,
+borderColor:'#fefefe',
+borderWidth : 3/2,
+paddingTop: 5,
+paddingLeft : 5,
+paddingBottom: 5,
+justifyContent: 'center',
+backgroundColor : 'white',
+borderRadius : 5}}>
+<TextInput
+maxLength={50}
+underlineColorAndroid='rgba(0,0,0,0)'
+       onSubmitEditing={Keyboard.dismiss}
+ onChangeText = {(businessEmail)=> this.setState({businessEmail})}
+ placeholder = "Enter here"
+ value ={this.state.businessEmail} 
+ style={{
+        flex : 1,
+        color : 'black',
+        fontSize : 17,
+        fontFamily :'GothamRounded-Book',
+  }}>
+</TextInput>
+</View>
+</View>
+: null
+}
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+          borderBottomColor : '#6563A4' ,
+          borderBottomWidth  : 2,
+          }}>
+          <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
+<View style={{paddingBottom : 5}}>
+              <Icon name="lock" size={20} color='#6463A4' >
+              </Icon>
+              </View>
+<Text style={{
+  fontSize : 17,
+  fontFamily : 'GothamRounded-Book',
+  padding : 5,
+  }}>
+  Email 
+</Text>
+</View>
+<ScrollView 
+contentContainerStyle={{
+justifyContent: 'center',
+alignItems : 'center',
+}}
+directionalLockEnabled ={true}
+style={{flex : 2,
+flexDirection : 'row',
+marginTop : 10,
+marginBottom : 10,
+marginLeft : 5,
+marginRight : 10,
+borderRadius:2,
+borderColor:'#fefefe',
+borderWidth : 3/2,
+paddingTop: 5,
+paddingBottom: 5,
+backgroundColor : 'white',
+borderRadius : 5}}>
+<Text style={{
+  color : 'black',
+      fontSize : 17,
+      fontFamily :'GothamRounded-Book',
+  }}>
+  {!this.state.fetching ? this.props.profileData.basic_data.email.slice(0,50): " "}
+</Text>
+</ScrollView>
+</View>
+
+<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
+          borderBottomColor : '#6563A4' ,
+          borderBottomWidth  : 2,
+          }}>
+<View style={{flex : 1,  justifyContent : 'center',paddingLeft : 10}}>
+<Text style={{
+  fontSize : 17,
+  fontFamily : 'GothamRounded-Book',
+  padding : 5,
+  }}>
+  Niche
+</Text>
+</View>
+
+<TouchableHighlight style={{flex: 1,}} onPress = {this._onPressInfluencerNicheSelect}>
+<View style={{flex : 1,
+marginTop : 10,
+marginBottom : 10,
+marginLeft : 5,
+marginRight : 10,
+borderRadius:2,
+borderColor:'#fefefe',
+borderWidth : 3/2,
+paddingTop: 5,
+paddingBottom: 5,
+alignItems : 'center',
+justifyContent: 'center',
+backgroundColor : '#6563A4',
+borderRadius : 5}}>
+<Text style={{
+  color : 'white',
+      fontSize : 17,
+      fontFamily :'GothamRounded-Medium',
+  }}>
+   select
+</Text>
+</View>
+</TouchableHighlight>
+</View>
+    </ScrollView>
+    </View>
+
+    <TouchableHighlight style={{
+        flex: 1,
+        alignItems : "center",
+        justifyContent : "center",
+        backgroundColor: '#6563a4',
+      }}onPress = {this._onPressInfluencerUpdateInfoSave}>
+    <View style={{
+        }}>
+        <Text style={{
+          color: 'white',
+          fontSize : 25,
+          fontFamily : 'GothamRounded-Medium',
+          }}>
+          Save
+        </Text>
+    </View>
+        </TouchableHighlight>
+  </View>
+
+</View>
+)
+
+
+ } 
+}
+class  UpdateInfoPage extends Component {
+  render() {
+    if (Platform.OS === 'ios') {
     return (
 <KeyboardAwareScrollView
       resetScrollToCoords={{ x: 0, y: 0 }}
@@ -177,509 +699,27 @@ componentDidMount(){
     backgroundColor="#6563A4"
     barStyle="dark-content"
   />
-  <View style = {styles.content}>
-    <View style={styles.header}>
-      <Text style={styles.headerText}>
-        Update info
-      </Text>
-    </View>
-    <PopupDialog
-    ref={(popupDialogPayment) => { this.popupDialogPayment = popupDialogPayment; }}
-    dialogTitle={<DialogTitle title="Select preferred Payment methods" titleTextStyle={{
-      color : 'gray',
-      fontSize : 17,
-      fontFamily : 'GothamRounded-Medium',
-    }}
-    />}
-  >
-    <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
-      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
-        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
-          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
-          PayPal
-          </Text>
-          </View>
-            <TextInput 
-            placeholder = "Enter PayPal Id"
-            onChangeText = {(paypal)=> this.setState({paypal})}
-            value= {this.state.paypal}
-            style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
-            </TextInput>
-      </View>
-      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
-        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
-          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
-        Paytm 
-          </Text>
-          </View>
-            <TextInput 
-            placeholder = "Enter Paytm id"
-            onChangeText = {(paytm)=> this.setState({paytm})}
-            value= {this.state.paytm}
-            style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
-            </TextInput>
-      </View>
-      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
-        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
-          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
-       UPI 
-          </Text>
-          </View>
-            <TextInput 
-            placeholder = "Enter UPI"
-            onChangeText = {(upi)=> this.setState({upi})}
-            value= {this.state.upi}
-            style={{flex : 2 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
-            </TextInput>
-      </View>
-      <View style={{flex : 1,borderColor : "white",flexDirection : 'row',marginBottom : 10}}>
-        <View style={{flex : 1,justifyContent: 'center', paddingLeft : 20}}>
-          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 15}}>
-        More payment methods will be added soon on demand
-          </Text>
-          </View>
-      </View>
-    </View>
-  </PopupDialog>
-    <PopupDialog
-    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-    dialogTitle={<DialogTitle title="Select Pricing structure" titleTextStyle={{
-      color : 'gray',
-      fontSize : 17,
-      fontFamily : 'GothamRounded-Medium',
-    }}
-    />}
-  >
-    <ScrollView style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
-      <View style={{flex : 1}}>
-        <View style={{flex : 1}}>
-          </View>
-          <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
-            <ScrollView style={{flex : 2}}>
-      <SmartPicker
-      iosPickerStyle={{}}
-        selectedValue={this.state.currency ? this.state.currency : "$"}
-        label='Select currency'
-        onValueChange={(value) => {this.setState({currency : value})}}
-      >
-        <Picker.Item label='Indian rupee' value='₹' />
-        <Picker.Item label='Euro' value='€' />
-        <Picker.Item label='US Dollar' value='$' />
-        <Picker.Item label='Pound sterling' value='£' />
-        <Picker.Item label='Yuan' value='¥' />
-      </SmartPicker>
-    </ScrollView>
-          </View>
-      </View>
-      <View style={{flex : 1}}>
-        <View style={{flex : 1}}>
-          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
-            Price per story shoutout : 
-          </Text>
-          </View>
-          <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
-            <View style={{flex : 1 }}>
-            </View>
-            <TextInput keyboardType='numeric' 
-            placeholder = "in $"
-            maxLength ={5} 
-            onChangeText = {(text)=> this.onChangedStory(text)}
-            value= {this.state.pricePerStory}
-            style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5, padding : 10}} >
-            </TextInput>
-          </View>
-      </View>
-      <View style={{flex : 1}}>
-        <View style={{flex : 1}}>
-          <Text style={{color:'white', fontFamily : 'GothamRounded-Book', fontSize : 20}}>
-            Price per post shoutout :
-          </Text>
-          </View>
-          <View style={{flex : 1.5, flexDirection : 'row', marginBottom : 10}}>
-            <View style={{flex : 1 }}>
-            </View>
-            <TextInput keyboardType='numeric'
-            maxLength ={5} 
-            placeholder = "in $"
-            value ={this.state.pricePerPost}
-            onChangeText = {(text)=> this.onChangedPost(text)}
-             onSubmitEditing={Keyboard.dismiss}  style={{flex : 1 , backgroundColor : 'white' ,borderRadius : 5,padding : 10, }} >
-            </TextInput>
-          </View>
-      </View>
-    </ScrollView>
-  </PopupDialog>
-    <View style={styles.container}>
-      <View style={{flex: 9}}>
-      <ScrollView style={{flex : 1}} scrollEnabled={false}>
-        <View style={styles.picInfoHolder}>
-          <View style={styles.picHolder}>
-                <Image
-                  style = {{width: 50, height: 50, borderRadius: 25, margin: 10,borderWidth: 2, borderColor: 'white'}}
-                  source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
-                />
-          </View>
-          <View style={styles.infoHolder}>
-          <View style={ styles.infoTextHolder}>
-          {this.props.profileData.class == "Business" ? 
-            <TextInput style={styles.infoText} placeholder="Enter Brand Name" 
-            value = {this.state.nickName}
-            onChangeText={(nickName) => this.setState({nickName})}
-            >
-            </TextInput>
-            : 
-            <Text style={styles.infoText}>
-            {!this.state.fetching ? this.props.profileData.basic_data.first_name + " ": ""}  
-            {!this.state.fetching ? this.props.profileData.basic_data.last_name: ""} 
-              </Text>
-          }
-          </View>
-          </View>
-        </View>
-        <View style={styles.row}>
-<View style={{paddingBottom : 5,alignItems : 'center',justifyContent:'center',paddingLeft:10}}>
-                <Icon name="instagram" size={20} color='#6463A4' >
-                </Icon>
-                </View>
-        <View style={styles.rowLeft}>
-          <Text style={styles.rowLeftText}>
-            Instagram handle
-          </Text>
-        </View>
-        <View style={styles.coloredWrapper}>
-          <Text style={styles.wrappedText}>
-          {!this.state.fetching? this.props.profileData.basic_data.instagram_name: " "} 
-          </Text>
-        </View>
-    </View>
-    <View style={{
-        backgroundColor : '#F6F5FA',
-        borderBottomWidth : 2 , borderBottomColor : '#6563A4',
-        paddingLeft: 10,
-    }}>
-        <Text style={{
-            fontSize : 17,
-            fontFamily : 'GothamRounded-Book',
-            padding : 5,
-            paddingTop : 7,
-        }}>
-           Bio
-       </Text>
-       <View style={{
-           marginTop : 2,
-           marginLeft : 5,
-           marginRight : 5,
-           backgroundColor : 'white',
-           flex : 1,
-         }}>
-       <TextInput placeholder = "Enter bio here"
-       maxLength ={200} 
-         multiline = {true}
-         numberOfLines = {4}
-         value = {this.state.bio}
-         onSubmitEditing={Keyboard.dismiss}
-         onChangeText={(bio) => this.setState({bio})}
-          style={{
-            height : 75,
-           width : Dimensions.get('window').width,
-           fontSize : 17,
-           fontFamily : 'GothamRounded-Book',
-         }}>
-       </TextInput>
-     </View>
-    </View>
-    { this.props.profileData.class == "Influencer" ?
-    <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
-                borderBottomColor : '#6563A4' ,
-                borderBottomWidth  : 2,
-              }}>             
-    <View style={{flex : 1,  justifyContent : 'center',paddingLeft : 10}}>
-      <Text style={{
-        fontSize : 17,
-        fontFamily : 'GothamRounded-Book',
-        padding : 5,
-        }}>
-        Pricing
-      </Text>
-    </View>
-    <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPriceSelect}>              
-    <View style={{flex : 1,
-      marginTop : 10,
-      marginBottom : 10,
-      marginLeft : 5,
-      marginRight : 10,
-      borderRadius:2,
-      borderColor:'#fefefe',
-      borderWidth : 3/2,
-      paddingTop: 5,
-      paddingBottom: 5,
-      alignItems : 'center',
-      justifyContent: 'center',
-      backgroundColor : '#6563A4',
-      borderRadius : 5}}>
-      <Text style={{
-        color : 'white',
-        fontSize : 18,
-        fontFamily :'GothamRounded-Medium',
-        }}>
-       select 
-      </Text>
-    </View>
-    </TouchableHighlight>
-</View>
-: null
-    }
-    { this.props.profileData.class == "Influencer" ?
-    <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
-                borderBottomColor : '#6563A4' ,
-                borderBottomWidth  : 2,
-              }}>             
-              <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
-<View style={{paddingBottom : 5}}>
-                <Icon name="lock" size={20} color='#6463A4' >
-                </Icon>
-                </View>
-      <Text style={{
-        fontSize : 17,
-        fontFamily : 'GothamRounded-Book',
-        padding : 5,
-        }}>
-Payment Methods
-      </Text>
-    </View>
-    <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPaymentSelect}>              
-    <View style={{flex : 1,
-      marginTop : 10,
-      marginBottom : 10,
-      marginLeft : 5,
-      marginRight : 10,
-      borderRadius:2,
-      borderColor:'#fefefe',
-      borderWidth : 3/2,
-      paddingTop: 5,
-      paddingBottom: 5,
-      alignItems : 'center',
-      justifyContent: 'center',
-      backgroundColor : '#6563A4',
-      borderRadius : 5}}>
-      <Text style={{
-        color : 'white',
-        fontSize : 18,
-        fontFamily :'GothamRounded-Medium',
-        }}>
-       select 
-      </Text>
-    </View>
-    </TouchableHighlight>
-</View>
-: null
-    }
-
-
-<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
-            borderBottomColor : '#6563A4' ,
-            borderBottomWidth  : 2,
-            }}>
-<View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
-<View style={{paddingBottom : 5}}>
-                <Icon name="lock" size={20} color='#6463A4' >
-                </Icon>
-                </View>
-  <Text style={{
-    fontSize : 17,
-    fontFamily : 'GothamRounded-Book',
-    padding : 5,
-    }}>
- Phone 
-  </Text>
-</View>
-<View style={{flex : 1,
-  marginTop : 10,
-  marginBottom : 10,
-  marginLeft : 5,
-  marginRight : 10,
-  borderRadius:2,
-  borderColor:'#fefefe',
-  borderWidth : 3/2,
-  paddingTop: 5,
-  paddingLeft : 5,
-  paddingBottom: 5,
-  justifyContent: 'center',
-  backgroundColor : 'white',
-  borderRadius : 5}}>
-  <TextInput
-  maxLength={10}
-   onChangeText = {(text)=> this.onChangedPhone(text)}
-   placeholder = "Enter here"
-   value ={this.state.phone} 
-   style={{
-          flex : 1,
-          color : 'black',
-          fontSize : 17,
-          fontFamily :'GothamRounded-Book',
-    }}>
-  </TextInput>
-</View>
-</View>
-{this.props.profileData.class == "Business" ?
-<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
-            borderBottomColor : '#6563A4' ,
-            borderBottomWidth  : 2,
-            }}>
-            <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
-<View style={{paddingBottom : 5}}>
-                <Icon name="lock" size={20} color='#6463A4' >
-                </Icon>
-                </View>
-  <Text style={{
-    fontSize : 17,
-    fontFamily : 'GothamRounded-Book',
-    padding : 5,
-    }}>
-Business Email 
-  </Text>
-</View>
-<View style={{flex : 1,
-  marginTop : 10,
-  marginBottom : 10,
-  marginLeft : 5,
-  marginRight : 10,
-  borderRadius:2,
-  borderColor:'#fefefe',
-  borderWidth : 3/2,
-  paddingTop: 5,
-  paddingLeft : 5,
-  paddingBottom: 5,
-  justifyContent: 'center',
-  backgroundColor : 'white',
-  borderRadius : 5}}>
-  <TextInput
-  maxLength={50}
-         onSubmitEditing={Keyboard.dismiss}
-   onChangeText = {(businessEmail)=> this.setState({businessEmail})}
-   placeholder = "Enter here"
-   value ={this.state.businessEmail} 
-   style={{
-          flex : 1,
-          color : 'black',
-          fontSize : 17,
-          fontFamily :'GothamRounded-Book',
-    }}>
-  </TextInput>
-</View>
-</View>
-: null
-}
-<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
-            borderBottomColor : '#6563A4' ,
-            borderBottomWidth  : 2,
-            }}>
-            <View style={{flex : 1,  alignItems:'center', flexDirection : 'row', paddingLeft : 10}}>
-<View style={{paddingBottom : 5}}>
-                <Icon name="lock" size={20} color='#6463A4' >
-                </Icon>
-                </View>
-  <Text style={{
-    fontSize : 17,
-    fontFamily : 'GothamRounded-Book',
-    padding : 5,
-    }}>
-    Email 
-  </Text>
-</View>
-<ScrollView 
-contentContainerStyle={{
-  justifyContent: 'center',
-  alignItems : 'center',
-}}
-directionalLockEnabled ={true}
-style={{flex : 2,
-  flexDirection : 'row',
-  marginTop : 10,
-  marginBottom : 10,
-  marginLeft : 5,
-  marginRight : 10,
-  borderRadius:2,
-  borderColor:'#fefefe',
-  borderWidth : 3/2,
-  paddingTop: 5,
-  paddingBottom: 5,
-  backgroundColor : 'white',
-  borderRadius : 5}}>
-  <Text style={{
-    color : 'black',
-        fontSize : 17,
-        fontFamily :'GothamRounded-Book',
-    }}>
-    {!this.state.fetching ? this.props.profileData.basic_data.email.slice(0,50): " "}
-  </Text>
-</ScrollView>
-</View>
-
-<View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
-            borderBottomColor : '#6563A4' ,
-            borderBottomWidth  : 2,
-            }}>
-<View style={{flex : 1,  justifyContent : 'center',paddingLeft : 10}}>
-  <Text style={{
-    fontSize : 17,
-    fontFamily : 'GothamRounded-Book',
-    padding : 5,
-    }}>
-    Niche
-  </Text>
-</View>
-
-<TouchableHighlight style={{flex: 1,}} onPress = {this._onPressInfluencerNicheSelect}>
-<View style={{flex : 1,
-  marginTop : 10,
-  marginBottom : 10,
-  marginLeft : 5,
-  marginRight : 10,
-  borderRadius:2,
-  borderColor:'#fefefe',
-  borderWidth : 3/2,
-  paddingTop: 5,
-  paddingBottom: 5,
-  alignItems : 'center',
-  justifyContent: 'center',
-  backgroundColor : '#6563A4',
-  borderRadius : 5}}>
-  <Text style={{
-    color : 'white',
-        fontSize : 17,
-        fontFamily :'GothamRounded-Medium',
-    }}>
-     select
-  </Text>
-</View>
-</TouchableHighlight>
-</View>
-      </ScrollView>
-      </View>
-
-      <TouchableHighlight style={{
-          flex: 1,
-          alignItems : "center",
-          justifyContent : "center",
-          backgroundColor: '#6563a4',
-        }}onPress = {this._onPressInfluencerUpdateInfoSave}>
-      <View style={{
-          }}>
-          <Text style={{
-            color: 'white',
-            fontSize : 25,
-            fontFamily : 'GothamRounded-Medium',
-            }}>
-            Save
-          </Text>
-      </View>
-          </TouchableHighlight>
-    </View>
-
-	</View>
+  <UpdateInfoPageComponent  {...this.props} >
+  </UpdateInfoPageComponent>
 </KeyboardAwareScrollView>
     );
+  }
+  else{
+    return (
+      <KeyboardAvoidingView {...this.props} behavior="padding" keyboardVerticalOffset={-1000} style={{flex: 1}}>
+      <ScrollView style={{flex : 1}}>
+      <StatusBar
+    backgroundColor="#43416d"
+    barStyle="dark-content"
+  />
+  <UpdateInfoPageComponent  {...this.props} >
+  </UpdateInfoPageComponent>
+        
+      </ScrollView>
+    </KeyboardAvoidingView>
+    )
+
+  }
   }
 }
 
@@ -689,6 +729,17 @@ content:{
   backgroundColor : '#FFFFFF',
     // paddingTop : 20,
 },
+headerAndroid: {
+  flex: 1,
+  //height : 27,
+  paddingTop : 14,
+  paddingBottom : 13,
+  alignItems : "center",
+  justifyContent : "center",
+    borderColor : '#333156',
+    borderBottomWidth : 3,
+  backgroundColor: '#6563a4',
+},
 header: {
   flex: 1,
   alignItems : "center",
@@ -696,6 +747,14 @@ header: {
     borderColor : '#333156',
     borderBottomWidth : 3,
   backgroundColor: '#6563a4',
+},
+headerTextAndroid:{
+// color : '#6563A4',
+  color: 'white',
+  fontSize : 22,
+//  paddingTop : 25,
+  fontFamily : 'GothamRounded-Bold'
+// fontFamily : 'arial'
 },
 headerText:{
 // color : '#6563A4',
@@ -730,6 +789,7 @@ infoTextHolder : {
   justifyContent  : 'center',
 },
 infoText: {
+  width : 300,
   color : 'white',
   fontSize : 20,
   fontFamily : 'GothamRounded-Bold',

@@ -9,6 +9,7 @@ import {
   ScrollView,
   View,
   StatusBar,
+  Platform,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 //TODO: FINISHING CHANGEs required. remove the whole signedInuser thing. should just have headers
@@ -67,11 +68,17 @@ onclickButton(statusString){
   render() {
 return(
   <View style={{flex : 1}}>
+  {Platform.OS == "ios"? 
   <StatusBar
     backgroundColor="#6563A4"
     barStyle="dark-content"
   />
-
+  :
+  <StatusBar
+    backgroundColor="#43416d"
+    barStyle="light-content"
+  />
+  }
     <PopupDialog
     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
   dialogTitle={<DialogTitle title="Options" titleTextStyle={{
@@ -205,8 +212,11 @@ null}
     </View>
   </PopupDialog>
   <View style = {styles.content}>
+  {Platform.OS == "ios" ? 
   <View style={{paddingTop : 20, backgroundColor : '#6364A4'}}>
   </View>
+  : 
+  null}
   <View style={{flexDirection: 'row',backgroundColor : '#6463A4',
     //borderColor : '#333156',
     //borderBottomWidth : 0.5
@@ -223,8 +233,9 @@ null}
                 </Icon>
       </TouchableHighlight>
       <View style={{flex : 8, flexDirection : 'row', alignItems : 'center',justifyContent: 'center'}}>
-          <Text style={{  height:30, borderRadius:2, fontSize : 20,
+          <Text style={{  borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
+               {this.state.fetching ? " loading" : ""}
                { this.props.visitProfileData.first_name ? this.props.visitProfileData.first_name  + " " + this.props.visitProfileData.last_name : this.props.visitProfileData.name
                } 
                </Text>

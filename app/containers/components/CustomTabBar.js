@@ -1,5 +1,5 @@
 const React = require('react');
-const { ViewPropTypes } = ReactNative = require('react-native');
+const { ViewPropTypes,Platform } = ReactNative = require('react-native');
 const PropTypes = require('prop-types');
 const createReactClass = require('create-react-class');
 const {
@@ -39,7 +39,24 @@ const CustomTabBar = createReactClass({
   renderTab(name, page, isTabActive, onPressHandler) {
     const { activeTextColor, inactiveTextColor, textStyle, } = this.props;
     const textColor = isTabActive ? activeTextColor : inactiveTextColor;
-    const fontWeight = isTabActive ? 'bold' : 'normal';
+    var fontWeightString; 
+    if (isTabActive){
+      if(Platform.OS=="ios"){
+        fontWeightString = {fontWeight : "bold"}  
+      }
+      else{
+        fontWeightString =  { fontFamily : "GothamRounded-Bold" } 
+      }
+    }
+    else{
+      if(Platform.OS=="ios"){
+        fontWeightString = {fontWeight : "normal"} 
+      }
+      else{
+        fontWeightString = {fontFamily : "GothamRounded-Book" }
+      }
+
+    }
 
     return <Button
       style={{flex: 1, }}
@@ -50,7 +67,7 @@ const CustomTabBar = createReactClass({
       onPress={() => onPressHandler(page)}
     >
       <View style={[styles.tab, this.props.tabStyle, ]}>
-        <Text style={[{color: textColor, fontWeight, }, textStyle, ]}>
+        <Text style={[{color: textColor, fontFamily: 'GothamRounded-Book', fontSize : 17, marginTop:10},fontWeightString]}>
           {name}
         </Text>
       </View>

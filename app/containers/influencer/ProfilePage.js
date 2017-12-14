@@ -8,6 +8,7 @@ import {
   TextInput,
   ScrollView,
   View,
+  Platform,
   StatusBar,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
@@ -42,12 +43,18 @@ componentDidMount(){
   //put some loading screen animation in if clause
   render() {
 return(
-  <View style={{flex : 1}}>
+  <View style={{flex : 1}}> 
+  {Platform.OS == "ios"? 
   <StatusBar
     backgroundColor="#6563A4"
     barStyle="dark-content"
   />
-
+  :
+  <StatusBar
+    backgroundColor="#43416d"
+    barStyle="light-content"
+  />
+  } 
   <View style = {styles.content}>
     <View style={styles.contentPic}>
       <View style={styles.profilePicHolder}>
@@ -59,7 +66,7 @@ return(
       <View style={styles.profileInfoHolder}>
        { this.props.profileData.class=="Influencer" ?
         <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
-          <Text style={{  height:30, borderRadius:2, fontSize : 20,
+          <Text style={{ borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
                {!this.state.fetching ? (this.props.profileData.basic_data.first_name + " " + this.props.profileData.basic_data.last_name).slice(0,19) : ""}
                </Text>
@@ -68,7 +75,7 @@ return(
         </View> 
         :
         <View style={{flex: 1, flexDirection: 'row',justifyContent : 'center',alignItems : 'center',}}>
-          <Text style={{  height:30, borderRadius:2, fontSize : 20,
+          <Text style={{ borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>
                {!this.state.fetching ? (this.props.profileData.basic_data.name).slice(0,19) : ""}
                </Text>
@@ -822,6 +829,16 @@ page: {
     flex : 0.78,
     backgroundColor : '#FFFFFF',
     // paddingTop : 20,
+  },
+  contentPicAndroid:{
+    flex : 2,
+    borderColor : '#333156',
+    borderBottomWidth : 3,
+    paddingBottom: 10,
+    backgroundColor : '#6563A4',
+    flexDirection : 'row',
+    borderColor : 'green',
+    borderWidth : 1,
   },
   contentPic:{
     flex : 2,

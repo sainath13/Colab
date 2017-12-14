@@ -9,6 +9,7 @@ import {
   ScrollView,
   View,
   Image,
+  Platform,
   AsyncStorage,
   StatusBar,
 } from 'react-native';
@@ -92,25 +93,32 @@ onPressChat = () => {
   render() {
 return(
   <View style={{flex : 1}}>
+    {Platform.OS == "ios"? 
   <StatusBar
-    backgroundColor="red"
+    backgroundColor="#6563A4"
     barStyle="dark-content"
   />
+  :
+  <StatusBar
+    backgroundColor="#43416d"
+    barStyle="light-content"
+  />
+  }
    	<ActionCableProvider cable={RNActionCable.createConsumer('ws://'+GLOBAL.BASE_URL+'/cable?id='+this.props.loginInfo.id+"&token="+this.props.loginInfo.accessToken+"&client="+this.props.loginInfo.client+"&user_type=I")}>
 			<ActionCable ref='roomChannel' channel={{channel: 'MessageChannel'}} onReceived={this.onReceived} />
 	   </ActionCableProvider>
  
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{ } } >
+  <TouchableHighlight style={Platform.OS == "ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={ ()=>{ } } >
   <View style={{}}>
   </View>
   </TouchableHighlight>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
-    <Text style={styles.headerText}>
+    <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 Influx
     </Text>
   </View>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={this.onPressChat} >
+  <TouchableHighlight style={Platform.OS == "ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={this.onPressChat} >
   <View style={{}}>
                 <Icon name="chat" size={25} color='white' >
                 </Icon>
@@ -370,7 +378,7 @@ var styles = StyleSheet.create({
      alignItems : "center",
      justifyContent : "center",
     //  paddingTop : 20,
-    //  marginTop : 20,
+      //  marginTop : 20,
     //  backgroundColor: 'white',
      backgroundColor: '#6563A4',
      flexDirection : 'row',
@@ -416,6 +424,11 @@ var styles = StyleSheet.create({
       borderBottomColor : '#9190b6',
       borderRadius : 25,
       // backgroundColor : 'red',
+    },
+    headerTextAndroid:{
+    color: 'white',
+    fontSize : 25,
+    fontFamily : 'GothamRounded-Bold'
     },
   headerText:{
     // color : '#6563A4',
@@ -471,7 +484,7 @@ var styles = StyleSheet.create({
     flex : 1,
     backgroundColor : '#43416d',
     margin : 10,
-    elevation : 10,
+    //elevation : 10,
     borderRadius : 10,
     // borderColor: 'white',
     // borderWidth : 1,

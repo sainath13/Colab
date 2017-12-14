@@ -6,6 +6,7 @@ import { WebView ,
     TouchableHighlight,
   View,
   Text,
+  Platform,
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -15,19 +16,26 @@ class WebViewPage extends Component {
     return (
 <View
  style={{flex : 1}}>
-  <StatusBar
-    backgroundColor="#6563A4"
-    barStyle="dark-content"
-  />
+  {Platform.OS == "ios"? 
+<StatusBar
+  backgroundColor="#6563A4"
+  barStyle="dark-content"
+/>
+:
+<StatusBar
+  backgroundColor="#43416d"
+  barStyle="light-content"
+/>
+}
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <TouchableHighlight style={Platform.OS=="ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
   </TouchableHighlight>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
-    <Text style={styles.headerText}>
+    <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 RoadMap
     </Text>
   </View>
@@ -57,6 +65,12 @@ header: {
   flexDirection : 'row',
   flex: 1,
   backgroundColor: '#6563a4',
+},
+headerTextAndroid:{
+  color: 'white',
+  fontSize : 22,
+//  paddingTop : 25,
+  fontFamily : 'GothamRounded-Bold'
 },
 headerText:{
 // color : '#6563A4',

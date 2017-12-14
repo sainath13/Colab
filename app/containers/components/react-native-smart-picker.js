@@ -26,7 +26,7 @@ class TogglePicker extends Component {
 
   renderAndroid = () => (
     <View style={[styles.androidBoxStyle, this.props.androidBoxStyle]}>
-      <Text>
+      <Text style={{color : 'white', fontSize : 15,fontFamily : 'GothamRounded-Book'}}>
         {this.props.label}
       </Text>
       <View style={StyleSheet.flatten([styles.androidPickerWrapper, this.props.androidPickerWrapper])}>

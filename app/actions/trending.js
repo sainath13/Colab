@@ -3,6 +3,7 @@ import * as types from './types'
 const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
+import ApiUtils from './ApiUtils'
 let COLLAB = "trending";
 
 export function setTrending({ feedData }){
@@ -43,6 +44,7 @@ export function fetchTrending(id){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       console.log("fetchTrending",response.status);
       var loginObj = {};

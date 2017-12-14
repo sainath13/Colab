@@ -2,6 +2,7 @@ import * as types from './types'
 
 const GLOBAL = require('./Globals');
 const AUTH_INFLU = 'https://'+GLOBAL.BASE_URL+'/influencers/';
+import ApiUtils from './ApiUtils'
 const AUTH_BRAND =  'https://'+GLOBAL.BASE_URL+'/business/';
 
 
@@ -62,6 +63,7 @@ export function updateInfo(id,instagram_name,bio,phone,price_per_post,price_per_
         'uid': state.loginInfo.uid,
       }
       })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
+      .then(ApiUtils.checkStatus)
       //add .then(error) here only
       .then((response) => {
         var loginObj = {};
@@ -112,6 +114,7 @@ export function fetchNiche(id){
         'uid': state.loginInfo.uid,
       }
       })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
+      .then(ApiUtils.checkStatus)
       //add .then(error) here only
       .then((response) => {
         var loginObj = {};
@@ -163,6 +166,7 @@ export function updateNiche(id,nicheString){
         'uid': state.loginInfo.uid,
       },
       })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
+      .then(ApiUtils.checkStatus)
       //add .then(error) here only
       .then((response) => {
         var loginObj = {};

@@ -5,6 +5,7 @@ let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
 let SEARCH_NAME = "search";
 let SEARCH_NICHE = "search_by_niche"
+import ApiUtils from './ApiUtils'
 
 export function setSearch({ searchData }){
   return {
@@ -51,6 +52,7 @@ export function fetchSearch(id, searchInput,isNameSelected){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       var loginObj = {};
       console.log("serach",response.status);

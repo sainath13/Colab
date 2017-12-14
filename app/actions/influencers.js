@@ -4,6 +4,7 @@ const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
 let INFLUENCERS = "/influencer_collaborations";
+import ApiUtils from './ApiUtils'
 
 export function setInfluencer({ influencerData}){
   return {
@@ -45,6 +46,7 @@ export function fetchInfluencer(id){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       var loginObj = {};
       console.log("fetchInfluencers",response.status);

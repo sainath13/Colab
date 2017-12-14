@@ -7,6 +7,7 @@ import * as types from './types'
 const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
+import ApiUtils from './ApiUtils'
 let PROFILE = "/profile";
 // import profiles from './profiles'
 /*
@@ -65,6 +66,7 @@ export function fetchProfile(id){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       var loginObj = {};
       console.log("fetchProfile",response.status);

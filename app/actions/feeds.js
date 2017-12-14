@@ -4,6 +4,7 @@ const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
 let COLLAB = "/feed";
+import ApiUtils from './ApiUtils'
 
 export function setFeed({ feedData }){
   return {
@@ -42,6 +43,7 @@ export function fetchFeed(id){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       var loginObj = {};
       console.log("fetchFeed",response.status);

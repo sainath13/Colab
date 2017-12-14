@@ -1,5 +1,5 @@
 import * as types from './types'
-
+import ApiUtils from './ApiUtils'
 const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let BUSINESSES = "/business_collaberations";
@@ -34,6 +34,7 @@ export function fetchBusiness(id){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       var loginObj = {};
       console.log("fetchbusiness",response.status);

@@ -8,6 +8,7 @@ import * as types from './types'
 const GLOBAL = require('./Globals');
 let ROUTE = "https://"+GLOBAL.BASE_URL+"/";
 let influencer = "influencers/"
+import ApiUtils from './ApiUtils'
 let business = "business/"
 let INFLUENCER_PROFILE = "/view_visited_profile";
 let BUSINESS_PROFILE = "/view_visited_business";
@@ -110,6 +111,7 @@ export function fetchVisitProfile(id,clickedUserId, isBusiness){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       console.log("visitPorfile",response.status);
       var loginObj = {};
@@ -171,6 +173,7 @@ export function rejectCollab(id,clickedUserId, isBusiness){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       console.log("visitPorfile",response.status);
       var loginObj = {};
@@ -229,6 +232,7 @@ export function deleteCollab(id,clickedUserId, isBusiness){
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       console.log("visitPorfile",response.status);
       var loginObj = {};

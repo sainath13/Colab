@@ -6,6 +6,7 @@ let influencer = "influencers/";
 let business = "business/";
 let ACCEPT_COLLAB = "/accept_collaboration_with_business";
 let ACCEPT_COLLAB_INFLUENCER = "/accept_collaboration_with_influencer";
+import ApiUtils from './ApiUtils'
 
 export function setLoginInfo({loginInfo}){
   return {
@@ -99,6 +100,7 @@ export function acceptCollabRequest(currentUserId,acceptUserId,pageName,userType
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       console.log("acceptCollabRequest",response.status);
       var loginObj = {};
@@ -169,6 +171,7 @@ var REQUEST_COLLAB_INFLUENCER = "/request_influencer_for_collaboration";
         'uid': state.loginInfo.uid,
       }
     })//fetch
+    .then(ApiUtils.checkStatus)
     .then((response) => {
       console.log("requestCOllaboration",response.status);
       var loginObj = {};

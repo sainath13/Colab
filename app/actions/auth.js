@@ -2,6 +2,7 @@ import * as types from './types'
 const GLOBAL = require('./Globals');
 const AUTH_INFLU = 'https://'+GLOBAL.BASE_URL+'/facebook_login/omniauth_success?';
 //var React = require('react-native');
+import ApiUtils from './ApiUtils'
 
 // var {
   // AsyncStorage
@@ -41,6 +42,7 @@ export function signIn(accessToken,accountType){
       }
       })//fetch //TODO: add .then ((error)) here as well for all requests. refer to link in bookmarks
       //add .then(error) here only
+      .then(ApiUtils.checkStatus)
       .then((response) => {
         var loginObj = {};
         console.log("auth",response.status)

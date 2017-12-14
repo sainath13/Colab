@@ -80,7 +80,7 @@ selectNiche(){
 
   render() {
 return(
-  <View style={{flex : 1}}>
+  <KeyboardAvoidingView style={{flex : 1}}>
     {Platform.OS == "ios"? 
   <StatusBar
     backgroundColor="#6563A4"
@@ -92,12 +92,13 @@ return(
     barStyle="light-content"
   />
   }
+  <ScrollView style={{flex:1 , backgroundColor : 'white'}} scrollEnabled={false}>
   <View style={styles.header}>
     <Text style={Platform.OS == "ios" ? styles.headerText: styles.headerTextAndroid}>
       Search
     </Text>
   </View>
-  <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={-1000} style = {styles.content}>
+  <View behavior="padding" keyboardVerticalOffset={-1000} style = {styles.content}>
   <ScrollView style={{flex:1}} scrollEnabled={false}>
     <View style={styles.contentPic}>
       <View style={{flexDirection: 'row', flex: 1}}>
@@ -155,7 +156,7 @@ return(
   </View>
    : null}
     <View style={styles.listView}>
-      <ScrollView>
+      <ScrollView style={{flex : 1}} >
       {!this.state.showingSearchResults && this.state.isNicheSelected && !this.state.loadingNiche ?
         <View style={{flex: 1,
       flexDirection:'row',
@@ -273,8 +274,9 @@ return(
       </ScrollView>
     </View>
     </ScrollView>
-  </KeyboardAvoidingView>
-</View>
+  </View>
+  </ScrollView>
+</KeyboardAvoidingView>
 )}
 };
 
@@ -351,6 +353,7 @@ var styles = StyleSheet.create({
   contentHeadingText:{
     padding: 2,
     fontSize : 20,
+    margin: 2,
     color : 'white',
     fontFamily : 'GothamRounded-Medium'
   },

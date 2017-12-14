@@ -68,7 +68,7 @@ const scenes = Actions.create(
 
         <Scene key="OpeningPage" initial={true} component={OpeningPage} hideNavBar />
         <Scene key="SignInPage" component={SignInPage} hideNavBar />
-        <Scene key="TabBarComponent" tabs={true} showLabel={false} swipeEnabled tabBarStyle={style.tabBarStyle}  >
+        <Scene key="TabBarComponent" tabs={true} showLabel={false} tabBarStyle={style.tabBarStyle}  >
             <Scene key="home" component={FeedPage} title={"Feed"} icon={TabIconFeed} iconName={"home"} hideNavBar />
             <Scene key="SearchPage" component={SearchPage} title={"Search"} icon={TabIconSearch} iconName={"search"} hideNavBar />
             <Scene key="ProfilePage" component={ProfilePage} title={"Profile"} icon={TabIconProfile} iconName={"user"} hideNavBar />

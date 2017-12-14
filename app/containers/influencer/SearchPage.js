@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   View,
+  KeyboardAvoidingView,
   Image,
   StatusBar,
   Platform,
@@ -96,7 +97,8 @@ return(
       Search
     </Text>
   </View>
-  <View style = {styles.content}>
+  <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={-1000} style = {styles.content}>
+  <ScrollView style={{flex:1}} scrollEnabled={false}>
     <View style={styles.contentPic}>
       <View style={{flexDirection: 'row', flex: 1}}>
       <TouchableHighlight style={[styles.nicheContainer, this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.selectNiche()}>
@@ -120,11 +122,7 @@ return(
     <View style={styles.searchBarInside}>
       <TextInput
           ref={'textInput1'}
-          style={{flex: 1,
-          fontSize : 18,
-          paddingBottom : 3,
-          marginLeft : 10,
-          fontFamily:'GothamRounded-Book', color: 'black',}}
+          style={styles.inputBoxStyle}
           underlineColorAndroid={'transparent'}
           onChangeText={(searchInput) => this.setState({searchInput})}>
       </TextInput>
@@ -148,7 +146,7 @@ return(
 
     <View style={styles.notificationBar}>
       <Text style={styles.notificationBarText}>
-       {this.state.showingSearchResults ? "Search results" : "Treding right now"} 
+       {this.state.showingSearchResults ? "Search results" : "Trending right now"} 
       </Text>
     </View>
     { this.state.searching  || this.state.loading || this.state.loadingNiche ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
@@ -274,7 +272,8 @@ return(
           }
       </ScrollView>
     </View>
-  </View>
+    </ScrollView>
+  </KeyboardAvoidingView>
 </View>
 )}
 };
@@ -350,6 +349,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
   },
   contentHeadingText:{
+    padding: 2,
     fontSize : 20,
     color : 'white',
     fontFamily : 'GothamRounded-Medium'
@@ -368,6 +368,14 @@ var styles = StyleSheet.create({
   content:{
     flex : 9,
     backgroundColor : '#FFFFFF',
+  },
+  inputBoxStyle:{
+flex: 1,
+          fontSize : 18,
+          paddingBottom : 3,
+          margin : Platform.OS=="ios" ? 10 : 0,
+          marginLeft : 10,
+          fontFamily:'GothamRounded-Book', color: 'black',
   },
   contentPic:{
     flex : 2,
@@ -464,11 +472,13 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
   },
   notificationBarText:{
+    marginTop : 10,
     fontSize: 20,
     fontFamily : 'GothamRounded-Book'
   },
   listView:{
     flex : 7,
+    marginTop : 10,
     // borderWidth : 1,
     // borderColor : 'red',
   },

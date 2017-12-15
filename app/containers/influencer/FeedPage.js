@@ -12,6 +12,7 @@ import {
   Platform,
   AsyncStorage,
   StatusBar,
+  RefreshControl,
 } from 'react-native';
 var Spinner = require('react-native-spinkit');
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
@@ -34,11 +35,11 @@ constructor(props) {
   super(props)
   //setting it to false if okay. but might need to think about it later
   //in some cases was not working so its true now. :\
-  this.state = { fetching: true }
+  refreshing: false,this.state = { fetching: true }
 }
 
 componentDidMount(){
-  this.setState({fetching: true});
+  this.setState({fetching: true,refreshing: false,});
   this.props.fetchFeed(this.props.loginInfo.id).then( (res) => {
     this.setState({fetching: false })
     console.log("business_collaborations_count",this.props.feedData.business_collaborations_count);
@@ -89,6 +90,13 @@ onPressChat = () => {
 //  console.log("this is this ", this);
  this.refs.roomChannel.perform('get_chat_pairs');
   //Actions.chatListPage();
+}
+
+_onRefresh() {
+  this.setState({refreshing: true});
+  this.props.fetchFeed(this.props.loginInfo.id).then(() => {
+    this.setState({refreshing: false});
+  });
 }
   render() {
 return(
@@ -170,7 +178,14 @@ Influx
    <View style={{alignItems: 'center' , justifyContent: 'center', }}>
     <Spinner style={{flex : 1 }} isVisible={this.state.fetching} size={50} type={'ThreeBounce'} color={'#65634A'}/>
   </View> : 
-       <ScrollView>
+       <ScrollView  
+       refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh.bind(this)}
+        />
+      }
+       >
            {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableHighlight key={feedItem.id}

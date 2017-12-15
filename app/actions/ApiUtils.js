@@ -4,6 +4,7 @@ var ApiUtils = {
         return response;
       } else {
         let error = new Error(response.statusText);
+        console.log(response.status)
         error.response = response;
         throw error;
       }

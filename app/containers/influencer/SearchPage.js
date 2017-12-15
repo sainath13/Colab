@@ -92,14 +92,14 @@ return(
     barStyle="light-content"
   />
   }
-  <ScrollView style={{flex:1 , backgroundColor : 'white'}} scrollEnabled={Platform.OS=='ios' ? false : true}>
+  <ScrollView style={{flex:1 , backgroundColor : 'white'}} scrollEnabled={Platform.OS=='ios' ? true : true}>
   <View style={styles.header}>
     <Text style={Platform.OS == "ios" ? styles.headerText: styles.headerTextAndroid}>
       Search
     </Text>
   </View>
   <View behavior="padding" keyboardVerticalOffset={-1000} style = {styles.content}>
-  <ScrollView style={{flex:1}} scrollEnabled={false}>
+  <View style={{flex:1}} scrollEnabled={false}>
     <View style={styles.contentPic}>
       <View style={{flexDirection: 'row', flex: 1}}>
       <TouchableHighlight style={[styles.nicheContainer, this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.selectNiche()}>
@@ -156,7 +156,7 @@ return(
   </View>
    : null}
     <View style={styles.listView}>
-      <ScrollView style={{flex : 1}} >
+      <View style={{flex : 1}} >
       {!this.state.showingSearchResults && this.state.isNicheSelected && !this.state.loadingNiche ?
         <View style={{flex: 1,
       flexDirection:'row',
@@ -271,9 +271,9 @@ return(
               )//return
             })//Map
           }
-      </ScrollView>
+      </View>
     </View>
-    </ScrollView>
+    </View>
   </View>
   </ScrollView>
 </KeyboardAvoidingView>

@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   TextInput,
+  Alert,
   ScrollView,
   View,
   StatusBar,
@@ -91,7 +92,13 @@ return(
     <View style={{backgroundColor : '#6563A4', flex : 1, padding : 10, borderColor : 'white', borderWidth : 2}}>
 {this.props.visitProfileData.status == "accept collaberation" ? 
 <TouchableHighlight onPress={()=> {
-  console.log("this.props.visiprofiledata.class",this.props.visitProfileData.class )
+
+  Alert.alert(
+    'Are you sure',
+    'You want to Reject Collaboration?',
+    [
+      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+      {text: 'Reject', onPress: () => { console.log('Reject Collaboration'); 
   var isBusiness;
   if(this.props.visitProfileData.class == "Business"){
     isBusiness = true;
@@ -100,6 +107,11 @@ return(
     isBusiness = false;
   }
  this.props.rejectCollab(this.props.loginInfo.id, this.props.visitProfileData.id,isBusiness);
+    } },
+    ],
+    { cancelable: true}
+  )
+
   console.log("Reject collaboration");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,
@@ -134,7 +146,13 @@ return(
 :
 null}
 {this.props.visitProfileData.status == "accepted" ? <TouchableHighlight onPress={()=> {
-  console.log("this.props.visiprofiledata.class",this.props.visitProfileData.class )
+  //console.log("this.props.visiprofiledata.class",this.props.visitProfileData.class )
+  Alert.alert(
+    'Are you sure',
+    'You want to Delete Collaboration?',
+    [
+      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+      {text: 'Delete', onPress: () => { console.log('Delete Collaboration'); 
   var isBusiness;
   if(this.props.visitProfileData.class == "Business"){
     isBusiness = true;
@@ -143,6 +161,10 @@ null}
     isBusiness = false;
   }
  this.props.deleteCollab(this.props.loginInfo.id, this.props.visitProfileData.id,isBusiness);
+    } },
+    ],
+    { cancelable: true}
+  )
   
   console.log("Delete collaboration");}}>
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',

@@ -9,6 +9,7 @@ import {
   TextInput,
   StatusBar,
   Keyboard,
+  Alert,
   AsyncStorage,
   Image,
   Platform
@@ -293,8 +294,20 @@ Influencer Market Road map
 
 <TouchableHighlight style={{flex: 1,}} 
                         onPress={()=> {console.log("logout");
+
+  Alert.alert(
+    'Are you sure',
+    'You want to log out?',
+    [
+      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+      {text: 'Log Out', onPress: () => { console.log('Log Outpressed'); 
+    
      AsyncStorage.multiRemove(['accessToken','tokenType','client', 'expiry', 'uid','id','class']);
      Actions.reset('SignInPage');
+    } },
+    ],
+    { cancelable: true}
+  )
                         }} > 
 <View style={{flexDirection : 'row' , backgroundColor : '#F6F5FA',
             borderBottomColor : '#6563A4' ,

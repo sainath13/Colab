@@ -7,7 +7,9 @@ import {
   View,
   TextInput,
   StatusBar,
-  Image
+  Platoform,
+  Image,
+  Platform
 } from 'react-native';
 const Dimensions = require('Dimensions');
 import Checkbox from 'react-native-custom-checkbox';
@@ -60,14 +62,14 @@ return(
     barStyle="light-content"
   />
   <View style={styles.header}>
-  <TouchableOpacity style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <TouchableOpacity style={Platform.OS=="ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'} }  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
   </TouchableOpacity>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
-    <Text style={styles.headerText}>
+    <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 Niches
     </Text>
   </View>
@@ -132,6 +134,12 @@ var styles = StyleSheet.create({
     borderColor : '#333156',
     borderBottomWidth : 3,
     flexDirection : 'row'
+    },
+    headerTextAndroid:{
+// color : '#6563A4',
+  color: 'white',
+  fontSize : 25,
+  fontFamily : 'GothamRounded-Bold'
     },
   headerText:{
 // color : '#6563A4',

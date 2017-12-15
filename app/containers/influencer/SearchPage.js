@@ -92,7 +92,7 @@ return(
     barStyle="light-content"
   />
   }
-  <ScrollView style={{flex:1 , backgroundColor : 'white'}} scrollEnabled={false}>
+  <ScrollView style={{flex:1 , backgroundColor : 'white'}} scrollEnabled={Platform.OS=='ios' ? false : true}>
   <View style={styles.header}>
     <Text style={Platform.OS == "ios" ? styles.headerText: styles.headerTextAndroid}>
       Search

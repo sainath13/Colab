@@ -79,6 +79,7 @@ selectNiche(){
 }
 
   render() {
+    if(!Platform.OS=="ios"){
 return(
   <KeyboardAvoidingView style={{flex : 1}}>
     {Platform.OS == "ios"? 
@@ -277,7 +278,210 @@ return(
   </View>
   </ScrollView>
 </KeyboardAvoidingView>
-)}
+)
+    }
+    else{
+      return (
+        <View style={{flex : 1}}>
+        {Platform.OS == "ios"? 
+      <StatusBar
+        backgroundColor="#6563A4"
+        barStyle="dark-content"
+      />
+      :
+      <StatusBar
+        backgroundColor="#43416d"
+        barStyle="light-content"
+      />
+      }
+      <View style={styles.header}>
+        <Text style={Platform.OS == "ios" ? styles.headerText: styles.headerTextAndroid}>
+          Search
+        </Text>
+      </View>
+      <View style = {styles.content}>
+        <View style={styles.contentPic}>
+          <View style={{flexDirection: 'row', flex: 1}}>
+          <TouchableHighlight style={[styles.nicheContainer, this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.selectNiche()}>
+              <View style={styles.headingContainer}>
+                <Text style={styles.contentHeadingText}>
+                  Niche
+                </Text>
+              </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={[styles.nicheContainer, !this.state.isNicheSelected && styles.nicheContainerHighlighted]} onPress={()=> this.selectName()}>
+            <View style={styles.headingContainer}>
+              <Text style={styles.contentHeadingText}>
+                Name
+              </Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+        <View style={{flex: 1}}>
+          <View style={styles.searchBarContainer}>
+      <View style={styles.searchBarOutside}>
+        <View style={styles.searchBarInside}>
+          <TextInput
+              ref={'textInput1'}
+              style={{flex: 1,
+              fontSize : 18,
+              paddingBottom : 3,
+              marginLeft : 10,
+              fontFamily:'GothamRounded-Book', color: 'black',}}
+              underlineColorAndroid={'transparent'}
+              onChangeText={(searchInput) => this.setState({searchInput})}>
+          </TextInput>
+        </View>
+        <View style={styles.searchIcon}>
+          <TouchableHighlight onPress={ ()=> this.searchPressed() }>
+              <Icon name="search" size={30} color='#58568f' >
+        </Icon> 
+          </TouchableHighlight>
+        </View>
+      </View>
+      <TouchableHighlight style={{flex : 1}} onPress={ ()=> this.cancelPressed()} >
+    <View style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop : 5 , marginBottom : 10,}}>
+              <Icon name="times-circle-o" size={30} color='#58568f'>
+        </Icon> 
+    </View>
+    </TouchableHighlight>
+    </View>
+        </View>
+        </View>
+    
+        <View style={styles.notificationBar}>
+          <Text style={styles.notificationBarText}>
+           {this.state.showingSearchResults ? "Search results" : "Treding right now"} 
+          </Text>
+        </View>
+        { this.state.searching  || this.state.loading || this.state.loadingNiche ? <View style={{alignItems: 'center' , justifyContent: 'center', }}>
+        {console.log("showing this loading")}
+        <Spinner style={{flex : 1, }} isVisible={this.state.searching || ( this.state.loading && this.state.loadingNiche) } size={50} type={'ThreeBounce'} color={'#65634A'}/>
+      </View>
+       : null}
+        <View style={styles.listView}>
+          <ScrollView>
+          {!this.state.showingSearchResults && this.state.isNicheSelected && !this.state.loadingNiche ?
+            <View style={{flex: 1,
+          flexDirection:'row',
+          flexWrap : 'wrap',
+          padding : 5,
+          justifyContent : 'center',
+          alignItems : 'flex-start',
+          }}>
+        {!this.state.showingSearchResults && this.state.isNicheSelected && !this.state.loadingNiche && this.fetchNicheItems().map((nicheItem)=>{
+                  return (
+                        <TouchableHighlight onPress={ ()=>{ console.log(nicheItem.name);
+                           this.searchNichePressed(nicheItem.name)} }key={nicheItem.name} style={{
+                            marginTop : 5,
+                            marginBottom : 5,
+                            marginLeft : 15,
+                            marginRight : 15,
+                            borderRadius:3,
+                            borderColor : 'white',
+                            padding : 5,
+                            alignItems : 'center',
+                            justifyContent: 'center',
+                            backgroundColor : '#6563A4',
+                        }}>
+                        <Text style={{
+                            color : 'white',
+                                fontSize : 17,
+                                fontFamily :'GothamRounded-Book',
+                        }}>
+                               {nicheItem.name} 
+                            </Text>
+                        </TouchableHighlight>
+                       )//return
+    
+        })}
+        </View>
+        : null}
+            {!this.state.showingSearchResults && this.state.isNameSelected && !this.state.loading && this.fetchTrendingItems().map((searchItem) => { 
+                     return ( <TouchableHighlight key={searchItem.id}
+                           onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : searchItem.isBusiness}) } }>
+                    <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
+                        <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
+                              <Image
+                                style = {{width: 40, height: 40, borderRadius: 20}}
+                                source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                              />
+                        </View>
+                        <View style={{flex : 4, justifyContent : 'center', }}>
+                            <Text style={{
+                                fontSize: 16,
+                                fontFamily :'GothamRounded-Medium',
+                                marginLeft : 10
+                            }}>
+                             {searchItem.instagram_name} 
+                            </Text>
+                            <Text style={{
+                                fontSize: 16,
+                                fontFamily :'GothamRounded-Book',
+                                marginLeft : 10,
+                            }}>
+                          {searchItem.class =="Influencer" ?searchItem.first_name + " " + searchItem.last_name : searchItem.name } 
+                            </Text>
+                        </View>
+                    </View>
+                    </TouchableHighlight>
+                  )//return
+                })//Map
+              }
+            {! this.state.searching && this.state.showingSearchResults && (this.fetchSearch().length == 0) ?
+                    <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', }}>
+                        <View style={{flex : 4, justifyContent : 'center', }}>
+                            <Text style={{
+                                fontSize: 17,
+                                fontFamily :'GothamRounded-Medium',
+                                marginLeft : 10,
+                                color : 'gray'
+                            }}>
+                            No results found 
+                            </Text>
+                        </View>
+                    </View>
+    :        null  
+          
+          }
+            {! this.state.searching && this.state.showingSearchResults && this.fetchSearch().map((searchItem) => { 
+                     return ( <TouchableHighlight key={searchItem.id}
+                           onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
+                    <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
+                        <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
+                              <Image
+                                style = {{width: 40, height: 40, borderRadius: 20}}
+                                source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                              />
+                        </View>
+                        <View style={{flex : 4, justifyContent : 'center', }}>
+                            <Text style={{
+                                fontSize: 16,
+                                fontFamily :'GothamRounded-Medium',
+                                marginLeft : 10
+                            }}>
+                             {searchItem.instagram_name} 
+                            </Text>
+                            <Text style={{
+                                fontSize: 16,
+                                fontFamily :'GothamRounded-Book',
+                                marginLeft : 10,
+                            }}>
+                          {searchItem.class =="Influencer" ?searchItem.first_name + " " + searchItem.last_name : searchItem.name } 
+                            </Text>
+                        </View>
+                    </View>
+                    </TouchableHighlight>
+                  )//return
+                })//Map
+              }
+          </ScrollView>
+        </View>
+      </View>
+    </View>
+    )}
+    };
+
 };
 
 var styles = StyleSheet.create({

@@ -10,6 +10,7 @@ import {
   View,
   Image,
   StatusBar,
+  TouchableOpacity,
   Platform,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
@@ -63,12 +64,12 @@ return(
   />
   }
   <View style={styles.header}>
-  <TouchableHighlight style={Platform.OS == "ios" ?{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }:{flex : 1, alignItems : 'center', justifyContent : 'center' } }  onPress={ ()=>{ Actions.pop(); } } >
+  <TouchableOpacity style={Platform.OS == "ios" ?{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }:{flex : 1, alignItems : 'center', justifyContent : 'center' } }  onPress={ ()=>{ Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 Brands
@@ -79,7 +80,7 @@ Brands
 </View>
   <View style = {styles.content}>
   {this.state.isAcceptedShowing ?
-              <TouchableHighlight 
+              <TouchableOpacity
                              onPress={ ()=>{ //console.log('test'); 
                              this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
@@ -101,9 +102,9 @@ Brands
                 </Icon>
                     </View>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
                       : 
-              <TouchableHighlight 
+              <TouchableOpacity
                              onPress={ ()=>{ //console.log('test'); 
                              this.toggleisAcceptedShowing(); } } style={{flex : 1, marginBottom : 10,marginTop : 10,}} >
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 2, borderBottomColor: '#E0E0E0',}}>
@@ -125,7 +126,7 @@ Brands
                 </Icon>
                     </View>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
                         
   }
     <View style={styles.notificationBar}>
@@ -141,7 +142,7 @@ Brands
        <ScrollView>
            {! this.state.fetching && this.fetchBusinessItems().map((feedItem) => {
             if(feedItem.status =="accepted" && this.state.isAcceptedShowing){ //because no else if here
-              return ( <TouchableHighlight key={feedItem.id}
+              return ( <TouchableOpacity key={feedItem.id}
                              onPress={ ()=>{ //console.log(feedItem.id);
                               Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true})  } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
@@ -191,11 +192,11 @@ Brands
                         </Text>
                     </View>
                 </View>
-                      </TouchableHighlight>
+                      </TouchableOpacity>
               )//return
             }//else
             if(feedItem.status =="requested" && !this.state.isAcceptedShowing){ //because no else if here
-              return ( <TouchableHighlight key={feedItem.id}
+              return ( <TouchableOpacity key={feedItem.id}
                              onPress={ ()=>{ //console.log(feedItem.id) ;
                               Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true}) } }>
                 <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center' , borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
@@ -221,7 +222,7 @@ Brands
                        7 posts, 3 stories 
                         </Text>
                     </View>
-                    <TouchableHighlight 
+                    <TouchableOpacity
                         onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"BrandListPage","Business")}}
                     style={{flex : 2, 
                         marginTop : 10,
@@ -245,9 +246,9 @@ Brands
                     }}>
                            accept 
                         </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
-                      </TouchableHighlight>
+                      </TouchableOpacity>
               )//return
             }//else
 

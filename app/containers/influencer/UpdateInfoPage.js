@@ -3,7 +3,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   KeyboardAvoidingView,
   View,
   TextInput,
@@ -403,7 +403,7 @@ return(
       Pricing
     </Text>
   </View>
-  <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPriceSelect}>              
+  <TouchableOpacity style={{flex: 1,}} onPress = {this._onPressPriceSelect}>              
   <View style={{flex : 1,
     marginTop : 10,
     marginBottom : 10,
@@ -426,7 +426,7 @@ return(
      select 
     </Text>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 </View>
 : null
   }
@@ -448,7 +448,7 @@ return(
 Payment Methods
     </Text>
   </View>
-  <TouchableHighlight style={{flex: 1,}} onPress = {this._onPressPaymentSelect}>              
+  <TouchableOpacity style={{flex: 1,}} onPress = {this._onPressPaymentSelect}>              
   <View style={{flex : 1,
     marginTop : 10,
     marginBottom : 10,
@@ -471,7 +471,7 @@ Payment Methods
      select 
     </Text>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 </View>
 : null
   }
@@ -633,7 +633,7 @@ borderRadius : 5}}>
 </Text>
 </View>
 
-<TouchableHighlight style={{flex: 1,}} onPress = {this._onPressInfluencerNicheSelect}>
+<TouchableOpacity style={{flex: 1,}} onPress = {this._onPressInfluencerNicheSelect}>
 <View style={{flex : 1,
 marginTop : 10,
 marginBottom : 10,
@@ -656,12 +656,12 @@ borderRadius : 5}}>
    select
 </Text>
 </View>
-</TouchableHighlight>
+</TouchableOpacity>
 </View>
     </ScrollView>
     </View>
 
-    <TouchableHighlight style={{
+    <TouchableOpacity style={{
         flex: 1,
         alignItems : "center",
         justifyContent : "center",
@@ -677,7 +677,7 @@ borderRadius : 5}}>
           Save
         </Text>
     </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
   </View>
 
 </View>

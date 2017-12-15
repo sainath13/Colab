@@ -11,6 +11,7 @@ import {
   Image,
   StatusBar,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -333,18 +334,18 @@ return(
           </TextInput>
         </View>
         <View style={styles.searchIcon}>
-          <TouchableHighlight onPress={ ()=> this.searchPressed() }>
+          <TouchableOpacity onPress={ ()=> this.searchPressed() }>
               <Icon name="search" size={30} color='#58568f' >
         </Icon> 
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
-      <TouchableHighlight style={{flex : 1}} onPress={ ()=> this.cancelPressed()} >
+      <TouchableOpacity style={{flex : 1}} onPress={ ()=> this.cancelPressed()} >
     <View style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop : 5 , marginBottom : 10,}}>
               <Icon name="times-circle-o" size={30} color='#58568f'>
         </Icon> 
     </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
     </View>
         </View>
         </View>
@@ -398,7 +399,7 @@ return(
         </View>
         : null}
             {!this.state.showingSearchResults && this.state.isNameSelected && !this.state.loading && this.fetchTrendingItems().map((searchItem) => { 
-                     return ( <TouchableHighlight key={searchItem.id}
+                     return ( <TouchableOpacity key={searchItem.id}
                            onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : searchItem.isBusiness}) } }>
                     <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                         <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
@@ -424,7 +425,7 @@ return(
                             </Text>
                         </View>
                     </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                   )//return
                 })//Map
               }
@@ -445,7 +446,7 @@ return(
           
           }
             {! this.state.searching && this.state.showingSearchResults && this.fetchSearch().map((searchItem) => { 
-                     return ( <TouchableHighlight key={searchItem.id}
+                     return ( <TouchableOpacity key={searchItem.id}
                            onPress={ ()=>{Actions.VisitProfilePage({clickedUserId : searchItem.id, isBusiness : false}) } }>
                     <View style={{flex : 1 ,  flexDirection : 'row', justifyContent : 'center', borderBottomWidth: 0.5, borderBottomColor: '#E0E0E0', }}>
                         <View style={{flex : 1, alignItems : 'center',justifyContent:'center', padding : 3 }}>
@@ -471,7 +472,7 @@ return(
                             </Text>
                         </View>
                     </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                   )//return
                 })//Map
               }

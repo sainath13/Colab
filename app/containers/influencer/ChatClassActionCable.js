@@ -9,6 +9,7 @@ import {
   StatusBar,
   ScrollView,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 //import RNActionCable from 'react-native-actioncable';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -102,12 +103,12 @@ return(
 />
 }
   <View style={styles.header}>
-  <TouchableHighlight style={Platform.OS=="ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } :{flex : 1, alignItems : 'center', justifyContent : 'center'} }  onPress={ ()=>{  Actions.pop(); } } >
+  <TouchableOpacity style={Platform.OS=="ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } :{flex : 1, alignItems : 'center', justifyContent : 'center'} }  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 Chat
@@ -124,7 +125,7 @@ Chat
       <ScrollView>
         {this.fetchChatList().map((chatListItem) => {
           // console.log("logging -------------",chatListItem);
-             return ( <TouchableHighlight key={chatListItem.chat_pair.id}
+             return ( <TouchableOpacity key={chatListItem.chat_pair.id}
                             onPress={ ()=>{
                               // console.log(chatListItem.chat_pair.id);
                               this.getLast5Messages(chatListItem.chat_pair);
@@ -161,7 +162,7 @@ Chat
                     </View>
                 </View>
 
-                     </TouchableHighlight>
+                     </TouchableOpacity>
           )  })}
      </ScrollView>
     </View>

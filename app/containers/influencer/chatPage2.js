@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  TouchableHighlight,
   Text,
   TextInput,
   ScrollView,
@@ -12,6 +11,7 @@ import {
   StatusBar,
   Dimensions,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -70,12 +70,12 @@ return(
 />
 }
   <View style={styles.header}>
-  <TouchableHighlight style={Platform.OS=="ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={ ()=>{  Actions.pop(); } } >
+  <TouchableOpacity style={Platform.OS=="ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 {(this.props.username).slice(0,20)}

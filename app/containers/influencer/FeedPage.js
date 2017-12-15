@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
   Text,
   TextInput,
   ScrollView,
@@ -117,25 +117,25 @@ return(
 	   </ActionCableProvider>
  
   <View style={styles.header}>
-  <TouchableHighlight style={Platform.OS == "ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={ ()=>{ } } >
+  <TouchableOpacity style={Platform.OS == "ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={ ()=>{ } } >
   <View style={{}}>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
 Influx
     </Text>
   </View>
-  <TouchableHighlight style={Platform.OS == "ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={this.onPressChat} >
+  <TouchableOpacity style={Platform.OS == "ios" ? {flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 } : {flex : 1, alignItems : 'center', justifyContent : 'center'}}  onPress={this.onPressChat} >
   <View style={{}}>
                 <Icon name="chat" size={25} color='white' >
                 </Icon>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 </View>
   <View style = {styles.content}>
     <View style={styles.contentPic}>
-    <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  //console.log("Influencers"),
+    <TouchableOpacity style={{flex: 1}} onPress={ ()=>{  //console.log("Influencers"),
      Actions.InfluencersListPage(); } }>
       <View style={styles.influencerContainer}>
         <View style={styles.headingContainer}>
@@ -149,8 +149,8 @@ Influx
         </Text>
       </View>
       </View>
-      </TouchableHighlight>
-      <TouchableHighlight style={{flex: 1}} onPress={ ()=>{  //console.log("Brands"); 
+      </TouchableOpacity>
+      <TouchableOpacity style={{flex: 1}} onPress={ ()=>{  //console.log("Brands"); 
       Actions.BrandsListPage(); } } >
       <View style={styles.brandContainer}>
         <View style={styles.headingContainer}>
@@ -164,7 +164,7 @@ Influx
         </Text>
       </View>
       </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     </View>
     <View style={styles.notificationBar}>
       <View> 
@@ -188,7 +188,7 @@ Influx
        >
            {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
              if(feedItem.status == "requested"){
-              return ( <TouchableHighlight key={feedItem.id}
+              return ( <TouchableOpacity key={feedItem.id}
                              onPress={ ()=>{  // console.log(feedItem.id);
 Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                         <View style={styles.listElement}>
@@ -203,7 +203,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                               <Text style={styles.notificationItemTextBold}>{feedItem.first_name +" " + feedItem.last_name}</Text> wants to collaborate.
                             </Text>
                         </View>
-                        <TouchableHighlight
+                        <TouchableOpacity
                         onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Influencer")}}
                          style={{
                         width : 100,
@@ -228,13 +228,13 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                     }}>
                         accept
                         </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableOpacity>
               )//return
             }//if
              if(feedItem.status == "accepted"){
-              return ( <TouchableHighlight key={feedItem.id}
+              return ( <TouchableOpacity key={feedItem.id}
                              onPress={ ()=>{  //console.log(feedItem.id) 
                             Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false})
                             } }>
@@ -251,7 +251,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                             
                             </Text>
                         </View>
-                        <TouchableHighlight
+                        <TouchableOpacity
                         onPress={()=> {(console.log("clicked on message"))}}
                          style={{
                         width : 100,
@@ -276,16 +276,16 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                     }}>
                        message 
                         </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableOpacity>
               )//return
             }//if
            })//map
          }
            {! this.state.fetching && this.fetchFeedItems("brand").map((feedItem) => {
              if(feedItem.status == "requested"){
-              return ( <TouchableHighlight key={feedItem.id}
+              return ( <TouchableOpacity key={feedItem.id}
                              onPress={ ()=>{ // console.log(feedItem.id);
                                Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true}) } }>
                         <View style={styles.listElement}>
@@ -300,7 +300,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                               <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> wants to collaborate.
                             </Text>
                         </View>
-                        <TouchableHighlight
+                        <TouchableOpacity
                         onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Business")}}
                          style={{
                         width : 100,
@@ -325,13 +325,13 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                     }}>
                         accept
                         </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableOpacity>
               )//return
             }//if
              if(feedItem.status == "accepted"){
-              return ( <TouchableHighlight key={feedItem.id}
+              return ( <TouchableOpacity key={feedItem.id}
                              onPress={ ()=>{  //console.log(feedItem.id);  
                               Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : true})} }>
                         <View style={styles.listElement}>
@@ -346,7 +346,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                               <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> wants to collaborate.
                             </Text>
                         </View>
-                        <TouchableHighlight
+                        <TouchableOpacity
                         onPress={()=> {(console.log("clicked on message"))}}
                          style={{
                         width : 100,
@@ -371,9 +371,9 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                     }}>
                        message 
                         </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                         </View>
-                      </TouchableHighlight>
+                      </TouchableOpacity>
               )//return
             }//if
            })//map

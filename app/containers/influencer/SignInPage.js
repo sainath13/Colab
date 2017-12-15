@@ -5,7 +5,7 @@ import React ,{ Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
   Text,
   TextInput,
   ScrollView,
@@ -141,20 +141,20 @@ class SignInPage extends Component{
       </View>
 
     </View>
-    <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressInfluencerSignIn()}}>
+    <TouchableOpacity style={{flex:1}} onPress={()=> {this.onPressInfluencerSignIn()}}>
       <View style={styles.submitButton}>
         <Text style={styles.submitButtonText}>
           Login as Influencer 
         </Text>
       </View>
-    </TouchableHighlight>
-    <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressiBusinessSignIn() }}>
+    </TouchableOpacity>
+    <TouchableOpacity style={{flex:1}} onPress={()=> {this.onPressiBusinessSignIn() }}>
       <View style={styles.createAccountButton}>
         <Text style={styles.createAccountButtonText}>
          Login as Business 
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
     </View>
   </View>
 </View>

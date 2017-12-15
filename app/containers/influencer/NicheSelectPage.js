@@ -3,7 +3,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   View,
   TextInput,
   StatusBar,
@@ -60,12 +60,12 @@ return(
     barStyle="light-content"
   />
   <View style={styles.header}>
-  <TouchableHighlight style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
+  <TouchableOpacity style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }}  onPress={ ()=>{  Actions.pop(); } } >
   <View style={{}}>
                 <Icon name="chevron-left" size={25} color='white' >
                 </Icon>
   </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={styles.headerText}>
 Niches
@@ -77,7 +77,7 @@ Niches
   <View style={styles.content}>
   <ScrollView style={{flex : 9}}>
   {! this.state.fetching && this.fetchNicheItems().map((nicheItem) => {
-    return ( <TouchableHighlight key={nicheItem.name}
+    return ( <TouchableOpacity key={nicheItem.name}
                              onPress={ ()=>{   console.log(nicheItem.name); this.props.toggleNiche(nicheItem.name);}}
     >
       <View style={styles.slot_element}>{
@@ -93,13 +93,13 @@ Niches
             </Text>
           </View>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
     )})}
     </ScrollView>
 
     </View>
 
-      <TouchableHighlight style={{
+      <TouchableOpacity style={{
           flex: 1,
           alignItems : "center",
           justifyContent : "center",
@@ -115,7 +115,7 @@ Niches
             Save
           </Text>
       </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
     </View>
 )}
 }

@@ -44,7 +44,7 @@ cancelPressed() {
 }
 searchNichePressed(nichename){
   this.refs.textInput1.setNativeProps({text : nichename})
-    this.setState({ searching: true, showingSearchResults : true});
+    this.setState({ searching: true, showingSearchResults : true, searchInput: nichename});
       this.props.fetchSearch(this.props.loginInfo.id,nichename,this.state.isNameSelected).then( (res) => {
       this.setState({searching: false });
     });

@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   View,
   TextInput,
+  Linking,
   StatusBar,
   Keyboard,
   Image,
@@ -59,8 +60,14 @@ class UpdateInfoPageComponent extends Component{
       phone : "" , //+this.props.signedInUser.basic_data.phone
     }
   }
-
+  handleOpenURL(event) {
+    console.log(event.url);
+    //const route = e.url.replace(/.*?:\/\//g, '');
+    // do something with the url, in our case navigate(route)
+  }
 componentDidMount(){
+  Linking.addEventListener('url', this.handleOpenURL);
+
     this.setState({ fetching: true })
     //Data fetching should happen here only.
     this.props.fetchProfile(this.props.loginInfo.id).then( (res) => {

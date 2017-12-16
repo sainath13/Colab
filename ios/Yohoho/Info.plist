@@ -25,6 +25,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>im459830n2p59n6</string>
 				<string>fb455260884842347</string>
 			</array>
 		</dict>
@@ -36,7 +37,7 @@
 	<key>FacebookDisplayName</key>
 	<string>influxcer</string>
 	<key>LSApplicationCategoryType</key>
-	<string/>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -58,7 +59,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>GothamRoundedMedium.ttf</string>

@@ -11,6 +11,7 @@ import {
   View,
   StatusBar,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 // import { Card, Button,List, ListItem , ListView } from 'react-native-elements'
 //TODO: FINISHING CHANGEs required. remove the whole signedInuser thing. should just have headers
@@ -243,7 +244,7 @@ null}
     //borderColor : '#333156',
     //borderBottomWidth : 0.5
 }}>
-       <TouchableHighlight
+       <TouchableOpacity
                         onPress={()=> {
                           (Actions.pop()); 
                           this.props.unsetVisitProfile();
@@ -253,7 +254,7 @@ null}
         backgroundColor: '#6364A4'}}>
                 <Icon name="chevron-left" size={20} color='white' >
                 </Icon>
-      </TouchableHighlight>
+      </TouchableOpacity>
       <View style={{flex : 8, flexDirection : 'row', alignItems : 'center',justifyContent: 'center'}}>
           <Text style={{  borderRadius:2, fontSize : 20,
                padding: 6, color: 'white', fontFamily: 'GothamRounded-Bold'}}>

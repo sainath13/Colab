@@ -1,0 +1,63 @@
+need name
+name logo
+need catchy phrases
+
+need to meet managers of phoenix mall etc event managers,
+popular pubs, brewerys
+popular shoe brands
+or small burger place
+
+the thing is 
+brands are of two types
+really successful brands
+soon going to be successful brands
+
+games as well
+
+
+influencers have limit of having more than 10K followers
+there should be limit on how many collaborations that you create.
+each collaboration is a hit on db side
+need to think this through
+
+Need to include more data on profile like city etc
+
+getting people to work as models to the app is kind of going to be hard or might be easy
+if followers are in the middle range
+
+create a dev profiles for you and brother as influencer
+randomise on client side. appropriate message that suggests what exactly is happening
+can answer any queries directly instead of send mails and reporting bugs
+
+give public access to all the peopleto trello list so that they can see whats in the pipeline
+write create terms and conditions properly
+ 
+in the beginning there just going to be no community
+1 weeks since app is launched
+influencers joined
+brands joined
+on a single line.
+with some welcome message
+
+Pre-Launch App Marketing Plan:
+create a landing page for your app.
+#validate the idea
+create your app store description and get started with App Store Optimization
+. My personal favorite is SensorTower. 
+
+ensure that the analytics tool which you are using to track your app is properly setup.
+setup analytics properly
+
+partner with influencers
+
+
+
+
+
+
+
+
+
+
+
+

@@ -186,103 +186,11 @@ Influx
         />
       }
        >
-           {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
-             if(feedItem.status == "requested"){
-              return ( <TouchableOpacity key={feedItem.id}
-                             onPress={ ()=>{  // console.log(feedItem.id);
-Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
-                        <View style={styles.listElement}>
-                                       <View style={styles.notificationIcon}>
-                          <Image
-                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
-                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
-                          />
-                          </View>
-                          <View style={styles.notificationItem}>
-                            <Text style={styles.notificationItemText}>
-                              <Text style={styles.notificationItemTextBold}>{feedItem.first_name +" " + feedItem.last_name}</Text> wants to collaborate.
-                            </Text>
-                        </View>
-                        <TouchableOpacity
-                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Influencer")}}
-                         style={{
-                        width : 100,
-                        height : 30,
-                        marginTop : 15,
-                        marginBottom : 15,
-                        marginRight : 10,
-                        borderRadius:2,
-                        borderColor:'#fefefe',
-                        borderWidth : 3/2,
-                        paddingTop: 5,
-                        paddingBottom: 5,
-                        alignItems : 'center',
-                        justifyContent: 'center',
-                        backgroundColor : '#6563A4',
-                        borderRadius : 5
-                    }}>
-                    <Text style={{
-                        color : 'white',
-                            fontSize : 16,
-                            fontFamily :'GothamRounded-Book',
-                    }}>
-                        accept
-                        </Text>
-                    </TouchableOpacity>
-                        </View>
-                      </TouchableOpacity>
-              )//return
-            }//if
-             if(feedItem.status == "accepted"){
-              return ( <TouchableOpacity key={feedItem.id}
-                             onPress={ ()=>{  //console.log(feedItem.id) 
-                            Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false})
-                            } }>
-                        <View style={styles.listElement}>
-                                       <View style={styles.notificationIcon}>
-                          <Image
-                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
-                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
-                          />
-                          </View>
-                          <View style={styles.notificationItem}>
-                            <Text style={styles.notificationItemText}>
-                            You have collaboration a with <Text style={styles.notificationItemTextBold}>{feedItem.first_name + " "+feedItem.last_name }</Text> 
-                            
-                            </Text>
-                        </View>
-                        <TouchableOpacity
-                        onPress={()=> {(console.log("clicked on message"))}}
-                         style={{
-                        width : 100,
-                        height : 30,
-                        marginTop : 15,
-                        marginBottom : 15,
-                        marginRight : 10,
-                        borderRadius:2,
-                        borderColor:'#fefefe',
-                        borderWidth : 3/2,
-                        paddingTop: 5,
-                        paddingBottom: 5,
-                        alignItems : 'center',
-                        justifyContent: 'center',
-                        backgroundColor : '#6563A4',
-                        borderRadius : 5
-                    }}>
-                    <Text style={{
-                        color : 'white',
-                            fontSize : 16,
-                            fontFamily :'GothamRounded-Book',
-                    }}>
-                       message 
-                        </Text>
-                    </TouchableOpacity>
-                        </View>
-                      </TouchableOpacity>
-              )//return
-            }//if
-           })//map
-         }
+
+<View style={{flex : 1,}}>
+<Text style={{fontFamily : "GothamRounded-Book", color :'gray'}}>  You can pull down to refresh
+  </Text>
+  </View>
            {! this.state.fetching && this.fetchFeedItems("brand").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableOpacity key={feedItem.id}
@@ -323,7 +231,7 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                             fontSize : 16,
                             fontFamily :'GothamRounded-Book',
                     }}>
-                        accept
+                        Accept
                         </Text>
                     </TouchableOpacity>
                         </View>
@@ -344,6 +252,103 @@ Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
                           <View style={styles.notificationItem}>
                             <Text style={styles.notificationItemText}>
                               <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text> wants to collaborate.
+                            </Text>
+                        </View>
+                        <TouchableOpacity
+                        onPress={()=> {(console.log("clicked on message"))}}
+                         style={{
+                        width : 100,
+                        height : 30,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                        borderRadius : 5
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                       message 
+                        </Text>
+                    </TouchableOpacity>
+                        </View>
+                      </TouchableOpacity>
+              )//return
+            }//if
+           })//map
+         }
+           {! this.state.fetching && this.fetchFeedItems("influencer").map((feedItem) => {
+             if(feedItem.status == "requested"){
+              return ( <TouchableOpacity key={feedItem.id}
+                             onPress={ ()=>{  // console.log(feedItem.id);
+Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false}) } }>
+                        <View style={styles.listElement}>
+                                       <View style={styles.notificationIcon}>
+                          <Image
+                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                          </View>
+                          <View style={styles.notificationItem}>
+                            <Text style={styles.notificationItemText}>
+                              <Text style={styles.notificationItemTextBold}>{feedItem.first_name +" " + feedItem.last_name}</Text> wants to collaborate.
+                            </Text>
+                        </View>
+                        <TouchableOpacity
+                        onPress={()=> {this.props.acceptCollabRequest(this.props.loginInfo.id,feedItem.id,"FeedPage","Influencer")}}
+                         style={{
+                        width : 100,
+                        height : 30,
+                        marginTop : 15,
+                        marginBottom : 15,
+                        marginRight : 10,
+                        borderRadius:2,
+                        borderColor:'#fefefe',
+                        borderWidth : 3/2,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        alignItems : 'center',
+                        justifyContent: 'center',
+                        backgroundColor : '#6563A4',
+                        borderRadius : 5
+                    }}>
+                    <Text style={{
+                        color : 'white',
+                            fontSize : 16,
+                            fontFamily :'GothamRounded-Book',
+                    }}>
+                        Accept
+                        </Text>
+                    </TouchableOpacity>
+                        </View>
+                      </TouchableOpacity>
+              )//return
+            }//if
+             if(feedItem.status == "accepted"){
+              return ( <TouchableOpacity key={feedItem.id}
+                             onPress={ ()=>{  //console.log(feedItem.id) 
+                            Actions.VisitProfilePage({clickedUserId : feedItem.id, isBusiness : false})
+                            } }>
+                        <View style={styles.listElement}>
+                                       <View style={styles.notificationIcon}>
+                          <Image
+                            style = {{width: 50, height: 50, borderRadius: 25, marginLeft : 10}}
+                            source = { { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg" }}
+                          />
+                          </View>
+                          <View style={styles.notificationItem}>
+                            <Text style={styles.notificationItemText}>
+                            You have collaboration a with <Text style={styles.notificationItemTextBold}>{feedItem.first_name + " "+feedItem.last_name }</Text> 
+                            
                             </Text>
                         </View>
                         <TouchableOpacity

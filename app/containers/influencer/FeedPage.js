@@ -23,6 +23,7 @@ import { ActionCreators } from '../../actions'
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Entypo';
 
+import FIcon from 'react-native-vector-icons/FontAwesome';
 const GLOBAL = require('../../actions/Globals');
 import RNActionCable from 'react-native-actioncable';
 import ActionCableProvider, { ActionCable } from 'react-actioncable-provider';
@@ -35,7 +36,8 @@ constructor(props) {
   super(props)
   //setting it to false if okay. but might need to think about it later
   //in some cases was not working so its true now. :\
-  refreshing: false,this.state = { fetching: true }
+  refreshing: false,this.state = { fetching: true,
+    isPullToRefeshShowing : true }
 }
 
 componentDidMount(){
@@ -186,11 +188,25 @@ Influx
         />
       }
        >
-
-<View style={{flex : 1,}}>
+{this.state.isPullToRefeshShowing? 
+<View style={{flex : 1, flexDirection : 'row'}}>
+<View style={{flex : 10}}>
 <Text style={{fontFamily : "GothamRounded-Book", color :'gray'}}>  You can pull down to refresh
   </Text>
   </View>
+<TouchableOpacity style={{flex : 1, }} 
+onPress={()=> this.setState({
+  isPullToRefeshShowing : false
+}
+)}
+>
+  <FIcon name="times-circle" size={20} color='gray'>
+    </FIcon>
+  </TouchableOpacity>
+  </View>
+  :
+  null
+  }
            {! this.state.fetching && this.fetchFeedItems("brand").map((feedItem) => {
              if(feedItem.status == "requested"){
               return ( <TouchableOpacity key={feedItem.id}

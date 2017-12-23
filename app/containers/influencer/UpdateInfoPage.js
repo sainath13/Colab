@@ -524,13 +524,16 @@ class UpdateInfoPageComponent extends Component {
                     Instagram handle
                   </Text>
                 </View>
-                <View style={styles.coloredWrapper}>
+                <TouchableOpacity
+                  style={styles.coloredWrapper}
+                  onPress={() => {
+                  Linking.openURL("https://www.google.com")
+                }}>
                   <Text style={styles.wrappedText}>
-                    {!this.state.fetching
-                      ? this.props.profileData.basic_data.instagram_name
-                      : " "}
+
+                    TEST
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
               <View
                 style={{

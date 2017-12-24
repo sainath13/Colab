@@ -47,7 +47,8 @@ class UpdateInfoPageComponent extends Component {
       .bind(this);
     this._onPressInfluencerUpdateInfoSave = this
       ._onPressInfluencerUpdateInfoSave
-      .bind(this)
+      .bind(this);
+    this.handleOpenURL = this.handleOpenURL.bind(this);
     this.state = {
       spinnerVisible: false,
       fetching: true,
@@ -60,11 +61,16 @@ class UpdateInfoPageComponent extends Component {
       bio: "",
       pricePerPost: "",
       pricePerStory: "",
-      phone: ""
+      phone: "",
+      instagram_code: ""
     }
   }
   handleOpenURL(event) {
-    console.log(event.url);
+    url = event.url
+    insta_code = url.split("://")[1];
+    // console.log(insta_code);
+    // console.log("this",this);
+    this.setState({instagram_code: insta_code});
   }
   componentDidMount() {
     Linking.addEventListener('url', this.handleOpenURL);
@@ -84,7 +90,7 @@ class UpdateInfoPageComponent extends Component {
             pricePerStory: "" + this.props.profileData.basic_data.price_per_story,
             bio: this.props.profileData.basic_data.bio,
             phone: "" + this.props.profileData.basic_data.phone,
-            fetching: false
+            fetching: false,
           });
         } else {
           this.setState({
@@ -92,7 +98,7 @@ class UpdateInfoPageComponent extends Component {
             nickName: this.props.profileData.basic_data.name,
             bio: this.props.profileData.basic_data.bio,
             phone: "" + this.props.profileData.basic_data.phone,
-            fetching: false
+            fetching: false,
           })
         }
       })
@@ -101,7 +107,7 @@ class UpdateInfoPageComponent extends Component {
   _onPressInfluencerUpdateInfoSave() {
     this
       .props
-      .updateInfo(this.props.loginInfo.id, "instagram_name", this.state.bio, this.state.phone, this.state.pricePerPost, this.state.pricePerStory, this.state.nickName, this.state.paypal, this.state.paytm, this.state.upi, this.state.currency, this.state.businessEmail)
+      .updateInfo(this.props.loginInfo.id, "instagram_name", this.state.bio, this.state.phone, this.state.pricePerPost, this.state.pricePerStory, this.state.nickName, this.state.paypal, this.state.paytm, this.state.upi, this.state.currency, this.state.businessEmail, this.state.instagram_code)
       .then((res) => {
         this.setState({spinnerVisible: false});
         Actions.reset('TabBarComponent');
@@ -525,13 +531,16 @@ class UpdateInfoPageComponent extends Component {
                   </Text>
                 </View>
                 <TouchableOpacity
+                  disabled={ this.props.profileData.basic_data.instagram_name.length == 0 ? false : true}
                   style={styles.coloredWrapper}
                   onPress={() => {
-                  Linking.openURL("https://www.google.com")
+                  Linking.openURL("https://api.instagram.com/oauth/authorize/?client_id=8dcf1c2b76a74235a9e83b4642ca25d8&redirect_uri=https://influencer-market.herokuapp.com/instagram_redirector/redirect&response_type=code")
                 }}>
                   <Text style={styles.wrappedText}>
 
-                    TEST
+                  {!this.state.fetching
+                    ? this.props.profileData.basic_data.instagram_name.length == 0 ? this.state.instagram_code.length == 0 ? "Connect" + " " : "Connected" + " " : this.props.profileData.basic_data.instagram_name + " "
+                    : ""}
                   </Text>
                 </TouchableOpacity>
               </View>

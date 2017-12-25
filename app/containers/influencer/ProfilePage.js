@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
+    TouchableOpacity,
     TouchableHighlight,
     Text,
     Image,
@@ -36,6 +37,11 @@ class influencerProfilePage extends Component {
             .then((res) => {
                 this.setState({fetching: false})
             })
+    }
+    fetchCollaborationItems() {
+        return Object
+            .keys(this.props.profileData['collaborations'])
+            .map(key => this.props.profileData['collaborations'][key])
     }
 
     render() {
@@ -794,298 +800,94 @@ class influencerProfilePage extends Component {
                                     </Text>
                                 </View>
                                 <View style={{}}>
-                                    <View
-                                        style={{
-                                        flex: 1,
-                                        flexDirection: 'row',
-                                        justifyContent: 'center',
-                                        borderBottomWidth: 0.5,
-                                        borderBottomColor: '#E0E0E0'
+                        {!this.state.fetching && this
+                            .fetchCollaborationItems()
+                            .map((collaboration) => {
+
+                                return (
+                                    <TouchableOpacity
+                                        key={collaboration.id}
+                                        onPress={() => {
+                                        Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})
                                     }}>
                                         <View
                                             style={{
                                             flex: 1,
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Image
-                                                style={{
-                                                width: 40,
-                                                height: 40,
-                                                borderRadius: 20
-                                            }}
-                                                source={{
-                                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                            }}/>
-                                        </View>
-                                        <View
-                                            style={{
-                                            flex: 4,
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Text
-                                                style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Medium',
-                                                marginLeft: 10
-                                            }}>
-                                                GooGle
-                                            </Text>
-                                            <Text
-                                                style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book',
-                                                marginLeft: 10
-                                            }}>
-                                                The Search Engine
-                                            </Text>
-                                        </View>
-                                        <View
-                                            style={{
-                                            flex: 2,
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            marginLeft: 5,
-                                            marginRight: 10,
-                                            borderRadius: 2,
-                                            borderColor: '#fefefe',
-                                            borderWidth: 3 / 2,
-                                            paddingTop: 5,
-                                            paddingBottom: 5,
-                                            alignItems: 'center',
+                                            flexDirection: 'row',
                                             justifyContent: 'center',
-                                            backgroundColor: '#6563A4',
-                                            borderRadius: 5
+                                            borderBottomWidth: 0.5,
+                                            borderBottomColor: '#E0E0E0'
                                         }}>
-                                            <Text
+                                            <View
                                                 style={{
-                                                color: 'white',
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book'
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
                                             }}>
-                                                message
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View
-                                        style={{
-                                        flex: 1,
-                                        flexDirection: 'row',
-                                        justifyContent: 'center',
-                                        borderBottomWidth: 0.5,
-                                        borderBottomColor: '#E0E0E0'
-                                    }}>
-                                        <View
-                                            style={{
-                                            flex: 1,
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Image
+                                                <Image
+                                                    style={{
+                                                    width: 40,
+                                                    height: 40,
+                                                    borderRadius: 20
+                                                }}
+                                                    source={{
+                                                    uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
+                                                }}/>
+                                            </View>
+                                            <View
                                                 style={{
-                                                width: 40,
-                                                height: 40,
-                                                borderRadius: 20
-                                            }}
-                                                source={{
-                                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                            }}/>
-                                        </View>
-                                        <View
-                                            style={{
-                                            flex: 4,
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Text
-                                                style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Medium',
-                                                marginLeft: 10
+                                                flex: 4,
+                                                justifyContent: 'center'
                                             }}>
-                                                Amazon
-                                            </Text>
-                                            <Text
+                                                <Text
+                                                    style={{
+                                                    fontSize: 16,
+                                                    fontFamily: 'GothamRounded-Medium',
+                                                    marginLeft: 10
+                                                }}>
+                                                    {collaboration.instagram_name}
+                                                </Text>
+                                                <Text
+                                                    style={{
+                                                    fontSize: 16,
+                                                    fontFamily: 'GothamRounded-Book',
+                                                    marginLeft: 10
+                                                }}>
+                                                    {collaboration.name}
+                                                </Text>
+                                            </View>
+                                            <View
                                                 style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book',
-                                                marginLeft: 10
+                                                flex: 2,
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                marginLeft: 5,
+                                                marginRight: 10,
+                                                borderRadius: 2,
+                                                borderColor: '#fefefe',
+                                                borderWidth: 3 / 2,
+                                                paddingTop: 5,
+                                                paddingBottom: 5,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                backgroundColor: '#6563A4',
+                                                borderRadius: 5
                                             }}>
-                                                Online shopping
-                                            </Text>
+                                                <Text
+                                                    style={{
+                                                    color: 'white',
+                                                    fontSize: 16,
+                                                    fontFamily: 'GothamRounded-Book'
+                                                }}>
+                                                    message
+                                                </Text>
+                                            </View>
                                         </View>
-                                        <View
-                                            style={{
-                                            flex: 2,
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            marginLeft: 5,
-                                            marginRight: 10,
-                                            borderRadius: 2,
-                                            borderColor: '#fefefe',
-                                            borderWidth: 3 / 2,
-                                            paddingTop: 5,
-                                            paddingBottom: 5,
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            backgroundColor: '#6563A4',
-                                            borderRadius: 5
-                                        }}>
-                                            <Text
-                                                style={{
-                                                color: 'white',
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book'
-                                            }}>
-                                                message
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View
-                                        style={{
-                                        flex: 1,
-                                        flexDirection: 'row',
-                                        justifyContent: 'center',
-                                        borderBottomWidth: 0.5,
-                                        borderBottomColor: '#E0E0E0'
-                                    }}>
-                                        <View
-                                            style={{
-                                            flex: 1,
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Image
-                                                style={{
-                                                width: 40,
-                                                height: 40,
-                                                borderRadius: 20
-                                            }}
-                                                source={{
-                                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                            }}/>
-                                        </View>
-                                        <View
-                                            style={{
-                                            flex: 4,
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Text
-                                                style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Medium',
-                                                marginLeft: 10
-                                            }}>
-                                                Facebook
-                                            </Text>
-                                            <Text
-                                                style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book',
-                                                marginLeft: 10
-                                            }}>
-                                                social networking
-                                            </Text>
-                                        </View>
-                                        <View
-                                            style={{
-                                            flex: 2,
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            marginLeft: 5,
-                                            marginRight: 10,
-                                            borderRadius: 2,
-                                            borderColor: '#fefefe',
-                                            borderWidth: 3 / 2,
-                                            paddingTop: 5,
-                                            paddingBottom: 5,
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            backgroundColor: '#6563A4',
-                                            borderRadius: 5
-                                        }}>
-                                            <Text
-                                                style={{
-                                                color: 'white',
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book'
-                                            }}>
-                                                message
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View
-                                        style={{
-                                        flex: 1,
-                                        flexDirection: 'row',
-                                        justifyContent: 'center',
-                                        borderBottomWidth: 0.5,
-                                        borderBottomColor: '#E0E0E0'
-                                    }}>
-                                        <View
-                                            style={{
-                                            flex: 1,
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Image
-                                                style={{
-                                                width: 40,
-                                                height: 40,
-                                                borderRadius: 20
-                                            }}
-                                                source={{
-                                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                            }}/>
-                                        </View>
-                                        <View
-                                            style={{
-                                            flex: 4,
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Text
-                                                style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Medium',
-                                                marginLeft: 10
-                                            }}>
-                                                Nike
-                                            </Text>
-                                            <Text
-                                                style={{
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book',
-                                                marginLeft: 10
-                                            }}>
-                                                Just do it
-                                            </Text>
-                                        </View>
-                                        <View
-                                            style={{
-                                            flex: 2,
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            marginLeft: 5,
-                                            marginRight: 10,
-                                            borderRadius: 2,
-                                            borderColor: '#fefefe',
-                                            borderWidth: 3 / 2,
-                                            paddingTop: 5,
-                                            paddingBottom: 5,
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            backgroundColor: '#6563A4',
-                                            borderRadius: 5
-                                        }}>
-                                            <Text
-                                                style={{
-                                                color: 'white',
-                                                fontSize: 16,
-                                                fontFamily: 'GothamRounded-Book'
-                                            }}>
-                                                message
-                                            </Text>
-                                        </View>
-                                    </View>
+                                    </TouchableOpacity>
+                                )
+
+                            })
+}
                                 </View>
                             </View>
 }

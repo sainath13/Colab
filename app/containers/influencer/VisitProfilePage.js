@@ -1008,6 +1008,40 @@ class VisitProfilePage extends Component {
                     </View>
 
                     <ScrollView tabLabel="Collabs">
+                        {this.state.fetching
+                            ? <View
+                                    style={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Spinner
+                                        style={{
+                                        flex: 1,
+                                        marginTop: 30
+                                    }}
+                                        isVisible={this.state.fetching}
+                                        size={50}
+                                        type={'ThreeBounce'}
+                                        color={'#65634A'}/>
+                                </View>
+                            : <View>
+                                <View
+                                    style={{
+                                    backgroundColor: '#F6F5FA'
+                                }}>
+                                    <Text
+                                        style={{
+                                        marginTop: 10,
+                                        fontSize: 16,
+                                        marginLeft: 10,
+                                        marginRight: 10,
+                                        marginBottom: 10,
+                                        fontFamily: 'GothamRounded-Medium'
+                                    }}>
+                                        Favourite collabs
+                                    </Text>
+                                </View>
+                                <View style={{}}>
                         {!this.state.fetching && this
                             .fetchCollaborationItems()
                             .map((collaboration) => {
@@ -1095,6 +1129,9 @@ class VisitProfilePage extends Component {
                                 )
 
                             })
+}
+                                </View>
+                            </View>
 }
                     </ScrollView>
 

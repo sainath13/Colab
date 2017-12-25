@@ -57,10 +57,9 @@ class VisitProfilePage extends Component {
 
     fetchCollaborationItems() {
         return Object
-          .keys(this.props.visitProfileData['collaborations'])
-          .map(key => this.props.visitProfileData['collaborations'][key])
+            .keys(this.props.visitProfileData['collaborations'])
+            .map(key => this.props.visitProfileData['collaborations'][key])
     }
-
 
     onclickButton(statusString) {
         if (statusString == "no connection") {} else if (statusString == "requested") {} else if (statusString == "accepted") {} else if (statusString == "collaberate") {
@@ -1008,101 +1007,96 @@ class VisitProfilePage extends Component {
 }
                     </View>
 
-            <ScrollView tabLabel="Collabs">
-              {!this.state.fetching && this
-                .fetchCollaborationItems()
-                .map((collaboration) => {
-                  
-                return (
-                    <TouchableOpacity
-                    key={collaboration.id}
-                    onPress={() => {
-                    Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})
-                    }}>
-                    <View
-                        style={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        borderBottomWidth: 0.5,
-                        borderBottomColor: '#E0E0E0'
-                    }}>
-                        <View
-                        style={{
-                        flex: 1,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                        }}>
-                        <Image
-                            style={{
-                            width: 40,
-                            height: 40,
-                            borderRadius: 20
-                        }}
-                            source={{
-                            uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                        }}/>
-                        </View>
-                        <View
-                        style={{
-                        flex: 4,
-                        justifyContent: 'center'
-                        }}>
-                        <Text
-                            style={{
-                            fontSize: 16,
-                            fontFamily: 'GothamRounded-Medium',
-                            marginLeft: 10
-                        }}>
-                            {collaboration.instagram_name}
-                        </Text>
-                        <Text
-                            style={{
-                            fontSize: 16,
-                            fontFamily: 'GothamRounded-Book',
-                            marginLeft: 10
-                        }}>
-                            {collaboration.name}
-                        </Text>
-                        </View>
-                        <View
-                        style={{
-                        flex: 2,
-                        marginTop: 10,
-                        marginBottom: 10,
-                        marginLeft: 5,
-                        marginRight: 10,
-                        borderRadius: 2,
-                        borderColor: '#fefefe',
-                        borderWidth: 3 / 2,
-                        paddingTop: 5,
-                        paddingBottom: 5,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#6563A4',
-                        borderRadius: 5
-                        }}>
-                        <Text
-                            style={{
-                            color: 'white',
-                            fontSize: 16,
-                            fontFamily: 'GothamRounded-Book'
-                        }}>
-                            message
-                        </Text>
-                        </View>
-                    </View>
-                    </TouchableOpacity>
-                )
-                  
+                    <ScrollView tabLabel="Collabs">
+                        {!this.state.fetching && this
+                            .fetchCollaborationItems()
+                            .map((collaboration) => {
 
-                })
+                                return (
+                                    <TouchableOpacity
+                                        key={collaboration.id}
+                                        onPress={() => {
+                                        Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})
+                                    }}>
+                                        <View
+                                            style={{
+                                            flex: 1,
+                                            flexDirection: 'row',
+                                            justifyContent: 'center',
+                                            borderBottomWidth: 0.5,
+                                            borderBottomColor: '#E0E0E0'
+                                        }}>
+                                            <View
+                                                style={{
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}>
+                                                <Image
+                                                    style={{
+                                                    width: 40,
+                                                    height: 40,
+                                                    borderRadius: 20
+                                                }}
+                                                    source={{
+                                                    uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
+                                                }}/>
+                                            </View>
+                                            <View
+                                                style={{
+                                                flex: 4,
+                                                justifyContent: 'center'
+                                            }}>
+                                                <Text
+                                                    style={{
+                                                    fontSize: 16,
+                                                    fontFamily: 'GothamRounded-Medium',
+                                                    marginLeft: 10
+                                                }}>
+                                                    {collaboration.instagram_name}
+                                                </Text>
+                                                <Text
+                                                    style={{
+                                                    fontSize: 16,
+                                                    fontFamily: 'GothamRounded-Book',
+                                                    marginLeft: 10
+                                                }}>
+                                                    {collaboration.name}
+                                                </Text>
+                                            </View>
+                                            <View
+                                                style={{
+                                                flex: 2,
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                marginLeft: 5,
+                                                marginRight: 10,
+                                                borderRadius: 2,
+                                                borderColor: '#fefefe',
+                                                borderWidth: 3 / 2,
+                                                paddingTop: 5,
+                                                paddingBottom: 5,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                backgroundColor: '#6563A4',
+                                                borderRadius: 5
+                                            }}>
+                                                <Text
+                                                    style={{
+                                                    color: 'white',
+                                                    fontSize: 16,
+                                                    fontFamily: 'GothamRounded-Book'
+                                                }}>
+                                                    message
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
+                                )
+
+                            })
 }
-            </ScrollView>
-                    
-                    
-
-
+                    </ScrollView>
 
                 </ScrollableTabView>
             </View>

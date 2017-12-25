@@ -256,6 +256,7 @@ class FeedPage extends Component {
                       }}>
                         <Text
                           style={{
+                          paddingLeft : 10,
                           fontFamily: "GothamRounded-Book",
                           color: 'gray'
                         }}>

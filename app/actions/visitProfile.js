@@ -60,7 +60,9 @@ export function unsetVisitProfile(){
       }
   ],
   "price_per_post": null,
-  "price_per_story": null
+  "price_per_story": null,
+  "collaborations":[
+  ]
 } 
     return {
       type : types.UNSET_VISIT_PROFILE,

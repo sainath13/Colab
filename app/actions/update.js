@@ -37,17 +37,17 @@ export function setLoginInfo({loginInfo}){
 /* The following function does api call and sign in part.
    TODO: handle errors and exceptions. Report to UI user.
 */
-export function updateInfo(id,instagram_name,bio,phone,price_per_post,price_per_story,nickName,paypal,paytm,upi,currency,businessEmail,instagram_code){
+export function updateInfo(id,bio,phone,price_per_post,price_per_story,nickName,paypal,paytm,upi,currency,businessEmail,instagram_code){
   //if we have 2 sign in flows we need two cases to handle TODO
     // if Username password checking => valied email TODO: those actions or those in the view itself
     return (dispatch,getState)=>{
     const state = getState();
     var url = "";
     if(state.loginInfo.class == "Business"){
-       url = AUTH_BRAND + id + "?" + "instagram_name=" + instagram_name + "&" + "bio=" + bio + "&" + "phone=" + phone + "&name=" + nickName  + "&business_email=" + businessEmail + "&instagram_code=" + instagram_code;
+       url = AUTH_BRAND + id + "?" + "bio=" + bio + "&" + "phone=" + phone + "&name=" + nickName  + "&business_email=" + businessEmail + "&instagram_code=" + instagram_code;
     }
     else if(state.loginInfo.class=="Influencer"){
-       url = AUTH_INFLU + id + "?" + "instagram_name=" + instagram_name + "&" + "bio=" + bio + "&" + "phone=" + phone + "&" + "price_per_post=" +price_per_post + "&price_per_story=" + price_per_story +"&paypal=" +paypal + "&paytm="+paytm + "&upi="+upi+"&currency=" + currency +
+       url = AUTH_INFLU + id + "?" + "bio=" + bio + "&" + "phone=" + phone + "&" + "price_per_post=" +price_per_post + "&price_per_story=" + price_per_story +"&paypal=" +paypal + "&paytm="+paytm + "&upi="+upi+"&currency=" + currency +
         "&instagram_code=" + instagram_code;
     }
     else{

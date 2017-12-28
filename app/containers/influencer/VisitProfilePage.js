@@ -1048,6 +1048,7 @@ class VisitProfilePage extends Component {
 
                                 return (
                                     <TouchableOpacity
+                                        disabled={true}
                                         key={collaboration.id}
                                         onPress={() => {
                                         Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})

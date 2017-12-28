@@ -53,6 +53,7 @@ class SignInPage extends Component {
   }
 
   onPressInfluencerSignIn() {
+//    this.onPressInfluencerGoToSignUp();
     this.onPressSignIn("Influencer");
   }
   onPressSignIn(accountType) {

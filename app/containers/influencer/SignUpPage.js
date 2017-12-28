@@ -7,28 +7,17 @@ import {
   TextInput,
   ScrollView,
   View,
+  Platform,
   Image,
   StatusBar,
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
-
-class SignUpPage extends Component{
-  onPressInfluencerGoToSignIn(){
-    Actions.SignInPage();
-
-  }
-  onPressInfluencerSignUp(){
-    Actions.FeedPage();
-  }
-
-  render() {
-return(
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+class InsiderView extends Component{
+  render(){
+    return (
   <View style={{flex : 1}}>
-  <StatusBar
-    backgroundColor="#6563A4"
-    barStyle="light-content"
-  />
   <View style={styles.header}>
     <Text style={styles.headerText}>
       Influxcer
@@ -46,6 +35,8 @@ return(
         </View>
         <View style={styles.inputBox}>
           <TextInput style={styles.inputText}
+            keyboardType={"email-address"}
+            placeholder={"Enter here"}
             underlineColorAndroid={'#E0E0E0'}
           >
           </TextInput>
@@ -60,7 +51,9 @@ return(
         </View>
         <View style={styles.inputBox}>
           <TextInput style={styles.inputText}
+            placeholder={"Enter here"}
             underlineColorAndroid={'#E0E0E0'}
+            secureTextEntry={true}
           >
           </TextInput>
         </View>
@@ -74,13 +67,13 @@ return(
         </View>
         <View style={styles.inputBox}>
           <TextInput style={styles.inputText}
+            placeholder={"Enter here"}
+            secureTextEntry={true}
             underlineColorAndroid={'#E0E0E0'}
           >
           </TextInput>
         </View>
       </View>
-    <View style={{flex : 0.7}}>
-    </View>
     <TouchableHighlight style={{flex:1}} onPress={()=> {this.onPressInfluencerSignUp() }}>
       <View style={styles.submitButton}>
         <Text style={styles.submitButtonText}>
@@ -99,12 +92,51 @@ return(
 
 
     </View>
-  </View>
-</View>
+    </View>
+  </View>    )}
+
+}
 
 
+class SignUpPage extends Component{
+  render() {
+  if (Platform.OS === 'ios') {
+    return (
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{
+        x: 0,
+        y: 0
+      }}
+        contentContainerStyle={{flex : 1}}
+        scrollEnabled={false}
+        style={{
+        flex: 1
+      }}>
+        <StatusBar backgroundColor="#6563A4" barStyle="dark-content"/>
+        <InsiderView {...this.props}></InsiderView>
+      </KeyboardAwareScrollView>
+    );
+  } else {
+    return (
+      <KeyboardAvoidingView
+        {...this.props}
+        behavior="padding"
+        keyboardVerticalOffset={-1000}
+        style={{
+        flex: 1
+      }}>
+        <ScrollView style={{
+          flex: 1
+        }}>
+          <StatusBar backgroundColor="#43416d" barStyle="dark-content"/>
+          <InsiderView {...this.props}></InsiderView>
 
-)
+        </ScrollView>
+      </KeyboardAvoidingView>
+    )
+
+  }
+
 }
 
 };
@@ -131,17 +163,17 @@ var styles = StyleSheet.create({
   },
   createAccountButtonText:{
     color: '#6563A4',
-    // fontFamily : 'GothamRoundedMedium',
+     fontFamily : 'GothamRounded-Medium',
     fontSize: 21,
   },
   submitButtonText:{
     color: 'white',
-    // fontFamily : 'GothamRoundedMedium',
+     fontFamily : 'GothamRounded-Medium',
     fontSize: 21,
   },
   formElementText:{
     fontSize : 15,
-    // fontFamily : 'GothamRoundedMedium',
+    fontFamily : 'GothamRounded-Medium',
     marginLeft :30,
     color : '#6563A4'
     // flex: 1,
@@ -156,13 +188,15 @@ var styles = StyleSheet.create({
   inputBox:{
     flex: 5,
     backgroundColor : '#f8f8fa',
-    // backgroundColor : '#fefef1'
-    // borderWidth : 2,
-    // borderColor : 'red'
+     //backgroundColor : '#fefef1',
+     //borderWidth : 1,
+     //borderColor : 'red'
   },
   inputText:{
+     //backgroundColor : '#fefef1',
     fontSize : 15,
-    // fontFamily : 'GothamRoundedBook',
+    flex : 1,
+     fontFamily : 'GothamRounded-Book',
     marginLeft :15,
 
   },
@@ -176,7 +210,7 @@ var styles = StyleSheet.create({
     // borderColor : 'red'
   },
   contentPic:{
-    flex : 3,
+    flex : 4,
     backgroundColor : '#f3f3f1',
     // borderColor : 'red',
     // borderWidth : 3,
@@ -192,8 +226,6 @@ var styles = StyleSheet.create({
     fontSize : 25,
     paddingTop : 25,
     fontFamily : 'GothamRounded-Medium',
-    // fontFamily : 'GothamRoundedMedium',
-    // fontFamily : 'arial'
   }
 });
 

@@ -107,7 +107,7 @@ class UpdateInfoPageComponent extends Component {
   _onPressInfluencerUpdateInfoSave() {
     this
       .props
-      .updateInfo(this.props.loginInfo.id, "instagram_name", this.state.bio, this.state.phone, this.state.pricePerPost, this.state.pricePerStory, this.state.nickName, this.state.paypal, this.state.paytm, this.state.upi, this.state.currency, this.state.businessEmail, this.state.instagram_code)
+      .updateInfo(this.props.loginInfo.id, this.state.bio, this.state.phone, this.state.pricePerPost, this.state.pricePerStory, this.state.nickName, this.state.paypal, this.state.paytm, this.state.upi, this.state.currency, this.state.businessEmail, this.state.instagram_code)
       .then((res) => {
         this.setState({spinnerVisible: false});
         Actions.reset('TabBarComponent');
@@ -531,7 +531,7 @@ class UpdateInfoPageComponent extends Component {
                   </Text>
                 </View>
                 <TouchableOpacity
-                  disabled={ this.props.profileData.basic_data.instagram_name.length == 0 ? false : true}
+                  disabled={ !this.state.fetching && this.props.profileData.basic_data.instagram_name.length == 0 ? false : true}
                   style={styles.coloredWrapper}
                   onPress={() => {
                   Linking.openURL("https://api.instagram.com/oauth/authorize/?client_id=8dcf1c2b76a74235a9e83b4642ca25d8&redirect_uri=https://influencer-market.herokuapp.com/instagram_redirector/redirect&response_type=code")

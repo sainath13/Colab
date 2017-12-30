@@ -490,9 +490,11 @@ class UpdateInfoPageComponent extends Component {
                     borderWidth: 2,
                     borderColor: 'white'
                   }}
-                    source={{
-                    uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                  }}/>
+                  source={!this.state.fetching
+                    ? {
+                        uri: this.props.profileData.basic_data.profile_pic_link
+                    }
+                    : require('../images/new.jpg')}/>
                 </View>
                 <View style={styles.infoHolder}>
                   <View style={styles.infoTextHolder}>
@@ -504,12 +506,9 @@ class UpdateInfoPageComponent extends Component {
                           value={this.state.nickName}
                           onChangeText={(nickName) => this.setState({nickName})}></TextInput>
                       : <Text style={styles.infoText}>
+                        
                         {!this.state.fetching
-                          ? this.props.profileData.basic_data.first_name + " "
-                          : ""}
-                        {!this.state.fetching
-                          ? this.props.profileData.basic_data.last_name
-                          : ""}
+                          ? this.props.profileData.basic_data.instagram_name.length == 0 ? "Instagram Handle" : this.props.profileData.basic_data.instagram_name : ""}
                       </Text>
 }
                   </View>

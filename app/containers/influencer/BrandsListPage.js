@@ -269,7 +269,7 @@ class BrandsListPage extends Component {
                               fontFamily: 'GothamRounded-Book',
                               marginLeft: 10
                             }}>
-                              7 posts, 3 stories
+                              {feedItem.instagram_name}
                             </Text>
                           </View>
                           <View

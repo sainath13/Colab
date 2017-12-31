@@ -292,13 +292,15 @@ class FeedPage extends Component {
                                 borderRadius: 25,
                                 marginLeft: 10
                               }}
-                                source={{
-                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                              }}/>
+                                source={!this.state.fetching
+                                  ? {
+                                      uri: feedItem.profile_pic_link
+                                  }
+                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
-                                <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text>
+                                <Text style={styles.notificationItemTextBold}>{feedItem.name + " "}</Text>
                                 wants to collaborate.
                               </Text>
                             </View>
@@ -353,13 +355,15 @@ class FeedPage extends Component {
                                 borderRadius: 25,
                                 marginLeft: 10
                               }}
-                                source={{
-                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                              }}/>
+                                source={!this.state.fetching
+                                  ? {
+                                      uri: feedItem.profile_pic_link
+                                  }
+                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
-                                <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text>
+                                <Text style={styles.notificationItemTextBold}>{feedItem.name + " "}</Text>
                                 wants to collaborate.
                               </Text>
                             </View>
@@ -417,13 +421,15 @@ class FeedPage extends Component {
                                 borderRadius: 25,
                                 marginLeft: 10
                               }}
-                                source={{
-                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                              }}/>
+                                source={!this.state.fetching
+                                  ? {
+                                      uri: feedItem.profile_pic_link
+                                  }
+                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
-                                <Text style={styles.notificationItemTextBold}>{feedItem.first_name + " " + feedItem.last_name}</Text>
+                                <Text style={styles.notificationItemTextBold}>{feedItem.name + "  "}</Text>
                                 wants to collaborate.
                               </Text>
                             </View>
@@ -478,14 +484,16 @@ class FeedPage extends Component {
                                 borderRadius: 25,
                                 marginLeft: 10
                               }}
-                                source={{
-                                uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                              }}/>
+                                source={!this.state.fetching
+                                  ? {
+                                      uri: this.feedItem.profile_pic_link
+                                  }
+                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
                                 You have collaboration a with
-                                <Text style={styles.notificationItemTextBold}>{feedItem.first_name + " " + feedItem.last_name}</Text>
+                                <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text>
 
                               </Text>
                             </View>

@@ -494,7 +494,7 @@ class UpdateInfoPageComponent extends Component {
                     ? {
                         uri: this.props.profileData.basic_data.profile_pic_link
                     }
-                    : require('../images/new.jpg')}/>
+                    : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                 </View>
                 <View style={styles.infoHolder}>
                   <View style={styles.infoTextHolder}>

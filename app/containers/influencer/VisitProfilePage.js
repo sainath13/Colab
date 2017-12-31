@@ -321,12 +321,10 @@ class VisitProfilePage extends Component {
                                 {this.state.fetching
                                     ? " loading"
                                     : ""}
-                                {this.props.visitProfileData.first_name
-                                    ? this.props.visitProfileData.first_name + " " + this.props.visitProfileData.last_name
-                                    : this.props.visitProfileData.name
-}
+                                {this.props.visitProfileData.name}
+
                             </Text>
-                            {this.props.visitProfileData.first_name
+                            {this.props.visitProfileData.name
                                 ? <Octicons name="broadcast" size={20} color='white'></Octicons>
                                 : <Octicons name="briefcase" size={20} color='white'></Octicons>
 }
@@ -348,7 +346,11 @@ class VisitProfilePage extends Component {
                                 borderWidth: 2,
                                 marginBottom: 15
                             }}
-                                source={require('../images/new.jpg')}/>
+                                source={!this.state.fetching
+                                    ? {
+                                        uri: this.props.visitProfileData.profile_pic_link
+                                    }
+                                    : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                         </View>
                         <View style={styles.profileInfoHolder}>
                             <View
@@ -1073,9 +1075,11 @@ class VisitProfilePage extends Component {
                                                     height: 40,
                                                     borderRadius: 20
                                                 }}
-                                                    source={{
-                                                    uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                                }}/>
+                                                    source={!this.state.fetching
+                                                        ? {
+                                                            uri: collaboration.profile_pic_link
+                                                        }
+                                                        : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                                             </View>
                                             <View
                                                 style={{

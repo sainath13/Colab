@@ -68,7 +68,7 @@ class influencerProfilePage extends Component {
                                 ? {
                                     uri: this.props.profileData.basic_data.profile_pic_link
                                 }
-                                : require('../images/new.jpg')}/>
+                                : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                         </View>
                         <View style={styles.profileInfoHolder}>
                             {this.props.profileData.class == "Influencer"
@@ -91,7 +91,7 @@ class influencerProfilePage extends Component {
                                             fontFamily: 'GothamRounded-Bold'
                                         }}>
                                             {!this.state.fetching
-                                                ? (this.props.profileData.basic_data.first_name + " " + this.props.profileData.basic_data.last_name).slice(0, 19)
+                                                ? (this.props.profileData.basic_data.name)
                                                 : "Loading"}
                                         </Text>
                                         <Octicons name="broadcast" size={20} color='white'></Octicons>
@@ -830,9 +830,11 @@ class influencerProfilePage extends Component {
                                                     height: 40,
                                                     borderRadius: 20
                                                 }}
-                                                    source={{
-                                                    uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                                }}/>
+                                                    source={!this.state.fetching
+                                                        ? {
+                                                            uri: collaboration.profile_pic_link
+                                                        }
+                                                        : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                                             </View>
                                             <View
                                                 style={{

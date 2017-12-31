@@ -261,7 +261,7 @@ class InfluencersListPage extends Component {
                               fontFamily: 'GothamRounded-Medium',
                               marginLeft: 10
                             }}>
-                              {feedItem.first_name + " " + feedItem.last_name}
+                              {feedItem.name}
                             </Text>
                             <Text
                               style={{
@@ -269,7 +269,7 @@ class InfluencersListPage extends Component {
                               fontFamily: 'GothamRounded-Book',
                               marginLeft: 10
                             }}>
-                              7 posts, 3 stories
+                              {feedItem.instagram_name}
                             </Text>
                           </View>
                           <View
@@ -344,7 +344,7 @@ class InfluencersListPage extends Component {
                               fontFamily: 'GothamRounded-Medium',
                               marginLeft: 10
                             }}>
-                              {feedItem.first_name + " " + feedItem.last_name}
+                              {feedItem.name}
                             </Text>
                             <Text
                               style={{
@@ -352,7 +352,7 @@ class InfluencersListPage extends Component {
                               fontFamily: 'GothamRounded-Book',
                               marginLeft: 10
                             }}>
-                              7 posts, 3 stories
+                              {feedItem.instagram_name}
                             </Text>
                           </View>
                           <TouchableOpacity

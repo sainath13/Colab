@@ -348,7 +348,7 @@ class influencerProfilePage extends Component {
                                                     }}>
                                                         <Text style={styles.informationSlotCardPricingText}>
                                                             {!this.state.fetching
-                                                                ? this.props.profileData.basic_data.price_per_post + "$"
+                                                                ? this.props.profileData.basic_data.price_per_post + this.props.profileData.basic_data.currency 
                                                                 : null}
                                                         </Text>
                                                     </View>
@@ -364,7 +364,7 @@ class influencerProfilePage extends Component {
                                                     }}>
                                                         <Text style={styles.informationSlotCardPricingText}>
                                                             {!this.state.fetching
-                                                                ? this.props.profileData.basic_data.price_per_story + "$"
+                                                                ? this.props.profileData.basic_data.price_per_story + this.props.profileData.basic_data.currency
                                                                 : null}
                                                         </Text>
                                                     </View>

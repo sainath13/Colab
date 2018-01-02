@@ -766,8 +766,7 @@ class VisitProfilePage extends Component {
                                         </Text>
                                     </View>
                                 </View>
-                                {this.props.visitProfileData.class == "Business"
-                                    ? <View style={styles.informationSlot}>
+                                     <View style={styles.informationSlot}>
                                             <View>
                                                 <View
                                                     style={{
@@ -799,43 +798,6 @@ class VisitProfilePage extends Component {
                                                 </Text>
                                             </View>
                                         </View>
-                                    : null
-}
-                                <View style={styles.informationSlot}>
-                                    <View
-                                        style={{
-                                        paddingBottom: 20
-                                    }}>
-                                        <View
-                                            style={{
-                                            flexDirection: 'row',
-                                            alignItems: 'center'
-                                        }}>
-                                            <Text
-                                                style={{
-                                                marginTop: 10,
-                                                fontSize: 16,
-                                                marginLeft: 5,
-                                                marginRight: 5,
-                                                fontFamily: 'GothamRounded-Medium'
-                                            }}>
-                                                Email
-                                            </Text>
-                                            <Icon name="lock" size={20} color='#6463A4'></Icon>
-                                        </View>
-                                        <Text
-                                            style={{
-                                            padding: 5,
-                                            fontSize: 15,
-                                            fontFamily: 'GothamRounded-Book',
-                                            flex: 5
-                                        }}>
-                                            {!this.state.fetching
-                                                ? this.props.visitProfileData.email
-                                                : null}
-                                        </Text>
-                                    </View>
-                                </View>
                             </View>
 }
                     </ScrollView>

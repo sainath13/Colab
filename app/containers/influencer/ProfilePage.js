@@ -522,8 +522,7 @@ class influencerProfilePage extends Component {
                                         </Text>
                                     </View>
                                 </View>
-                                {this.props.profileData.class == "Business"
-                                    ? <View style={styles.informationSlot}>
+                                    <View style={styles.informationSlot}>
                                             <View>
                                                 <View
                                                     style={{
@@ -555,8 +554,6 @@ class influencerProfilePage extends Component {
                                                 </Text>
                                             </View>
                                         </View>
-                                    : null
-}
                                 <View style={styles.informationSlot}>
                                     <View
                                         style={{

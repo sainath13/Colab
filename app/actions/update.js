@@ -47,7 +47,7 @@ export function updateInfo(id,bio,phone,price_per_post,price_per_story,nickName,
        url = AUTH_BRAND + id + "?" + "bio=" + bio + "&" + "phone=" + phone + "&name=" + nickName  + "&business_email=" + businessEmail + "&instagram_code=" + instagram_code;
     }
     else if(state.loginInfo.class=="Influencer"){
-       url = AUTH_INFLU + id + "?" + "bio=" + bio + "&" + "phone=" + phone + "&" + "price_per_post=" +price_per_post + "&price_per_story=" + price_per_story +"&paypal=" +paypal + "&paytm="+paytm + "&upi="+upi+"&currency=" + currency +
+       url = AUTH_INFLU + id + "?" + "bio=" + bio + "&" + "phone=" + phone + "&business_email=" + businessEmail + "&" + "price_per_post=" +price_per_post + "&price_per_story=" + price_per_story +"&paypal=" +paypal + "&paytm="+paytm + "&upi="+upi+"&currency=" + currency +
         "&instagram_code=" + instagram_code;
     }
     else{

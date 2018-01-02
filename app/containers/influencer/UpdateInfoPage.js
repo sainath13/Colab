@@ -90,6 +90,7 @@ class UpdateInfoPageComponent extends Component {
             pricePerStory: "" + this.props.profileData.basic_data.price_per_story,
             bio: this.props.profileData.basic_data.bio,
             phone: "" + this.props.profileData.basic_data.phone,
+            businessEmail: this.props.profileData.basic_data.business_email,
             fetching: false,
           });
         } else {
@@ -772,8 +773,7 @@ class UpdateInfoPageComponent extends Component {
                   }}></TextInput>
                 </View>
               </View>
-              {this.props.profileData.class == "Business"
-                ? <View
+                <View
                     style={{
                     flexDirection: 'row',
                     backgroundColor: '#F6F5FA',
@@ -836,8 +836,7 @@ class UpdateInfoPageComponent extends Component {
                       }}></TextInput>
                     </View>
                   </View>
-                : null
-}
+                
               <View
                 style={{
                 flexDirection: 'row',

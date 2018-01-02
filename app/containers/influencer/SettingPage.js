@@ -32,22 +32,11 @@ class SettingPage extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      fetching: true
-    }
   }
   componentDidMount() {
-    this.setState({fetching: true})
-    this
-      .props
-      .fetchProfile(this.props.loginInfo.id)
-      .then((res) => {
-        this.setState({fetching: false})
-      })
   }
 
   render() {
-
     return (
       <View style={{
         flex: 1
@@ -110,22 +99,6 @@ class SettingPage extends Component {
               }}
                 scrollEnabled={false}>
                 <View style={styles.picInfoHolder}></View>
-                <View style={styles.row}>
-                  <View style={styles.rowLeft}>
-                    <Text style={styles.rowLeftText}>
-                      Instagram account
-                    </Text>
-                  </View>
-                  <View style={styles.coloredWrapper}>
-                    <Text style={styles.wrappedText}>
-                      {!this.state.fetching
-                        ? this.props.profileData.basic_data.instagram_name
-                        : " "
-}
-                    </Text>
-                  </View>
-                </View>
-
                 <TouchableHighlight
                   style={{
                   flex: 1
@@ -610,8 +583,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     //not calling any api actions here yet, but will be required later
-    profileData: state.profileData,
-    loginInfo: state.loginInfo
   };
 }
 

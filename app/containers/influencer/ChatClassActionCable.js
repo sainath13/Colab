@@ -171,7 +171,7 @@ class ChatClassActionCable extends Component {
                             marginLeft: 0,
                             color: '#9C9C9C'
                           }}>
-                            You: Hi I want to collaborate
+                          { chatListItem.msg ?  chatListItem.msg_from + ": " + chatListItem.msg : "Start business talk"}
                           </Text>
                         </View>
                       </View>

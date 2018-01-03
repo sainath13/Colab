@@ -106,6 +106,11 @@ class UpdateInfoPageComponent extends Component {
   }
 
   _onPressInfluencerUpdateInfoSave() {
+    if(this.props.profileData.basic_data.instagram_name.length == 0 && this.state.instagram_code.length == 0){
+      //instagram is not connected 
+      alert("Connecting to instagram is compulsory")
+    }
+    else{
     this
       .props
       .updateInfo(this.props.loginInfo.id, this.state.bio, this.state.phone, this.state.pricePerPost, this.state.pricePerStory, this.state.nickName, this.state.paypal, this.state.paytm, this.state.upi, this.state.currency, this.state.businessEmail, this.state.instagram_code)
@@ -114,6 +119,7 @@ class UpdateInfoPageComponent extends Component {
         Actions.reset('TabBarComponent');
       });
   }
+}
   _onPressInfluencerNicheSelect() {
     Actions.NicheSelectPage();
   }

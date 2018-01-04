@@ -239,6 +239,13 @@ class influencerProfilePage extends Component {
                                         color={'#65634A'}/>
                                 </View>
                             : <View>
+                                                                {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ? 
+                                <Text style={{fontFamily: 'GothamRounded-Book',
+                    fontSize: 17,
+                    margin: 10}}>
+                                Please connect to instagram and update basic information to activate account using Edit profile button above
+                            </Text>
+                           :  null }
                                 <View style={styles.informationSlot}>
                                     <View
                                         style={{
@@ -618,6 +625,13 @@ class influencerProfilePage extends Component {
                                 style={{
                                 flex: 10
                             }}>
+                                                            {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ? 
+                                <Text style={{fontFamily: 'GothamRounded-Book',
+                    fontSize: 17,
+                    margin: 10}}>
+                                Please connect to instagram and update basic information to activate account using Edit profile button above
+                            </Text>
+                           :  null }
                                 <View
                                     style={{
                                     flex: 2,
@@ -784,6 +798,13 @@ class influencerProfilePage extends Component {
                                     style={{
                                     backgroundColor: '#F6F5FA'
                                 }}>
+                                {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ? 
+                                <Text style={{fontFamily: 'GothamRounded-Book',
+                    fontSize: 17,
+                    margin: 10}}>
+                                Please connect to instagram and update basic information to activate account using Edit profile button above
+                            </Text>
+                           :  null }
                                     <Text
                                         style={{
                                         marginTop: 10,

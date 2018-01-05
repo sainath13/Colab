@@ -173,7 +173,7 @@ class ChatClassActionCable extends Component {
                             marginLeft: 0,
                             color: '#9C9C9C'
                           }}>
-                          { chatListItem.messages ? chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text  : chatListItem.msg ?  chatListItem.msg_from + ": " + chatListItem.msg : "Start business talk"}
+                          { chatListItem.messages ? (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,31)  : chatListItem.msg ?  (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,31) : "Start business talk"}
                           </Text>
                         </View>
                       </View>

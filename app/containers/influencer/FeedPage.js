@@ -46,7 +46,11 @@ class FeedPage extends Component {
         console.log("business_collaborations_count", this.props.feedData.business_collaborations_count);
         this
           .props
-          .setChatObject(this.refs.roomChannel.perform);
+          .setChatObject(this.refs.roomChannel.perform)
+              this
+                .refs
+                .roomChannel
+                .perform('get_chat_pairs');
       })
   }
   onReceived = (data) => {
@@ -83,10 +87,10 @@ class FeedPage extends Component {
   }
   onPressChat = () => {
     Actions.ActionCableChatPage();
-    this
-      .refs
-      .roomChannel
-      .perform('get_chat_pairs');
+    //this
+    //  .refs
+    //  .roomChannel
+    //  .perform('get_chat_pairs');
   }
 
   _onRefresh() {

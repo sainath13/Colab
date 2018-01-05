@@ -555,7 +555,8 @@ class UpdateInfoPageComponent extends Component {
                 backgroundColor: '#F6F5FA',
                 borderBottomWidth: 2,
                 borderBottomColor: '#6563A4',
-                paddingLeft: 10
+                paddingLeft: 10,
+                paddingRight : 10
               }}>
                 <Text
                   style={{
@@ -578,17 +579,14 @@ class UpdateInfoPageComponent extends Component {
                     placeholder="Enter bio here"
                     underlineColorAndroid='rgba(0,0,0,0)'
                     maxLength
-                    ={200}
+                    ={300}
                     multiline={true}
-                    numberOfLines={4}
+                    numberOfLines={6}
                     value={this.state.bio}
                     onSubmitEditing={Keyboard.dismiss}
                     onChangeText={(bio) => this.setState({bio})}
                     style={{
                     height: 75,
-                    width: Dimensions
-                      .get('window')
-                      .width,
                     fontSize: 17,
                     fontFamily: 'GothamRounded-Book'
                   }}></TextInput>

@@ -18,6 +18,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {ActionCreators} from '../../actions'
 import {Actions} from 'react-native-router-flux';
+import { ACCEPT_COLLAB_REQUEST_BUSINESS } from '../../actions/types';
 
 class ChatClassActionCable extends Component {
   constructor(props) {
@@ -115,11 +116,12 @@ class ChatClassActionCable extends Component {
             <ScrollView>
               {this
                 .fetchChatList()
-                .map((chatListItem) => {
+                .map((chatListItem) =>{
                   return (
                     <TouchableOpacity
                       key={chatListItem.chat_pair.id}
                       onPress={() => {
+                        console.log(chatListItem);
                       this.getLast5Messages(chatListItem.chat_pair);
                     }}>
 
@@ -171,7 +173,7 @@ class ChatClassActionCable extends Component {
                             marginLeft: 0,
                             color: '#9C9C9C'
                           }}>
-                          { chatListItem.msg ?  chatListItem.msg_from + ": " + chatListItem.msg : "Start business talk"}
+                          { chatListItem.messages ? chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text  : chatListItem.msg ?  chatListItem.msg_from + ": " + chatListItem.msg : "Start business talk"}
                           </Text>
                         </View>
                       </View>

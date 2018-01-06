@@ -35,8 +35,18 @@ class chatPage extends Component {
       messages: [],
       fetching: true
     };
+    this.onPressBack = this.onPressBack.bind(this);
   }
   onPressBack() {
+    if(this.props.chatList[this.props.chat_pair.id].messages){
+      lastReadMessageInfo = {}
+      lastReadMessageInfo.message = {}
+      lastReadMessageInfo.message.last_read_message_id = this.props.chatList[this.props.chat_pair.id].messages[0]._id; 
+      lastReadMessageInfo.message.user_id = this.props.chat_pair.user1; 
+      lastReadMessageInfo.chat_pair_id = this.props.chat_pair.id;
+      this.props.chat('update_read_status', {lastReadMessageInfo})
+      this.props.markChatAsRead(this.props.chat_pair.id);
+    }
     Actions.pop();
   }
   componentDidMount() {}
@@ -84,7 +94,7 @@ class chatPage extends Component {
               justifyContent: 'center'
             }}
             onPress={() => {
-            Actions.pop();
+             this.onPressBack(); 
           }}>
             <View style={{}}>
               <Icon name="chevron-left" size={25} color='white'></Icon>

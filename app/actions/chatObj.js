@@ -125,6 +125,19 @@ export function addNewMessage({ message }){
  }
 }
 
+export function markChatAsReadAction(chat_pair_id){
+  return {
+    type : types.MARK_CHAT_AS_READ,
+    chat_pair_id, 
+  }
+}
+
+export function markChatAsRead(chat_pair_id){
+  return (dispatch,getState) => {
+    return dispatch(markChatAsReadAction(chat_pair_id));
+  }
+}
+
 export function recieveNewMessage(newMessage){
  return (dispatch,getState) => {
   //  thisdata = newMessage;

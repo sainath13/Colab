@@ -39,7 +39,6 @@ class ChatClassActionCable extends Component {
   }
 
   sendMessage = () => {
-    console.log("test");
     var message = {}
     message.chat_pair_id = "2"
     this
@@ -121,7 +120,6 @@ class ChatClassActionCable extends Component {
                     <TouchableOpacity
                       key={chatListItem.chat_pair.id}
                       onPress={() => {
-                        console.log(chatListItem);
                       this.getLast5Messages(chatListItem.chat_pair);
                     }}>
 
@@ -173,8 +171,20 @@ class ChatClassActionCable extends Component {
                             marginLeft: 0,
                             color: '#9C9C9C'
                           }}>
-                          { chatListItem.messages ? (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,31)  : chatListItem.msg ?  (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,31) : "Start business talk"}
+                          { chatListItem.messages ? (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,25)  : chatListItem.msg ?  (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,25) : "Start business talk"}
                           </Text>
+                        </View>
+                        <View
+                          style={{
+                          flex: 1,
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}>
+                        {
+                         chatListItem.chat_pair.current_user_has_unread_messages ?  
+                        <Icon name="dot-circle-o" size={20} color='#6563A4'></Icon>
+                        : null
+                        }
                         </View>
                       </View>
 

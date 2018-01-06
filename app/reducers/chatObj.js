@@ -52,10 +52,23 @@ export const chatList = createReducer({
     return {
       ...state,
       [action.message.chat_pair_id] : {
-        ...state[action.message.chat_pair_id],
+        chat_pair : {
+         ...state[action.message.chat_pair_id].chat_pair,
+          current_user_has_unread_messages : true,
+        },
         messages: [ action.message, ...state[action.message.chat_pair_id].messages || [] ]
       }
     }
   },
+  [types.MARK_CHAT_AS_READ](state,action){
+    return {...state,
+      [action.chat_pair_id] : {
+        chat_pair : {
+          ...state[action.chat_pair_id].chat_pair,
+           current_user_has_unread_messages : false,
+         }, 
+      }
+    }
+  }
 }
 )

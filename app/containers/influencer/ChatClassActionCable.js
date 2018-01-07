@@ -166,12 +166,22 @@ class ChatClassActionCable extends Component {
                           </Text>
                           <Text
                             style={{
-                            fontSize: 16,
+                            fontSize: 15,
                             fontFamily: 'GothamRounded-Book',
                             marginLeft: 0,
                             color: '#9C9C9C'
                           }}>
-                          { chatListItem.messages ? (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,22) + "..."   : chatListItem.msg ?  (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,22) + "..." : "Start business talk"}
+                          { chatListItem.messages ? 
+                            (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).length > 27  ?
+                            (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,27) + "..." 
+                            :
+                            (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,30)
+
+                            : chatListItem.msg ?  (chatListItem.msg_from + ": " + chatListItem.msg).length > 27?
+                            (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,27)+ "..."  
+                            :
+                            (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,30)
+                            : "Start business talk"}
                           </Text>
                         </View>
                         <View

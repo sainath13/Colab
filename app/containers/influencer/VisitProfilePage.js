@@ -10,9 +10,11 @@ import {
     Alert,
     ScrollView,
     View,
+    Keyboard,
     StatusBar,
     Platform
 } from 'react-native';
+const GLOBAL = require('../../actions/Globals');
 // import { Card, Button,List, ListItem , ListView } from
 // 'react-native-elements'
 // TODO: FINISHING CHANGEs required. remove the whole signedInuser thing. should
@@ -31,7 +33,8 @@ class VisitProfilePage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            fetching: true
+            fetching: true,
+            reportText : "",
         }
         this.onclickButton = this
             .onclickButton
@@ -41,6 +44,9 @@ class VisitProfilePage extends Component {
         if (this.props.visitProfileData.status == "no connection" || this.props.visitProfileData.status == "collaberate") {
             this
                 .popupDialog
+                .dismiss()
+            this
+                .popupDialog2
                 .dismiss()
         }
     }
@@ -82,6 +88,119 @@ class VisitProfilePage extends Component {
                     ? <StatusBar backgroundColor="#6563A4" barStyle="dark-content"/>
                     : <StatusBar backgroundColor="#43416d" barStyle="light-content"/>
 }
+
+                <PopupDialog
+                    ref={(popupDialog2) => {
+                    this.popupDialog2 = popupDialog2;
+                }}
+                    dialogTitle={< DialogTitle title = "Report account" titleTextStyle = {{ color : 'gray', fontSize : 17, fontFamily : 'GothamRounded-Medium', }}/>}
+                    height={0.35}>
+                    <View
+                        style={{
+                        backgroundColor: '#6563A4',
+                        flex: 1,
+                        padding: 10,
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }}>
+                                <TextInput
+                    placeholder="Enter why you want to report"
+                    underlineColorAndroid='rgba(0,0,0,0)'
+                    maxLength
+                    ={300}
+                    multiline={true}
+                    numberOfLines={6}
+                    value={this.state.reportText}
+                    onSubmitEditing={Keyboard.dismiss}
+                    onChangeText={(reportText) => this.setState({reportText})}
+                    style={{
+                    height: 100,
+                    fontSize: 15,
+                    color : "white",
+                    borderColor : '#fefefe',
+                    borderWidth : 1,
+                    fontFamily: 'GothamRounded-Book'
+                  }}></TextInput>
+                        <TouchableHighlight
+                            style={{
+                            marginTop: 10
+                        }}
+                            onPress={() => {
+                                var classvar= "";
+                                this.props.loginInfo.class == "Influencer" ? classvar = "influencers" : classvar = "businesses";
+                                let ROUTE = "https://"+GLOBAL.BASE_URL + "/"+ classvar +"/" + this.props.loginInfo.id + "/report_spam"
+                                ROUTE = ROUTE + "?spammer_class=" + this.props.visitProfileData.class +"&spammer_id=" + this.props.visitProfileData.id + "&comment=" + this.state.reportText;
+                                console.log(ROUTE);
+                                return fetch( ROUTE, {
+                                    method: 'POST',
+                                    headers: {
+                                      'access-token':  this.props.loginInfo.accessToken,
+                                      'token-type': this.props.loginInfo.tokenType,
+                                      'expiry': this.props.loginInfo.expiry,
+                                      'client': this.props.loginInfo.client,
+                                      'uid': this.props.loginInfo.uid,
+                                    }
+                                  })//fetch
+                                  .then((response) => {
+                                    console.log("visitPorfile",response.status);
+                                    if(response.status == 200){
+                                        this
+                                        .popupDialog2
+                                        .dismiss()
+                                        Alert.alert(
+                                            'Account Reported!',
+                                            'Thanks',
+                                            [
+                                              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                              {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                            ],
+                                            { cancelable: true}
+                                          )
+                                    }
+                                  })
+                            console.log("Message Devs")
+                        }}>
+                            <View
+                                style={{
+                                flexDirection: 'row',
+                                backgroundColor: '#F6F5FA',
+                                borderBottomColor: '#6563A4',
+                                borderBottomWidth: 2
+                            }}>
+                                <View
+                                    style={{
+                                    flex: 6,
+                                    justifyContent: 'center'
+                                }}>
+                                    <Text
+                                        style={{
+                                        fontSize: 17,
+                                        fontFamily: 'GothamRounded-Book',
+                                        padding: 15
+                                    }}>
+                                        Report Account
+                                    </Text>
+                                </View>
+                                <View
+                                    style={{
+                                    flex: 1,
+                                    marginTop: 10,
+                                    marginBottom: 10,
+                                    marginLeft: 5,
+                                    marginRight: 10,
+                                    borderRadius: 2,
+                                    paddingTop: 5,
+                                    paddingBottom: 5,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    borderRadius: 5
+                                }}>
+                                    <Icon name="ban" size={25} color='#6564A4'></Icon>
+                                </View>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                </PopupDialog>
                 <PopupDialog
                     ref={(popupDialog) => {
                     this.popupDialog = popupDialog;
@@ -232,6 +351,12 @@ class VisitProfilePage extends Component {
                             marginTop: 10
                         }}
                             onPress={() => {
+                                this
+                                .popupDialog
+                                .dismiss()
+                                this
+                                .popupDialog2
+                                .show();
                             console.log("Message Devs")
                         }}>
                             <View

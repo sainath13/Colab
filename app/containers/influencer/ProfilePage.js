@@ -824,7 +824,7 @@ class influencerProfilePage extends Component {
 
                                 return (
                                     <TouchableOpacity
-                                        key={collaboration.id}
+                                        key={collaboration.id + collaboration.is_brand}
                                         onPress={() => {
                                         Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})
                                     }}>

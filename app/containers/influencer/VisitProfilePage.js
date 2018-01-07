@@ -1205,7 +1205,6 @@ class VisitProfilePage extends Component {
                                                 paddingBottom: 5,
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
-                                                backgroundColor: '#6563A4',
                                                 borderRadius: 5
                                             }}>
                                                 <Text

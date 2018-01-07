@@ -321,12 +321,13 @@ class VisitProfilePage extends Component {
                                 {this.state.fetching
                                     ? " loading"
                                     : ""}
-                                {this.props.visitProfileData.name}
+                                {!this.state.fetching ? this.props.visitProfileData.name : ""}
 
                             </Text>
-                            {this.props.visitProfileData.name
+                            {!this.state.fetching ? this.props.visitProfileData.class == "Influencer"
                                 ? <Octicons name="broadcast" size={20} color='white'></Octicons>
                                 : <Octicons name="briefcase" size={20} color='white'></Octicons>
+                                : null
 }
                         </View>
                     </View>

@@ -531,7 +531,7 @@ class SearchPage extends Component {
               <Text style={styles.notificationBarText}>
                 {this.state.showingSearchResults
                   ? "Search results"
-                  : "Treding right now"}
+                  : "Trending right now"}
               </Text>
             </View>
             {this.state.searching || this.state.loading || this.state.loadingNiche

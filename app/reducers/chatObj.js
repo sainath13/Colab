@@ -61,13 +61,17 @@ export const chatList = createReducer({
     }
   },
   [types.MARK_CHAT_AS_READ](state,action){
-    return {...state,
+    return {
+      ...state,
       [action.chat_pair_id] : {
         chat_pair : {
           ...state[action.chat_pair_id].chat_pair,
            current_user_has_unread_messages : false,
          }, 
-      }
+        messages : [
+          ...state[action.chat_pair_id].messages
+        ] 
+      },
     }
   }
 }

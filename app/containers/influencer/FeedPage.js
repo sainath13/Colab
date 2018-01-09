@@ -112,7 +112,7 @@ class FeedPage extends Component {
           : <StatusBar backgroundColor="#43416d" barStyle="light-content"/>
 }
         <ActionCableProvider
-          cable={RNActionCable.createConsumer('ws://' + GLOBAL.BASE_URL + '/cable?id=' + this.props.loginInfo.id + "&token=" + this.props.loginInfo.accessToken + "&client=" + this.props.loginInfo.client + "&user_type=I")}>
+          cable={RNActionCable.createConsumer('ws://' + GLOBAL.BASE_URL + '/cable?id=' + this.props.loginInfo.id + "&token=" + this.props.loginInfo.accessToken + "&client=" + this.props.loginInfo.client + "&user_type="+this.props.loginInfo.class)}>
           <ActionCable
             ref='roomChannel'
             channel={{

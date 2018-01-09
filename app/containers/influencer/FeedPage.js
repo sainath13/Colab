@@ -490,7 +490,7 @@ class FeedPage extends Component {
                               }}
                                 source={!this.state.fetching
                                   ? {
-                                      uri: this.feedItem.profile_pic_link
+                                      uri: feedItem.profile_pic_link
                                   }
                                   : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
                             </View>

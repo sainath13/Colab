@@ -406,7 +406,27 @@ class influencerProfilePage extends Component {
                                             justifyContent: 'flex-start',
                                             alignItems: 'flex-start'
                                         }}>
-                                            <View
+                                        {!this.state.fetching && this.props.profileData.class == "Influencer" && this
+                                        .props
+                                        .profileData
+                                        .advanced_data
+                                        .payments
+                                        .map((paymentItem, i) => {
+                                            return (
+                                            <TouchableOpacity
+                                            onPress={async () => {
+                                            await Clipboard.setString(paymentItem.payment_id);
+                                            Alert.alert(
+                                                paymentItem.payment_type + ' id copied to clipboard!',
+                                                'You can use it to make payments 🤑',
+                                                [
+                                                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                                ],
+                                                { cancelable: true}
+                                              )
+                                            }}
+                                            key={i}
                                                 style={{
                                                 marginTop: 1,
                                                 marginBottom: 1,
@@ -425,75 +445,10 @@ class influencerProfilePage extends Component {
                                                     fontSize: 16,
                                                     fontFamily: 'GothamRounded-Book'
                                                 }}>
-                                                    PhonePay
+                                                   {paymentItem.payment_type} 
                                                 </Text>
-                                            </View>
-                                            <View
-                                                style={{
-                                                marginTop: 1,
-                                                marginBottom: 1,
-                                                marginLeft: 5,
-                                                marginRight: 5,
-                                                borderRadius: 3,
-                                                borderColor: 'white',
-                                                padding: 5,
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                backgroundColor: '#6563A4'
-                                            }}>
-                                                <Text
-                                                    style={{
-                                                    color: 'white',
-                                                    fontSize: 16,
-                                                    fontFamily: 'GothamRounded-Book'
-                                                }}>
-                                                    paypal
-                                                </Text>
-                                            </View>
-                                            <View
-                                                style={{
-                                                marginTop: 1,
-                                                marginBottom: 1,
-                                                marginLeft: 5,
-                                                marginRight: 5,
-                                                borderRadius: 3,
-                                                borderColor: 'white',
-                                                padding: 5,
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                backgroundColor: '#6563A4'
-                                            }}>
-                                                <Text
-                                                    style={{
-                                                    color: 'white',
-                                                    fontSize: 16,
-                                                    fontFamily: 'GothamRounded-Book'
-                                                }}>
-                                                    paytm
-                                                </Text>
-                                            </View>
-                                            <View
-                                                style={{
-                                                marginTop: 1,
-                                                marginBottom: 1,
-                                                marginLeft: 5,
-                                                marginRight: 5,
-                                                borderRadius: 3,
-                                                borderColor: 'white',
-                                                padding: 5,
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                backgroundColor: '#6563A4'
-                                            }}>
-                                                <Text
-                                                    style={{
-                                                    color: 'white',
-                                                    fontSize: 16,
-                                                    fontFamily: 'GothamRounded-Book'
-                                                }}>
-                                                    Google-wallet
-                                                </Text>
-                                            </View>
+                                            </TouchableOpacity>
+                                            )})}
                                         </View>
                                     </View>
                                 </View>

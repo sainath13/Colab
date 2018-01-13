@@ -32,7 +32,8 @@ class FeedPage extends Component {
     refreshing : false,
     this.state = {
       fetching: true,
-      isPullToRefeshShowing: true
+      isPullToRefeshShowing: true,
+      isunreadMessages : false,
     }
   }
 
@@ -42,7 +43,9 @@ class FeedPage extends Component {
       .props
       .fetchFeed(this.props.loginInfo.id)
       .then((res) => {
-        this.setState({fetching: false})
+        this.setState({fetching: false,
+          isunreadMessages : this.props.feedData.has_unread_message,
+        })
         console.log("business_collaborations_count", this.props.feedData.business_collaborations_count);
         this
           .props
@@ -71,6 +74,7 @@ class FeedPage extends Component {
       this
         .props
         .receiveMessage(data.message);
+        this.setState({isunreadMessages : true})
     }
   }
 
@@ -166,7 +170,12 @@ class FeedPage extends Component {
             }}
             onPress={this.onPressChat}>
             <View style={{}}>
-              <Icon name="chat" size={25} color='white'></Icon>
+            {!this.state.fetching && this.state.isunreadMessages
+            ?
+              <FIcon name="dot-circle-o" size={25} color='white'>
+              </FIcon>
+            :  <Icon name="chat" size={25} color='white'></Icon>
+            }
             </View>
           </TouchableOpacity>
         </View>

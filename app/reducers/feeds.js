@@ -22,6 +22,7 @@ export const feedData = createReducer({
     processedFeedList = {}
     processedFeedList.requested_businesses =  processedRequestedBrands; 
     processedFeedList.requested_influencers = processedRequestedInfluencers ; 
+    processedFeedList.has_unread_message = action.feedData.has_unread_message;
     processedFeedList.influencer_collaborations_count = action.feedData.influencer_collaborations_count;
     processedFeedList.business_collaborations_count = action.feedData.business_collaborations_count;
     

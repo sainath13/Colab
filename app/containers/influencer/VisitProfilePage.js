@@ -1128,12 +1128,12 @@ class VisitProfilePage extends Component {
                                 <View style={{}}>
                         {!this.state.fetching && this
                             .fetchCollaborationItems()
-                            .map((collaboration) => {
+                            .map((collaboration,i) => {
 
                                 return (
                                     <TouchableOpacity
                                         disabled={true}
-                                        key={collaboration.id + collaboration.is_brand}
+                                        key={i}
                                         onPress={() => {
                                         Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})
                                     }}>

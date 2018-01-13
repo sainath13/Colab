@@ -820,11 +820,11 @@ class influencerProfilePage extends Component {
                                 <View style={{}}>
                         {!this.state.fetching && this
                             .fetchCollaborationItems()
-                            .map((collaboration) => {
+                            .map((collaboration,i) => {
 
                                 return (
                                     <TouchableOpacity
-                                        key={collaboration.id + collaboration.is_brand}
+                                        key={i}
                                         onPress={() => {
                                         Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})
                                     }}>
@@ -876,8 +876,20 @@ class influencerProfilePage extends Component {
                                                     {collaboration.name}
                                                 </Text>
                                             </View>
-                                            <View
-                                                style={{
+                                            <TouchableOpacity
+
+                                        onPress={() => {
+                                       //     this.getLast5Messages(feedItem.chat_pair);
+                                       chat_pair = collaboration.chat_pair; 
+                                       var message = {}
+                                       message.chat_pair_id = chat_pair.id;
+                                       this
+                                         .props
+                                         .chat('get_chat_pair_messages', {message})
+                                       Actions.chatPage2({chat_pair: chat_pair, username: chat_pair.user2_name});
+                                        }} 
+  
+                                            style={{
                                                 flex: 2,
                                                 marginTop: 10,
                                                 marginBottom: 10,
@@ -901,7 +913,7 @@ class influencerProfilePage extends Component {
                                                 }}>
                                                     message
                                                 </Text>
-                                            </View>
+                                            </TouchableOpacity>
                                         </View>
                                     </TouchableOpacity>
                                 )
@@ -1105,7 +1117,8 @@ function mapStateToProps(state) {
     return {
         //not calling any api actions here yet, but will be required later
         profileData: state.profileData,
-        loginInfo: state.loginInfo
+        loginInfo: state.loginInfo,
+        chat : state.chatObj
     };
 }
 

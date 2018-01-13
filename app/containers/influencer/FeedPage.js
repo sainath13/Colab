@@ -8,6 +8,7 @@ import {
   TextInput,
   ScrollView,
   View,
+  Alert,
   Image,
   Platform,
   AsyncStorage,
@@ -208,17 +209,33 @@ class FeedPage extends Component {
               flex: 1
             }}
               onPress={() => {
-              Actions.BrandsListPage();
+                    if(this.props.loginInfo.class == "Influencer"){
+                      Actions.BrandsListPage()
+                    }
+                    else{
+                      Alert.alert(
+                        'Your collab posts will appear here!',
+                        '🛠Under development🛠',
+                        [
+                          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                          {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        ],
+                        { cancelable: true}
+                      )
+                }
             }}>
               <View style={styles.brandContainer}>
                 <View style={styles.headingContainer}>
                   <Text style={styles.contentHeadingText}>
-                    Brands
+                    {this.props.loginInfo.class == "Influencer" ?
+                    "Brands" :
+                    "Collabs"
+                    }
                   </Text>
                 </View>
                 <View style={styles.bottomNumberTextContainer}>
                   <Text style={styles.bottomNumberText}>
-                    {!this.state.fetching
+                    {!this.state.fetching && this.props.loginInfo.class == "Influencer"
                       ? this.props.feedData.business_collaborations_count
                       : "0"}
                   </Text>
@@ -511,8 +528,8 @@ class FeedPage extends Component {
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
-                                You have collaboration a with
-                                <Text style={styles.notificationItemTextBold}>{feedItem.name}</Text>
+                                You have collaboration a with 
+                                <Text style={styles.notificationItemTextBold}>{ " "+ feedItem.name}</Text>
 
                               </Text>
                             </View>
@@ -706,7 +723,8 @@ function mapStateToProps(state) {
   return {
     // recipeCount : state.recipeCount,
     feedData: state.feedData,
-    loginInfo: state.loginInfo
+    loginInfo: state.loginInfo,
+    chat: state.chatObj
   };
 }
 

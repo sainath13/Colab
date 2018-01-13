@@ -40,6 +40,14 @@ class BrandsListPage extends Component {
         this.setState({fetching: false})
       })
   }
+  getLast5Messages(chat_pair) {
+    var message = {}
+    message.chat_pair_id = chat_pair.id;
+    this
+      .props
+      .chat('get_chat_pair_messages', {message})
+    Actions.chatPage2({chat_pair: chat_pair, username: chat_pair.user2_name});
+  }
 
   fetchBusinessItems() {
     return Object
@@ -272,7 +280,10 @@ class BrandsListPage extends Component {
                               {feedItem.instagram_name}
                             </Text>
                           </View>
-                          <View
+                          <TouchableOpacity
+                           onPress={() => {
+                            this.getLast5Messages(feedItem.chat_pair);
+                          }}
                             style={{
                             flex: 2,
                             marginTop: 10,
@@ -297,7 +308,7 @@ class BrandsListPage extends Component {
                             }}>
                               message
                             </Text>
-                          </View>
+                          </TouchableOpacity>
                         </View>
                       </TouchableOpacity>
                     )
@@ -536,7 +547,8 @@ function mapStateToProps(state) {
   return {
     // recipeCount : state.recipeCount,
     businessData: state.businessData,
-    loginInfo: state.loginInfo
+    loginInfo: state.loginInfo,
+    chat: state.chatObj
   };
 }
 

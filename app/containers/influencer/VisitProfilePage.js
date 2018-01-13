@@ -7,6 +7,7 @@ import {
     Text,
     Image,
     TextInput,
+    Clipboard,
     Alert,
     ScrollView,
     View,
@@ -68,7 +69,15 @@ class VisitProfilePage extends Component {
     }
 
     onclickButton(statusString) {
-        if (statusString == "no connection") {} else if (statusString == "requested") {} else if (statusString == "accepted") {} else if (statusString == "collaberate") {
+        if (statusString == "no connection") {} else if (statusString == "requested") {} else if (statusString == "accepted") {
+            chat_pair = this.props.visitProfileData.chat_pair
+            var message = {}
+            message.chat_pair_id = chat_pair.id;
+            this
+              .props
+              .chat('get_chat_pair_messages', {message})
+            Actions.chatPage2({chat_pair: chat_pair, username: chat_pair.user2_name});
+        } else if (statusString == "collaberate") {
             this
                 .props
                 .requestCollaboration(this.props.loginInfo.id, this.props.visitProfileData.id, this.props.visitProfileData.class);
@@ -158,7 +167,6 @@ class VisitProfilePage extends Component {
                                           )
                                     }
                                   })
-                            console.log("Message Devs")
                         }}>
                             <View
                                 style={{
@@ -357,7 +365,6 @@ class VisitProfilePage extends Component {
                                 this
                                 .popupDialog2
                                 .show();
-                            console.log("Message Devs")
                         }}>
                             <View
                                 style={{
@@ -769,7 +776,26 @@ class VisitProfilePage extends Component {
                                             justifyContent: 'flex-start',
                                             alignItems: 'flex-start'
                                         }}>
-                                            <View
+                                        {!this.state.fetching && this.props.visitProfileData.class == "Influencer" && this
+                                        .props
+                                        .visitProfileData
+                                        .payments
+                                        .map((paymentItem, i) => {
+                                            return (
+                                            <TouchableOpacity
+                                            onPress={async () => {
+                                            await Clipboard.setString(paymentItem.payment_id);
+                                            Alert.alert(
+                                                paymentItem.payment_type + ' id copied to clipboard!',
+                                                'You can use it to make payments 🤑',
+                                                [
+                                                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                                ],
+                                                { cancelable: true}
+                                              )
+                                            }}
+                                            key={i}
                                                 style={{
                                                 marginTop: 1,
                                                 marginBottom: 1,
@@ -788,75 +814,11 @@ class VisitProfilePage extends Component {
                                                     fontSize: 16,
                                                     fontFamily: 'GothamRounded-Book'
                                                 }}>
-                                                    PhonePay
+                                                   {paymentItem.payment_type} 
                                                 </Text>
-                                            </View>
-                                            <View
-                                                style={{
-                                                marginTop: 1,
-                                                marginBottom: 1,
-                                                marginLeft: 5,
-                                                marginRight: 5,
-                                                borderRadius: 3,
-                                                borderColor: 'white',
-                                                padding: 5,
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                backgroundColor: '#6563A4'
-                                            }}>
-                                                <Text
-                                                    style={{
-                                                    color: 'white',
-                                                    fontSize: 16,
-                                                    fontFamily: 'GothamRounded-Book'
-                                                }}>
-                                                    paypal
-                                                </Text>
-                                            </View>
-                                            <View
-                                                style={{
-                                                marginTop: 1,
-                                                marginBottom: 1,
-                                                marginLeft: 5,
-                                                marginRight: 5,
-                                                borderRadius: 3,
-                                                borderColor: 'white',
-                                                padding: 5,
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                backgroundColor: '#6563A4'
-                                            }}>
-                                                <Text
-                                                    style={{
-                                                    color: 'white',
-                                                    fontSize: 16,
-                                                    fontFamily: 'GothamRounded-Book'
-                                                }}>
-                                                    paytm
-                                                </Text>
-                                            </View>
-                                            <View
-                                                style={{
-                                                marginTop: 1,
-                                                marginBottom: 1,
-                                                marginLeft: 5,
-                                                marginRight: 5,
-                                                borderRadius: 3,
-                                                borderColor: 'white',
-                                                padding: 5,
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                backgroundColor: '#6563A4'
-                                            }}>
-                                                <Text
-                                                    style={{
-                                                    color: 'white',
-                                                    fontSize: 16,
-                                                    fontFamily: 'GothamRounded-Book'
-                                                }}>
-                                                    Google-wallet
-                                                </Text>
-                                            </View>
+                                            </TouchableOpacity>
+                                            )})}
+
                                         </View>
                                     </View>
                                 </View>
@@ -879,6 +841,22 @@ class VisitProfilePage extends Component {
                                             </Text>
                                             <Icon name="lock" size={20} color='#6463A4'></Icon>
                                         </View>
+                                        <TouchableOpacity
+                                       onPress={async () => {
+                                           if(this.props.visitProfileData.phone){
+                                        await Clipboard.setString(this.props.visitProfileData.phone);
+                                        Alert.alert(
+                                            'Contact number copied to clipboard!',
+                                            'You can use it to make a phone call 🤙🏻',
+                                            [
+                                              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                              {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                            ],
+                                            { cancelable: true}
+                                          )
+                                        }} 
+                                    }
+                                        >
                                         <Text
                                             style={{
                                             padding: 5,
@@ -890,6 +868,7 @@ class VisitProfilePage extends Component {
                                                 ? this.props.visitProfileData.phone
                                                 : null}
                                         </Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                                      <View style={styles.informationSlot}>
@@ -911,6 +890,20 @@ class VisitProfilePage extends Component {
                                                     </Text>
                                                     <Icon name="lock" size={20} color='#6463A4'></Icon>
                                                 </View>
+                                                <TouchableOpacity
+                                       onPress={async () => {
+                                        await Clipboard.setString(this.props.visitProfileData.business_email);
+                                        Alert.alert(
+                                            'Email id copied to clipboard!',
+                                            'You can use it to contact 📩!',
+                                            [
+                                              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                              {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                            ],
+                                            { cancelable: true}
+                                          )
+                                        }} 
+                                                >
                                                 <Text
                                                     style={{
                                                     padding: 5,
@@ -922,6 +915,7 @@ class VisitProfilePage extends Component {
                                                         ? this.props.visitProfileData.business_email
                                                         : null}
                                                 </Text>
+                                                </TouchableOpacity>
                                             </View>
                                         </View>
                             </View>
@@ -1403,7 +1397,8 @@ function mapStateToProps(state) {
     return {
         //not calling any api actions here yet, but will be required later
         visitProfileData: state.visitProfileData,
-        loginInfo: state.loginInfo
+        loginInfo: state.loginInfo,
+        chat: state.chatObj
     };
 }
 

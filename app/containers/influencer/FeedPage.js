@@ -373,7 +373,13 @@ class FeedPage extends Component {
                             </View>
                             <TouchableOpacity
                               onPress={() => {
-                              (console.log("clicked on message"))
+                              chat_pair = feedItem.chat_pair;
+                              var message = {}
+                              message.chat_pair_id = chat_pair.id;
+                              this
+                                .props
+                                .chat('get_chat_pair_messages', {message})
+                              Actions.chatPage2({chat_pair: chat_pair, username: chat_pair.user2_name});
                             }}
                               style={{
                               width: 100,
@@ -503,7 +509,13 @@ class FeedPage extends Component {
                             </View>
                             <TouchableOpacity
                               onPress={() => {
-                              (console.log("clicked on message"))
+                              chat_pair = feedItem.chat_pair;
+                              var message = {}
+                              message.chat_pair_id = chat_pair.id;
+                              this
+                                .props
+                                .chat('get_chat_pair_messages', {message})
+                              Actions.chatPage2({chat_pair: chat_pair, username: chat_pair.user2_name});
                             }}
                               style={{
                               width: 100,

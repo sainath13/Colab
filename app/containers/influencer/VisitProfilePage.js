@@ -662,7 +662,7 @@ class VisitProfilePage extends Component {
                                     </Text>
                                 </View>
                                 <View style={styles.informationCategoriesSlot}>
-                                    {!this.state.fetching && this.props.visitProfileData.class == "Influencer" && this
+                                    {!this.state.fetching && this
                                         .props
                                         .visitProfileData
                                         .niche
@@ -700,6 +700,8 @@ class VisitProfilePage extends Component {
                                         ? <Text>Searching...</Text>
                                         : null}
                                 </View>
+                                {
+                                    this.props.visitProfileData.class == "Influencer" ?
                                 <View>
                                     <Text
                                         style={{
@@ -713,6 +715,8 @@ class VisitProfilePage extends Component {
                                         Pricing structure
                                     </Text>
                                 </View>
+                                : null
+                                }
                                 {this.props.visitProfileData.class == "Influencer"
                                     ? <View style={styles.informationSlotPricing}>
                                             <View style={styles.informationSlotCard}>
@@ -750,6 +754,7 @@ class VisitProfilePage extends Component {
                                         </View>
                                     : null
 }
+{ !this.state.fetching && this.props.visitProfileData.class == "Influencer" ?
                                 <View style={styles.informationSlot}>
                                     <View>
                                         <View
@@ -822,6 +827,8 @@ class VisitProfilePage extends Component {
                                         </View>
                                     </View>
                                 </View>
+                                : null
+}
                                 <View style={styles.informationSlot}>
                                     <View>
                                         <View

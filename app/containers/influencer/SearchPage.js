@@ -284,7 +284,7 @@ class SearchPage extends Component {
                           <TouchableHighlight
                             key={searchItem.id}
                             onPress={() => {
-                            Actions.VisitProfilePage({clickedUserId: searchItem.id, isBusiness: searchItem.isBusiness})
+                            Actions.VisitProfilePage({clickedUserId: searchItem.id, isBusiness: searchItem.is_brand})
                           }}>
                             <View
                               style={{
@@ -605,7 +605,7 @@ class SearchPage extends Component {
                       <TouchableOpacity
                         key={searchItem.id}
                         onPress={() => {
-                        Actions.VisitProfilePage({clickedUserId: searchItem.id, isBusiness: searchItem.isBusiness})
+                        Actions.VisitProfilePage({clickedUserId: searchItem.id, isBusiness: searchItem.is_brand})
                       }}>
                         <View
                           style={{

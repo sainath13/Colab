@@ -8,6 +8,8 @@ import {
     Image,
     TextInput,
     ScrollView,
+    Clipboard,
+    Alert,
     View,
     Platform,
     StatusBar

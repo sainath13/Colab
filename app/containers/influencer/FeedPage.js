@@ -153,7 +153,7 @@ class FeedPage extends Component {
               style={Platform.OS == "ios"
               ? styles.headerText
               : styles.headerTextAndroid}>
-              Influx
+              Influencer Market
             </Text>
           </View>
           <TouchableOpacity

@@ -94,7 +94,7 @@ class SignInPage extends Component {
 
         <View style={styles.header}>
           <Text style={styles.headerText}>
-            Influxcer
+            Influencer Market
           </Text>
         </View>
         <View style={styles.content}>
@@ -111,38 +111,7 @@ class SignInPage extends Component {
           <View style={styles.contentPic}></View>
           <View style={styles.form}>
             <View style={styles.formElementWrapper}>
-              <View style={styles.formElement}>
-                <View style={styles.formElementTextContainer}>
-                  <Icon color='grey' name='envelope' type='font-awesome' size={26}/>
-                </View>
-                <View style={styles.inputBox}>
-                  <View style={styles.inputTextWrapper}>
-                    <TextInput
-                      style={styles.inputText}
-                      onChangeText={(username) => this.setState({username})}
-                      value={this.state.username}
-                      underlineColorAndroid={'#E0E0E0'}></TextInput>
-                  </View>
-                </View>
-              </View>
 
-              <View style={styles.formElement}>
-                <View style={styles.formElementTextContainer}>
-
-                  <Icon color='grey' name='lock' type='font-awesome' size={28}/>
-                </View>
-                <View style={styles.inputBox}>
-
-                  <View style={styles.inputTextWrapper}>
-                    <TextInput
-                      style={styles.inputText}
-                      onChangeText={(password) => this.setState({password})}
-                      value={this.state.password}
-                      underlineColorAndroid={'#E0E0E0'}
-                      password={true}></TextInput>
-                  </View>
-                </View>
-              </View>
 
             </View>
             <TouchableOpacity
@@ -167,7 +136,7 @@ class SignInPage extends Component {
             }}>
               <View style={styles.createAccountButton}>
                 <Text style={styles.createAccountButtonText}>
-                  Login as Business
+                  Login as Brand
                 </Text>
               </View>
             </TouchableOpacity>
@@ -194,7 +163,7 @@ var styles = StyleSheet.create({
     //borderRadius : 10,
   },
   submitButton: {
-    backgroundColor: 'grey',
+    backgroundColor: '#6563a4',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
@@ -267,14 +236,14 @@ var styles = StyleSheet.create({
   },
   contentPic: {
     flex: 4,
-    backgroundColor: '#f3f3f1',
+    //backgroundColor: '#f3f3f1',
     // borderColor : 'red', borderWidth : 3,
   },
   header: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: 'grey'
+    backgroundColor: '#6563a4'
   },
   headerText: {
     color: 'white',

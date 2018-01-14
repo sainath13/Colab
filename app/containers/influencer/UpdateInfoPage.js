@@ -380,7 +380,7 @@ class UpdateInfoPageComponent extends Component {
                     selectedValue={this.state.currency
                     ? this.state.currency
                     : "$"}
-                    label='Select currency'
+                    label={"select currency👉🏼(" + this.state.currency+")"}
                     onValueChange={(value) => {
                     this.setState({currency: value})
                   }}>

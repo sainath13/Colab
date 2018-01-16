@@ -26,7 +26,7 @@ var styles = StyleSheet.create({
   title: {
     color: 'black',
     fontFamily: 'GothamRounded-Medium',
-    fontSize:19 
+    fontSize:19
   },
   top:{
     flex : 0,
@@ -49,7 +49,7 @@ var styles = StyleSheet.create({
     fontSize:35
   },
   oneLogos:{
-    fontSize:55 
+    fontSize:55
   }
 
 
@@ -70,14 +70,14 @@ var AppIntroComponent = React.createClass({
         <View style={styles.middle}>
           </View>
         <View style={styles.bottom}>
-          <Text style={styles.BottomText}>Explore and filter thousand of influencers and brands who are ready to work with you</Text>
+          <Text style={styles.BottomText}>Create profile, connect to Instagram and start collaboring</Text>
           </View>
         </View>
         <View style={styles.slide}>
         <View style={styles.middle}>
           </View>
         <View style={styles.bottom}>
-          <Text style={styles.BottomText}>Explore and filter thousand of influencers and brands who are ready to work with you</Text>
+          <Text style={styles.BottomText}>Chat directly with your collaborations and fix rates and dates</Text>
           </View>
         </View>
       </Swiper>

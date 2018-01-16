@@ -12,6 +12,7 @@ import {
   Image,
   StatusBar
 } from 'react-native';
+import AppIntroComponent from './AppIntroComponent';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -94,7 +95,6 @@ class SignInPage extends Component {
 
         <View style={styles.header}>
           <Text style={styles.headerText}>
-            Influencer Market
           </Text>
         </View>
         <View style={styles.content}>
@@ -108,12 +108,9 @@ class SignInPage extends Component {
                 color: '#FFF'
               }}/></View>
             : null}
-          <View style={styles.contentPic}></View>
-          <View style={styles.form}>
-            <View style={styles.formElementWrapper}>
-
-
-            </View>
+          <View style={styles.contentPic}>
+          <AppIntroComponent/>
+          </View>
             <TouchableOpacity
               style={{
               flex: 1
@@ -122,9 +119,14 @@ class SignInPage extends Component {
               this.onPressInfluencerSignIn()
             }}>
               <View style={styles.submitButton}>
+              <View style={{paddingBottom : 5, paddingRight : 10}}>
+              <Icon name="facebook-square" size={20} color='white'></Icon>
+              </View>
+              <View>
                 <Text style={styles.submitButtonText}>
                   Login as Influencer
                 </Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -135,12 +137,16 @@ class SignInPage extends Component {
               this.onPressiBusinessSignIn()
             }}>
               <View style={styles.createAccountButton}>
+              <View style={{paddingBottom : 5, paddingRight : 10}}>
+              <Icon name="facebook-square" size={20} color='#6563a4'></Icon>
+              </View>
+              <View>
                 <Text style={styles.createAccountButtonText}>
                   Login as Brand
                 </Text>
               </View>
+              </View>
             </TouchableOpacity>
-          </View>
         </View>
       </View>
 
@@ -163,13 +169,17 @@ var styles = StyleSheet.create({
     //borderRadius : 10,
   },
   submitButton: {
+    flexDirection : 'row',
+    borderTopColor : "#4f4e86",
+    borderTopWidth : 1,
     backgroundColor: '#6563a4',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },
   createAccountButton: {
-    // backgroundColor:'#6563A4',
+    flexDirection : 'row',
+     backgroundColor:'white',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
@@ -235,15 +245,15 @@ var styles = StyleSheet.create({
     //padding : 3, borderWidth : 2, borderColor : 'red'
   },
   contentPic: {
-    flex: 4,
-    //backgroundColor: '#f3f3f1',
+    flex: 7,
+  //  backgroundColor: '#f3f3f1',
     // borderColor : 'red', borderWidth : 3,
   },
   header: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: '#6563a4'
+    backgroundColor: '#6563a4',
   },
   headerText: {
     color: 'white',

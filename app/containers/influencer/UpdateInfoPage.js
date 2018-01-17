@@ -82,10 +82,10 @@ class UpdateInfoPageComponent extends Component {
       .then((res) => {
         if (this.props.profileData.class == "Influencer") {
           this.setState({
-            paypal: this.props.profileData.advanced_data.payments.paypal,
+            paypal: this.props.profileData.advanced_data.new_payment.paypal,
             currency: this.props.profileData.basic_data.currency,
-            paytm: this.props.profileData.advanced_data.payments.paytm,
-            upi: this.props.profileData.advanced_data.payments.upi,
+            paytm: this.props.profileData.advanced_data.new_payment.paytm,
+            upi: this.props.profileData.advanced_data.new_payment.upi,
             pricePerPost: "" + this.props.profileData.basic_data.price_per_post,
             pricePerStory: "" + this.props.profileData.basic_data.price_per_story,
             bio: this.props.profileData.basic_data.bio,

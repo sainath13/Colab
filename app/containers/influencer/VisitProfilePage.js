@@ -800,6 +800,7 @@ class VisitProfilePage extends Component {
                                             return (
                                             <TouchableOpacity
                                             onPress={async () => {
+                                           if(paymentItem.payment_id){
                                             await Clipboard.setString(paymentItem.payment_id);
                                             Alert.alert(
                                                 paymentItem.payment_type + ' id copied to clipboard!',
@@ -810,7 +811,19 @@ class VisitProfilePage extends Component {
                                                 ],
                                                 { cancelable: true}
                                               )
-                                            }}
+                                            }else{
+                                            Alert.alert(
+                                                paymentItem.payment_type + ' id not set!',
+                                                'Use other payment methods or ping influencer to update',
+                                                [
+                                                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                                ],
+                                                { cancelable: true}
+                                              )
+                                            }
+                                        }
+                                            }
                                             key={i}
                                                 style={{
                                                 marginTop: 1,

@@ -185,7 +185,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
   createAccountButtonText: {
-    color: 'grey',
+    color: '#454475',
     fontFamily: 'GothamRounded-Medium',
     fontSize: 21
   },

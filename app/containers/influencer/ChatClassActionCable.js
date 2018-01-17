@@ -33,7 +33,10 @@ class ChatClassActionCable extends Component {
       .keys(this.props.chatList)
       .map(key => this.props.chatList[key]);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    //there were problems so did this
+        this.props.chat('get_chat_pairs');
+  }
   state = {
     messages: []
   }

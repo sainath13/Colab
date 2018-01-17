@@ -36,6 +36,12 @@ class chatPage extends Component {
       fetching: true
     };
     this.onPressBack = this.onPressBack.bind(this);
+    this.loadingFunction = this.loadingFunction.bind(this);
+  }
+  loadingFunction(){
+    return (<Text>
+      </Text>)
+
   }
   onPressBack() {
     if(this.props.chatList[this.props.chat_pair.id].messages){
@@ -125,12 +131,16 @@ class chatPage extends Component {
           }}></View>
         </View>
         <View style={styles.content}>
+        { this.props.chatList[this.props.chat_pair.id]? 
           <GiftedChat
             messages={this.props.chatList[this.props.chat_pair.id].messages}
             onSend={(messageSend) => this.sendMessage(messageSend)}
             user={{
             _id: this.props.chat_pair.user1
           }}/>
+          :
+          this.loadingFunction()
+        }
         </View>
       </View>
     )

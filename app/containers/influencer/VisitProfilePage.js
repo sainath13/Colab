@@ -19,6 +19,7 @@ const GLOBAL = require('../../actions/Globals');
 // import { Card, Button,List, ListItem , ListView } from
 // 'react-native-elements'
 // TODO: FINISHING CHANGEs required. remove the whole signedInuser thing. should
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 // just have headers
 var Spinner = require('react-native-spinkit');
 import {connect} from 'react-redux'
@@ -97,6 +98,16 @@ class VisitProfilePage extends Component {
                     ? <StatusBar backgroundColor="#6563A4" barStyle="dark-content"/>
                     : <StatusBar backgroundColor="#43416d" barStyle="light-content"/>
 }
+        <KeyboardAwareScrollView
+          resetScrollToCoords={{
+          x: 0,
+          y: 0
+        }}
+          contentContainerStyle={styles.container}
+          scrollEnabled={false}
+          style={{
+          flex: 1
+        }}>
 
                 <PopupDialog
                     ref={(popupDialog2) => {
@@ -1229,6 +1240,7 @@ class VisitProfilePage extends Component {
                     </ScrollView>
 
                 </ScrollableTabView>
+        </KeyboardAwareScrollView>
             </View>
         )
     }

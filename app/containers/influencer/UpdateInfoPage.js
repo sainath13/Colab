@@ -107,7 +107,7 @@ class UpdateInfoPageComponent extends Component {
 
   _onPressInfluencerUpdateInfoSave() {
     if(this.props.profileData.basic_data.instagram_name.length == 0 && this.state.instagram_code.length == 0){
-      //instagram is not connected 
+      //instagram is not connected
       alert("Connecting to instagram is compulsory")
     }
     else{
@@ -498,10 +498,7 @@ class UpdateInfoPageComponent extends Component {
                     borderColor: 'white'
                   }}
                   source={!this.state.fetching
-                    ? {
-                        uri: this.props.profileData.basic_data.profile_pic_link
-                    }
-                    : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                  ? (this.props.profileData.basic_data.profile_pic_link.length != 0 ? { uri: this.props.profileData.basic_data.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                 </View>
                 <View style={styles.infoHolder}>
                   <View style={styles.infoTextHolder}>
@@ -513,7 +510,7 @@ class UpdateInfoPageComponent extends Component {
                           value={this.state.nickName}
                           onChangeText={(nickName) => this.setState({nickName})}></TextInput>
                       : <Text style={styles.infoText}>
-                        
+
                         {!this.state.fetching
                           ? this.props.profileData.basic_data.instagram_name.length == 0 ? "Instagram Handle" : this.props.profileData.basic_data.instagram_name : ""}
                       </Text>
@@ -840,7 +837,7 @@ class UpdateInfoPageComponent extends Component {
                       }}></TextInput>
                     </View>
                   </View>
-                
+
               <View
                 style={{
                 flexDirection: 'row',

@@ -155,7 +155,7 @@ class FeedPage extends Component {
               style={Platform.OS == "ios"
               ? styles.headerText
               : styles.headerTextAndroid}>
-             Colab 
+             Colab
             </Text>
           </View>
           <TouchableOpacity
@@ -325,10 +325,7 @@ class FeedPage extends Component {
                                 marginLeft: 10
                               }}
                                 source={!this.state.fetching
-                                  ? {
-                                      uri: feedItem.profile_pic_link
-                                  }
-                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                                ? (feedItem.profile_pic_link != 0 ? { uri: feedItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
@@ -388,10 +385,7 @@ class FeedPage extends Component {
                                 marginLeft: 10
                               }}
                                 source={!this.state.fetching
-                                  ? {
-                                      uri: feedItem.profile_pic_link
-                                  }
-                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                                ? (feedItem.profile_pic_link != 0 ? { uri: feedItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
@@ -460,10 +454,7 @@ class FeedPage extends Component {
                                 marginLeft: 10
                               }}
                                 source={!this.state.fetching
-                                  ? {
-                                      uri: feedItem.profile_pic_link
-                                  }
-                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                                ? (feedItem.profile_pic_link != 0 ? { uri: feedItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
@@ -523,14 +514,11 @@ class FeedPage extends Component {
                                 marginLeft: 10
                               }}
                                 source={!this.state.fetching
-                                  ? {
-                                      uri: feedItem.profile_pic_link
-                                  }
-                                  : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                                ? (feedItem.profile_pic_link != 0 ? { uri: feedItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
-                                You have collaboration a with 
+                                You have collaboration a with
                                 <Text style={styles.notificationItemTextBold}>{ " "+ feedItem.name}</Text>
 
                               </Text>

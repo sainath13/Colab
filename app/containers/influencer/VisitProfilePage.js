@@ -491,10 +491,7 @@ class VisitProfilePage extends Component {
                                 marginBottom: 15
                             }}
                                 source={!this.state.fetching
-                                    ? {
-                                        uri: this.props.visitProfileData.profile_pic_link
-                                    }
-                                    : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                                ? (this.props.visitProfileData.profile_pic_link != 0 ? { uri: this.props.visitProfileData.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                         </View>
                         <View style={styles.profileInfoHolder}>
                             <View
@@ -741,7 +738,7 @@ class VisitProfilePage extends Component {
                                                 }}>
                                                     <Text style={styles.informationSlotCardPricingText}>
                                                         {!this.state.fetching
-                                                            ? this.props.visitProfileData.price_per_story + this.props.visitProfileData.currency 
+                                                            ? this.props.visitProfileData.price_per_story + this.props.visitProfileData.currency
                                                             : null}
                                                     </Text>
                                                 </View>
@@ -757,7 +754,7 @@ class VisitProfilePage extends Component {
                                                 }}>
                                                     <Text style={styles.informationSlotCardPricingText}>
                                                         {!this.state.fetching
-                                                            ? this.props.visitProfileData.price_per_post +  this.props.visitProfileData.currency 
+                                                            ? this.props.visitProfileData.price_per_post +  this.props.visitProfileData.currency
                                                             : null}
                                                     </Text>
                                                 </View>
@@ -843,7 +840,7 @@ class VisitProfilePage extends Component {
                                                     fontSize: 16,
                                                     fontFamily: 'GothamRounded-Book'
                                                 }}>
-                                                   {paymentItem.payment_type} 
+                                                   {paymentItem.payment_type}
                                                 </Text>
                                             </TouchableOpacity>
                                             )})}
@@ -885,7 +882,7 @@ class VisitProfilePage extends Component {
                                             ],
                                             { cancelable: true}
                                           )
-                                        }} 
+                                        }}
                                     }
                                         >
                                         <Text
@@ -933,7 +930,7 @@ class VisitProfilePage extends Component {
                                             ],
                                             { cancelable: true}
                                           )
-                                        }} 
+                                        }}
                                                 >
                                                 <Text
                                                     style={{
@@ -1189,10 +1186,7 @@ class VisitProfilePage extends Component {
                                                     borderRadius: 20
                                                 }}
                                                     source={!this.state.fetching
-                                                        ? {
-                                                            uri: collaboration.profile_pic_link
-                                                        }
-                                                        : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                                                    ? (collaboration.profile_pic_link != 0 ? { uri: collaboration.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                                             </View>
                                             <View
                                                 style={{

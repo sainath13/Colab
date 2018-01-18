@@ -66,10 +66,13 @@ export function setLast5Messages(last5Messages,chat_pair_id){
       last5MessagesData,
     }
   }
+  else {
+    last5MessagesData.chat_pair_id = chat_pair_id; 
   return {
       type: types.SET_LAST_5_MESSAGES,
       last5MessagesData,
   }
+}
 }
 export function fetchChatList(userId){
   let GET_CHAT_LIST = 'http://localhost:4000/api/chats?user1=1';

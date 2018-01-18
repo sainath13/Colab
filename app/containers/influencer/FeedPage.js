@@ -72,9 +72,11 @@ class FeedPage extends Component {
         .setLast5Messages(reversedMessages, data.chat_pair_id);
     }
     if (data.method == "send_message") {
+      if(Object.keys(this.props.chatList).length != 0 && this.props.chatList[data.message.chat_pair_id]) {
       this
         .props
         .receiveMessage(data.message);
+      }
         this.setState({isunreadMessages : true})
     }
   }
@@ -724,7 +726,8 @@ function mapStateToProps(state) {
     // recipeCount : state.recipeCount,
     feedData: state.feedData,
     loginInfo: state.loginInfo,
-    chat: state.chatObj
+    chat: state.chatObj,
+    chatList: state.chatList
   };
 }
 

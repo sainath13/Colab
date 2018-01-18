@@ -155,7 +155,7 @@ class FeedPage extends Component {
               style={Platform.OS == "ios"
               ? styles.headerText
               : styles.headerTextAndroid}>
-              Influencer Market
+             Colab 
             </Text>
           </View>
           <TouchableOpacity

@@ -67,10 +67,7 @@ class influencerProfilePage extends Component {
                                 borderWidth: 2
                             }}
                                 source={!this.state.fetching
-                                ? {
-                                    uri: this.props.profileData.basic_data.profile_pic_link
-                                }
-                                : { uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"}}/>
+                                ? (this.props.profileData.basic_data.profile_pic_link.length != 0 ? { uri: this.props.profileData.basic_data.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                         </View>
                         <View style={styles.profileInfoHolder}>
                             {this.props.profileData.class == "Influencer"
@@ -241,7 +238,7 @@ class influencerProfilePage extends Component {
                                         color={'#65634A'}/>
                                 </View>
                             : <View>
-                                                                {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ? 
+                                                                {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ?
                                 <Text style={{fontFamily: 'GothamRounded-Book',
                     fontSize: 17,
                     margin: 10}}>
@@ -357,7 +354,7 @@ class influencerProfilePage extends Component {
                                                     }}>
                                                         <Text style={styles.informationSlotCardPricingText}>
                                                             {!this.state.fetching
-                                                                ? this.props.profileData.basic_data.price_per_post + this.props.profileData.basic_data.currency 
+                                                                ? this.props.profileData.basic_data.price_per_post + this.props.profileData.basic_data.currency
                                                                 : null}
                                                         </Text>
                                                     </View>
@@ -447,7 +444,7 @@ class influencerProfilePage extends Component {
                                                     fontSize: 16,
                                                     fontFamily: 'GothamRounded-Book'
                                                 }}>
-                                                   {paymentItem.payment_type} 
+                                                   {paymentItem.payment_type}
                                                 </Text>
                                             </TouchableOpacity>
                                             )})}
@@ -582,7 +579,7 @@ class influencerProfilePage extends Component {
                                 style={{
                                 flex: 10
                             }}>
-                                                            {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ? 
+                                                            {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ?
                                 <Text style={{fontFamily: 'GothamRounded-Book',
                     fontSize: 17,
                     margin: 10}}>
@@ -755,7 +752,7 @@ class influencerProfilePage extends Component {
                                     style={{
                                     backgroundColor: '#F6F5FA'
                                 }}>
-                                {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ? 
+                                {!this.state.fetching &&  this.props.profileData.basic_data.instagram_name.length == 0 ?
                                 <Text style={{fontFamily: 'GothamRounded-Book',
                     fontSize: 17,
                     margin: 10}}>
@@ -837,15 +834,15 @@ class influencerProfilePage extends Component {
 
                                         onPress={() => {
                                        //     this.getLast5Messages(feedItem.chat_pair);
-                                       chat_pair = collaboration.chat_pair; 
+                                       chat_pair = collaboration.chat_pair;
                                        var message = {}
                                        message.chat_pair_id = chat_pair.id;
                                        this
                                          .props
                                          .chat('get_chat_pair_messages', {message})
                                        Actions.chatPage2({chat_pair: chat_pair, username: chat_pair.user2_name});
-                                        }} 
-  
+                                        }}
+
                                             style={{
                                                 flex: 2,
                                                 marginTop: 10,

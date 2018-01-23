@@ -254,9 +254,8 @@ class BrandsListPage extends Component {
                               height: 40,
                               borderRadius: 20
                             }}
-                              source={{
-                              uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                            }}/>
+                              source={!this.state.fetching
+                              ? (feedItem.profile_pic_link.length != 0 ? { uri: feedItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                           </View>
                           <View
                             style={{
@@ -340,9 +339,8 @@ class BrandsListPage extends Component {
                               height: 40,
                               borderRadius: 20
                             }}
-                              source={{
-                              uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                            }}/>
+                              source={!this.state.fetching
+                              ? (feedItem.profile_pic_link.length != 0 ? { uri: feedItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}/>
                           </View>
                           <View
                             style={{

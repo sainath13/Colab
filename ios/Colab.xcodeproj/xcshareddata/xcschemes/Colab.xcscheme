@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Yohoho.app"
-               BlueprintName = "Yohoho"
-               ReferencedContainer = "container:Yohoho.xcodeproj">
+               BuildableName = "Colab.app"
+               BlueprintName = "Colab"
+               ReferencedContainer = "container:Colab.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "YohohoTests.xctest"
-               BlueprintName = "YohohoTests"
-               ReferencedContainer = "container:Yohoho.xcodeproj">
+               BuildableName = "ColabTests.xctest"
+               BlueprintName = "ColabTests"
+               ReferencedContainer = "container:Colab.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -62,9 +62,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "YohohoTests.xctest"
-               BlueprintName = "YohohoTests"
-               ReferencedContainer = "container:Yohoho.xcodeproj">
+               BuildableName = "ColabTests.xctest"
+               BlueprintName = "ColabTests"
+               ReferencedContainer = "container:Colab.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Yohoho.app"
-            BlueprintName = "Yohoho"
-            ReferencedContainer = "container:Yohoho.xcodeproj">
+            BuildableName = "Colab.app"
+            BlueprintName = "Colab"
+            ReferencedContainer = "container:Colab.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Yohoho.app"
-            BlueprintName = "Yohoho"
-            ReferencedContainer = "container:Yohoho.xcodeproj">
+            BuildableName = "Colab.app"
+            BlueprintName = "Colab"
+            ReferencedContainer = "container:Colab.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -115,9 +115,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Yohoho.app"
-            BlueprintName = "Yohoho"
-            ReferencedContainer = "container:Yohoho.xcodeproj">
+            BuildableName = "Colab.app"
+            BlueprintName = "Colab"
+            ReferencedContainer = "container:Colab.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -94,7 +94,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.yohoho"
+        applicationId "com.colab"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

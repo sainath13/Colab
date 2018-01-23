@@ -1,4 +1,4 @@
-package com.yohoho;
+package com.colab;
 
 import android.app.Application;
 

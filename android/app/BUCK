@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.yohoho",
+    package = "com.colab",
 )
 
 android_resource(
     name = "res",
-    package = "com.yohoho",
+    package = "com.colab",
     res = "src/main/res",
 )
 

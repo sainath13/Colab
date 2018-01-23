@@ -138,7 +138,7 @@ const store = configureStore({
  * Boilerplate.
  * react native flux router | redux
  * */
- export default class Yohoho extends Component {
+ export default class Colab extends Component {
     componentWillMount(){
         var loginObj = {}
 
@@ -170,4 +170,4 @@ const store = configureStore({
 
 
 
-AppRegistry.registerComponent('Yohoho', () => Yohoho);
+AppRegistry.registerComponent('Colab', () => Colab);

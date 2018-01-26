@@ -512,7 +512,7 @@ class UpdateInfoPageComponent extends Component {
                       : <Text style={styles.infoText}>
 
                         {!this.state.fetching
-                          ? this.props.profileData.basic_data.instagram_name.length == 0 ? "Instagram Handle" : this.props.profileData.basic_data.instagram_name : ""}
+                          ? this.props.profileData.basic_data.instagram_name.length == 0 ? this.props.profileData.basic_data.first_name :this.props.profileData.basic_data.instagram_name : ""}
                       </Text>
 }
                   </View>

@@ -147,6 +147,21 @@ class SignInPage extends Component {
               </View>
               </View>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+              flex: 0.3
+            }}
+              onPress={() => {
+                Actions.WebViewPage({PageName : "Privacy Policy"});
+            }}>
+              <View style={styles.createAccountButton}>
+              <View>
+                <Text style={styles.privacy}>
+                 By signing in, you agree to our Terms of Service and Privacy Policy. 
+                </Text>
+              </View>
+              </View>
+            </TouchableOpacity>
         </View>
       </View>
 
@@ -188,6 +203,11 @@ var styles = StyleSheet.create({
     color: '#454475',
     fontFamily: 'GothamRounded-Medium',
     fontSize: 21
+  },
+  privacy: {
+    color: '#454475',
+    fontFamily: 'GothamRounded-book',
+    fontSize: 10 
   },
   submitButtonText: {
     color: 'white',

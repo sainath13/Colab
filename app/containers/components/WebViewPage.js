@@ -36,7 +36,7 @@ class WebViewPage extends Component {
   </TouchableOpacity>
   <View style={{flex : 7, alignItems : 'center', justifyContent : 'center'}}>
     <Text style={Platform.OS=="ios" ? styles.headerText : styles.headerTextAndroid}>
-RoadMap
+ {this.props.PageName} 
     </Text>
   </View>
   <View style={{flex : 1, alignItems : 'center', justifyContent : 'center', marginTop: 16 }} >
@@ -44,7 +44,13 @@ RoadMap
   </View>
   <View style = {styles.content}>
   <WebView
-        source={{uri: 'https://github.com/facebook/react-native'}}
+        source={ this.props.PageName == "Privacy Policy" ? 
+          {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
+        : this.props.PageName == "RoadMap" ?
+          {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
+          :
+          {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
+        }
       />
   </View>
 

@@ -530,7 +530,7 @@ class UpdateInfoPageComponent extends Component {
                 </View>
                 <View style={styles.rowLeft}>
                   <Text style={styles.rowLeftText}>
-                    Instagram handle
+                    Instagram handle*
                   </Text>
                 </View>
                 <TouchableOpacity
@@ -800,7 +800,7 @@ class UpdateInfoPageComponent extends Component {
                         fontFamily: 'GothamRounded-Book',
                         padding: 5
                       }}>
-                        Business Email
+                        Business Email*
                       </Text>
                     </View>
                     <View

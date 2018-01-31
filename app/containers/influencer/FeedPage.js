@@ -35,7 +35,9 @@ class FeedPage extends Component {
       fetching: true,
       isPullToRefeshShowing: true,
       isunreadMessages : false,
+      once : true,
     }
+    this.alertMessage = this.alertMessage.bind(this)
   }
 
   componentDidMount() {
@@ -56,6 +58,20 @@ class FeedPage extends Component {
                 .roomChannel
                 .perform('get_chat_pairs');
       })
+  }
+  alertMessage(){
+    this.setState({once : false})
+    console.log("at least i am here")
+    return (  Alert.alert(
+        'Network requests failed!😴',
+        'Please check your internet connection',
+        [
+          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: true}
+      )
+    )
   }
   onReceived = (data) => {
     if (data.method == "get_chat_pairs") {
@@ -114,6 +130,10 @@ class FeedPage extends Component {
       <View style={{
         flex: 1
       }}>
+      {this.props.feedData.internet == false && this.state.once ? 
+       this.alertMessage() : 
+      null
+    }
         {Platform.OS == "ios"
           ? <StatusBar backgroundColor="#6563A4" barStyle="dark-content"/>
           : <StatusBar backgroundColor="#43416d" barStyle="light-content"/>

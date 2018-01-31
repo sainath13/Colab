@@ -54,4 +54,10 @@ export const feedData = createReducer({
     }
    }
   },
+  [types.SET_NO_INTERNET](state,action){
+    return {
+      ...state,
+      internet : false
+    }
+  }
 })

@@ -12,6 +12,14 @@ export function setFeed({ feedData }){
       feedData,
   }
 }
+
+export function setNoInternet({ value}){
+  return {
+      type: types.SET_NO_INTERNET,
+      value,
+  }
+}
+
 export function setLoginInfo({loginInfo}){
     return {
       type : types.SET_LOGIN_INFO,
@@ -62,6 +70,7 @@ export function fetchFeed(id){
       return dispatch(setFeed({feedData : responseJson}));
     })//responseJson
     .catch((error) => {
+      return dispatch(setNoInternet({value : true}));
       console.error(error);
       //TODO NEED TO DISPATCH SOME ERROR ACTION FROM HERE, OR JUST KEEP TRYING 3 TIMES, THEN SHOW SOME ERROR. SLOW INTEREST IS ALSO POSSIBLE 
     })

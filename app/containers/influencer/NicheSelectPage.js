@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
   StatusBar,
+  Alert,
   Platoform,
   Image,
   Platform
@@ -31,6 +32,7 @@ class NicheSelectPage extends Component {
     this._onPressInfluencerUpdateInfoSave = this
       ._onPressInfluencerUpdateInfoSave
       .bind(this);
+      this.nicheNumberCheck = this.nicheNumberCheck.bind(this);
   }
   componentDidMount() {
     this.setState({fetching: true})
@@ -40,6 +42,17 @@ class NicheSelectPage extends Component {
       .then((res) => {
         this.setState({fetching: false})
       })
+  }
+  nicheNumberCheck(){
+    var count = 0;
+    test = this.props.nicheData
+    Object.keys(this.props.nicheData).forEach(function(key,value){
+      if(test[key].value){
+        count++;
+      }
+    }
+  )
+      if(count < 5) {return true} else { return false}
   }
   _onPressInfluencerUpdateInfoSave() {
     var nicheString = "";
@@ -120,11 +133,24 @@ class NicheSelectPage extends Component {
                   <TouchableOpacity
                     key={nicheItem.name}
                     onPress={() => {
-                    console.log(nicheItem.name);
+                    if(this.nicheNumberCheck() || this.props.nicheData[nicheItem.name].value){
                     this
                       .props
                       .toggleNiche(nicheItem.name);
-                  }}>
+                    }
+                    else{
+                      Alert.alert(
+                        'You have reached Niche select limit😴',
+                        'Only 5 allowed!',
+                        [
+                          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                          {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        ],
+                        { cancelable: true}
+                      )
+                    }
+                    }
+                }>
                     <View style={styles.slot_element}>{nicheItem.value
                         ? <Icon name="check-square-o" size={20} color='#58568f'></Icon>
                         : <Icon name="square-o" size={20} color='#58568f'></Icon>

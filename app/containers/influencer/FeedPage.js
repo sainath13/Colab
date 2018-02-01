@@ -93,7 +93,9 @@ class FeedPage extends Component {
         .props
         .receiveMessage(data.message);
       }
+        if(data.message.user._id != (''+this.props.loginInfo.class[0] + this.props.loginInfo.id)){
         this.setState({isunreadMessages : true})
+        }
     }
   }
 

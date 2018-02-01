@@ -431,7 +431,7 @@ class VisitProfilePage extends Component {
                         flexDirection: 'row',
                         backgroundColor: '#6463A4'
                     }}>
-                        <TouchableHighlight
+                        <TouchableOpacity
                             onPress={() => {
                             (Actions.pop());
                             this
@@ -445,7 +445,7 @@ class VisitProfilePage extends Component {
                             backgroundColor: '#6364A4'
                         }}>
                             <Icon name="chevron-left" size={20} color='white'></Icon>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                         <View
                             style={{
                             flex: 8,

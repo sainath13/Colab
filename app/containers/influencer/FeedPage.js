@@ -111,6 +111,7 @@ class FeedPage extends Component {
     }
   }
   onPressChat = () => {
+    //this.setState({isunreadMessages : false})
     Actions.ActionCableChatPage();
     //this
     //  .refs
@@ -195,7 +196,20 @@ class FeedPage extends Component {
             }}
             onPress={this.onPressChat}>
             <View style={{}}>
-            {!this.state.fetching && this.state.isunreadMessages
+            {!this.state.fetching && [this.props.chatList].reduce(function (
+    accumulator,
+    currentValue,
+  ) {
+    temp = currentValue;
+    var returnvalue ;
+     Object.keys(currentValue).forEach(function(key){
+      if(temp[key].chat_pair.current_user_has_unread_messages == true){
+        returnvalue =  true;
+      }
+    }) 
+    return returnvalue;
+  },false
+) 
             ?
               <FIcon name="dot-circle-o" size={25} color='white'>
               </FIcon>

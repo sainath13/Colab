@@ -307,9 +307,9 @@ class SearchPage extends Component {
                                   height: 40,
                                   borderRadius: 20
                                 }}
-                                  source={{
-                                  uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                }}/>
+                                source={!this.state.fetching
+                                ? (searchItem.profile_pic_link != 0 ? { uri: searchItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}
+                                />
                               </View>
                               <View
                                 style={{
@@ -395,9 +395,9 @@ class SearchPage extends Component {
                                   height: 40,
                                   borderRadius: 20
                                 }}
-                                  source={{
-                                  uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                                }}/>
+                                source={!this.state.fetching
+                                ? (searchItem.profile_pic_link != 0 ? { uri: searchItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}
+                                />
                               </View>
                               <View
                                 style={{
@@ -628,9 +628,9 @@ class SearchPage extends Component {
                               height: 40,
                               borderRadius: 20
                             }}
-                              source={{
-                              uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                            }}/>
+                                source={!this.state.fetching
+                                ? (searchItem.profile_pic_link != 0 ? { uri: searchItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}
+                            />
                           </View>
                           <View
                             style={{
@@ -716,9 +716,9 @@ class SearchPage extends Component {
                               height: 40,
                               borderRadius: 20
                             }}
-                              source={{
-                              uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                            }}/>
+                                source={!this.state.fetching
+                                ? (searchItem.profile_pic_link != 0 ? { uri: searchItem.profile_pic_link } : require('../images/1.png')) : require('../images/1.png')}
+                            />
                           </View>
                           <View
                             style={{

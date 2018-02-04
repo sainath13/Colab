@@ -181,6 +181,7 @@ class FeedPage extends Component {
              Colab
             </Text>
           </View>
+          {!this.state.fetching && this.props.chat ?
           <TouchableOpacity
             style={Platform.OS == "ios"
             ? {
@@ -217,6 +218,10 @@ class FeedPage extends Component {
             }
             </View>
           </TouchableOpacity>
+          : 
+          <View style={{flex : 1}}>
+          </View>
+          }
         </View>
         <View style={styles.content}>
           <View style={styles.contentPic}>

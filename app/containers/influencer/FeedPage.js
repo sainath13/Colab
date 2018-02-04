@@ -64,7 +64,7 @@ class FeedPage extends Component {
     console.log("at least i am here")
     return (  Alert.alert(
         'Network request failed!😴',
-        'Please check your internet connection',
+        'If the problem persists, try logging in again',
         [
           {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress: () => console.log('OK Pressed')},

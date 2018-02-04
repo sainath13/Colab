@@ -246,6 +246,7 @@ class SettingPage extends Component {
                   flex: 1
                 }}
                   onPress={() => {
+                  Actions.WebViewPage({PageName : "Privacy Policy"});
                   console.log("Terms and Conditions");
                 }}>
                   <View
@@ -293,6 +294,7 @@ class SettingPage extends Component {
                   flex: 1
                 }}
                   onPress={() => {
+                    Actions.WebViewPage({PageName : "Privacy Policy"});
                   console.log("Privacy Policy");
                 }}>
                   <View

@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   View,
   TextInput,
+  Clipboard,
   StatusBar,
   Keyboard,
   TouchableOpacity,
@@ -104,8 +105,16 @@ class SettingPage extends Component {
                   flex: 1
                 }}
                   onPress={() => {
-                  Actions.WebViewPage();
-                  console.log("Message Devs");
+                    Clipboard.setString("colab.influencer.market@gmail.com");
+                    Alert.alert(
+                        'Email id copied!',
+                        'Drop us a mail. We are looking forward to getting in touch😍',
+                        [
+                          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                          {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        ],
+                        { cancelable: true}
+                      ) 
                 }}>
                   <View
                     style={{
@@ -125,7 +134,7 @@ class SettingPage extends Component {
                         fontFamily: 'GothamRounded-Book',
                         padding: 15
                       }}>
-                        Message Devs
+                       Contact us! 
                       </Text>
                     </View>
                     <View
@@ -172,7 +181,7 @@ class SettingPage extends Component {
                         fontFamily: 'GothamRounded-Book',
                         padding: 15
                       }}>
-                        Influencer Market Road map
+                       FAQ 
                       </Text>
                     </View>
                     <View

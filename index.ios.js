@@ -156,7 +156,7 @@ const store = configureStore({
             Actions.reset('TabBarComponent');
         }
         else {
-            Actions.replace('SignInPage');
+            Actions.reset('SignInPage');
         }
         });
       }

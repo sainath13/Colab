@@ -9,6 +9,7 @@ import {
   ScrollView,
   View,
   Alert,
+  Clipboard,
   Image,
   Platform,
   AsyncStorage,
@@ -16,7 +17,12 @@ import {
   RefreshControl
 } from 'react-native';
 var Spinner = require('react-native-spinkit');
-
+import iapReceiptValidator from 'iap-receipt-validator';
+const password = '62742d213b2948a29634c9a196264a7a'; // Shared Secret from iTunes connect
+const production = false; // use sandbox or production url for validation
+const validateReceipt = iapReceiptValidator(password, production);
+import { NativeModules } from 'react-native'
+const { InAppUtils } = NativeModules;
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {ActionCreators} from '../../actions'
@@ -38,7 +44,31 @@ class FeedPage extends Component {
       once : true,
     }
     this.alertMessage = this.alertMessage.bind(this)
+    this.validate = this.validate.bind(this)
+    this.onPressChat = this.onPressChat.bind(this)
   }
+async validate(receiptData) {
+    try {
+        const validationData = await validateReceipt(receiptData);
+        Alert.alert("success");
+        // check if Auto-Renewable Subscription is still valid
+        var today = new Date();
+        console.log(validationData);
+        console.log(today);
+        console.log(validationData['latest_receipt_info'][0].expires_date)
+       if(validationData['latest_receipt_info'][0].expires_date > today){ 
+        Alert.alert("Valid");
+         console.log("test");
+       }
+       else{
+         console.log("fail")
+       }
+    } catch(err) {
+        console.log(err.valid, err.error, err.message)
+        Alert.alert("Failure");
+    }
+}
+
 
   componentDidMount() {
     this.setState({fetching: true, refreshing: false});
@@ -112,7 +142,50 @@ class FeedPage extends Component {
   }
   onPressChat = () => {
     //this.setState({isunreadMessages : false})
-    Actions.ActionCableChatPage();
+    var products = [
+      'colabplus',
+      'colabpremium'
+   ];
+   InAppUtils.loadProducts(products, (error, products) => {
+     console.log(products)
+     console.log(error);
+      //update store here.
+   });
+   InAppUtils.canMakePayments((canMakePayments) => {
+    if(!canMakePayments) {
+       Alert.alert('Not Allowed', 'This device is not allowed to make purchases. Please check restrictions on device');
+    }
+    else{
+      console.log("can make payments")
+    }
+    InAppUtils.receiptData((error, receiptData)=> {
+      if(error) {
+        Alert.alert('itunes Error', 'Receipt not found.');
+      } else {
+        Alert.alert(receiptData);
+        Clipboard.setString(receiptData);
+        //send to validation server
+        this.validate(receiptData)
+      }
+    });
+
+
+
+ //   var productIdentifier = 'colabpremium';
+//InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
+   // NOTE for v3.0: User can cancel the payment which will be available as error object here.
+//   if(response && response.productIdentifier) {
+//      Alert.alert('Purchase Successful', 'Your' + response.transactionIdentifier);
+      //unlock store here.
+//   }
+//   else{
+//     console.log("didnt work")
+//   }
+//   console.log("error",error)
+//});
+ })
+
+    //Actions.ActionCableChatPage();
     //this
     //  .refs
     //  .roomChannel

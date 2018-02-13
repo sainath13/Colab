@@ -50,22 +50,19 @@ class FeedPage extends Component {
 async validate(receiptData) {
     try {
         const validationData = await validateReceipt(receiptData);
-        Alert.alert("success");
-        // check if Auto-Renewable Subscription is still valid
+        console.log("im here");
         var today = new Date();
-        console.log(validationData);
-        console.log(today);
-        console.log(validationData['latest_receipt_info'][0].expires_date)
-       if(validationData['latest_receipt_info'][0].expires_date > today){ 
-        Alert.alert("Valid");
-         console.log("test");
-       }
+        var receiptLength = validationData['latest_receipt_info'].length
+        var receiptDate = new Date(parseInt(validationData['latest_receipt_info'][receiptLength - 1].expires_date_ms))
+       if(receiptDate >= today){ 
+        this.props.recieveSubscription(validationData['latest_receipt_info'][receiptLength - 1].product_id)
+      }
        else{
-         console.log("fail")
+        this.props.recieveSubscription("colabfree");
        }
     } catch(err) {
-        console.log(err.valid, err.error, err.message)
-        Alert.alert("Failure");
+        Alert.alert("error");
+        console.log(err)
     }
 }
 
@@ -88,10 +85,18 @@ async validate(receiptData) {
                 .roomChannel
                 .perform('get_chat_pairs');
       })
+    InAppUtils.receiptData((error, receiptData)=> {
+      if(error) {
+        Alert.alert('itunes Error', 'Receipt not found.');
+      } else {
+        //send to validation server
+        console.log("calling validate")
+        this.validate(receiptData)
+      }
+    });
   }
   alertMessage(){
     this.setState({once : false})
-    console.log("at least i am here")
     return (  Alert.alert(
         'Network request failed!😴',
         'If the problem persists, try logging in again',
@@ -141,51 +146,7 @@ async validate(receiptData) {
     }
   }
   onPressChat = () => {
-    //this.setState({isunreadMessages : false})
-    var products = [
-      'colabplus',
-      'colabpremium'
-   ];
-   InAppUtils.loadProducts(products, (error, products) => {
-     console.log(products)
-     console.log(error);
-      //update store here.
-   });
-   InAppUtils.canMakePayments((canMakePayments) => {
-    if(!canMakePayments) {
-       Alert.alert('Not Allowed', 'This device is not allowed to make purchases. Please check restrictions on device');
-    }
-    else{
-      console.log("can make payments")
-    }
-    InAppUtils.receiptData((error, receiptData)=> {
-      if(error) {
-        Alert.alert('itunes Error', 'Receipt not found.');
-      } else {
-        Alert.alert(receiptData);
-        Clipboard.setString(receiptData);
-        //send to validation server
-        this.validate(receiptData)
-      }
-    });
-
-
-
- //   var productIdentifier = 'colabpremium';
-//InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
-   // NOTE for v3.0: User can cancel the payment which will be available as error object here.
-//   if(response && response.productIdentifier) {
-//      Alert.alert('Purchase Successful', 'Your' + response.transactionIdentifier);
-      //unlock store here.
-//   }
-//   else{
-//     console.log("didnt work")
-//   }
-//   console.log("error",error)
-//});
- })
-
-    //Actions.ActionCableChatPage();
+    Actions.ActionCableChatPage();
     //this
     //  .refs
     //  .roomChannel

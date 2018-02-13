@@ -11,6 +11,7 @@ import * as businessActions from './businesses'
 import * as influencerActions from './influencers'
 import * as visitProfileActoins from './visitProfile'
 import * as updateActions from './update'
+import * as subscriptionActions from './subscription'
 
 /**
  * to star unstars etc will be in recipes.js files
@@ -32,4 +33,5 @@ export const ActionCreators = Object.assign({},
     influencerActions,
     visitProfileActoins,
     updateActions,
+    subscriptionActions,
 )

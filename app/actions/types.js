@@ -1,5 +1,7 @@
 export const SET_SEARCHED_RECIPES = 'SET_SEARCHED_RECIPES'
 
+export const ADD_SUBSCRIPTION = 'ADD_SUBSCRIPTION'
+
 export const ADD_RECIPE = 'ADD_RECIPE'
 
 export const ADD_MESSAGE = 'ADD_MESSAGE'

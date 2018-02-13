@@ -26,6 +26,7 @@ import TabIconSearch from './app/containers/components/TabIconSearch'
 import TabIconProfile from './app/containers/components/TabIconProfile'
 
 import SignInPage from './app/containers/influencer/SignInPage';
+import PaymentPage from './app/containers/influencer/PaymentPage';
 import SignUpPage from './app/containers/influencer/SignUpPage';
 import OpeningPage from './app/containers/influencer/OpeningPage';
 import UpdateInfoPage from './app/containers/influencer/UpdateInfoPage';
@@ -83,6 +84,7 @@ const scenes = Actions.create(
         <Scene key="BrandsListPage" component={BrandsListPage} hideNavBar/>
         <Scene key="VisitProfilePage" component={VisitProfilePage} hideNavBar/>
         <Scene key="ActionCableChatPage" component={ActionCableChatPage} hideNavBar/>
+        <Scene key="PaymentPage" component={PaymentPage} hideNavBar/>
 
     </Scene>
 

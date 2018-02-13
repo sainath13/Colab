@@ -46,8 +46,8 @@ class WebViewPage extends Component {
   <WebView
         source={ this.props.PageName == "Privacy Policy" ? 
           {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
-        : this.props.PageName == "RoadMap" ?
-          {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
+        : this.props.PageName == "Subscription" ?
+          {uri: 'https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions'}
           :
           {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
         }

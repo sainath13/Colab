@@ -12,6 +12,7 @@ import * as businessReducer from './businesses'
 import * as influencerReducer from './influencers'
 import * as visitProfilesReducer from './visitProfiles'
 import * as nichesReducer from './niches'
+import * as subscriptionsReducer from './subscription'
 /*
  * Combining all reducers and making them available to applicaion
  *  most of the code is boilerplate
@@ -30,4 +31,5 @@ export default combineReducers( Object.assign(
     influencerReducer,
     visitProfilesReducer,
     nichesReducer,
+    subscriptionsReducer,
 ))

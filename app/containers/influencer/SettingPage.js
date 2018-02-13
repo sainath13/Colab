@@ -100,6 +100,85 @@ class SettingPage extends Component {
               }}
                 scrollEnabled={false}>
                 <View style={styles.picInfoHolder}></View>
+
+                <TouchableHighlight
+                  style={{
+                  flex: 1
+                }}
+                  onPress={() => {
+                    Actions.PaymentPage();
+                }}>
+                  <View
+                    style={{
+                    flexDirection: 'row',
+                    backgroundColor: '#F6F5FA',
+                    borderBottomColor: '#6563A4',
+                    borderBottomWidth: 2
+                  }}>
+                    <View
+                      style={{
+                      flex: 3.5,
+                      justifyContent: 'center'
+                    }}>
+                      <Text
+                        style={{
+                        fontSize: 17,
+                        fontFamily: 'GothamRounded-Book',
+                        padding: 15
+                      }}>
+                       Current Plans 
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                      flex: 2.5,
+                      marginTop: 10,
+                      backgroundColor : '#6463a4',
+                      marginBottom: 10,
+                      marginLeft: 5,
+                      marginRight: 10,
+                      borderRadius: 2,
+                      paddingTop: 5,
+                      paddingBottom: 5,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 5
+                    }}>
+                    <Text
+                        style={{
+                        fontSize: 17,
+                        fontFamily: 'GothamRounded-Medium',
+                        color : 'white'
+                        }} 
+                    >
+                     {this.props.subscription.subscriptionActive == "colabplus" ?
+                     "Silver" :
+                     this.props.subscription.subscriptionActive == "colabpremium" ?
+                     "Gold" : "Free"
+                    } 
+                    </Text>
+                    </View>
+                    <View
+                      style={{
+                      flex: 1,
+                      marginTop: 10,
+                      marginBottom: 10,
+                      marginLeft: 5,
+                      marginRight: 10,
+                      borderRadius: 2,
+                      paddingTop: 5,
+                      paddingBottom: 5,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 5
+                    }}>
+                      <Icon name="caret-right" size={25} color='#6564A4'></Icon>
+                    </View>
+                  </View>
+                </TouchableHighlight>
+
+
+
                 <TouchableHighlight
                   style={{
                   flex: 1
@@ -593,6 +672,7 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(state) {
   return {
+    subscription : state.subscription
     //not calling any api actions here yet, but will be required later
   };
 }

@@ -16,7 +16,7 @@ export default class TabIconFeed extends React.Component {
         ICON = <Icon color='#8583b7'name='home' type='font-awesome' size={26}/>
       }
       return (
-            <View>
+            <View style={{alignItems : "center", justifyContent : 'center'}}>
             {ICON}
             </View>
           )

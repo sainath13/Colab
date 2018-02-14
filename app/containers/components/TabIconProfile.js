@@ -15,7 +15,7 @@ export default class TabIconProfile extends React.Component {
         ICON = <Icon color='#8583b7'name='user' type='font-awesome' size={26}/>
       }
       return (
-            <View>
+            <View style={{alignItems : "center", justifyContent : 'center'}}>
             {ICON}
             </View>
           )

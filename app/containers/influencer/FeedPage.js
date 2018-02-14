@@ -50,7 +50,6 @@ class FeedPage extends Component {
 async validate(receiptData) {
     try {
         const validationData = await validateReceipt(receiptData);
-        console.log("im here");
         var today = new Date();
         var receiptLength = validationData['latest_receipt_info'].length
         var receiptDate = new Date(parseInt(validationData['latest_receipt_info'][receiptLength - 1].expires_date_ms))
@@ -61,7 +60,6 @@ async validate(receiptData) {
         this.props.recieveSubscription("colabfree");
        }
     } catch(err) {
-        Alert.alert("error");
         console.log(err)
     }
 }
@@ -87,10 +85,9 @@ async validate(receiptData) {
       })
     InAppUtils.receiptData((error, receiptData)=> {
       if(error) {
-        Alert.alert('itunes Error', 'Receipt not found.');
+        console.log("failed",error)
       } else {
         //send to validation server
-        console.log("calling validate")
         this.validate(receiptData)
       }
     });

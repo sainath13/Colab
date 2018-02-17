@@ -54,7 +54,7 @@ async validate(receiptData) {
         var receiptLength = validationData['latest_receipt_info'].length
         var receiptDate = new Date(parseInt(validationData['latest_receipt_info'][receiptLength - 1].expires_date_ms))
        if(receiptDate >= today){ 
-        this.props.recieveSubscription(validationData['latest_receipt_info'][receiptLength - 1].product_id)
+        this.props.recieveSubscription(validationData['latest_receipt_info'][receiptLength - 1].product_id, validationData['latest_receipt_info'][receiptLength - 1].expires_date_ms);
       }
        else{
         this.props.recieveSubscription("colabfree");

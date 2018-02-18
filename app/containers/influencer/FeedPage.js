@@ -377,6 +377,11 @@ async validate(receiptData) {
                     </View>
                   : null
 }
+<View>
+  <Text>
+    "You have 3 more requests. Please subscribe to GOLD/SILVER to see"
+  </Text>
+</View>
                 {!this.state.fetching && this
                   .fetchFeedItems("brand")
                   .map((feedItem) => {

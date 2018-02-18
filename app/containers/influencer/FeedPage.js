@@ -377,11 +377,31 @@ async validate(receiptData) {
                     </View>
                   : null
 }
-<View>
-  <Text>
-    "You have 3 more requests. Please subscribe to GOLD/SILVER to see"
+{ this.props.feedData.requests_to_be_shown_after_subscription > 0 &&
+<TouchableOpacity 
+style={{
+  backgroundColor : '#6463a4',
+  padding: 5,
+  borderColor : 'black',
+  marginLeft : 5,
+  marginRight : 5,
+  borderRadius : 1,
+
+}}
+            onPress={() => {
+              Actions.PaymentPage();
+            }}>
+  <Text
+                          style={{
+                          color : 'white',
+                          paddingLeft : 10,
+                          fontFamily: "GothamRounded-Book",
+                          }}
+  >
+    {"You have " + this.props.feedData.requests_to_be_shown_after_subscription + " more requests. Please "+this.props.feedData.subscription_status + " to reveal" }
   </Text>
-</View>
+</TouchableOpacity>
+}
                 {!this.state.fetching && this
                   .fetchFeedItems("brand")
                   .map((feedItem) => {

@@ -600,11 +600,11 @@ class influencerProfilePage extends Component {
                                     }}>
                                         <Text
                                             style={{
-                                            fontSize: 20,
+                                            fontSize: 17,
                                             fontFamily: 'GothamRounded-Medium',
-                                            marginLeft: 20
+                                            marginLeft: 20 
                                         }}>
-                                            Likes per post
+                                           Remaining collaborations 
                                         </Text>
                                     </View>
                                     <View
@@ -615,12 +615,18 @@ class influencerProfilePage extends Component {
                                         marginRight: 20
                                     }}>
                                         <Text style={styles.informationSlotCardPricingText}>
-                                            {this.props.profileData.basic_data.avg_likes}
+                                            {this.props.profileData.left_free_collaborations}
                                         </Text>
                                     </View>
                                 </View>
 
-                                <View
+                                <TouchableOpacity
+                                        onPress={() => {
+                                            if(this.props.profileData.not_shown_collaborations > 0){
+                                            Alert.alert("Hidden Collaborations","Upgrade your plan to reveal them");
+                                            }
+                                        }}
+
                                     style={{
                                     flex: 2,
                                     backgroundColor: '#F6F5FA',
@@ -634,11 +640,11 @@ class influencerProfilePage extends Component {
                                     }}>
                                         <Text
                                             style={{
-                                            fontSize: 20,
+                                            fontSize: 17,
                                             fontFamily: 'GothamRounded-Medium',
-                                            marginLeft: 20
+                                            marginLeft: 20 
                                         }}>
-                                            Comments per post
+                                          Hidden collaborations 
                                         </Text>
                                     </View>
                                     <View
@@ -649,11 +655,10 @@ class influencerProfilePage extends Component {
                                         marginRight: 20
                                     }}>
                                         <Text style={styles.informationSlotCardPricingText}>
-                                            {this.props.profileData.basic_data.avg_comments}
+                                            {this.props.profileData.not_shown_collaborations}
                                         </Text>
                                     </View>
-                                </View>
-
+                                </TouchableOpacity>
                                 <View
                                     style={{
                                     flex: 2,
@@ -668,7 +673,7 @@ class influencerProfilePage extends Component {
                                     }}>
                                         <Text
                                             style={{
-                                            fontSize: 20,
+                                            fontSize: 17,
                                             fontFamily: 'GothamRounded-Medium',
                                             marginLeft: 20
                                         }}>
@@ -702,7 +707,7 @@ class influencerProfilePage extends Component {
                                     }}>
                                         <Text
                                             style={{
-                                            fontSize: 20,
+                                            fontSize: 17,
                                             fontFamily: 'GothamRounded-Medium',
                                             marginLeft: 20
                                         }}>
@@ -721,10 +726,145 @@ class influencerProfilePage extends Component {
                                         </Text>
                                     </View>
                                 </View>
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#fefefe',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Likes per pic 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.profileData.basic_data.avg_likes_pic}
+                                        </Text>
+                                    </View>
+                                </View>
 
                                 <View
                                     style={{
-                                    flex: 7
+                                    flex: 2,
+                                    backgroundColor: '#F6F5FA',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Comments per pic 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.profileData.basic_data.avg_comments_pic}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#fefefe',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Likes per video 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.profileData.basic_data.avg_likes_vdio}
+                                        </Text>
+                                    </View>
+                                </View>
+
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#F6F5FA',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Comments per video 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.profileData.basic_data.avg_comments_vdio}
+                                        </Text>
+                                    </View>
+                                </View>
+
+
+                                <View
+                                    style={{
+                                    flex: 3
                                 }}></View>
                             </View>
 }

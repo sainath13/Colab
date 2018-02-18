@@ -25,6 +25,8 @@ export const feedData = createReducer({
     processedFeedList.has_unread_message = action.feedData.has_unread_message;
     processedFeedList.influencer_collaborations_count = action.feedData.influencer_collaborations_count;
     processedFeedList.business_collaborations_count = action.feedData.business_collaborations_count;
+    processedFeedList.requests_to_be_shown_after_subscription = action.feedData.requests_to_be_shown_after_subscription;
+    processedFeedList.subscription_status = action.feedData.subscription_status;
     
     return processedFeedList;
   },

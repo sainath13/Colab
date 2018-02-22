@@ -58,7 +58,7 @@ var styles = StyleSheet.create({
 var AppIntroComponent = React.createClass({
   render: function() {
     return (
-      <Swiper style={styles.wrapper} showsButtons={false}>
+      <Swiper style={styles.wrapper} showsButtons={false} dotColor={'#454576'} activeDotColor={'#a2a1c8'}>
         <View style={styles.slide}>
         <View style={styles.middle}>
           </View>

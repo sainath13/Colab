@@ -146,9 +146,7 @@ class ChatClassActionCable extends Component {
                             height: 40,
                             borderRadius: 20
                           }}
-                            source={{
-                            uri: "https://randomuser.me/api/portraits/thumb/men/4.jpg"
-                          }}/>
+                          source={(chatListItem.profile_pic_link.length != 0 ? { uri: chatListItem.profile_pic_link } : require('../images/1.png'))}/>
                         </View>
                         <View
                           style={{
@@ -174,14 +172,14 @@ class ChatClassActionCable extends Component {
                             marginLeft: 0,
                             color: '#9C9C9C'
                           }}>
-                          { chatListItem.messages ? 
+                          { chatListItem.messages ?
                             (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).length > 27  ?
-                            (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,27) + "..." 
+                            (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,27) + "..."
                             :
                             (chatListItem.messages[0].user.name +" : "+ chatListItem.messages[0].text).slice(0,30)
 
                             : chatListItem.msg ?  (chatListItem.msg_from + ": " + chatListItem.msg).length > 27?
-                            (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,27)+ "..."  
+                            (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,27)+ "..."
                             :
                             (chatListItem.msg_from + ": " + chatListItem.msg).slice(0,30)
                             : "Start business talk"}
@@ -194,7 +192,7 @@ class ChatClassActionCable extends Component {
                           justifyContent: 'center'
                         }}>
                         {
-                         chatListItem.chat_pair.current_user_has_unread_messages ?  
+                         chatListItem.chat_pair.current_user_has_unread_messages ?
                         <Icon name="dot-circle-o" size={20} color='#6563A4'></Icon>
                         : null
                         }

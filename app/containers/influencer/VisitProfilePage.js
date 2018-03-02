@@ -989,75 +989,7 @@ class VisitProfilePage extends Component {
                                     }}>
                                         <Text
                                             style={{
-                                            fontSize: 20,
-                                            fontFamily: 'GothamRounded-Medium',
-                                            marginLeft: 20
-                                        }}>
-                                            Likes per post
-                                        </Text>
-                                    </View>
-                                    <View
-                                        style={{
-                                        alignItems: "flex-end",
-                                        justifyContent: 'flex-end',
-                                        flex: 1,
-                                        marginRight: 20
-                                    }}>
-                                        <Text style={styles.informationSlotCardPricingText}>
-                                            {this.props.visitProfileData.avg_likes}
-                                        </Text>
-                                    </View>
-                                </View>
-
-                                <View
-                                    style={{
-                                    flex: 2,
-                                    backgroundColor: '#F6F5FA',
-                                    flexDirection: 'row'
-                                }}>
-                                    <View
-                                        style={{
-                                        flex: 3,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center'
-                                    }}>
-                                        <Text
-                                            style={{
-                                            fontSize: 20,
-                                            fontFamily: 'GothamRounded-Medium',
-                                            marginLeft: 20
-                                        }}>
-                                            Comments per post
-                                        </Text>
-                                    </View>
-                                    <View
-                                        style={{
-                                        alignItems: "flex-end",
-                                        justifyContent: 'flex-end',
-                                        flex: 1,
-                                        marginRight: 20
-                                    }}>
-                                        <Text style={styles.informationSlotCardPricingText}>
-                                            {this.props.visitProfileData.avg_comments}
-                                        </Text>
-                                    </View>
-                                </View>
-
-                                <View
-                                    style={{
-                                    flex: 2,
-                                    backgroundColor: '#fefefe',
-                                    flexDirection: 'row'
-                                }}>
-                                    <View
-                                        style={{
-                                        flex: 3,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center'
-                                    }}>
-                                        <Text
-                                            style={{
-                                            fontSize: 20,
+                                            fontSize: 17,
                                             fontFamily: 'GothamRounded-Medium',
                                             marginLeft: 20
                                         }}>
@@ -1091,7 +1023,7 @@ class VisitProfilePage extends Component {
                                     }}>
                                         <Text
                                             style={{
-                                            fontSize: 20,
+                                            fontSize: 17,
                                             fontFamily: 'GothamRounded-Medium',
                                             marginLeft: 20
                                         }}>
@@ -1107,6 +1039,140 @@ class VisitProfilePage extends Component {
                                     }}>
                                         <Text style={styles.informationSlotCardPricingText}>
                                             {this.props.visitProfileData.instagram_followed_by}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#fefefe',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Likes per pic 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.visitProfileData.avg_likes_pic}
+                                        </Text>
+                                    </View>
+                                </View>
+
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#F6F5FA',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Comments per pic 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.visitProfileData.avg_comments_pic}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#fefefe',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Likes per video 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.visitProfileData.avg_likes_vdio}
+                                        </Text>
+                                    </View>
+                                </View>
+
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#F6F5FA',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
+                                        flex: 3,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                            Comments per video 
+                                        </Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                        alignItems: "flex-end",
+                                        justifyContent: 'flex-end',
+                                        flex: 1,
+                                        marginRight: 20
+                                    }}>
+                                        <Text style={styles.informationSlotCardPricingText}>
+                                            {this.props.visitProfileData.avg_comments_vdio}
                                         </Text>
                                     </View>
                                 </View>

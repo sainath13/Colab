@@ -586,6 +586,9 @@ class influencerProfilePage extends Component {
                                 Please connect to instagram and update basic information to activate account using Edit profile button above
                             </Text>
                            :  null }
+
+                           {this.props.loginInfo.class == "Influencer" ?
+                           <View>
                                 <View
                                     style={{
                                     flex: 2,
@@ -659,6 +662,9 @@ class influencerProfilePage extends Component {
                                         </Text>
                                     </View>
                                 </TouchableOpacity>
+                                </View>
+                                : null
+                                }
                                 <View
                                     style={{
                                     flex: 2,

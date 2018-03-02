@@ -94,8 +94,6 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
       <Swiper style={styles.wrapper} showsButtons={false}  loop={false}  activeDotColor={'#454576'} dotColor={'#a2a1c8'} >
 
         <View style={styles.slide}>
-          <View style={{flex : 0.5}}>
-          </View>
           <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
           <View style={{flex : 0.8, backgroundColor : '#5a5994',
               borderRadius: 5,alignItems : 'center',justifyContent : 'center',
@@ -167,8 +165,6 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
 
 
         <View style={styles.slide}>
-          <View style={{flex : 0.5}}>
-          </View>
           <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
           <View style={{flex : 0.8, backgroundColor : '#5a5994',
               borderRadius: 5,alignItems : 'center',justifyContent : 'center',
@@ -238,8 +234,6 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
 
 
         <View style={styles.slide}>
-          <View style={{flex : 0.5}}>
-          </View>
           <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
           <View style={{flex : 0.8, backgroundColor : '#5a5994',
               borderRadius: 5,alignItems : 'center',justifyContent : 'center',

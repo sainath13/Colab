@@ -68,6 +68,7 @@ export const chatList = createReducer({
           ...state[action.chat_pair_id].chat_pair,
            current_user_has_unread_messages : false,
          }, 
+        profile_pic_link : state[action.chat_pair_id].profile_pic_link,
         messages : [
           ...state[action.chat_pair_id].messages
         ] 

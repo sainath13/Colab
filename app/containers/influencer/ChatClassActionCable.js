@@ -140,6 +140,7 @@ class ChatClassActionCable extends Component {
                           alignItems: 'center',
                           justifyContent: 'center'
                         }}>
+                        {chatListItem.profile_pic_link ?
                           <Image
                             style={{
                             width: 40,
@@ -147,6 +148,8 @@ class ChatClassActionCable extends Component {
                             borderRadius: 20
                           }}
                           source={(chatListItem.profile_pic_link.length != 0 ? { uri: chatListItem.profile_pic_link } : require('../images/1.png'))}/>
+                          : null }
+
                         </View>
                         <View
                           style={{

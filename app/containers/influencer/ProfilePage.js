@@ -379,6 +379,8 @@ class influencerProfilePage extends Component {
                                         </View>
                                     : null
 }
+
+{this.props.loginInfo.class == "Influencer" ?
                                 <View style={styles.informationSlot}>
                                     <View>
                                         <View
@@ -451,6 +453,8 @@ class influencerProfilePage extends Component {
                                         </View>
                                     </View>
                                 </View>
+: null
+                        }
                                 <View style={styles.informationSlot}>
                                     <View>
                                         <View

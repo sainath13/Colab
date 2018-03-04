@@ -186,28 +186,21 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 1) Upto 15 collaborations for first month 
+ 1) Upto 50 collaborations
           </Text>
           <Text style={{
            marginTop :10, 
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 2) Upto 5 collaborations for next 3 months
+ 2) Chat seamlessly with you collaborations 
           </Text>
           <Text style={{
            marginTop :10, 
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 3) Chat seamlessly with you collaborations 
-          </Text>
-          <Text style={{
-           marginTop :10, 
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 4) More features comming soon 
+ 3) More features comming soon 
           </Text>
           </ScrollView>
           </View>
@@ -255,28 +248,21 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 1) Upto 15 collaborations for first month 
+ 1) Upto 100 collaborations
           </Text>
           <Text style={{
            marginTop :10, 
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 2) Upto 5 collaborations for next 3 months
+ 2) Chat seamlessly with you collaborations 
           </Text>
           <Text style={{
            marginTop :10, 
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 3) Chat seamlessly with you collaborations 
-          </Text>
-          <Text style={{
-           marginTop :10, 
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 4) More features comming soon 
+ 3) More features comming soon 
           </Text>
           </ScrollView>
           </View>

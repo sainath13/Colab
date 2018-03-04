@@ -209,7 +209,7 @@ async validate(receiptData) {
               style={Platform.OS == "ios"
               ? styles.headerText
               : styles.headerTextAndroid}>
-             Colab
+             Colab+ 
             </Text>
           </View>
           {!this.state.fetching && this.props.chat ?

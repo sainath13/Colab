@@ -558,7 +558,7 @@ class SettingPage extends Component {
                   fontSize: 25,
                   fontFamily: 'GothamRounded-Medium'
                 }}>
-                 Colab Version 1.0
+                 Colab+ Version 1.0
                 </Text>
               </View>
             </View>

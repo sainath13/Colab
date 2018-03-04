@@ -588,7 +588,6 @@ class influencerProfilePage extends Component {
                            :  null }
 
                            {this.props.loginInfo.class == "Influencer" ?
-                           <View>
                                 <View
                                     style={{
                                     flex: 2,
@@ -622,7 +621,9 @@ class influencerProfilePage extends Component {
                                         </Text>
                                     </View>
                                 </View>
+                                : null}
 
+                           {this.props.loginInfo.class == "Influencer" ?
                                 <TouchableOpacity
                                         onPress={() => {
                                             if(this.props.profileData.not_shown_collaborations > 0){
@@ -662,9 +663,7 @@ class influencerProfilePage extends Component {
                                         </Text>
                                     </View>
                                 </TouchableOpacity>
-                                </View>
-                                : null
-                                }
+                                : null}
                                 <View
                                     style={{
                                     flex: 2,

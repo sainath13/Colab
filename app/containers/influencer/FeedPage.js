@@ -398,7 +398,7 @@ style={{
                           fontFamily: "GothamRounded-Book",
                           }}
   >
-    {"You have " + this.props.feedData.requests_to_be_shown_after_subscription + " more requests. Please "+this.props.feedData.subscription_status + " to reveal" }
+    {"You have " + this.props.feedData.requests_to_be_shown_after_subscription + " more requests. Please "+this.props.feedData.subscription_status + "." }
   </Text>
 </TouchableOpacity>
 }

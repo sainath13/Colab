@@ -83,7 +83,8 @@ class PaymentPage extends Component {
   render() {
     return (
       <View style={{
-        flex: 1
+        flex: 1,
+        backgroundColor : 'white',
       }}>
         {Platform.OS == "ios"
           ? <StatusBar backgroundColor="#6563A4" barStyle="dark-content"/>
@@ -132,6 +133,8 @@ class PaymentPage extends Component {
             marginTop: 16
           }}></View>
         </View>
+        <View style={{flex :10}}>
+        <ScrollView style={{ flex: 10}}>
         <View style={styles.content}>
           <View style={styles.contentPic}>
           {this.state.canMakePayments == "true"?
@@ -177,9 +180,35 @@ class PaymentPage extends Component {
                 <Text style={styles.privacy}>
                 * Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period
                 </Text>
+                <Text style={styles.privacy}>
+                * Any unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable
+                </Text>
+
+              </View>
+              <View style={{flexDirection : 'row', justifyContent: 'space-between', paddingLeft : 3, paddingRight : 3, paddingTop : 5, paddingBottom : 10}}>
+                <TouchableOpacity
+                onPress={() => {
+                  Actions.WebViewPage({PageName : "Privacy Policy"});
+                }}
+                >
+                  <Text style={styles.privacyButtom}>
+                    Privacy policy
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+               onPress={() => {
+                Actions.WebViewPage({PageName : "Terms of Use"});
+              }} 
+                >
+                  <Text style={styles.privacyButtom}>
+                   Terms of use  
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
         </View>
+      </ScrollView>
+      </View>
       </View>
 
     )
@@ -222,7 +251,12 @@ var styles = StyleSheet.create({
   privacy: {
     color: '#454475',
     fontFamily: 'GothamRounded-book',
-    fontSize: 10 
+    fontSize: 11 
+  },
+  privacyButtom:{
+    color: '#454475',
+    fontFamily: 'GothamRounded-book',
+    fontSize: 13
   },
   submitButtonText: {
     color: 'white',

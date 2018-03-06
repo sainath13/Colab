@@ -235,59 +235,14 @@ class SettingPage extends Component {
                   </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight
-                  style={{
-                  flex: 1
-                }}
-                  onPress={() => {
-                  console.log("Influencer Market Road map");
-                }}>
-                  <View
-                    style={{
-                    flexDirection: 'row',
-                    backgroundColor: '#F6F5FA',
-                    borderBottomColor: '#6563A4',
-                    borderBottomWidth: 2
-                  }}>
-                    <View
-                      style={{
-                      flex: 6,
-                      justifyContent: 'center'
-                    }}>
-                      <Text
-                        style={{
-                        fontSize: 17,
-                        fontFamily: 'GothamRounded-Book',
-                        padding: 15
-                      }}>
-                       FAQ 
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                      flex: 1,
-                      marginTop: 10,
-                      marginBottom: 10,
-                      marginLeft: 5,
-                      marginRight: 10,
-                      borderRadius: 2,
-                      paddingTop: 5,
-                      paddingBottom: 5,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 5
-                    }}>
-                      <Icon name="caret-right" size={25} color='#6564A4'></Icon>
-                    </View>
-                  </View>
-                </TouchableHighlight>
 
                 <TouchableHighlight
                   style={{
                   flex: 1
                 }}
                   onPress={() => {
-                  console.log("Community Guidelines");
+                  Actions.WebViewPage({PageName : "Terms of Use"});
+                  console.log("Terms of Use");
                 }}>
                   <View
                     style={{
@@ -307,55 +262,7 @@ class SettingPage extends Component {
                         fontFamily: 'GothamRounded-Book',
                         padding: 15
                       }}>
-                        Community Guidelines
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                      flex: 1,
-                      marginTop: 10,
-                      marginBottom: 10,
-                      marginLeft: 5,
-                      marginRight: 10,
-                      borderRadius: 2,
-                      paddingTop: 5,
-                      paddingBottom: 5,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 5
-                    }}>
-                      <Icon name="caret-right" size={25} color='#6564A4'></Icon>
-                    </View>
-                  </View>
-                </TouchableHighlight>
-
-                <TouchableHighlight
-                  style={{
-                  flex: 1
-                }}
-                  onPress={() => {
-                  Actions.WebViewPage({PageName : "Privacy Policy"});
-                  console.log("Terms and Conditions");
-                }}>
-                  <View
-                    style={{
-                    flexDirection: 'row',
-                    backgroundColor: '#F6F5FA',
-                    borderBottomColor: '#6563A4',
-                    borderBottomWidth: 2
-                  }}>
-                    <View
-                      style={{
-                      flex: 6,
-                      justifyContent: 'center'
-                    }}>
-                      <Text
-                        style={{
-                        fontSize: 17,
-                        fontFamily: 'GothamRounded-Book',
-                        padding: 15
-                      }}>
-                        Terms and Conditions
+                        Terms of use 
                       </Text>
                     </View>
                     <View
@@ -431,6 +338,7 @@ class SettingPage extends Component {
                 }}
                   onPress={() => {
                   console.log("Open-source Libraries");
+                  Alert.alert("Will be updated soon")
                 }}>
                   <View
                     style={{

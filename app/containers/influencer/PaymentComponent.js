@@ -91,9 +91,11 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
   }
   render(){
     return (
-      <Swiper style={styles.wrapper} showsButtons={false}  loop={false}  activeDotColor={'#454576'} dotColor={'#a2a1c8'} >
+      <Swiper style={styles.wrapper} showsButtons={false}  loop={false}  activeDotColor={'#454576'} dotColor={'#a2a1c8'} height={500}  >
 
         <View style={styles.slide}>
+        <View style={{flex : 0.1}}>
+          </View>
           <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
           <View style={{flex : 0.8, backgroundColor : '#5a5994',
               borderRadius: 5,alignItems : 'center',justifyContent : 'center',
@@ -141,6 +143,15 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
           </ScrollView>
           </View>
           </View>
+          <View style={{alignContent : 'center' , justifyContent: 'center', alignItems:'center'}}>
+            <Text
+            style={{  fontFamily: 'GothamRounded-Medium',
+              fontSize:15,
+              color : "#6463a4"}}
+           >
+           No charges
+          </Text>
+          </View>
           <View style={{flex : 1 }}>
           <TouchableOpacity style={{flex : 1 , backgroundColor : '#6463a4',margin : 20, borderRadius :5 , alignItems : 'center', justifyContent:'center'}}
           onPress={() => {
@@ -165,6 +176,8 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
 
 
         <View style={styles.slide}>
+        <View style={{flex : 0.1, alignItems : 'center', justifyContent : 'center'}}>
+          </View>
           <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
           <View style={{flex : 0.8, backgroundColor : '#5a5994',
               borderRadius: 5,alignItems : 'center',justifyContent : 'center',
@@ -205,6 +218,15 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
           </ScrollView>
           </View>
           </View>
+          <View style={{alignContent : 'center' , justifyContent: 'center', alignItems:'center'}}>
+            <Text
+            style={{  fontFamily: 'GothamRounded-Medium',
+              fontSize:15,
+              color : "#6463a4"}}
+           >
+           Monthly subscription
+          </Text>
+          </View>
           <View style={{flex : 1 }}>
           <TouchableOpacity style={{flex : 1 , backgroundColor : '#6463a4',margin : 20, borderRadius :5 , alignItems : 'center', justifyContent:'center'}}
           onPress={() => {
@@ -217,7 +239,7 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
     fontFamily: 'GothamRounded-Medium',
           }}>
          {this.props.subscrition.subscriptionActive == 'colabplus' ? "Active" : 
-          this.props.silverPlanString + "per month" }
+          this.props.silverPlanString + " per month" }
           </Text>
           </TouchableOpacity>
           <View style={{flex : 1}}>
@@ -227,6 +249,8 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
 
 
         <View style={styles.slide}>
+        <View style={{flex : 0.1, alignItems : 'center', justifyContent : 'center'}}>
+        </View>
           <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
           <View style={{flex : 0.8, backgroundColor : '#5a5994',
               borderRadius: 5,alignItems : 'center',justifyContent : 'center',
@@ -267,6 +291,15 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
           </ScrollView>
           </View>
           </View>
+          <View style={{alignContent : 'center' , justifyContent: 'center', alignItems:'center'}}>
+            <Text
+            style={{  fontFamily: 'GothamRounded-Medium',
+              fontSize:15,
+              color : "#6463a4"}}
+           >
+           Monthly subscription
+          </Text>
+          </View>
           <View style={{flex : 1 }}>
           <TouchableOpacity style={{flex : 1 , backgroundColor : '#6463a4',margin : 20, borderRadius :5 , alignItems : 'center', justifyContent:'center'}}
           onPress={() => {
@@ -279,7 +312,7 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
     fontFamily: 'GothamRounded-Medium',
           }}>
          {this.props.subscrition.subscriptionActive == 'colabpremium' ? "Active" : 
-         this.props.goldPlanString + "per month" }
+         this.props.goldPlanString + " per month" }
           </Text>
           </TouchableOpacity>
           <View style={{flex : 1}}>

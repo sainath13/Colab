@@ -48,6 +48,8 @@ class WebViewPage extends Component {
           {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
         : this.props.PageName == "Subscription" ?
           {uri: 'https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions'}
+        : this.props.PageName == "Terms of Use" ?
+          {uri: 'https://influencer-market.herokuapp.com/influencers/terms_and_conditions'}
           :
           {uri: 'https://influencer-market.herokuapp.com/business/privacy_policy'}
         }

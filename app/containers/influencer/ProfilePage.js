@@ -929,7 +929,7 @@ class influencerProfilePage extends Component {
                                     <TouchableOpacity
                                         key={i}
                                         onPress={() => {
-                                        Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: false})
+                                        Actions.VisitProfilePage({clickedUserId: collaboration.id, isBusiness: collaboration.is_brand})
                                     }}>
                                         <View
                                             style={{

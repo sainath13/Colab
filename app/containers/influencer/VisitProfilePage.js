@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     Text,
     Image,
+    Linking,
     TextInput,
     Clipboard,
     Alert,
@@ -983,6 +984,52 @@ class VisitProfilePage extends Component {
                                 }}>
                                     <View
                                         style={{
+                                        flex: 1,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Text
+                                            style={{
+                                            fontSize: 17,
+                                            fontFamily: 'GothamRounded-Medium',
+                                            marginLeft: 20
+                                        }}>
+                                           Instagram
+                                        </Text>
+                                    </View>
+                                    <TouchableOpacity
+                                        style={{
+                                                    marginTop: 7,
+                                                    marginBottom: 7,
+                                                    marginLeft: 5,
+                                                    marginRight: 5,
+                                                    borderRadius: 3,
+                                                    borderColor: 'white',
+                                                    padding: 10,
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    backgroundColor: '#6563A4'
+                                    }}
+                                    onPress={() => Linking.openURL("instagram://user?username="+this.props.visitProfileData.instagram_name)}
+                                    >
+                                        <Text style={{
+                                            color : 'white',
+                                            fontFamily: 'GothamRounded-Medium',
+                                            fontSize : 20 
+                                        }}>
+                                            {this.props.visitProfileData.instagram_name}
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View
+                                    style={{
+                                    flex: 2,
+                                    backgroundColor: '#F6F5FA',
+                                    flexDirection: 'row'
+                                }}>
+                                    <View
+                                        style={{
                                         flex: 3,
                                         flexDirection: 'column',
                                         justifyContent: 'center'
@@ -1008,11 +1055,10 @@ class VisitProfilePage extends Component {
                                         </Text>
                                     </View>
                                 </View>
-
                                 <View
                                     style={{
                                     flex: 2,
-                                    backgroundColor: '#F6F5FA',
+                                    backgroundColor: '#FEFEFE',
                                     flexDirection: 'row'
                                 }}>
                                     <View
@@ -1045,7 +1091,7 @@ class VisitProfilePage extends Component {
                                 <View
                                     style={{
                                     flex: 2,
-                                    backgroundColor: '#fefefe',
+                                    backgroundColor: '#F6F5FA',
                                     flexDirection: 'row'
                                 }}>
                                     <View
@@ -1079,7 +1125,7 @@ class VisitProfilePage extends Component {
                                 <View
                                     style={{
                                     flex: 2,
-                                    backgroundColor: '#F6F5FA',
+                                    backgroundColor: '#FEFEFE',
                                     flexDirection: 'row'
                                 }}>
                                     <View
@@ -1112,7 +1158,7 @@ class VisitProfilePage extends Component {
                                 <View
                                     style={{
                                     flex: 2,
-                                    backgroundColor: '#fefefe',
+                                    backgroundColor: '#F6F5FA',
                                     flexDirection: 'row'
                                 }}>
                                     <View
@@ -1146,7 +1192,7 @@ class VisitProfilePage extends Component {
                                 <View
                                     style={{
                                     flex: 2,
-                                    backgroundColor: '#F6F5FA',
+                                    backgroundColor: '#FEFEFE',
                                     flexDirection: 'row'
                                 }}>
                                     <View

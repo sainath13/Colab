@@ -739,7 +739,7 @@ class VisitProfilePage extends Component {
                                                 }}>
                                                     <Text style={styles.informationSlotCardPricingText}>
                                                         {!this.state.fetching
-                                                            ? this.props.visitProfileData.price_per_story + this.props.visitProfileData.currency
+                                                            ? this.props.visitProfileData.price_per_post + this.props.visitProfileData.currency
                                                             : null}
                                                     </Text>
                                                 </View>
@@ -755,7 +755,7 @@ class VisitProfilePage extends Component {
                                                 }}>
                                                     <Text style={styles.informationSlotCardPricingText}>
                                                         {!this.state.fetching
-                                                            ? this.props.visitProfileData.price_per_post +  this.props.visitProfileData.currency
+                                                            ? this.props.visitProfileData.price_per_story +  this.props.visitProfileData.currency
                                                             : null}
                                                     </Text>
                                                 </View>

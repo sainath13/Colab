@@ -615,7 +615,7 @@ style={{
                             </View>
                             <View style={styles.notificationItem}>
                               <Text style={styles.notificationItemText}>
-                                You have collaboration a with
+                                You have a collaboration with
                                 <Text style={styles.notificationItemTextBold}>{ " "+ feedItem.name}</Text>
 
                               </Text>

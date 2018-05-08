@@ -18,6 +18,7 @@
     "react-native-in-app-utils": "^6.0.0",
     "react-native-keyboard-aware-scroll-view": "^0.3.0",
     "react-native-loading-spinner-overlay": "^0.5.2",
+    "react-native-onesignal": "^3.1.4",
     "react-native-popup-dialog": "^0.9.35",
     "react-native-router-flux": "^4.0.0-beta.21",
     "react-native-scrollable-tab-view": "^0.6.7",

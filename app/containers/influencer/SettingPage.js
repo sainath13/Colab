@@ -17,6 +17,7 @@ import {
   Platform
 } from 'react-native';
 const Dimensions = require('Dimensions');
+import OneSignal from 'react-native-onesignal';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
@@ -32,9 +33,21 @@ import {ActionCreators} from '../../actions'
 class SettingPage extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      notificationsEnabledIos : false
+    }
   }
   componentDidMount() {
+    OneSignal.configure({});
+    OneSignal.getPermissionSubscriptionState((status) => {
+        if(status.notificationsEnabled){
+          this.setState({notificationsEnabledIos : true})
+        }
+        else{
+          console.log("it ");
+        }
+    });
   }
 
   render() {
@@ -178,6 +191,87 @@ class SettingPage extends Component {
                 </TouchableHighlight>
 
 
+                <TouchableHighlight
+                  style={{
+                  flex: 1
+                }}
+                  onPress={() => {
+                   console.log("h");
+                   if(!this.state.notificationsEnabledIos){
+                    Alert.alert(
+                      'Enable Notifications',
+                      'Go to Settings ->Search Colab+ -> Notifications -> Allow Notifications✅',
+                      [
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                        {text: 'OK', onPress: () => console.log('OK Pressed')},
+                      ],
+                      { cancelable: true}
+                    ) 
+                   }
+                }}>
+                  <View
+                    style={{
+                    flexDirection: 'row',
+                    backgroundColor: '#F6F5FA',
+                    borderBottomColor: '#6563A4',
+                    borderBottomWidth: 2
+                  }}>
+                    <View
+                      style={{
+                      flex: 3.5,
+                      justifyContent: 'center'
+                    }}>
+                      <Text
+                        style={{
+                        fontSize: 17,
+                        fontFamily: 'GothamRounded-Book',
+                        padding: 15
+                      }}>
+                      Notifications 
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                      flex: 2.5,
+                      marginTop: 10,
+                      backgroundColor : '#6463a4',
+                      marginBottom: 10,
+                      marginLeft: 5,
+                      marginRight: 10,
+                      borderRadius: 2,
+                      paddingTop: 5,
+                      paddingBottom: 5,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 5
+                    }}>
+                    <Text
+                        style={{
+                        fontSize: 17,
+                        fontFamily: 'GothamRounded-Medium',
+                        color : 'white'
+                        }} 
+                    >{this.state.notificationsEnabledIos ? "On" : "Off"}
+                    </Text>
+                    </View>
+                    <View
+                      style={{
+                      flex: 1,
+                      marginTop: 10,
+                      marginBottom: 10,
+                      marginLeft: 5,
+                      marginRight: 10,
+                      borderRadius: 2,
+                      paddingTop: 5,
+                      paddingBottom: 5,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 5
+                    }}>
+                      <Icon name="caret-right" size={25} color='#6564A4'></Icon>
+                    </View>
+                  </View>
+                </TouchableHighlight>
 
                 <TouchableHighlight
                   style={{

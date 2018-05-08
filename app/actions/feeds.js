@@ -4,6 +4,7 @@ const GLOBAL = require('./Globals');
 let ROUTE_INFLU = "https://"+GLOBAL.BASE_URL+"/influencers/";
 let ROUTE_BRAND = "https://"+GLOBAL.BASE_URL+"/business/";
 let COLLAB = "/feed";
+let UPDATE_NOTIF_ID = "/update_player_id"
 import ApiUtils from './ApiUtils'
 
 export function setFeed({ feedData }){
@@ -76,4 +77,52 @@ export function fetchFeed(id){
     })
   }//return (dispatch,getState)
 
+}
+
+
+export function setNotificationId(id,deviceId){
+  //NEED TO REMOVE THIS ID FROM HERE
+  return (dispatch,getState)=>{
+    const state = getState();
+
+    ROUTE = "";
+    if(state.loginInfo.class == "Business"){
+      ROUTE = ROUTE_BRAND;
+    }
+    else if(state.loginInfo.class=="Influencer"){
+      ROUTE = ROUTE_INFLU;
+    }
+    notifUrl = ROUTE +id + UPDATE_NOTIF_ID + '?player_id=' + deviceId;
+    return fetch( notifUrl , {
+      method: 'POST',
+      headers: {
+        'access-token':  state.loginInfo.accessToken,
+        'token-type': state.loginInfo.tokenType,
+        'expiry': state.loginInfo.expiry,
+        'client': state.loginInfo.client,
+        'uid': state.loginInfo.uid,
+      }
+    })//fetch
+    .then(ApiUtils.checkStatus)
+    .then((response) => {
+      var loginObj = {};
+      if(response.headers.get("access-token") != state.loginInfo.accessToken){
+        console.log("Received different access tokens in feeds.js");
+        loginObj.accessToken = response.headers.get("access-token");
+        loginObj.tokenType = response.headers.get("token-type");
+        loginObj.client = response.headers.get("client");
+        loginObj.expiry = response.headers.get("expiry");
+        loginObj.uid    = response.headers.get("uid");
+        dispatch(setLoginInfo({ loginInfo : loginObj})) //setting login info credentials 
+    }
+      return response.json();
+    })//response
+    .then((responseJson) => {
+    })//responseJson
+    .catch((error) => {
+      return dispatch(setNoInternet({value : true}));
+      console.error(error);
+      //TODO NEED TO DISPATCH SOME ERROR ACTION FROM HERE, OR JUST KEEP TRYING 3 TIMES, THEN SHOW SOME ERROR. SLOW INTEREST IS ALSO POSSIBLE 
+    })
+  }//return (dispatch,getState)
 }

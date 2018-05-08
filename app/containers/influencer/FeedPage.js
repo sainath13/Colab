@@ -17,6 +17,7 @@ import {
   RefreshControl
 } from 'react-native';
 var Spinner = require('react-native-spinkit');
+import OneSignal from 'react-native-onesignal';
 import iapReceiptValidator from 'iap-receipt-validator';
 const password = '62742d213b2948a29634c9a196264a7a'; // Shared Secret from iTunes connect
 const production = false; // use sandbox or production url for validation
@@ -42,6 +43,7 @@ class FeedPage extends Component {
       isPullToRefeshShowing: true,
       isunreadMessages : false,
       once : true,
+      deviceUserId : ""
     }
     this.alertMessage = this.alertMessage.bind(this)
     this.validate = this.validate.bind(this)
@@ -64,7 +66,6 @@ async validate(receiptData) {
     }
 }
 
-
   componentDidMount() {
     this.setState({fetching: true, refreshing: false});
     this
@@ -74,7 +75,6 @@ async validate(receiptData) {
         this.setState({fetching: false,
           isunreadMessages : this.props.feedData.has_unread_message,
         })
-        console.log("business_collaborations_count", this.props.feedData.business_collaborations_count);
         this
           .props
           .setChatObject(this.refs.roomChannel.perform)
@@ -91,6 +91,14 @@ async validate(receiptData) {
         this.validate(receiptData)
       }
     });
+    OneSignal.configure({});
+    OneSignal.inFocusDisplaying(2);
+    OneSignal.getPermissionSubscriptionState((status) => {
+        if(status.notificationsEnabled){
+          this.props.setNotificationId(this.props.loginInfo.id,status.userId);
+        }
+    });
+  
   }
   alertMessage(){
     this.setState({once : false})

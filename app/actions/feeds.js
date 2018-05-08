@@ -34,7 +34,13 @@ export function setLoginInfo({loginInfo}){
       loginInfo,
     }
   }//tried but couldn't avoid code duplication
-  
+ 
+
+export function resetSessionValue(){
+  return {
+      type: types.RESET_NO_SESSION,
+  }
+}
 
 export function fetchFeed(id){
   //NEED TO REMOVE THIS ID FROM HERE

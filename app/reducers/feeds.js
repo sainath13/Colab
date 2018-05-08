@@ -67,5 +67,11 @@ export const feedData = createReducer({
       ...state,
       session : false
     }
+  },
+  [types.RESET_NO_SESSION](state,action){
+    return {
+      ...state,
+      session : true
+    }
   }
 })

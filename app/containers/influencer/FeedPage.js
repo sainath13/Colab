@@ -102,13 +102,32 @@ async validate(receiptData) {
   
   }
   alertMessageSessionExpired(){
+    this.props.resetSessionValue();
     this.setState({once2 : false})
     return (  Alert.alert(
         'Session Expired!😴',
         'Please log in again to continue',
         [
-          {text: 'Cancel', onPress: () => { Actions.reset('SignInPage') }, style: 'cancel'},
-          {text: 'OK', onPress: () => { Actions.reset('SignInPage') } },
+          {text: 'Cancel', onPress: () => {                        AsyncStorage.multiRemove([
+            'accessToken',
+            'tokenType',
+            'client',
+            'expiry',
+            'uid',
+            'id',
+            'class'
+          ]);
+          Actions.reset('SignInPage')}, style: 'cancel'},
+          {text: 'OK', onPress: () => {                        AsyncStorage.multiRemove([
+            'accessToken',
+            'tokenType',
+            'client',
+            'expiry',
+            'uid',
+            'id',
+            'class'
+          ]);
+          Actions.reset('SignInPage'); } },
         ],
         { cancelable: true}
       )

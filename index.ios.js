@@ -118,6 +118,7 @@ const store = configureStore({
   },
   feedData : {
     businesses : [],
+    session : true,
   },
   signedInUser:{
     data : {

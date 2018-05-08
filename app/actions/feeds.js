@@ -21,6 +21,13 @@ export function setNoInternet({ value}){
   }
 }
 
+export function setSessionExpired({ value}){
+  return {
+      type: types.SET_NO_SESSION,
+      value,
+  }
+}
+
 export function setLoginInfo({loginInfo}){
     return {
       type : types.SET_LOGIN_INFO,
@@ -71,8 +78,13 @@ export function fetchFeed(id){
       return dispatch(setFeed({feedData : responseJson}));
     })//responseJson
     .catch((error) => {
+      if(error.response.status == 401){
+          return dispatch(setSessionExpired({value : true}))
+      }
+      else{
       return dispatch(setNoInternet({value : true}));
       console.error(error);
+      }
       //TODO NEED TO DISPATCH SOME ERROR ACTION FROM HERE, OR JUST KEEP TRYING 3 TIMES, THEN SHOW SOME ERROR. SLOW INTEREST IS ALSO POSSIBLE 
     })
   }//return (dispatch,getState)
@@ -120,7 +132,6 @@ export function setNotificationId(id,deviceId){
     .then((responseJson) => {
     })//responseJson
     .catch((error) => {
-      return dispatch(setNoInternet({value : true}));
       console.error(error);
       //TODO NEED TO DISPATCH SOME ERROR ACTION FROM HERE, OR JUST KEEP TRYING 3 TIMES, THEN SHOW SOME ERROR. SLOW INTEREST IS ALSO POSSIBLE 
     })

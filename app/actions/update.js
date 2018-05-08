@@ -53,7 +53,6 @@ export function updateInfo(id,bio,phone,price_per_post,price_per_story,nickName,
     else{
       //it is undefined. put error condition here
     }
-    console.log(url);
       return fetch( url, {
         method: 'PUT',
       headers: {

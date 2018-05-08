@@ -43,6 +43,7 @@ class FeedPage extends Component {
       isPullToRefeshShowing: true,
       isunreadMessages : false,
       once : true,
+      once2 : true,
       deviceUserId : ""
     }
     this.alertMessage = this.alertMessage.bind(this)
@@ -99,6 +100,19 @@ async validate(receiptData) {
         }
     });
   
+  }
+  alertMessageSessionExpired(){
+    this.setState({once2 : false})
+    return (  Alert.alert(
+        'Session Expired!😴',
+        'Please log in again to continue',
+        [
+          {text: 'Cancel', onPress: () => { Actions.reset('SignInPage') }, style: 'cancel'},
+          {text: 'OK', onPress: () => { Actions.reset('SignInPage') } },
+        ],
+        { cancelable: true}
+      )
+    )
   }
   alertMessage(){
     this.setState({once : false})
@@ -174,6 +188,10 @@ async validate(receiptData) {
       }}>
       {this.props.feedData.internet == false && this.state.once ? 
        this.alertMessage() : 
+      null
+    }
+      {this.props.feedData.session == false && this.state.once2 ? 
+       this.alertMessageSessionExpired() : 
       null
     }
         {Platform.OS == "ios"

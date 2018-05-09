@@ -93,159 +93,9 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
     return (
       <Swiper style={styles.wrapper} showsButtons={false}  loop={false}  activeDotColor={'#454576'} dotColor={'#a2a1c8'} height={500}  >
 
-        <View style={styles.slide}>
-        <View style={{flex : 0.1}}>
-          </View>
-          <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
-          <View style={{flex : 0.8, backgroundColor : '#5a5994',
-              borderRadius: 5,alignItems : 'center',justifyContent : 'center',
-              borderBottomColor : 'white',
-              borderBottomWidth : 1,
-              }}>
-            <Text style={{flex : 1,
-            paddingTop : 17,
-            color : 'white',
-              fontFamily: 'GothamRounded-Medium',
-              fontSize:30,
-            }}>
-           Colab Free 
-            </Text>
-          </View>
-          <View style={{flex : 3,backgroundColor : '#7473ad',borderRadius : 5}}>
-          <ScrollView style={{margin : 10}}>
-          <Text style={{
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 1) Upto 15 collaborations for first month 
-          </Text>
-          <Text style={{
-           marginTop :10, 
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 2) Upto 5 collaborations for next 3 months
-          </Text>
-          <Text style={{
-           marginTop :10, 
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 3) Chat seamlessly with you collaborations 
-          </Text>
-          <Text style={{
-           marginTop :10, 
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 4) More features comming soon 
-          </Text>
-          </ScrollView>
-          </View>
-          </View>
-          <View style={{alignContent : 'center' , justifyContent: 'center', alignItems:'center'}}>
-            <Text
-            style={{  fontFamily: 'GothamRounded-Medium',
-              fontSize:15,
-              color : "#6463a4"}}
-           >
-           No charges
-          </Text>
-          </View>
-          <View style={{flex : 1 }}>
-          <TouchableOpacity style={{flex : 1 , backgroundColor : '#6463a4',margin : 20, borderRadius :5 , alignItems : 'center', justifyContent:'center'}}
-          onPress={() => {
-                  Actions.WebViewPage({PageName : "Subscription"});
-          }}
-          >
-          <Text style={{
-            fontSize : 25,
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
-         {this.props.subscrition.subscriptionActive == 'colabfree' ? "Active" : "Manage"} 
-          </Text>
-          </TouchableOpacity>
-          <View style={{flex : 1}}>
-          </View>
-        </View>
-        </View>
 
 
 
-
-
-        <View style={styles.slide}>
-        <View style={{flex : 0.1, alignItems : 'center', justifyContent : 'center'}}>
-          </View>
-          <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
-          <View style={{flex : 0.8, backgroundColor : '#5a5994',
-              borderRadius: 5,alignItems : 'center',justifyContent : 'center',
-              borderBottomColor : 'white',
-              borderBottomWidth : 1,
-              }}>
-            <Text style={{flex : 1,
-            paddingTop : 17,
-            color : 'white',
-              fontFamily: 'GothamRounded-Medium',
-              fontSize:30,
-            }}>
-           Colab Silver 
-            </Text>
-          </View>
-          <View style={{flex : 3,backgroundColor : '#7473ad',borderRadius : 5}}>
-          <ScrollView style={{margin : 10}}>
-          <Text style={{
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 1) Upto 50 collaborations
-          </Text>
-          <Text style={{
-           marginTop :10, 
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 2) Chat seamlessly with you collaborations 
-          </Text>
-          <Text style={{
-           marginTop :10, 
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
- 3) More features comming soon 
-          </Text>
-          </ScrollView>
-          </View>
-          </View>
-          <View style={{alignContent : 'center' , justifyContent: 'center', alignItems:'center'}}>
-            <Text
-            style={{  fontFamily: 'GothamRounded-Medium',
-              fontSize:15,
-              color : "#6463a4"}}
-           >
-           Monthly subscription
-          </Text>
-          </View>
-          <View style={{flex : 1 }}>
-          <TouchableOpacity style={{flex : 1 , backgroundColor : '#6463a4',margin : 20, borderRadius :5 , alignItems : 'center', justifyContent:'center'}}
-          onPress={() => {
-           this.buy("SILVER") 
-          }}
-          >
-          <Text style={{
-            fontSize : 25,
-    color: 'white',
-    fontFamily: 'GothamRounded-Medium',
-          }}>
-         {this.props.subscrition.subscriptionActive == 'colabplus' ? "Active" : 
-          this.props.silverPlanString + " per month" }
-          </Text>
-          </TouchableOpacity>
-          <View style={{flex : 1}}>
-          </View>
-        </View>
-        </View>
 
 
         <View style={styles.slide}>
@@ -272,14 +122,14 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 1) Upto 100 collaborations
+ 1) Unlimited number of new collaborations
           </Text>
           <Text style={{
            marginTop :10, 
     color: 'white',
     fontFamily: 'GothamRounded-Medium',
           }}>
- 2) Chat seamlessly with you collaborations 
+ 2) Chat seamlessly with your existing collaborations 
           </Text>
           <Text style={{
            marginTop :10, 
@@ -322,6 +172,76 @@ InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
 
 
 
+        <View style={styles.slide}>
+        <View style={{flex : 0.1}}>
+          </View>
+          <View style={{flex : 2, backgroundColor : '#6463a4', margin : 20, borderRadius: 5}}>
+          <View style={{flex : 0.8, backgroundColor : '#5a5994',
+              borderRadius: 5,alignItems : 'center',justifyContent : 'center',
+              borderBottomColor : 'white',
+              borderBottomWidth : 1,
+              }}>
+            <Text style={{flex : 1,
+            paddingTop : 17,
+            color : 'white',
+              fontFamily: 'GothamRounded-Medium',
+              fontSize:30,
+            }}>
+           Colab Free 
+            </Text>
+          </View>
+          <View style={{flex : 3,backgroundColor : '#7473ad',borderRadius : 5}}>
+          <ScrollView style={{margin : 10}}>
+          <Text style={{
+    color: 'white',
+    fontFamily: 'GothamRounded-Medium',
+          }}>
+ 1) Unlimited collaborations for first month 
+          </Text>
+          <Text style={{
+           marginTop :10, 
+    color: 'white',
+    fontFamily: 'GothamRounded-Medium',
+          }}>
+ 2) Chat seamlessly with your existing collaborations forever 
+          </Text>
+          <Text style={{
+           marginTop :10, 
+    color: 'white',
+    fontFamily: 'GothamRounded-Medium',
+          }}>
+ 3) More features comming soon 
+          </Text>
+          </ScrollView>
+          </View>
+          </View>
+          <View style={{alignContent : 'center' , justifyContent: 'center', alignItems:'center'}}>
+            <Text
+            style={{  fontFamily: 'GothamRounded-Medium',
+              fontSize:15,
+              color : "#6463a4"}}
+           >
+           No charges
+          </Text>
+          </View>
+          <View style={{flex : 1 }}>
+          <TouchableOpacity style={{flex : 1 , backgroundColor : '#6463a4',margin : 20, borderRadius :5 , alignItems : 'center', justifyContent:'center'}}
+          onPress={() => {
+                  Actions.WebViewPage({PageName : "Subscription"});
+          }}
+          >
+          <Text style={{
+            fontSize : 25,
+    color: 'white',
+    fontFamily: 'GothamRounded-Medium',
+          }}>
+         {this.props.subscrition.subscriptionActive == 'colabfree' ? "Active" : "Manage"} 
+          </Text>
+          </TouchableOpacity>
+          <View style={{flex : 1}}>
+          </View>
+        </View>
+        </View>
 
 
 

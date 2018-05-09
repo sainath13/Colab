@@ -422,7 +422,7 @@ async validate(receiptData) {
                     </View>
                   : null
 }
-{ this.props.feedData.requests_to_be_shown_after_subscription > 0 &&
+{ Boolean(this.props.feedData.subscription_status) &&
 <TouchableOpacity 
 style={{
   backgroundColor : '#6463a4',
@@ -443,7 +443,7 @@ style={{
                           fontFamily: "GothamRounded-Book",
                           }}
   >
-    {"You have " + this.props.feedData.requests_to_be_shown_after_subscription + " more requests. Please "+this.props.feedData.subscription_status + "." }
+  {this.props.feedData.subscription_status}
   </Text>
 </TouchableOpacity>
 }

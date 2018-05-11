@@ -119,7 +119,18 @@ class SettingPage extends Component {
                   flex: 1
                 }}
                   onPress={() => {
-                    Actions.PaymentPage();
+                    {this.props.loginInfo.class == "Influencer"?
+                      Actions.PaymentPage() :
+                      Alert.alert(
+                        'Colab+ is Free for Brands!',
+                        'If you wish to request more features please get in touch with us',
+                        [
+                          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                          {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        ],
+                        { cancelable: true}
+                      ) 
+                      }
                 }}>
                   <View
                     style={{
@@ -674,7 +685,8 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(state) {
   return {
-    subscription : state.subscription
+    subscription : state.subscription,
+    loginInfo: state.loginInfo
     //not calling any api actions here yet, but will be required later
   };
 }

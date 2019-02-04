@@ -60,7 +60,7 @@ class SignInPage extends Component {
   onPressSignIn(accountType) {
     var myprops = this;
     LoginManager
-      .logInWithReadPermissions(['public_profile', 'email', 'user_birthday', 'user_location'])
+      .logInWithReadPermissions(['public_profile', 'email'])
       .then(function (result) {
         if (result.isCancelled) {
           alert('Login cancelled');

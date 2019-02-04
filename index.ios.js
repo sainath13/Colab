@@ -31,7 +31,6 @@ import SignUpPage from './app/containers/influencer/SignUpPage';
 import OpeningPage from './app/containers/influencer/OpeningPage';
 import UpdateInfoPage from './app/containers/influencer/UpdateInfoPage';
 import SettingPage from './app/containers/influencer/SettingPage';
-import ReferPage from './app/containers/influencer/ReferPage';
 import WebViewPage from './app/containers/components/WebViewPage';
 import NicheSelectPage from './app/containers/influencer/NicheSelectPage';
 import FeedPage from './app/containers/influencer/FeedPage';
@@ -79,7 +78,6 @@ const scenes = Actions.create(
         <Scene key="WebViewPage" component={WebViewPage} hideNavBar />
         <Scene key="UpdateInfoPage" component={UpdateInfoPage} hideNavBar/>
         <Scene key="SettingPage" component={SettingPage} hideNavBar/>
-        <Scene key="ReferPage" component={ReferPage} hideNavBar/>
         <Scene key="NicheSelectPage" component={NicheSelectPage} hideNavBar />
         <Scene key="chatPage2" component={chatPage2} hideNavBar/>
         <Scene key="InfluencersListPage" component={InfluencersListPage} hideNavBar/>

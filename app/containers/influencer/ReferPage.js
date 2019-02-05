@@ -107,14 +107,15 @@ class ReferPage extends Component {
             <View style={{
               flex: 9
             }}>
-              <ScrollView
-                style={{
-                flex: 1
-              }}
-                scrollEnabled={false}>
                 <View style={styles.picInfoHolder}></View>
-
-              </ScrollView>
+                <View style={{flex : 1}}>
+                </View>
+              <View style={{ flex : 2 , alignItems : 'center'}}>
+              <Icon name="gift" size={155} color='#6463A4'>
+              </Icon>
+              </View>
+                <View style={{flex : 3}}>
+                </View>
             </View>
 
             <View

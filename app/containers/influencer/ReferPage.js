@@ -6,6 +6,8 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
   View,
+  Share,
+  Button,
   TextInput,
   Clipboard,
   StatusBar,
@@ -19,11 +21,6 @@ import {
 const Dimensions = require('Dimensions');
 import OneSignal from 'react-native-onesignal';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Spinner from 'react-native-loading-spinner-overlay';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
-// also need to provide information here but profile route gives us this
-// information anyway right? so it can be done this way always read the
-// profileData state here if available well and good else show nothing
 import {Actions} from 'react-native-router-flux';
 import PopupDialog, {SlideAnimation, DialogTitle, DialogButton} from 'react-native-popup-dialog';
 import {connect} from 'react-redux'
@@ -49,6 +46,7 @@ class ReferPage extends Component {
         }
     });
   }
+
 
   render() {
     return (
@@ -107,14 +105,101 @@ class ReferPage extends Component {
             <View style={{
               flex: 9
             }}>
-                <View style={styles.picInfoHolder}></View>
-                <View style={{flex : 1}}>
-                </View>
-              <View style={{ flex : 2 , alignItems : 'center'}}>
-              <Icon name="gift" size={155} color='#6463A4'>
+              <View style={{ flex : 1.5 , alignItems : 'center', 
+              justifyContent: "center",
+              }}>
+              <Icon name="gift" size={125} color='#6463A4'>
               </Icon>
               </View>
-                <View style={{flex : 3}}>
+                <View style={{flex : 3.5 }}>
+                <TouchableHighlight style={{
+              flex : 0.4                  ,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: '#6563a4',
+              borderColor: '#333156',
+              borderBottomWidth: 3,
+              borderRadius : 10,
+              marginLeft : 20,
+              marginRight : 20
+              }}>
+                <Text
+                  style={{
+                  color: 'white',
+                  fontSize: 25,
+                  fontFamily: 'GothamRounded-Medium'
+                }}
+                
+                                            onPress={async () => {
+                                            await Clipboard.setString("XXXXXXXXXXXX");
+                                            Alert.alert(
+                                                'Your unique referral code copied to clipboard!',
+                                                'You can share it with friends to earn rewards',
+                                                [
+                                                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                                ],
+                                                { cancelable: true}
+                                              )
+                                            }}
+                >
+                CNFLWpA1qA
+                </Text>
+                </TouchableHighlight>
+                <View style={{flex : 1 , margin: 10,marginTop: 15,
+                }}>
+                <Text  
+                  style={{
+                  color: '#333156',
+                  fontSize: 20,
+                  fontFamily: 'GothamRounded-Medium'
+                  }}>Use this code to refer friends on Colab+ and enjoy free months of Colab+ Pro. (Max 12 months)
+                </Text>
+                <Text style={{
+                  color: '#333156',
+                  fontSize: 20,
+                  fontFamily: 'GothamRounded-Medium'
+                  }} >
+Don't forget to tell them they also get one month of Colab Gold because you are such a good friend!
+                </Text>
+                </View>
+                <View style={{flex : 1}}>
+                <View style={{flex : 0.3}}>
+                </View>
+                <TouchableOpacity style={{flex : 0.4 , backgroundColor : '#6463A4',
+                alignItems : 'center',
+                justifyContent: 'center',
+                flexDirection : 'row',
+              }} 
+              
+              onPress={() => {
+                Share.share({
+                  message:
+                    'Share text Copied',
+                })
+            }}
+              
+              >
+              <View style={{marginLeft: 15, marginRight : 7.5, paddingLeft: 10 , paddingRight : 10}}>
+              <Icon name="facebook" size={35} color='#FEFEFE'>
+              </Icon>
+              </View>
+              <View style={{marginLeft: 7.5, marginRight : 7.5 , paddingLeft: 10 , paddingRight : 10}}>
+              <Icon name="instagram" size={35} color='#FEFEFE'>
+              </Icon>
+              </View>
+              <View style={{marginLeft: 7.5, marginRight : 7.5, paddingLeft: 10 , paddingRight : 10}}>
+              <Icon name="twitter" size={35} color='#FEFEFE'>
+              </Icon>
+              </View>
+              <View style={{marginLeft: 7.5, marginRight : 15, paddingLeft: 10 , paddingRight : 10}}>
+              <Icon name="whatsapp" size={35} color='#FEFEFE'>
+              </Icon>
+              </View>
+                </TouchableOpacity>
+                <View style={{flex : 0.3}}>
+                </View>
+                </View>
                 </View>
             </View>
 
@@ -125,7 +210,7 @@ class ReferPage extends Component {
               justifyContent: "center",
               backgroundColor: '#6563a4'
             }}
-              onPress={this._onPressInfluencerUpdateInfoSave}>
+              >
               <View style={{}}>
                 <Text
                   style={{
@@ -133,7 +218,7 @@ class ReferPage extends Component {
                   fontSize: 25,
                   fontFamily: 'GothamRounded-Medium'
                 }}>
-               Rewards Earned: 0 🦆 
+               Rewards Earned: 0/12 
                 </Text>
               </View>
             </View>

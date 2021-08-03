@@ -8,3 +8,12 @@ An iOS app - platform for connecting small-medium scale businesses with instagra
 - Have a real time chat with other users on the platform. 
 - Fetch latest instagram stats and photos for the Colab+ profile.
 
+
+# Screenshots 
+![demo](https://github.com/sainath13/Colab/blob/sainath/blob/demo.jpeg?raw=true)
+
+![feedpage](https://github.com/sainath13/Colab/blob/sainath/blob/feedpage.jpeg)
+
+![Freemium](https://github.com/sainath13/Colab/blob/sainath/blob/freemiummodel.jpeg)
+
+![Search](https://github.com/sainath13/Colab/blob/sainath/blob/search.jpeg)

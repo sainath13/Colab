@@ -10,7 +10,7 @@
     "iap-receipt-validator": "^1.0.6",
     "react": "16.0.0-alpha.12",
     "react-actioncable-provider": "^1.0.3",
-    "react-native": "0.48.2",
+    "react-native": "0.70.6",
     "react-native-actioncable": "0.0.3",
     "react-native-custom-checkbox": "^1.5.1",
     "react-native-fbsdk": "^0.6.0",
